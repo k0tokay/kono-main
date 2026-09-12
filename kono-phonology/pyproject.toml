@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "konophon"
+version = "0.1.0"
+description = "コノメノ音韻論の分析基盤（音素・音節化・素性列DSL・制約尤度・統計・刺激語生成）"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24", "scipy>=1.10", "pandas>=2.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+acoustics = ["praat-parselmouth>=0.4"]
+toml = ["tomli>=2.0; python_version < '3.11'"]  # 無ければ同梱の最小実装に落ちる
+
+[tool.setuptools.packages.find]
+include = ["konophon*"]
+
+[tool.setuptools.package-data]
+konophon = ["data/*.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

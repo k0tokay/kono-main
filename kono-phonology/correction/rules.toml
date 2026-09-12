@@ -1,0 +1,54 @@
+# 分布矯正の試作規則（v0）
+#
+# 目的: 音素分布の「上位10への偏り」(82.5%) をほぐし，参照言語（ロシア語・モンゴル語）へ
+# 寄せる．有声阻害音と u, v を増やし，a, o, t, k, n を削る．
+#
+# 書式:
+#   rule    = "A -> B / C _ D"   （DSL．文脈に # や [initial=false], [role=coda] が書ける）
+#   map     = {t="d", ...}       複数の literal 置換を同じ文脈で（context 省略可）
+#   enabled = false              一時的に無効化
+# 規則は上から順に適用し，各規則の後で再音節化する．
+
+[[rules]]
+name = "voicing_intervocalic"
+doc  = "母音間の無声阻害音を有声化（t k p s -> d g b z）"
+map  = { t = "d", k = "g", p = "b", s = "z" }
+context = "[+syl] _ [+syl]"
+
+[[rules]]
+name = "coda_k_spirantization"
+doc  = "語末・阻害音前の k を kh に（モンゴル語の x# の多さに倣う）"
+map  = { k = "kh" }
+context = "_ (#|[O])"
+
+[[rules]]
+name = "velar_nasal_assimilation"
+doc  = "軟口蓋音の前の n を ng に"
+map  = { n = "ng" }
+context = "_ (k|g|kh)"
+
+[[rules]]
+name = "final_nasal_velarization"
+doc  = "非語頭音節の語末 n を ng に"
+rule = "[spell=n,initial=false] -> ng / _ #"
+
+[[rules]]
+name = "a_reduction_medial"
+doc  = "語中（語頭でも語末でもない音節）の a を u に"
+rule = "[spell=a,initial=false,final=false] -> u"
+
+[[rules]]
+name = "a_reduction_final_closed"
+doc  = "非語頭の閉音節語末の a を u に"
+rule = "[spell=a,initial=false] -> u / _ [role=coda] #"
+
+[[rules]]
+name = "o_reduction_closed"
+doc  = "非語頭の閉音節の o を v に"
+rule = "[spell=o,initial=false] -> v / _ [role=coda]"
+
+[[rules]]
+name = "coda_l_vocalization"
+doc  = "コーダの l を w に（暫定．r が無いので l が 10% を占める対策）"
+rule = "[spell=l,role=coda] -> w"
+enabled = true

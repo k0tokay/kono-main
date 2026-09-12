@@ -1,0 +1,672 @@
+####################################################################
+# コノメノ音韻論 — 単一の真実 (single source of truth)
+#
+# このファイルが音素目録・素性・IPA・音韻制約の唯一の定義元である．
+# detail/chapters/p-side/phonology.tex の表はここから生成する
+# (scripts/gen_tex_tables.py)．コード側にハードコードしないこと．
+#
+# 参照: phonology.tex 「音素目録」「音節構造」「音韻制約」
+####################################################################
+
+[meta]
+name = "konomeno"
+version = "5"
+source = "detail/chapters/p-side/phonology.tex"
+
+####################################################################
+# 素性の宣言
+#   type = "binary"  -> DSL で [+cons] / [-cons]
+#   type = "privative" -> [+lat] のみ（-は「その素性を持たない」）
+#   type = "scalar"  -> [son=7] / [son>=6]
+#   type = "categorical" -> [place=labial]
+####################################################################
+
+[features]
+syl    = { type = "binary",      doc = "音節主音性 (母音=+)" }
+cons   = { type = "binary",      doc = "子音性" }
+son    = { type = "binary",      doc = "共鳴性 (鼻音・流音・接近音・母音=+)" }
+voi    = { type = "binary",      doc = "有声性" }
+cont   = { type = "binary",      doc = "継続性 (摩擦音・接近音・母音=+)" }
+nas    = { type = "binary",      doc = "鼻音性" }
+lat    = { type = "binary",      doc = "側面性" }
+place  = { type = "categorical", doc = "調音位置", values = ["labial","alveolar","postalveolar","palatal","velar","glottal"] }
+manner = { type = "categorical", doc = "調音法",   values = ["fricative","affricate","plosive","nasal","liquid","approximant","vowel"] }
+# 母音素性
+high   = { type = "binary",      doc = "狭" }
+low    = { type = "binary",      doc = "広" }
+back   = { type = "binary",      doc = "後舌" }
+round  = { type = "binary",      doc = "円唇" }
+central= { type = "binary",      doc = "中舌" }
+sonor  = { type = "scalar",      doc = "ソノリティ階層 (大きいほど共鳴的)" }
+
+####################################################################
+# 自然類の略号
+#   phonology.tex 「音節構造」の記法 C, V, S, Q, T, N, L, J に対応．
+#   DSL 中で [S] のように 1 文字で書ける．
+####################################################################
+
+[classes]
+C = "[+cons]"
+V = "[+syl]"
+S = "[manner=fricative]"
+Q = "[manner=affricate]"
+T = "[manner=plosive]"
+N = "[manner=nasal]"
+L = "[manner=liquid]"
+J = "[manner=approximant]"
+O = "[-son,+cons]"          # 阻害音 (obstruent)
+R = "[+son,+cons]"          # 共鳴子音 (sonorant consonant)
+
+####################################################################
+# 音素目録
+#   spell : 綴り字（これが正規表現的な同一性の基準．最長一致でトークン化）
+#   ipa   : 代表的な音声実現
+#   alt   : 実現の幅（phonology.tex の remark）
+####################################################################
+
+# ---- 摩擦音 S ----
+[[phonemes]]
+spell = "f"
+ipa = "f"
+manner = "fricative"
+place = "labial"
+syl = false
+cons = true
+son = false
+voi = false
+cont = true
+nas = false
+lat = false
+sonor = 4
+
+[[phonemes]]
+spell = "s"
+ipa = "s"
+manner = "fricative"
+place = "alveolar"
+syl = false
+cons = true
+son = false
+voi = false
+cont = true
+nas = false
+lat = false
+sonor = 4
+
+[[phonemes]]
+spell = "z"
+ipa = "z"
+manner = "fricative"
+place = "alveolar"
+syl = false
+cons = true
+son = false
+voi = true
+cont = true
+nas = false
+lat = false
+sonor = 5
+
+[[phonemes]]
+spell = "c"
+ipa = "ɕ"
+alt = ["ɕ", "ʃ"]
+manner = "fricative"
+place = "postalveolar"
+syl = false
+cons = true
+son = false
+voi = false
+cont = true
+nas = false
+lat = false
+sonor = 4
+
+[[phonemes]]
+spell = "zc"
+ipa = "ʑ"
+alt = ["ʑ", "ʒ"]
+manner = "fricative"
+place = "postalveolar"
+syl = false
+cons = true
+son = false
+voi = true
+cont = true
+nas = false
+lat = false
+sonor = 5
+
+[[phonemes]]
+spell = "kh"
+ipa = "x"
+alt = ["ç", "x", "χ"]
+manner = "fricative"
+place = "velar"
+syl = false
+cons = true
+son = false
+voi = false
+cont = true
+nas = false
+lat = false
+sonor = 4
+note = "[ç]〜[x]〜[χ] をカバーする．h の口蓋化形 (h^rho)"
+
+[[phonemes]]
+spell = "h"
+ipa = "h"
+manner = "fricative"
+place = "glottal"
+syl = false
+cons = true
+son = false
+voi = false
+cont = true
+nas = false
+lat = false
+sonor = 4
+
+# ---- 破擦音 Q ----
+[[phonemes]]
+spell = "ts"
+ipa = "t͡s"
+manner = "affricate"
+place = "alveolar"
+syl = false
+cons = true
+son = false
+voi = false
+cont = false
+nas = false
+lat = false
+sonor = 3
+
+[[phonemes]]
+spell = "tc"
+ipa = "t͡ɕ"
+alt = ["t͡ɕ", "t͡ʃ"]
+manner = "affricate"
+place = "postalveolar"
+syl = false
+cons = true
+son = false
+voi = false
+cont = false
+nas = false
+lat = false
+sonor = 3
+
+# ---- 破裂音 T ----
+[[phonemes]]
+spell = "p"
+ipa = "p"
+manner = "plosive"
+place = "labial"
+syl = false
+cons = true
+son = false
+voi = false
+cont = false
+nas = false
+lat = false
+sonor = 2
+
+[[phonemes]]
+spell = "b"
+ipa = "b"
+manner = "plosive"
+place = "labial"
+syl = false
+cons = true
+son = false
+voi = true
+cont = false
+nas = false
+lat = false
+sonor = 3
+
+[[phonemes]]
+spell = "t"
+ipa = "t"
+manner = "plosive"
+place = "alveolar"
+syl = false
+cons = true
+son = false
+voi = false
+cont = false
+nas = false
+lat = false
+sonor = 2
+
+[[phonemes]]
+spell = "d"
+ipa = "d"
+manner = "plosive"
+place = "alveolar"
+syl = false
+cons = true
+son = false
+voi = true
+cont = false
+nas = false
+lat = false
+sonor = 3
+
+[[phonemes]]
+spell = "k"
+ipa = "k"
+manner = "plosive"
+place = "velar"
+syl = false
+cons = true
+son = false
+voi = false
+cont = false
+nas = false
+lat = false
+sonor = 2
+
+[[phonemes]]
+spell = "g"
+ipa = "g"
+manner = "plosive"
+place = "velar"
+syl = false
+cons = true
+son = false
+voi = true
+cont = false
+nas = false
+lat = false
+sonor = 3
+
+# ---- 鼻音 N ----
+[[phonemes]]
+spell = "m"
+ipa = "m"
+manner = "nasal"
+place = "labial"
+syl = false
+cons = true
+son = true
+voi = true
+cont = false
+nas = true
+lat = false
+sonor = 6
+
+[[phonemes]]
+spell = "n"
+ipa = "n"
+manner = "nasal"
+place = "alveolar"
+syl = false
+cons = true
+son = true
+voi = true
+cont = false
+nas = true
+lat = false
+sonor = 6
+
+[[phonemes]]
+spell = "ng"
+ipa = "ŋ"
+manner = "nasal"
+place = "velar"
+syl = false
+cons = true
+son = true
+voi = true
+cont = false
+nas = true
+lat = false
+sonor = 6
+
+# ---- 流音 L ----
+[[phonemes]]
+spell = "l"
+ipa = "l"
+alt = ["ɾ", "l"]
+manner = "liquid"
+place = "alveolar"
+syl = false
+cons = true
+son = true
+voi = true
+cont = true
+nas = false
+lat = true
+sonor = 7
+note = "[ɾ]〜[l] をカバー．r/l の区別はない"
+
+# ---- 接近音 J ----
+[[phonemes]]
+spell = "w"
+ipa = "w"
+manner = "approximant"
+place = "labial"
+syl = false
+cons = true
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+sonor = 8
+
+[[phonemes]]
+spell = "j"
+ipa = "j"
+manner = "approximant"
+place = "palatal"
+syl = false
+cons = true
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+sonor = 8
+
+# ---- 母音 V ----
+[[phonemes]]
+spell = "a"
+ipa = "a"
+manner = "vowel"
+place = "alveolar"
+central = true
+syl = true
+cons = false
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+high = false
+low = true
+back = false
+round = false
+sonor = 10
+
+[[phonemes]]
+spell = "o"
+ipa = "o"
+manner = "vowel"
+place = "velar"
+syl = true
+cons = false
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+high = false
+low = false
+back = true
+round = true
+sonor = 10
+
+[[phonemes]]
+spell = "e"
+ipa = "e"
+manner = "vowel"
+place = "palatal"
+syl = true
+cons = false
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+high = false
+low = false
+back = false
+round = false
+sonor = 10
+
+[[phonemes]]
+spell = "i"
+ipa = "i"
+manner = "vowel"
+place = "palatal"
+syl = true
+cons = false
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+high = true
+low = false
+back = false
+round = false
+sonor = 10
+
+[[phonemes]]
+spell = "y"
+ipa = "y"
+manner = "vowel"
+place = "palatal"
+syl = true
+cons = false
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+high = true
+low = false
+back = false
+round = true
+sonor = 10
+
+[[phonemes]]
+spell = "u"
+ipa = "ɘ"
+central = true
+alt = ["ɘ", "ɯ"]
+manner = "vowel"
+place = "velar"
+syl = true
+cons = false
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+high = true
+low = false
+back = true
+round = false
+sonor = 10
+note = "通常の「ウ」より非円唇．曖昧母音に近い"
+
+[[phonemes]]
+spell = "v"
+ipa = "u"
+manner = "vowel"
+place = "velar"
+syl = true
+cons = false
+son = true
+voi = true
+cont = true
+nas = false
+lat = false
+high = true
+low = false
+back = true
+round = true
+sonor = 10
+note = "子音 [v] ではなく母音 [u]"
+
+####################################################################
+# 音節構造 (phonology.tex 「音節構造」)
+####################################################################
+
+[syllable]
+onset_max = 2
+nucleus_min = 1
+nucleus_max = 2
+coda_max = 2
+
+# オンセットの2子音結合表: 行=omega_0, 列=omega_1（自然類の略号で書く）
+[syllable.onset_pairs]
+S = ["T", "N", "L", "J"]
+T = ["L", "J"]
+N = ["L", "J"]
+L = ["J"]
+
+# コーダの2子音結合表: 行=kappa_0, 列=kappa_1
+[syllable.coda_pairs]
+S = ["T"]
+T = ["T"]
+N = ["S", "T"]
+L = ["T", "N"]
+
+# 核の2母音結合表: 行=nu_1, 列=nu_2（音素の綴りで書く）
+[syllable.nucleus_pairs]
+a = ["a", "e", "i", "y", "u", "v"]
+o = ["a", "o", "e", "i", "y", "u", "v"]
+e = ["a", "e", "i", "y"]
+i = ["i"]
+y = ["y"]
+u = ["i", "y", "u"]
+v = ["v"]
+
+####################################################################
+# 韻律 (phonology.tex 「音節の軽重」)
+#
+# rime スケール: 従来のモーラ．オンセットは寄与しない．
+# prominence スケール: アクセント位置決定用．オンセットの複雑さを含む．
+#   → 2機構モデル．pakata(HHH) vs paklata(LFL) の対立、および
+#     kwilwa(FR, 軽音節にF) の説明を意図した仮説．検証対象であり確定事項ではない．
+####################################################################
+
+[prosody]
+default_weight_scale = "rime"
+fall_requires_mora = 2      # F (音節内下降) の実現に必要なライムのモーラ数
+
+[prosody.scales.rime]
+doc = "phonology.tex 準拠．ライムのみ．短核=1, 長核/二重母音=2, コーダ子音=各1"
+nucleus_short = 1
+nucleus_long = 2
+per_coda_consonant = 1
+per_extra_onset_consonant = 0
+
+[prosody.scales.onset_sensitive]
+doc = "オンセット第2子音以降を +1 する仮説的スケール (Ryan 2014 型)"
+license_with_onset = true
+nucleus_short = 1
+nucleus_long = 2
+per_coda_consonant = 1
+per_extra_onset_consonant = 1
+
+[prosody.weight_classes]
+# モーラ数 -> 名前
+1 = "light"
+2 = "heavy"
+3 = "superheavy"
+
+[prosody.accent]
+symbols = ["H", "L", "F", "R"]
+H = { doc = "高", contour = false }
+L = { doc = "低", contour = false }
+F = { doc = "下降", contour = true, requires_mora = 2 }
+R = { doc = "上昇", contour = true, requires_mora = 2 }
+
+####################################################################
+# 音韻規則（書き換え）
+#   phonology.tex 「音素目録」remark の口蓋化，および
+#   「綴り字と発音の乖離」．
+#   DSL 記法: "A -> B / C _ D"（C, D は省略可，# は語境界）
+####################################################################
+
+[[rules]]
+name = "palatalization_j"
+doc = "x in {s,ts,z,h} について xj -> x^rho"
+type = "spelling"
+map = { "sj" = "c", "tsj" = "tc", "zj" = "zc", "hj" = "kh" }
+
+[[rules]]
+name = "palatalization_i"
+doc = "x in {s,ts,z,h} について xi -> x^rho i"
+type = "spelling"
+map = { "si" = "ci", "tsi" = "tci", "zi" = "zci", "hi" = "khi" }
+
+[[rules]]
+name = "ji_absorption"
+doc = "ji -> i"
+type = "spelling"
+map = { "ji" = "i" }
+
+####################################################################
+# 音声実現（綴り -> IPA）
+####################################################################
+
+[phonetics]
+# そのまま発音される母音連続（明示しておく：不足分の検出用）
+transparent_vowel_pairs = ["ai","ay","au","oi","ou","ei","ey","ui","uy"]
+
+# 融合して長母音になる母音連続
+[phonetics.vowel_fusion]
+ae = "æː"
+ea = "æː"
+oe = "œː"
+oy = "øː"
+av = "ɔː"
+ov = "oː"
+aa = "aː"
+oo = "oː"
+ee = "eː"
+ii = "iː"
+yy = "yː"
+uu = "ɘː"
+vv = "uː"
+
+
+[[phonetics.processes]]
+name = "final_plosive_glottalization"
+doc = "語末の（単独の）破裂音は [ʔ] で発音される"
+rule = "[T] -> ʔ / [+syl] _ #"
+
+[[phonetics.processes]]
+name = "final_nasal_plosive_reduction"
+doc = "語末の鼻音+破裂音の連続は鼻音も脱落し [ʔ] になる（要検討）"
+rule = "[N][T] -> ʔ / _ #"
+status = "tentative"
+
+[[phonetics.processes]]
+name = "medial_cluster_reduction"
+doc = "3子音連続で中央の子音が脱落する場合がある"
+rule = "[C] -> ∅ / [C] _ [C]"
+status = "optional"
+
+####################################################################
+# 音素配列制約（既知のもの）
+#   DSL: * を先頭に置くと markedness（禁止）制約．
+#   weight は MaxEnt の初期重み（学習で更新される）．inf は絶対禁止（hard）．
+####################################################################
+
+[[constraints]]
+name = "MAX-CLUSTER-3"
+pattern = "*[C][C][C][C]"
+doc = "単語内の子音列の長さは3以下"
+weight = "inf"
+
+[[constraints]]
+name = "NO-DOUBLE-Q-ONSET"
+pattern = "*[Q][C]"
+doc = "破擦音は複雑オンセットの第1要素になれない（オンセット表の Q 行が空）"
+weight = "inf"
+scope = "onset"
+
+[[constraints]]
+name = "FINAL-SJV-AE"
+pattern = "*([S]|[J])[+syl,-low,+high]#"
+doc = "語末の音素列 x in (S∪J)V があれば x2 in {a,e}（tex「その他の制約2」）"
+weight = 4.0
+status = "statistical"

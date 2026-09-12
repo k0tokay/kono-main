@@ -1,0 +1,182 @@
+\documentclass[b5paper, 10pt]{ltjsbook}
+\usepackage{custom4-default}
+% 開発版のみ: ソース .tex の行番号を左余白に表示（\MemoOff で消える）
+\ifmemonotes\usepackage{srcline}\fi
+\usepackage{proof}
+\usepackage{gb4e}\noautomath
+%\makeatletter\let\@ifnextchar\kernel@ifnextchar\makeatother
+\newcommand{\lbb}{\llbracket}
+\newcommand{\rbb}{\rrbracket}
+\usepackage{stmaryrd}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\deq}{\mathop{\mathrm{deq}}}
+\newcommand{\qquote}[1]{\ulcorner #1 \urcorner}
+\newcommand{\cfg}{\mathop{\mathrm{cfg}}}
+\newcommand{\lM}{\langle M \rangle}
+\newcommand{\lS}{\langle S\rangle}
+\newcommand{\intp}[1]{\llbracket #1 \rrbracket}
+\newcommand{\uvdash}{\mathrel{\underline{\vdash}}}
+\newcommand{\uvDash}{\mathrel{\underline{\vDash}}}
+\newcommand{\uequiv}{\mathrel{\underline{\Leftrightarrow}}}
+\usepackage[safe]{tipa}
+\newcommand{\vlr}{\vartriangleright}
+\newcommand{\vll}{\vartriangleleft}
+\usepackage{xcolor}
+\renewcommand{\trans}{\mathsf{T}}
+\newcommand{\mb}[1]{[#1]}
+\renewcommand{\dom}{\mathop{\mathrm{dom}}\nolimits}
+% \newcommand{\clsop}[1]{{}^\cup #1}
+% \newcommand{\clsop}[1]{{{#1}^\cup}}
+% 引数と自身の高さをVに固定し，入れ子や後続の上付き（量化冠詞）を同じ高さに置く．
+\newcommand{\clsop}[1]{{\vphantom{V}\smash{{\vphantom{V}\smash{#1}}^{\cup}}}}
+% \newcommand{\setop}[1]{{}^\cap #1}
+\newcommand{\setop}[1]{{{#1}^\cap}}
+\usepackage{underscore}
+
+\usetikzlibrary{arrows.meta,calc} 
+
+% \newcommand{\ko}[1]{\textsf{#1}}
+% \newcommand{\kotr}[2]{\textsf{#1}{(#2)}}
+% araidashiは未完成マーカー系（\memo/\todo/\fixmeと同格の，未決論点の列挙）．
+% \MemoOff時は本文から消える．issues.pyは中身を追跡しない．
+\newenvironment{araidashi}
+{\par\medskip\noindent\rule{\linewidth}{0.4pt}\par\noindent\textbf{洗い出し}
+\begin{itemize}\setlength{\itemsep}{0pt}}
+{\end{itemize}\noindent\rule{\linewidth}{0.4pt}\par\medskip}
+\ifmemonotes\else
+% 中身を捨てるボックスに組んで破棄する（commentパッケージはenumitemと衝突する）
+\renewenvironment{araidashi}
+{\par\setbox0\vbox\bgroup\begin{itemize}}
+{\end{itemize}\egroup}
+\fi
+
+
+\usepackage{longtable}
+
+\usepackage{dirtree}
+
+\usepackage[numbers, sort&compress]{natbib}
+
+\usepackage{underscore}
+
+\newcommand{\ko}[1]{\textsf{#1}}
+\newcommand{\kotr}[2]{\textsf{#1}（#2）}
+\newcommand{\sentence}[1]{$\langle$#1$\rangle$}
+\newcommand{\kox}[1]{\textsf{[#1]}}  % 未造語：コノメノ語の代わりに日本語を置く
+
+
+
+% 採らない設計案を現在形で残す環境（完成版に載る）．AI改稿時に削除・改変しない．
+\newtheorem*{whynot}{採らない案}
+
+\newtheorem{alk}[theorem]{概念}
+\newtheorem{rel}[theorem]{関係}
+\newtheorem{func}[theorem]{関数}
+\newtheorem{word}[theorem]{単語}
+
+\newcommand{\alke}[3]{
+\begin{alk}
+    $\text{#1} \subseteq \text{#2}$\hspace{1cm}#3
+\end{alk}
+}
+% \newcommand{\rele}[4]{
+% \begin{rel}
+%     $\text{#1} \subseteq \text{#2}\times \text{#3}$\hspace{1cm}#4
+% \end{rel}
+% }
+\newcommand{\rele}[4]{
+\begin{rel}
+    $\text{#1} : \text{#2}\relto \text{#3}$\hspace{1cm}#4
+\end{rel}
+}
+\newcommand{\funce}[4]{
+\begin{func}
+    $\text{#1} : \text{#2}\rightarrow \text{#3}$\hspace{1cm}#4
+\end{func}
+}
+\newcommand{\worde}[2]{
+\begin{word}
+    #1\hspace{1cm}#2
+\end{word}
+}
+
+% leftlineboxと同じだが，開発者用のメモを残すときに使う
+\newtcolorbox{devbox}{
+  breakable,
+  enhanced,
+  colback=white,
+  colframe=black,
+  frame hidden,
+  borderline west={0.4pt}{3pt}{black},
+  sharp corners,
+  left=8pt,
+  right=0pt,
+  top=2pt,
+  bottom=2pt,
+}
+
+\newcommand{\relpath}[1]{\texttt{\~/Documents/kono-main/#1}}
+
+
+
+
+% --- Commands extracted from chapter bodies ---
+\newcommand{\lt}[1]{$\langle$\text{#1}$\rangle$}
+\newcommand{\arity}{\mathop{\mathrm{arity}}}
+\newcommand{\tArity}{\mathop{\mathrm{tArity}}}
+\newcommand{\isFunc}{\mathop{\mathrm{isFunc}}}
+\newcommand{\type}{\mathop{\mathrm{type}}}
+\newcommand{\Sit}{\Sigma}
+\newcommand{\vf}{\Vdash^{+}}
+\newcommand{\ff}{\Vdash^{-}}
+\newcommand{\fuse}{\sqcup}
+\newcommand{\dem}[2]{\mathopen{\langle}#1\,{:}\,#2\mathclose{\rangle}}
+
+\usepackage{subfiles}
+
+\begin{document}
+\title{\huge{コノメノ詳説\\ 2026年版}}
+\maketitle
+
+\tableofcontents
+
+
+\subfile{chapters/overview}
+
+\part{理論：P-side}
+\subfile{chapters/p-side/phonology}
+\subfile{chapters/p-side/word-creation}
+\subfile{chapters/p-side/writing-system}
+
+\part{理論：S-side}
+\subfile{chapters/s-side/formal-grammar}
+\subfile{chapters/s-side/formal-semantics}
+% \subfile{chapters/s-side/colloquial-basics}  % 全体が\if0で無効化中
+\subfile{chapters/s-side/dictionary}
+\subfile{chapters/s-side/upper-classification}
+\subfile{chapters/s-side/representations}
+\subfile{chapters/s-side/aicis}
+\subfile{chapters/s-side/endurants}
+\subfile{chapters/s-side/perdurants}
+
+\part{実践：文法}
+% 実践編は四章に分割．旧版5-2は定義と例の移植元，理論の権威は本書本文．
+
+\subfile{chapters/practice/practice-foundations}
+\subfile{chapters/practice/practice-sentences}
+\subfile{chapters/practice/practice-expressions}
+\subfile{chapters/practice/practice-discourse}
+\subfile{chapters/practice/translations}
+
+\part{付録}
+\subfile{chapters/appendix/ontology-trees}
+
+% \part{演習}
+% \subfile{chapters/s-side/formal-exercises}
+
+\nocite{wiki-personal, inquisitive, arai, dolce, bfo, yamato, ryan, kurada1, kurada2, hamano}
+% 生起物の分類の再検討で参照予定（2026-07-29 追加、本文未引用）
+\nocite{dowty1979, bach1986, krifka1998, rodrigues-abel2019}
+\bibliographystyle{plainnat}
+\bibliography{../bib/references}
+\end{document}

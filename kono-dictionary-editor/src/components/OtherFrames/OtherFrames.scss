@@ -1,0 +1,60 @@
+@use '../../styles/index.scss' as *;
+
+.basicForm, .tagForm, .largeListForm {
+  width: 100%;
+  border-bottom: 1px solid rgba(#fff, 0.05);
+}
+
+.searchFrameContainer {
+  width: 100%;
+  gap: 16px;
+}
+
+.searchButtonContainer {
+  padding: 5px;
+  display: flex;
+  button {
+    margin: 0;
+    flex: 1;
+  }
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.searchResultTag {
+  padding: 4px 8px;
+  cursor: pointer;
+  height: auto;
+  display: block;
+  width: calc(100% - 10px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  &:hover {
+    cursor: pointer;
+  }
+  font-weight: 600;
+  .id {
+    color: $muted;
+    padding-right: 10px;
+  }
+  .entry {
+    padding-right: 10px;
+  }
+  .translations {
+    font-weight: 400;
+    height: 20px;
+  }
+}
+
+.emptyFrame {
+  font-size: 2rem;
+  width: 100%;
+  color: rgba(#fff, .2);
+  padding: 40px;
+  text-align: center;
+  min-height: calc(100vh - 2*#{$menuheight});
+  background-color: $black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

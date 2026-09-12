@@ -1,0 +1,217 @@
+@use "sass:color";
+@use '../../styles/index.scss' as *;
+
+$form-margin: 12px;
+
+.edited {
+  color: $edited;
+}
+
+.renderInfo {
+  width: 100%;
+  min-width: 500px;
+}
+.infoContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.textForm {
+  margin: $form-margin;
+  margin-top: 0;
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  min-height: 49px;
+  justify-content: space-between;
+  margin-left: $form-margin;
+  margin-right: $form-margin;
+  font-weight: 600;
+  > p, > label, > span {
+    font-weight: 600;
+  }
+}
+
+input:read-only, textarea:read-only {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.basicForm, .tagForm, .largeListForm, .checkboxForm {
+  @extend .card;
+  width: 100%;
+  border-right: 1px solid rgba(#fff, 0.05);
+  border-bottom: 1px solid rgba(#fff, 0.05);
+}
+
+.tagForm {
+  .innerTagForm {
+    min-height: 40px;
+    margin-top: 5px;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; // 改行
+    // max-height: 200px;
+    // overflow-y: auto;
+    div {
+      .tagInput {
+        display: inline-block;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid color.adjust($bg, $lightness: 40%);
+        padding: 4px 6px;
+        margin: 2px;
+        &:focus {
+          outline: none;
+        }
+      }
+      .notValid {
+        border: $notvalid 2px dashed;
+        color: $notvalid;
+      }
+      .tagWordDetails {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        z-index: 10;
+        display: none;
+        padding-bottom: 4px;
+        .innerTagWordDetails {
+          background: $bg-dark;
+          border: 1px solid rgba(#fff, 0.1);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+          padding: 6px 10px;
+          display: flex;
+          align-items: baseline;
+          gap: 6px;
+          width: max-content;
+          cursor: pointer;
+          &:hover {
+            background: color.adjust($bg, $lightness: 10%);
+          }
+          .id {
+            color: $muted;
+            font-weight: bold;
+            min-width: 30px;
+          }
+          .entry {
+            font-weight: bold;
+          }
+          .translations {
+            color: $muted;
+            font-size: 0.9em;
+          }
+        }
+      }
+      &:hover {
+        .tagWordDetails {
+          display: block;
+        }
+      }
+    }
+  }
+}
+.wordSuggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  background: $bg-dark;
+  border: 1px solid rgba(#fff, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  max-height: 200px;
+  overflow-y: auto;
+  min-width: 200px;
+  .suggestionItem {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    &:hover {
+      background: color.adjust($bg, $lightness: 10%);
+    }
+    .id {
+      color: $muted;
+      font-weight: bold;
+      min-width: 30px;
+    }
+    .entry {
+      font-weight: bold;
+    }
+    .translations {
+      color: $muted;
+      font-size: 0.9em;
+    }
+  }
+}
+.largeListForm {
+  .listHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .innerLargeListForm {
+    margin-top: 5px;
+    min-height: 40px;
+    .largeListItem {
+      position: relative;
+      border-bottom: 1px solid rgba(#fff, 0.05);
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+      .largeListItemHeader {
+        display: flex;
+        justify-content: flex-end;
+        padding: 2px 4px;
+      }
+      .deleteItemBtn {
+        font-size: 0.8em;
+        padding: 2px 8px;
+        color: $notvalid;
+        background: transparent;
+        border: 1px solid rgba($notvalid, 0.3);
+        &:hover {
+          background: rgba($notvalid, 0.15);
+        }
+      }
+    }
+    .basicForm {
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+  }
+}
+.argUsageForm {
+  @extend .card;
+  width: 100%;
+  border-right: 1px solid rgba(#fff, 0.05);
+  border-bottom: 1px solid rgba(#fff, 0.05);
+  .argUsageList {
+    padding: 4px;
+  }
+  .argUsageItem {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 4px 10px;
+    cursor: pointer;
+    &:hover {
+      background: color.adjust($bg, $lightness: 8%);
+    }
+    .id {
+      color: $muted;
+      font-weight: bold;
+      min-width: 30px;
+    }
+    .entry {
+      font-weight: bold;
+    }
+    .translations {
+      color: $muted;
+      font-size: 0.9em;
+    }
+  }
+}

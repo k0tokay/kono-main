@@ -1,0 +1,41 @@
+name: Deploy kono-dictionary-editor
+
+# kono-dictionary-editor/ の変更が main に push されたとき GitHub Pages へデプロイする．
+# 公開URLは https://<owner>.github.io/<このリポジトリ名>/ になる（vite の base を VITE_BASE で合わせる）．
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "kono-dictionary-editor/**"
+      - ".github/workflows/deploy-dictionary-editor.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: kono-dictionary-editor
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+        env:
+          VITE_BASE: /${{ github.event.repository.name }}/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./kono-dictionary-editor/dist

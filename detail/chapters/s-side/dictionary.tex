@@ -1,0 +1,261 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{辞書}
+形式文法で導入した語彙の集合$L$についてさらに詳しく考える．形式文法の方では好き勝手に公理を書くことができるのだが，実際に運用するためには，オントロジー的な制約を加えたより具体的な語彙体系を考える必要がある．$L$は次のように定義されていた：
+\begin{definition}[語彙]
+    語彙の集合$L$は，各$a\in L$に対して，$\arity a \in \mathbb{N},\; \isFunc a \in \{0, 1\}$が定義される．$\arity a$は$a$のアリティを表し，$\isFunc a$は$a$が関数であるかどうかを表す．
+        \begin{align*}
+        \begin{array}{ccccc}
+            \toprule
+            \isFunc \setminus \arity & 0 & 1 & 2 & \cdots \\
+            \midrule
+            0 & \text{命題定数} & \text{1項述語} & \text{2項述語} & \cdots \\
+            1 & \text{定数} & \text{1項関数} & \text{2項関数} & \cdots\\
+            \bottomrule
+        \end{array}
+        \end{align*}
+        \begin{itemize}
+            \item $\tArity a = \arity a + \isFunc a$とする．
+            \item $A_n = \{a \in L \mid \tArity a = n\}$とする．特に$A = A_1$は概念の集合と呼ばれる．
+            \item $R_n = \{a \in L \mid \arity a = n, \isFunc a = 0\}$を$n$項述語の集合と呼ぶ．
+            \item $F_n = \{a \in L \mid \arity a = n, \isFunc a = 1\}$を$n$項関数の集合と呼ぶ．
+            \item $\dom a \in A^{\tArity a}$が定義される．$\dom a$は，$a$の引数の定義域（と関数であれば値域）を表す．
+            \item $\type a$は，$a$の型を表す．$\isFunc a = 0$のとき，$\type a = V^{\arity a} \to \Omega$であり，$\isFunc a = 1$かつ$\arity a>0$のとき，$\type a = V^{\arity a}\rightharpoonup V$であり，定数の型は$V$である．
+        \end{itemize}
+\end{definition}
+また，解釈については次のような制約があった．
+\begin{definition}[解釈]
+    語彙の解釈は形式文法章の「語彙割り当て関数」に従う．述語の外延は引数ソートの積に含まれ，正のアリティの関数は入力ソートの積上で定義され，値域ソート内の値を返す．ソート外では未定義となる．定数の値はその値域ソートに属する．
+\end{definition}
+
+\section{辞書の構成}
+
+\subsection{実データ構造}
+現行の辞書の正典は\texttt{kono-dictionary-editor/src/data/konomeno-v5.json}である．
+実データは\texttt{\{"words": [...]\}}というオブジェクトであり，\texttt{words}が単語オブジェクトまたは\texttt{null}からなるスパース配列である．各オブジェクトは
+\texttt{id}（配列インデックスと一致，削除後も再利用しない），
+\texttt{entry}（綴り），\texttt{category}，
+\texttt{upper\_covers}/\texttt{lower\_covers}（双方向リンクで被覆関係を表す），
+\texttt{translations}，\texttt{arguments}（引数概念へのid参照．生存する語彙IDだけを参照し，削除操作では参照を拒否するか代替概念へ置換する），
+\texttt{tags}，\texttt{is\_function}などのフィールドを持つ．
+被覆関係は循環のないDAGをなし，Hasse図として編集される（次節）．
+
+木のトップレベルは次の5つに分かれる：
+\begin{itemize}
+    \item \textbf{語彙}：本章の意味での語彙集合$L$に相当する本体．
+    統計分析（音素頻度・bigram等）の対象はこのサブツリーのみとすべきである．
+    \item \textbf{冠詞}：量化子・限定詞類．
+    \item \textbf{音列}：語構成素材としての音素列（それ自体は語でない）．
+    \item \textbf{慣用表現}
+    \item \textbf{括弧}：記号類．
+\end{itemize}
+zpdic（slime）形式への変換は\texttt{kono-dictionary-editor/scripts/to-slime.cjs}で行い，
+変換時に各語の属するトップレベルカテゴリをタグとして付与する
+（zpdic形式は木構造を保持しないため）．
+
+\section{公理スキーマと整合性}\label{sec:axiom-schema}
+本節は2026-08-30に追加した暫定的な節である．分担として，引き下げの意味論と公理の形は形式意味論章（remark［公理化はオントロジー部門と合流する］）が扱い，辞書が語彙に課す公理のスキーマと整合性の保証を本節が扱う．
+
+辞書は語彙の集合であると同時に公理の集合でもある：被覆関係，$\dom$による型付け，そして各述語への引き下げデータ（形式意味論章）．本節では，辞書が課してよい公理の形を\textbf{公理スキーマ}として制限し，スキーマ内に留まる限り，単語や公理をいくら追加しても矛盾が生じないことを示す．既存のオントロジーでは記述論理（DL）\cite{dl-handbook}が同種の保証を推論器による充足可能性検査として与えるが，現行のコノメノのスキーマはDLより弱い形しか含まないため，検査に頼らず整合性が構成的に保証される．DLの推論が必要になるのはスキーマの外に出た瞬間であり，その線引きも本節で与える．
+
+\subsection{背景構造と語彙の二層}
+解釈の領域は形式文法章と同じく$\mathcal{M} = H_\kappa(U)$（$\kappa$は正則非可算基数．$V$は型で$\mathcal{M}$はその解釈領域）である（2026-09-03，形式文法章と統一）．この領域には2つの埋め込みが入っている：
+\begin{enumerate}
+    \item \textbf{表現の埋め込み}：コノメノの表現から$\mathcal{M}$への単射$\ulcorner\cdot\urcorner$（冠詞$M$と$E^\omega$構成，形式意味論章）．表現は有限なので像は$H_\omega$に収まる．
+    \item \textbf{数学的対象の埋め込み}：遺伝的濃度$<\kappa$の集合はすべて$\mathcal{M}$の個体である．$\kappa$を強到達不能基数に強化し$U=\emptyset$の純粋集合部分に限れば$H_\kappa \models \mathrm{ZFC}$なので，ZFCのモデルをこの形で領域内に確保できる．これは追加条件であり，基本意味論の必須条件とするかは未決である（形式文法章「解釈領域に求める閉包性」）．その総体$H_\kappa$自身は領域の要素でない：真クラスはここで打ち止めになる．
+\end{enumerate}
+2の帰結として，辞書理論の無矛盾性は絶対的には証明できず，背景理論の無矛盾性に帰着される．以下の主張のうち，chaseの濃度評価は正則非可算性だけを用いる．$H_\kappa$をZFCのモデルとして使う箇所だけが$\mathrm{ZFC}+\text{到達不能基数}$に相対的である．
+
+\begin{definition}[固定的語彙・構成的語彙]
+    $a \in L$が\textbf{固定的}であるとは，$\rho(a)$が背景構造から一意に決まっていることをいう．数学的語彙（ZFC翻訳を経由するもの，数・日付などの値空間），構文的述語（表現の長さ・部分表現・カテゴリなど，$\ulcorner\cdot\urcorner$を通じて計算可能なもの）がこれに当たる．それ以外を\textbf{構成的}と呼ぶ：$\rho(a)$は公理を満たすように自由に構成してよい．
+\end{definition}
+\begin{remark}[固定的／構成的は辞書の内外の区別ではない]
+    すべての語彙は辞書の中にある．区別は解釈の側にあり，例えば「日付」は辞書の見出し語だが，外延は背景数学が決めるので固定的である．この区別が要る理由は次項の証明法にある：構成的語彙は「公理が要求する要素を発明して外延に加える」ことで公理を満たせるが，固定的語彙の外延には発明した要素を加えられない．数学的語彙まで構成的にする選択も原理的にはありうるが，そうすると算術の真理（$1+1=2$等）がモデルで保証されなくなるので採らない．
+\end{remark}
+
+\subsection{スキーマの定義}
+まず用語を1つ定める．
+\begin{definition}[スロット]
+    役割$k \in R_2$（第2引数の$\dom$が状況概念であるような2項述語，形式意味論章）が\textbf{関数的}であるとは各状況に対する値が高々1つであること，\textbf{全域的}であるとは値が必ず存在することをいう．関数的な役割を\textbf{スロット}と呼ぶ．DLのfeature（attribute），フレーム理論のslot，レコード型のフィールドに当たる．
+\end{definition}
+\begin{definition}[辞書公理スキーマ]
+    辞書が語彙に課す公理は次の形に限る（2項で書くが$n$項も同様）：
+    \begin{itemize}
+        \item[(T)] 型付け：$r(x, y) \to (\dom_1 r)(x) \land (\dom_2 r)(y)$
+        \item[(H)] 包摂：$a(x) \to b(x)$（被覆DAGの各エッジ）
+        \item[(D$\downarrow$)] 引き下げ復元：$\tilde r(e) \land k_r(x,e) \land l_r(y,e) \to r(x,y)$
+        \item[(D$\uparrow$)] 引き下げ分解：$r(x,y) \to \exists e\,(\tilde r(e) \land k_r(x,e) \land l_r(y,e))$
+        \item[(S1)] スロット関数性：$k(x,e) \land k(x',e) \to x = x'$
+        \item[(S2)] スロット全域性：$\tilde r(e) \to \exists x\, k(x,e)$
+    \end{itemize}
+    関数$f \in F_n$のグラフにも(S1)(S2)相当を課す．役割どうしの包摂（上位役割の体系）は(H)と同形である．
+\end{definition}
+これらはHorn節（正リテラルを高々1つ持つ節）とその温和な拡張に収まる：(D$\uparrow$)(S2)はヘッドに存在量化を持つ\textbf{存在規則}（データベース理論のtuple-generating dependency \cite{data-exchange}），(S1)はヘッドが等式の規則（equality-generating dependency）である．肝心なのは，否定・選言・濃度制約がヘッドに現れないことである．したがって次はスキーマに\emph{含まれない}：兄弟概念の排他性$a(x) \land b(x) \to \bot$，選言ヘッド$a(x) \to b(x) \lor c(x)$，濃度制約，無制限の引用解除と無制限の内包（\ref{subsec:paradox-doors}節）．
+
+\subsection{標準モデルの構成と失敗様式}
+\begin{theorem}[標準モデル]\label{thm:canonical-model}
+    固定的語彙の解釈$\rho_0$と，サイズ$<\kappa$の原子事実の集合$\Delta$（\textbf{種データ}：辞書のインスタンスデータや例文の前提）が与えられ，語彙・公理集合・種データの濃度がすべて$\kappa$未満であるとする．スキーマ内の任意の公理集合に対して，規則適用の反復（データベース理論のchase \cite{data-exchange}）は次のいずれかに至る：
+    \begin{enumerate}
+        \item \textbf{成功}：$\rho_0$を拡張し，$\Delta$と全公理を満たす解釈$\rho$が得られる．Skolem witnessのみを用いる部分については準同型の意味で普遍的なchase modelだが，固定的値空間からの任意選択（S2）を含む場合，一意な最小モデルは一般に存在しない．
+        \item \textbf{検出可能な失敗}：(a) ヘッドが固定的な規則から，背景で偽な原子式（$t \notin \rho_0(b)$なる$b(t)$）が導出される．(b) (S1)から，背景の相異なる個体の等式（$1 = 2$等）が導出される．
+    \end{enumerate}
+\end{theorem}
+\begin{proof}[証明の概略]
+    $\rho^{(0)} = \Delta$から始め，違反している規則インスタンスを解消していく．(T)(H)(D$\downarrow$)はヘッドの原子式を追加する．(D$\uparrow$)はwitnessを要求するが，カノニカルなタプル$e := \langle r, x, y \rangle$を発明して$\tilde r, k_r, l_r$の外延に加えればよい——これは引き下げ対応の例(1)（積と射影）の構成である．(S2)は，値空間が構成的なら同様に発明し，固定的なら既存の要素を1つ選ぶ（非空性は背景の事実）．(S1)は導出された2つの値を同一視する．witnessが加えられる述語（$\tilde r, k_r, l_r$）はすべて構成的なので，固定的語彙の外延は一切変更されない．規則の前提は有限なので，導出可能な原子式はすべて有限段階で現れ，閉包は$\omega$段で完了する．各段のサイズは$<\kappa$で，$\kappa$の正則性から全体も$<\kappa$．タプル構成について$H_\kappa$は閉じているので，発明されたwitnessはすべて領域内に住む．失敗しうるのは，追加すべき原子式のヘッドが固定的で背景と食い違う場合(2a)と，(S1)の同一視が背景の不等式と衝突する場合(2b)だけである：ヘッドに$\bot$・否定・選言が現れない以上，矛盾の入り口が他にない．
+\end{proof}
+\begin{remark}[失敗の源は常にユーザの主張である]
+    カノニカルwitness $\langle r, x, y\rangle$からは成分$x, y$が一意に読み出せるから，引き下げ層自身の(S1)は構成から自動的に満たされる．失敗(2a)(2b)を引き起こすのは種データかユーザが追加した公理であり，発明されたwitnessが原因になることはない．したがって編集ソフトウェアは，\texttt{checkIntegrity}（無閉路・被覆最小性という構文的検査）の意味論版として，データ入力時にchaseを走らせて(2a)(2b)を検出すればよい．
+    実装は有限の作業集合上で行う．chase自体は停止しないことがある（下のremark）ので，検査の完全性は主張しない．
+\end{remark}
+\begin{remark}[単語の追加は常に安全である]
+    新しい単語を，新しい記号とそれについての公理（被覆エッジ・$\dom$・引き下げデータ）だけを添えて追加する場合，chaseは前回の結果をそのまま拡張し，失敗(2a)(2b)の新しい源は生じない（(S1)を固定的値空間つきで課す場合を除く）．失敗が起きうるのは既存の単語のあいだに公理を追加したときで，そのときはchaseの再実行で検出できる．
+\end{remark}
+\begin{remark}[偽と矛盾の分離]
+    (H)や(T)は現実について実質的な主張をする（「走るものは動く」）．世界がこれを反証することはあるが，それは公理が\emph{偽}なだけで，モデルの存在（無矛盾性）は失われない．スキーマ内では「辞書作者が間違える」ことと「体系が崩壊する」ことが分離されている．排他性や濃度制約を導入するとこの分離は消え，DL的な充足可能性検査が本質的に必要になる\cite{dl-handbook}．これがDLと現行スキーマの正確な位置関係である．
+\end{remark}
+\begin{remark}[最小モデルは真理を保証しない]
+    (S2)で固定的値空間から既存要素を選ぶ操作は任意である：構成されたモデルは公理を満たすが，例えば誕生日の値を勝手に決めている．本節が保証するのは整合性（モデルの存在）であって，意図された事実との一致ではない．
+\end{remark}
+\begin{remark}[停止しないchaseと高階\ko{canon}]
+    chaseは停止するとは限らない．\ko{canon}が担い手になれる設計では高階の\ko{canon}が無限に生成される（「とても」が「とても」を修飾してよい，aicis章）が，これは「停止しないが収束するchase」であり，定理\ref{thm:canonical-model}の濃度評価（$\omega$段・各段$<\kappa$）がその無害性の証明になっている．無限増殖は仕様であって欠陥でない，という従来の裁定はここで正当化される．
+\end{remark}
+
+\subsection{2つのパラドックスの扉}\label{subsec:paradox-doors}
+背景構造の2つの埋め込みは，それぞれ古典的なパラドックスの入り口に対応する．スキーマから除外した「無制限の引用解除」「無制限の内包」がこの2つの門である．
+\begin{remark}[表現の埋め込みとTarskiの扉]
+    引用そのものは単なる単射コーディングであり無害である．構文的述語（長さ・部分表現・カテゴリ）も計算可能だから固定的語彙として安全に入る．危険なのは引用に意味論的述語を張るときで，コーディングと構文が揃っている以上対角化補題が動き，無制限の引用解除スキーマ$\mathrm{True}(\ulcorner \phi \urcorner) \leftrightarrow \phi$（$\phi$が真理述語自身を含む全言語を走る）は解釈の存在と両立しない（嘘つき文）．現行案（形式意味論章）は，終余代数的な表現符号化により循環表現を許し，引用剥がしを接地した表現に制限するKripke流の部分的真理述語\cite{kripke-truth}である．その最小不動点構成は定理\ref{thm:canonical-model}のchaseと同じ単調帰納法であり，名詞化子の部分性（negative free logic）とも整合する．$E^\omega$による層化（実質Tarski階層）は，不動点そのものを禁止する代替案として残す（形式意味論章では未採用）．辞書仕様としては「引用解除は下位層に制限するか，部分的にのみ与える」と定めればよい．
+\end{remark}
+\begin{remark}[数学の埋め込みとRussellの扉]
+    危険なのは「すべての概念が対象化できる」という無制限内包であり，門番は名詞化子の部分性である．定理\ref{thm:canonical-model}はこの部分性に具体的な判定基準を与える：名詞化が可能なのは外延が$V$の要素になる概念，すなわち$|\rho(a)| < \kappa$の場合である．chaseが生成する構成的概念の外延は常に$<\kappa$なので名詞化可能であり，名詞化が失敗しうるのは，背景数学へのリンク（「集合」を包摂する概念など）を通じて外延がサイズ$\kappa$（真クラス相当）になる場合に限る．
+\end{remark}
+
+\subsection{クラスの継承の意味論との関係}
+スロット型（フィールド型）のオントロジー——各クラスをスロットの集合で定義し，継承をスロットの追加とする設計——との関係を整理する．
+\begin{remark}[スロット型は引き下げの特殊例である]
+    クラス$C$をスロット$k_1 : A_1, \dots, k_n : A_n$で定義することは，状況概念$\tilde C$と役割$k_i$への引き下げにおいて，(S1)関数性・(S2)全域性に加えて\textbf{外延性}（全スロットの値が一致するwitnessは同一，すなわち$\tilde C \cong \prod_i A_i$）を課すことに当たる．引き下げ対応の例(1)（積と射影）がちょうどこの場合である．スロット型の利便性（値へのアクセスが関数合成になる，同一性基準が明示的，そのままデータ構造に落ちる）はこの3公理の帰結であり，コノメノが一般には課さないのは主に外延性である：同一人物が同一の対象を2度食べられる以上，イベントは値の組では個体化されない．したがって両設計の違いは二者択一ではなく，どの述語に(S1)(S2)・外延性を復元するかという語彙ごとのパラメータである．なお，クラスをスロット集合で\emph{定義}する体系では分類DAGがスロット集合の包含から自動生成される（structural）のに対し，コノメノの被覆DAGは手で与えられる（nominal）．DLの用語では，現行の辞書はprimitive conceptのみのTBoxに当たり，defined conceptを導入すれば包摂束の計算（classification）が可能になる\cite{dl-handbook}．
+\end{remark}
+\begin{remark}[再帰領域方程式は不要である]
+    スロットが$n$個で，クラス階層が1つずつスロットを足していくとき，階層全体の対象は$1 + A + A^2 + \cdots + A^n$型の和になる：スロット構造は多項式関手である．現行辞書はスロットを単一領域$M$上の関係として持ち，クラス外延に$X \cong F(X)$を要求しないため，再帰領域方程式を解く必要がない．構造的な再帰クラス型を導入する場合は，正変多項式関手（リスト$X \cong 1 + A \times X$など）でも初代数・終余代数を解く必要があり，$X \to X$のような反変の出現——メソッドを持つオブジェクト——を含む場合はさらに領域理論上の問題が生じる．オントロジーはメソッドを持たないので後者はここでは不要である．コノメノ自身も$X \cong F(X)$を等式として要求せず，高階\ko{canon}のようにランクで階層化された増大列しか使わないから，集合論の内部で足りる．
+\end{remark}
+
+
+\section{辞書の編集操作}
+% @issue KONO-0021
+\memo{ラフ．要整理．}
+本節では，辞書編集ソフトウェアにおいて採用されている，Hasse図としての語彙集合$A$の編集アルゴリズムを述べる．
+
+\subsection{データ構造}
+
+語彙集合$A$はスパース配列で実装される．配列の各要素は単語オブジェクトまたは$\mathrm{null}$であり，$\mathrm{null}$は削除済みの単語を表す．
+IDは配列インデックスと一致し，一度削除された単語のIDは再利用されない．
+
+各単語$a \in A$は，次のデータを持つ：
+\begin{itemize}
+    \item $a.\mathrm{id} \in \mathbb{N}$：一意な識別子（配列インデックスと一致する）
+    \item $a.\mathrm{upper} \subseteq \mathbb{N}$：直上位概念のIDリスト
+    \item $a.\mathrm{lower} \subseteq \mathbb{N}$：直下位概念のIDリスト
+\end{itemize}
+
+$a.\mathrm{upper}$と$a.\mathrm{lower}$は双方向に整合していることが不変条件である：
+$$
+    b.\mathrm{id} \in a.\mathrm{upper}
+    \;\iff\;
+    a.\mathrm{id} \in b.\mathrm{lower}
+$$
+
+\subsection{整合性条件}
+
+辞書の部分順序$(A, \preceq)$を次で定める：
+$a \to b$を``$b.\mathrm{id} \in a.\mathrm{lower}$''（すなわち$b$が$a$の直下位概念である）という関係とし，
+$\preceq$はその逆向き（$a \preceq b \iff a$が$b$以上に特殊）の推移閉包とする．
+このとき，システムが常に維持すべき条件は次の2つである．
+
+\begin{definition}[無閉路性]
+    $(A, \to)$が無閉路であるとは，任意の$a \in A$について$a \to^+ a$が成り立たないことをいう（$\to^+$は$\to$の推移閉包）．
+\end{definition}
+
+\begin{definition}[被覆最小性]
+    $a \to b$であるとき，$a \to^+ c \to^+ b$となる$c \in A \setminus \{a, b\}$が存在しないことをいう．
+    すなわち，$a.\mathrm{lower}$に記録された全てのリンクは被覆関係（Hasse図のエッジ）でなければならず，別の経路で代替できる冗長なリンクは存在してはならない．
+\end{definition}
+
+被覆最小性が満たされているとき，$a.\mathrm{upper}$・$a.\mathrm{lower}$はHasse図のエッジリストそのものになる．
+
+\subsection{整合性チェック}
+
+\begin{definition}[経路の存在判定 (\texttt{hasPath})]
+    $\mathrm{hasPath}(s, t)$は，$s$から$\mathrm{lower}$方向に深さ優先探索を行い，$t$への有向路が存在するかどうかを返す．訪問済みノードの集合を管理して無限ループを防ぐ．
+\end{definition}
+
+\begin{definition}[循環検出 (\texttt{hasNoCycle})]
+    各単語$a$を起点として，$a$から$a$への有向路が存在するかどうかを確認する（実装では\texttt{hasPath}の亜種として，起点と終点が一致する経路を探索するDFSを直接実行する）．
+    いずれかの単語で閉路が検出されれば$\mathrm{false}$，全て閉路がなければ$\mathrm{true}$を返す．
+\end{definition}
+
+\begin{definition}[冗長エッジ除去 (\texttt{removeRedundantEdges})]
+    全ての直接エッジ$(x \to y)$のリストを先に取得し，各エッジについて次の手順を繰り返す：
+    \begin{enumerate}
+        \item エッジ$(x \to y)$を一時的に取り除く（双方向リンクを外す）．
+        \item $\mathrm{hasPath}(x, y)$を確認する．残りのエッジだけで$x$から$y$への経路が存在するならば，このエッジは冗長であるため削除する．存在しなければ被覆エッジであるため復元する．
+    \end{enumerate}
+    冗長エッジが1つでも削除された場合は$\mathrm{true}$，されなかった場合は$\mathrm{false}$を返す．
+\end{definition}
+
+\begin{definition}[整合性チェック (\texttt{checkIntegrity})]
+    次の手順を実行する：
+    \begin{enumerate}
+        \item \texttt{hasNoCycle}を実行する．閉路が検出された場合はそれ以降の処理を行わない．
+        \item \texttt{removeRedundantEdges}を実行し，Hasse図の条件を回復する．
+    \end{enumerate}
+    単語の追加・削除・被覆関係の変更の直後に必ず呼ばれる．
+\end{definition}
+
+\subsection{単語の追加}
+
+\begin{definition}[単語の追加 (\texttt{addWord})]
+    親$p \in A$を指定して新しい単語$n$を追加する．新しいIDとして配列の末尾インデックスを割り当てる．
+    \begin{enumerate}
+        \item $n$を$n.\mathrm{upper} = [p.\mathrm{id}],\; n.\mathrm{lower} = []$として配列の末尾に追加する．
+        \item $p.\mathrm{lower}$に$n.\mathrm{id}$を追加する（逆リンクの設定）．
+        \item \texttt{checkIntegrity}を実行する．
+    \end{enumerate}
+    追加直後は$n$が$p$の直下にぶら下がるだけで閉路も冗長エッジも生じないため，整合性チェックは必ず通過する．
+\end{definition}
+
+\subsection{単語の削除}
+
+削除対象の単語$v$に対して，$P = \{w \in A \mid v.\mathrm{id} \in w.\mathrm{lower}\}$（親集合），$C = \{w \in A \mid v.\mathrm{id} \in w.\mathrm{upper}\}$（子集合）とする．
+$v$を取り除いた後，$C$の各要素と$P$の各要素の間にリンクを張ることで$v$が担っていた順序情報を継承させる．
+
+\begin{definition}[単語の削除 (\texttt{deleteWord})]
+    \begin{enumerate}
+        \item 各$p \in P$について，$p.\mathrm{lower}$から$v.\mathrm{id}$を除去する．
+        \item 各$c \in C$について，$c.\mathrm{upper}$から$v.\mathrm{id}$を除去する．
+        \item 各$(c, p) \in C \times P$について，$\mathrm{hasPath}(c, p)$が$\mathrm{false}$のとき（すなわち既存の経路がないとき）に限り，
+              $c.\mathrm{upper}$に$p.\mathrm{id}$を追加し，$p.\mathrm{lower}$に$c.\mathrm{id}$を追加する
+              \footnote{
+                  この条件は付け替えによる即時の閉路形成を防ぐためのものである．ただし，この時点では$v$を経由するリンクは既に外れているため，閉路が実際に生じるケースは限定的と思われる．
+              }．
+        \item $v$を$\mathrm{null}$に置き換える．
+        \item \texttt{checkIntegrity}を実行する（付け替えによって生じた冗長エッジを除去する）．
+    \end{enumerate}
+\end{definition}
+
+ステップ5の整合性チェックによって，$C \times P$全ての組み合わせを機械的に繋いだ後の冗長エッジが自動的に除去される（例えば$C = \{c_1, c_2\}$，$P = \{p\}$のとき，$c_1 \preceq c_2$ならば$p \to c_2 \to c_1$が成り立つため，直接辺$p \to c_1$が冗長エッジとなり除去される）．
+
+\subsection{被覆関係の変更}
+
+ユーザーが$a.\mathrm{upper}$または$a.\mathrm{lower}$を直接編集したとき，双方向リンクの整合性を回復する必要がある．$\mathrm{field} \in \{\mathrm{upper}, \mathrm{lower}\}$に対して，逆フィールドを$\bar{f}$（$\mathrm{upper}$の逆は$\mathrm{lower}$，$\mathrm{lower}$の逆は$\mathrm{upper}$）と書く．
+
+\begin{definition}[被覆関係の更新 (\texttt{updateCovers})]
+    単語$a$のフィールド$\mathrm{field}$が編集され，入力されたタグ（概念ID）が$t$であるとする：
+    \begin{enumerate}
+        \item $a.\mathrm{field}$から空・無効なエントリを除去する．
+        \item 全単語$w$を走査し，$a.\mathrm{id} \in w.\bar{f}$かつ$w.\mathrm{id} \notin a.\mathrm{field}$であるもの（古いリンク先）について，$w.\bar{f}$から$a.\mathrm{id}$を除去する．
+        \item $t$が有効なIDであり，かつ$a.\mathrm{id} \notin t.\bar{f}$であれば，$t.\bar{f}$に$a.\mathrm{id}$を追加する（逆リンクの追加）．
+        \item \texttt{hasNoCycle}を確認する．閉路が検出された場合は，ステップ3で追加したリンクを除去し，$a.\mathrm{field}$からも$t$を除去して終了する．
+        \item \texttt{checkIntegrity}を実行する．
+    \end{enumerate}
+\end{definition}
+
+\end{document}

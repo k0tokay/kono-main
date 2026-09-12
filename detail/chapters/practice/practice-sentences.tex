@@ -1,0 +1,217 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{文型と照応}\label{chap:practice-sentences}
+\section{文型と線形文}\label{sec:practice-sentence}
+線形文モジュールを用いた各種の文型を提示する．
+
+\subsection{原子的な文型}
+\paragraph{真理値文$R_0$}
+命題定数（$\arity = 0$の述語，形式文法章「辞書」）だけからなる文．論理定数\ko{konston}\sentence{真である}・\ko{bailek}\sentence{偽である}はその特別な場合で，単独では情報を持たない．返事の\ko{nai}・\ko{mei}は慣用表現であり，真理値文ではない（「文の種類と定型」の節）．
+
+\paragraph{提示文$t$}
+項を一つ置くだけの文．静的な意味は恒真で，仕事は談話指示子の導入だけである．裸語なら$F$が外界照応で新しい指示子を立て，固有名や指標詞ならその対象を談話に登録する．
+\begin{exe}
+    \ex \ko{meacc}\hfill \sentence{猫だ}
+    \ex \ko{komatci}\hfill \sentence{小町だ}
+\end{exe}
+概念語一語の提示と，先行詞への述語付加の競合は，\ref{subsec:practice-anaphora-cases}で扱う．
+
+\paragraph{所属文$tR_1$}
+後項が一項述語$R_1$として読まれる並置．
+\begin{exe}
+    \ex \ko{komatci coto}\hfill \sentence{小町は人である}
+    \ex *\ko{coto komatci}\hfill 固有名は$R_1$でないので非文．\sentence{その人は小町である}は\ko{coto kast komatci}
+\end{exe}
+
+\paragraph{単関係文$tRt$}
+二つの項を一つの二項関係で結ぶ．一つの原子文に相当する．
+\begin{exe}
+    \ex \ko{waka kast komatci}\hfill \sentence{私は小町である}
+    \ex \ko{misuy hanov kina}\hfill \sentence{指は手の一部である}
+    \ex \ko{kalam micto waka}\hfill \sentence{私はそのりんごを所有している}
+\end{exe}
+
+\subsection{コピュラ文}
+コピュラ文は対象が個体・述語のいずれかによって意味論的な表示が変わるが，等号$x = y$に対するHoare持ち上げ（$X \subseteq Y \Leftrightarrow \forall x\in X\exists y\in Y,\;x=y$）で統一的に扱える．
+\begin{exe}
+    \ex 
+    \begin{xlist}        
+        \ex \ko{waka kast komatci}\hfill \sentence{私と小町は同一である}
+        \ex \sentence{小町は人である} の等価な表現
+        \begin{xlist}            
+            \ex \ko{komatci coto}\hfill \sentence{小町は人である}
+            \ex \ko{komatci kast coto kon}\hfill \sentence{小町はある人と同一である}
+        \end{xlist}
+        \ex \sentence{人は動物である} の等価な表現
+        \begin{xlist}            
+            \ex \ko{coto san bafnol}\hfill \sentence{すべての人は動物である}
+            \ex \ko{coto san kast bafnol kon}\hfill \sentence{すべての人はある動物と同一である}
+        \end{xlist}
+    \end{xlist}
+\end{exe}
+\begin{remark}
+    \ko{waka}, \ko{komatci}は個体，\ko{coto}, \ko{bafnol}は概念（一項述語）である．品詞としては後者も項に入る（「品詞」の節）．
+\end{remark}
+\begin{remark}
+    \ko{komatci kast coto}は，\sentence{小町は\emph{その人}である}という同一性文であり，\sentence{小町は人である}という分類文ではない．
+\end{remark}
+分類先が集合と見做せる(真クラスでない)場合に限って，述語を集合に変換し，\ko{litoi}および\ko{skon}を用いることができる．
+\begin{exe}
+    \ex\begin{xlist}
+        \ex \ko{komatci litoi cotoim}\hfill \sentence{小町は人集合に属する}
+        \ex \ko{cotoim skon bafnolim}\hfill \sentence{人集合は動物集合に含まれる}
+    \end{xlist}
+    \ex\begin{xlist}
+        \ex \ko{kwilfon fonne}\hfill \sentence{空集合は集合である}
+        \ex *\ko{kwilfon litoi fonneim}\hfill \sentence{空集合は集合全体の集合に属する}
+    \end{xlist}
+\end{exe}
+個体をシングルトンに変換して分類に用いることもできる．
+\begin{exe}
+    \ex \ko{waka litoi komatcykof}\hfill \sentence{私は$\{\text{小町}\}$に属する}
+    \ex \ko{komatcykof skon cotoim}\hfill \sentence{$\{\text{小町}\}$は人集合に含まれる}
+\end{exe}
+\subsection{証拠文}
+$tRt$から引き下げを通して得られる$tRtRt$を証拠文と呼ぶ．典型例はイベント意味論を採用する動詞文である．
+\begin{exe}
+    \ex\begin{xlist}
+        \ex \ko{waka ja hamin ke kalam}\hfill 表層形
+        \ex $\ko{waka}\;\ko{ja}\;\ko{hamin}^{F_1},\;\ko{kalam}^{F_2}\;\ko{ke}\;\ko{hamin}^{F_1}$\hfill 形式
+    \end{xlist}
+    \glt \sentence{私はりんごを食べる}
+\end{exe}
+形式の二つの原子は\ko{hamin}$^{F_1}$を共有する．表層形は，二つ目の\ko{hamin}を省略し，\ko{ke}を転置して一本の道に繋いだものである（「読み方と記法」の図）．暗記用の枠は$\text{S \ko{ja} V \ko{ke} O}$で，Vは動詞ではなくイベント項である．
+\ko{ke}は\ko{e}（完了参与）の細分で，りんごの存在段階が食事の終端で消えることを言う（「意味役割」の節）．
+
+語を右へ足せば常に意図した修飾になるわけではない．$t_1$ \ko{ja} $V$ \ko{ke} $t_2$ \ko{tov} $t_3$は表層上$t_2$と$t_3$を\ko{tov}で結ぶ．場所をイベント$V$に掛けるには，イベントへ戻るか，所在命題を状況へ引き下げて結ぶ．
+\memo{所在句をイベント文へ短く直結する現行口語形がない．5-2の\ko{na}＋引き下げは理論的だが長い．}
+
+\subsection{連鎖と転置}
+$tRt$を単文，$tRtRt$を複文と呼ぶ直観は有用だが，$tRtRt$は体系Sでは一つの線形文であり，一般言語学の複文と衝突する．実践編では\textbf{単関係文}/\textbf{関係連鎖文}を使い，複文は\ko{na}，\ko{sol}，\ko{suinot}などが状況同士を結ぶ場合（「文をつなぐ」の節）に限る．
+
+連鎖は意味グラフを一筆でなぞった順であり，矢印と逆向きになぞった辺は転置$R^\trans(x,y) = R(y,x)$として読む．転置は\ko{me+}で明示できる（形式文法章の語彙\ko{me}＝関係の転置と，なぞり語列で逆向きの辺に\ko{me}を置く規則）．
+\begin{exe}
+    \ex\begin{xlist}
+        \ex \ko{kalam ke hamin}\hfill \sentence{りんごはその食事の完了参与（\ko{ke}）である}
+        \ex \ko{hamin meke kalam}\hfill 同じ内容の明示的な転置
+        \ex \ko{hamin ke kalam}\hfill ソートから\ko{me}を補う会話形
+    \end{xlist}
+\end{exe}
+受動態に似た効果を持つが，主語昇格ではなく関係代数上の転置である．
+
+\paragraph{語順}
+入門の「どちらかといえばSVO」は「イベント文と一筆書き」の小節の無標形を指す．体系Sが定めるのは$t(Rt)^n$であり，S・V・Oの自由な順列ではない．
+\begin{exe}
+    \ex \ko{waka ja hamin ke kalam}\hfill S--V--Oに相当
+    \ex \ko{kalam ke hamin ja waka}\hfill O--V--Sに相当する逆向きの道
+\end{exe}
+後者では\ko{ke}が通常向き，\ko{ja}が転置として読まれる．順序は，同じ意味グラフを道としてたどれるか，各関係の引数ソートが合うかで決まる．\ko{hamin ke kalam ja waka}の最も単純な$tRtRt$解析は二つ目の原子が\ko{kalam ja waka}となりソート整合で棄却されるので，この語順では意図したVSO文を作れない．
+
+\paragraph{接続詞中置のV-first}
+一般的なVSO強制はない．ただし状況間関係を二文の間に置く構文では，後続節のイベント核を先頭にする動機がある．
+\begin{exe}
+    \ex \ko{kant nito halee nocto plabetces, suinot deiz metost baist}
+    \glt \sentence{ここはおもちゃ部屋だから，壊しても構わない}
+\end{exe}
+\ko{suinot}の左項はブランクとして前節の状況を照応し，右項には直後の\ko{deiz}というイベント核が来る．後続節をSから始めると\ko{suinot S}がソート不整合になりやすい．そのため接続詞中置ならV-firstを好む．避けるなら後続節を先に述べて末尾に転置\ko{(me)suinot}を置けるが，照応と転置が増えて処理しにくい．これは体系Sの語順制約ではなく，接続詞を中置する表層構文の処理上の選好である．
+接続詞中置のV-first慣例を体系Sに実装する場合は\ko{suinot V}を$\_RV$として解析する．左ブランクの先行詞候補はH1（先行詞ソートの整合）で状況型の要素に絞られるので，新しい談話境界規則は要らない見込みである（2026-09-07暫定．反例が出たら\ko{suinot}等の$\dom_1$を状況概念にする）．
+
+\section{照応}\label{sec:practice-anaphora}
+\subsection{裸の項と$F$}
+
+冠詞のない概念語は$F$束縛を受け，発話状況（言語外の場面）から個体を取って談話指示子を立てる．これは\textbf{外界照応}であり，既出の対象を受ける\textbf{前方照応}（ブランクと\ko{sen}系列）とは別の機構である．初出に使えるのはこのためで，定冠詞の「既知」とは一致しない．
+\begin{exe}
+    \ex\begin{xlist}
+        \ex \ko{kalam micto waka}\hfill 表層形
+        \ex \ko{fe kalam micto waka}\hfill 冠詞を明示
+        \ex $\ko{kalam}^{F_1}\;\ko{micto}\;\ko{waka}$\hfill 形式
+    \end{xlist}
+    \glt \sentence{そのりんごは私のものだ}
+\end{exe}
+同じ裸語を二度発音すると，固定指標詞や固有名でない限り，別々の$F$ラベルを持つ新しい談話指示子を立てる（形式文法章，グラフの命題化）．同一対象を指すには同じ明示ラベル，省略，または指示詞を使う（\ref{sec:practice-anaphora}）．
+\begin{exe}
+    \ex \ko{meacc, meacc}\hfill \sentence{猫だ，また猫だ}
+    \ex \ko{meacc, ansa kwilis}\hfill \sentence{猫だ，それは黒い}
+\end{exe}
+\subsection{指標詞と人称}
+発話状況から値が決まる語を指標詞と呼ぶ．
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lll}
+    \toprule
+    語 & 意味 & 備考 \\
+    \midrule
+    \ko{waka} & 私 & 短縮\ko{ka} \\
+    \ko{non} & あなた & \\
+    \ko{kans} & 今 & 時制の基準（\ref{sec:practice-number}） \\
+    \ko{kant} & ここ & \\
+    \ko{blantok} & 現座標系 & 話者の向き．「左右」「前」はここから作る \\
+    \bottomrule
+    \end{tabular}
+\end{table}
+三人称の指標詞はなく，裸の\ko{coto}$^*$「その人」で代用する．入門の複数形\ko{kana}\sentence{私たち}，\ko{nona}\sentence{あなたたち}，\ko{tona}\sentence{彼ら}は，短縮形\ko{ka}などに外複数\ko{+na}（\ref{subsec:practice-outerplural}）を付けた形である．外複数なので\ko{kana}は私を含む集団を指し，他の構成員が誰かは問わない．
+
+\paragraph{人称短縮}
+述語の一方の項が人称代名詞なら，人称を述語末に融合できる．どちらの項が融合されるかはソートと辞書の引数順で決まる（\ko{kaja}は\ko{ja}の第1項，\ko{hactoka}は\ko{hacto}の第2項）．
+\begin{exe}
+    \ex \ko{khaatov hacto waka}
+    \ex \ko{khaatov hactoka}
+    \ex \ko{hactoka khaatov}
+    \glt 私はその家を使っている（住んでいる）
+\end{exe}
+人称短縮は母音結合$+$ではなく子音結合$\oplus$（音韻章「活用」，実装は\texttt{konophon.consonant\_join}）で付く：\ko{ka}$\oplus$\ko{ja}＝\ko{kaja}，\ko{hacto}$\oplus$\ko{ka}＝\ko{hactoka}，\ko{wal}$\oplus$\ko{ka}＝\ko{walka}である．母音結合では\ko{wal}+\ko{ka}＝\ko{walaka}となり実践編の例文と合わない（2026-09-03，暫定）．
+融合述語と残りの項はどちらを先にしてもよい．これは通常の$tRt$と異なる形態構文であり，体系Sの辞書マッチだけでは解析できない．
+\subsection{再指示}
+既に立った談話指示子を再び指す手段は，明示ラベル・省略・指示詞・固定語の4つである．
+\begin{itemize}
+ \item ブランクは，ソート整合と共項排除を満たす先行詞から，善意的解釈で選ぶ．単に直前の語を反復する操作ではない．
+ \item 基本体系の明示ラベルは，同じ$F_i$を付けた項を共有する．
+ \item 指示詞は，参照時点の先行詞リスト$\Delta$の$n$個前を指定する．先頭を1個前と数える．\ko{sen}は主要部を伴い，\ko{seta}は伴わない．
+ \item 固有名・固定指標詞は，固定された指示を保って反復できる．裸の概念語の反復は再指示を保証しない．
+\end{itemize}
+\begin{exe}
+    \ex \ko{khaatov hactoka, kast manomtces}\hfill 私はその家を使っていて，それは菓子屋である
+\end{exe}
+二文目は\ko{\_ kast manomtces}で，ブランクは直前の家を受ける．複数の先行詞が同順位なら文は多義であり，会話では聞き返して修復する．
+ブランクの解決は体系Sの善意的解釈（形式文法章）が定める．
+
+\paragraph{指示詞}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ccc}
+        \toprule
+        & 「その$A$」 & 「それ」 \\
+        \midrule
+        1個前 & \ko{sen} & \ko{seta} \\
+        2個前 & \ko{tan} & \ko{tata} \\
+        3個前 & \ko{sedon} & \ko{sedota} \\
+        4個前 & \ko{meibi} & \ko{meibta} \\
+        $n$個前 & $n+\ko{ibi}$ & $n+\ko{bta}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+表の番号は言及の新しい順の位置であり，固定の導入番号ではない．主要部は指示子を数える範囲を絞らない．小麦が現在2個前なら，\ko{tan kwafnant}「その植物部分」でも\ko{tan labin}「その食べ物」でも小麦を指す．指示すると小麦は先頭へ移るので，続けて同じ小麦を指すには\ko{sen}または\ko{seta}を使う．主要部なしの\ko{tata}も，参照時点の2個前を指す．選んだ対象が主要部の外延に属さなければ，指示詞の値は未定義となり，それを含む原子文は偽となる．
+\paragraph{前方照応}
+\ko{lon}は主要部を伴い，\ko{lota}は主要部を省略して，後続の導入を予告する．旧版5-2には\ko{fylam ansa lota}「以下のそれは赤い」という例がある．
+\begin{remark}
+現行理論は，未確定の指示先を後続の導入で確定する方式を採っている（2026-09-07暫定）．対応方針がないわけではないが，導入規則は未完成である．現行の指示詞解釈で未確定の指示先をそのまま評価すると，原子文は偽になる．未確定指示を用いるには，評価を保留する規則が要る．
+\end{remark}
+\todo{体系Dで前方照応の保留・確定を定義する．どの後続導入が保留した指示に対応するか，主要部のソート制約をいつ検査するか，未解決のまま談話を閉じた場合を定める．旧版の例を「赤いものを導入する後続文」へ接続して検証する．}
+先行詞リストは文をまたいで引き継ぎ，言及のたびに更新する．局所談話区間では空のリストから始め，終了時に外側のリストへ戻る．
+
+\subsection{照応の境界例}\label{subsec:practice-anaphora-cases}
+\begin{enumerate}
+ \item \ko{meacc, \kox{ロボット}}．後半には提示文$t$と所属文$\_R_1$の解析が競合する．所属文はH1で絞られ，両方残ればブランクのない提示文が$v_{\mathrm{rec}}$で優先される．同じ対象への分類を明示する形は\ko{meacc, seta \kox{ロボット}}である．
+ \item \ko{meacc, ansa kwilis}．後半は$\_Rt$なので，先行詞候補の猫を受けられる．先の概念語一語とはパターンが異なる．
+ \item $A^{F_1}R\_$．唯一の先行詞が$F_1$の対象なら，H2によりブランクをそこへ解決できない．別の適格な対象が必要である．
+ \item $A^{F_1}RA^{F_1}$は，同じラベルにより再帰読みを指定する．$A^{F_1}R\;\ko{seta}$でも，直前に言及した対象を明示して再帰読みを作れる．
+ \item $\_R\_$．2つのブランクを同じ先行詞に解決することもH2が禁じる．2つの適格な対象が必要であり，割り当てはソートとランキングに従う．
+ \item $A^{F_1},A^{F_2},A^{F_1}$と同じラベルを使って言及すると，先行詞リストは$F_1$の対象，$F_2$の対象の順になる．ここで\ko{tata}は$F_2$の対象を取り，先頭へ移す．続く\ko{tata}は$F_1$の対象を取る．
+\end{enumerate}
+\begin{remark}[新規指示子と非同一性]
+裸語の反復で異なる指示子が導入されても，その値が異なるという不等式までは得られない．「猫だ，別の猫だ」を主張するには，別の指示子を立てるだけでなく非同一性を述べる必要がある．
+\end{remark}
+\memo{H1を「共通下位概念が存在すればよい」へ緩和する案と，無関係な提示を$v_{\mathrm{red}}$で罰する案は現行規則では採っていない．上の猫・ロボットの例は，その帰結を点検する境界例である．}
+
+
+\end{document}

@@ -1,0 +1,584 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{形式意味論}
+この章では，意味論をより応用的な方向へ拡張する話題を扱う．中心的な話題は，表現の埋め込みと超内包性(hyperintensionality)であり，これを各種の冠詞の導入と，$n$項述語を状況概念と役割へ分解する\textbf{引き下げ}を通して実現する．
+後半では，これらの装置の上で態度動詞・内包動詞の目的語（know that/wh，不特定読み・de dicto読み）を扱う．
+
+本章で導入する冠詞$M,C$は，それぞれ冠詞の族を表す．$M$族では引用対象とその同一性基準を，$C$族では原子検証者を供給する引き下げ対応の族と，その上の状況構造を選ぶ．$C$の原子検証者にはトロープや状態を使えるが，複合式の検証者はそれらの融合も含む．原子検証者のソートに，全ての融合が属する必要はない．
+
+\section{符号化と自己言及}
+
+% story/metafiction/より移植．
+
+% テクスト内の命題を実装するために，「形式化された論理式$\qquote{\phi}$を何かしらの``構造''$m$で``充足する''」$m \uvDash \qquote{\phi}$ という関係が必要である．$m$が何であるかは後ほど精密に分析するが，エージェント，テキスト，(述語論理の意味での)構造，物理世界などの様々なものを表すことができる．形式化された論理式は，厳密には次のように定義される．
+
+形式化された論理式$\qquote{\phi}$と，形式化された構造$m$による充足 $m \uvDash \qquote{\phi}$を考える．
+コノメノの形式文法に合わせる前に，述語論理で，形式化された論理式を追加した言語と理論を定義する．
+\begin{definition}
+    $L, T$を (multi-sorted) 1階言語とその理論とする．形式化された論理式を追加した言語と理論を$E(L), E(T)$とする．
+    \begin{enumerate}
+        \item 形式化された論理式を表すsort $\mathsf{Expr}$ を追加する．$L$-論理式$\phi(\overline{x},\overline{y})$ ($\phi$の自由変数は$\overline{x},\overline{y}$に限る)に対して，$\qquote{(\lambda \overline{x}.)\phi(\overline{x},\overline{y})}$をarity $|\overline{y}|$の新しい関数記号として言語$L$に追加する．$\lambda \overline{x}$は，意味が明確なら省略しても良い．以下の公理を追加する：
+        \begin{align*}
+            \qquote{(\lambda \overline{x})\phi(\overline{x},\overline{y})}(\overline{m}) = \qquote{(\lambda \overline{x})\phi(\overline{x},\overline{m})}
+        \end{align*}
+        \item 構造を表す sort $\mathsf{Strc}$と，形式化された充足性関係$\uvDash$を追加する．$m \uvDash \qquote{\phi \to \psi} \to (m \uvDash \qquote{\phi} \to m \uvDash\qquote{\psi})$ など，通常の意味論の公理($\uvDash$の意味するところによって他の公理を採用しても良い)を追加する．また，$x \uvdash y$を$\forall m (m \uvDash x \to m \uvDash y)$の略記とする．
+    \end{enumerate}
+    これを繰り返して，$E^\omega(L) = \bigcup_{n<\omega} E^n(L), E^\omega(T) = \bigcup_{n<\omega} E^n(T)$とする．
+\end{definition}
+\begin{whynot}
+    $m \uvDash \qquote{\phi}$ は，多様相論理$\square_m \phi$に置き換えられるように思えるが，前者の方が表現力豊かである．
+\end{whynot}
+\begin{remark}
+    $E^\omega$は論理式の層を明確に分けるから，不動点$x = \qquote{F(x)}$が(何の仮定なしに)現れるわけではない．したがって，Löbの定理$\square(\square \phi \to \phi) \to \square \phi$のような証明可能性論理の結果が成り立つわけではない．
+\end{remark}
+\subsection{冠詞$M$（引用符）}\label{subsec:M-article}
+\begin{definition}
+    $M \in Q^\Omega_{V,V}$を\textbf{引用符}と呼び，以下のように解釈する（入力は式，出力は割り当てごとに引用の単元クラスを返す関数$V^I\to\Omega^V$）．
+    \[
+        \rho(M)(S,\phi)(a)=
+        \begin{cases}
+            \{\qquote{\phi(a)}\} & a\in S,\\
+            \emptyset & a\notin S
+        \end{cases}\qquad(a\in\mathcal M^I).
+    \]
+    すなわち$\{\phi\; M_I\}$は，論理式$\phi$を解釈せず\emph{表現のまま}オブジェクトとして扱い，$M$自身が束縛するラベル$I$の項に$\sigma'\in S$を代入した引用の単元クラスの族$\sigma' \mapsto \{\qquote{\phi(\sigma')}\}$を返す．
+
+    ここで，$\qquote{\bullet}$は，コノメノの表現を個体として埋め込むメタ記法である．この定義は，パラメータ付き論理式の引用を与える．一元集合の要素を取る$\mathrm{the}(\bullet)$を各切片に適用すると，引用個体を取り出せる．
+    \memo{引用の基礎を$\qquote{\bullet}$に置き，$M$をその式引用への特殊化として整理する案を検討する．「大丈夫？」「Do you speak English?」のような疑問発話や他言語の文字列も直接引用の対象にしたいが，その入力文法・同一性基準は未定．直接引用内の「私」と，間接話法で指示を解決する「私」の扱いも定める．}
+\end{definition}
+
+\begin{remark}
+    $\{\phi(t^{M_1})\; M_1\}$の出力は，スコープ内のパラメータ$v$に対して，引用$\qquote{\phi(v)}$の単元クラスを返す関数である．対象がこの切片に属することは，その引用と等しいことを表す．引用個体を取り出す場合は，切片に$\mathrm{the}$を適用する．これにより$E(L)$の代入公理$\qquote{\phi(\overline{x},\overline{y})}(\overline{m}) = \qquote{\phi(\overline{x},\overline{m})}$を実装する．
+\end{remark}
+
+\subsection{自己言及文}\label{subsec:self-reference}
+パラメータ付き引用と関数適用があれば，Gödelの対角化がそのまま書ける．
+\[
+    A^{F_1} \in [A^{F_1}\; \{A^{M_1} \uvdash \bot\; M_1\}]
+\]
+は「ある対象$m$は，$m$自身をパラメータとして代入した引用$\qquote{m \uvdash \bot}$に等しい」という不動点方程式である．$x \uvdash \bot$は「どの構造も$x$を充足しない」，すなわち「$x$は正しくない」だから，これは「この文は正しくない」（嘘つき文）の表現になる．嘘つき文がコノメノで\emph{表現できる}こと自体は，このように現状の装置だけで確認できる．
+
+\paragraph{不動点の存否は符号化の選択で決まる}
+上の文は不動点の存在を\emph{主張する}だけで\emph{構成しない}から，その真偽は符号化の側の設計で決まる．
+\begin{itemize}
+    \item \textbf{始代数的符号化（有限的・整礎）}：表現を有限の構文木（構文関手の始代数）として符号化すると，$m = \qquote{m \uvdash \bot}$は解を持たない．冒頭の$E^\omega$の層化はこれの構文版であり，$H_\kappa(U)$の$\in$による符号化なら基礎の公理が同じ働きをする（解$m$は自身の推移閉包に属してしまう）．このとき上の文は矛盾ではなく\emph{単に偽}である．
+    \item \textbf{終余代数的符号化（循環を許す）}：表現全体$\sum_\alpha \mathrm{Rep}(\alpha)$はurelement $U$の側に埋め込む予定であり，$\in$の整礎性には掛からない．構文関手の\emph{終余代数}（非整礎構文木）を採れば，$\qquote{\qquote{\cdots \uvdash \bot}\uvdash\bot}$のようなguardedな方程式はすべて一意解を持ち，不動点は存在する．こちらを採る方針とする．
+\end{itemize}
+\begin{remark}
+なお「可算長の文字列」でliteralに作る場合は注意が要る：引用が接頭辞と接尾辞を両方付ける符号化では，$s = p^\frown s^\frown q$は順序数長の文字列に解を持たない（長さが$|p|+\lambda+|q| \neq \lambda$になる）．自己参照スロットが末尾に来る（接尾辞のない）符号化を選ぶか，平坦な文字列ではなく非整礎構文木を採る必要がある．
+\end{remark}
+
+\paragraph{無矛盾性：引用剥がしの部分性}
+嘘つき文から矛盾を出すには，(i) 不動点の存在，(ii) 引用剥がし（$m' \uvDash \qquote{\phi} \leftrightarrow \phi$の形のT図式を，$\uvDash$を含む原子文まで認めること），(iii) 構造のsortが空でないこと，の3つがすべて必要である．終余代数的符号化で(i)を公認する以上，防衛線は(ii)の制限に一本化される：\textbf{引用剥がしは部分的にしかできない}．これには標準形がある：
+\begin{itemize}
+    \item 循環的な構文オブジェクトの上では$\uvDash$を構造帰納で定義できない．そこで$\uvDash$自体を，1ステップ評価作用素の単調\emph{最小不動点}として定義する（Kripkeの真理理論の構成）．
+    \item 評価の展開が整礎に着地する\textbf{接地した（grounded）}引用についてはT双条件が成り立つ．嘘つき文のような非接地の引用では真理値ギャップになる．
+    \item ギャップは「偽側に倒す」（closing off）ことで，外側の論理は2値のまま保てる．これはnegative free logicの「未定義を含む原子文は偽」の規約と同じ精神である．倒した後の様子：$\lambda = \qquote{\lambda \uvdash \bot}$についてどの$m'$も$m' \uvDash \lambda$でないから，外側では$\lambda \uvdash \bot$は空虚に真．T図式は$\lambda$でだけ破れており，それが\emph{許可された}破れである．強化された嘘つき（revenge）はメタ側に押し出されるが，$\uvDash$は外側の真理を反映すると主張していないので無害である．
+\end{itemize}
+また，「宇宙全体（現実世界そのもの）」を1つの構造$m_0$として立てて全面的な剥がし$m_0 \uvDash \qquote{\phi} \leftrightarrow \phi$を置くと，Tarskiの真理定義不可能性に抵触する．Tarski型の自己言及を防ぐ防火壁は，引用剥がしを接地した表現または下位層へ制限することである．名詞化子$\setop{(\bullet)}$の部分性は巨大クラスの対象化を防ぐ（Russellクラス，形式文法章・名詞化子の節）が，同一言語の文のコードに対する真理述語だけで対角化は可能なので，真理述語の対角化を単独では防がない．剥がし図式は\emph{集合サイズ}の構造に対してのみ置く（そこでは充足関係が定義可能なので安全）．
+% @issue KONO-0045
+\memo{調べること：Kripke (1975)の真理理論（Strcong Kleene最小不動点，closing off）；FefermanのKF（Kripke構成の古典論理による公理化）；AczelのAFA（非整礎集合）とBarwise--Moss \emph{Vicious Circles}（終余代数，guarded方程式の一意可解性）；Barwise--Etchemendy \emph{The Liar}（AFA＋状況意味論．Austinianの「全体状況は対象化できない」は$\setop{(\bullet)}$の部分性防火壁と同型で，冠詞$E$とも道具が揃う）；Leitgebのgroundedness；Halbachの公理的真理理論（サーベイ）．文献を参考文献に追加して本文を引用化する．}
+
+\section{引き下げ対応と超内包性}
+\subsection{引き下げ対応}
+\begin{definition}
+    集合$E$と，各$i \in I$に対する2項関係$K_i \subseteq A_i \times E$（参与者が第1項，状況が第2項）について，$I$項関係 $R \subseteq \prod_{i \in I} A_i$ が
+    \begin{align*}
+        R((x_i)_{i \in I}) &\iff \exists e \in E,\; \forall i \in I,\; x_i K_i e
+    \end{align*}
+    を満たすとき，$\langle R; E, (K_i)_{i \in I} \rangle$ を\textbf{引き下げ対応}という．とくに$|I| = 2$の場合は$\langle R; E, K, L\rangle$と書く：
+    \begin{align*}
+        xRy &\iff \exists e\in E,\; xKe \land yLe
+    \end{align*}
+\end{definition}
+これは，状況$e$のファイバー$K_i^{-1}(e) = \{x \mid x K_i e\}$を用いて$R = \bigcup_{e\in E} \prod_{i \in I} K_i^{-1}(e)$とも書ける（矩形被覆）．
+
+いくつかの例を挙げる．$R\subseteq A \times B$は二項関係である．
+\begin{enumerate}
+    \item $\pi_1:A\times B \to A$，$\pi_2:A\times B \to B$をそれぞれ第一射影，第二射影とする．
+    \begin{align*}
+        E &= R,\quad K = \{\langle x, p\rangle \mid p\in R,\; \pi_1(p) = x\},\quad L = \{\langle y, p\rangle \mid p\in R,\; \pi_2(p) = y\}
+    \end{align*}
+    とすると，$\langle R; E, K, L\rangle$は引き下げ対応になる．
+    \item $\pi_1:A\times B \to A$，$\pi_2:A\times B \to B$をそれぞれ第一射影，第二射影とする．
+    \begin{align*}
+        E &= A\times B,\quad K = \{\langle x, p\rangle \mid \pi_1(p) = x,\; p\in R\},\quad L = \{\langle y, p\rangle \mid \pi_2(p) = y,\; p\in R\}
+    \end{align*}
+    \item $I \subseteq B\times B$を$B$上の恒等関係とする．
+    \begin{align*}
+        E &= B,\quad K = R,\quad L = I
+    \end{align*}
+    とすると，$\langle R; E, K, L\rangle$は引き下げ対応になる．
+\end{enumerate}
+引き下げ対応を形式文法章のグラフ表示に重ねて$\Rightarrow$で表示する記法がよく使われる．これは節点(下図の$A,B,E$)につく冠詞に依らず，個体間ではなく概念間の関係を表すことに注意する．
+\begin{remark}
+    一般の引き下げ対応では$E$は任意の集合でよい．正確検証に用いる場合は，成立状況の集合$E$を，後述する状況フレームの台集合$\Sit$の部分集合とする．
+\end{remark}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+      rel/.style={font=\small, text=red!65!black},
+      ind/.style={font=\small, text=blue!65!black},
+      dc/.style={-{Implies}, double, double distance=2pt, shorten >=5pt, shorten <=5pt}
+    ]
+        \node (A) at (0,0) {$A$};
+        \node (B) at (4,0) {$B$};
+        \node (E) at (2,-2) {$E$};
+        \draw[->, >=Stealth] (A) -- (E) node[midway, left] (K) {$K$};
+        \draw[->, >=Stealth] (B) -- (E) node[midway, right] (L){$L$};
+        \draw[->, >=Stealth] (A) -- (B) node[midway, above] (R) {$R$};
+        \draw[dc] (R) -- (E);
+    \end{tikzpicture}
+    \caption{引き下げ対応のグラフ表示}
+\end{figure}
+\memo{(2026-09-03)ふと思ったのだけど，$A,B,E$から個体を取ってKGとして(2-)圏にすると面白くなかったわけだけど，節点を\emph{冠詞つき}概念にすると何かしらの面白い(2-)圏になるのだろうか？冠詞なしだとRelに落ちると思う．}
+\paragraph{イベント意味論との架け橋}
+引き下げ対応は，イベント意味論への架け橋となる表現である．例えば，「I eat the apple.」という文を考える．この文は，動詞を述語とする一般的な意味論の書き方では，$\text{eat}(\text{I},\text{the apple})$となる一方で，イベント意味論的な書き方では，$\exists e, \text{eat}'(e)\land \text{AGT}(e,\text{I})\land \text{PAT}(e,\text{the apple})$と書ける．この2つが同値であること，つまり
+\begin{align*}
+    \text{eat}(\text{I},\text{the apple}) & \iff \exists e, \text{eat}'(e)\land \text{AGT}(e,\text{I})\land \text{PAT}(e,\text{the apple})
+\end{align*}
+は，まさに$
+    \langle \text{eat}; \text{eat}', \text{AGT}^{\trans}, \text{PAT}^{\trans} \rangle
+$という引き下げ対応が成り立つことを意味する．
+\subsection{引き下げ対応の族}
+\begin{definition}
+    集合$A,B,T$と$\mathrm{Rel}\subseteq\wp(A\times B)$を固定する．各$r\in\mathrm{Rel}$に対し，
+    \[
+        \gamma(r)=(E_r,K_r,L_r)\in
+        \wp(T)\times\wp(A\times T)\times\wp(B\times T)
+    \]
+    を選び，$xry\iff\exists e\in E_r\,(xK_re\land yL_re)$を要求する．役割を$E_r$へ制限した
+    $\langle r;E_r,K_r\cap(A\times E_r),L_r\cap(B\times E_r)\rangle$は引き下げ対応になる．$T$は族に共通する証拠領域である．
+\end{definition}
+族の成分を固定する仕方により，次の用法を区別する：
+\begin{enumerate}
+    \item $K,L$を固定し$E_r$を動かす\textbf{関係の概念化}．関係の成立を担う対象を取り出し，共通の役割で参与者に結びつける．例(1)では，$T=A\times B$上の射影を共通の役割に取り，$E_r=r$とできる．
+    \item $E_r=T$を固定し役割を動かす\textbf{役割表示}．中身と容器の関係から，中身・容器の役割を取り出す場合などに使う．例(2)がこの形である．
+    \item $E,L$を固定し$K_r$を動かす形．例(3)では$T=E=B$，$L$は恒等関係，$K_r=r$である．
+\end{enumerate}
+\memo{第3の形を，概念の見做しに付随する「関係の見做し」として整理したい．一般の見做しとの接続と名称は未定．固定成分による上の分類は排他的ではない．}
+\begin{remark}[族の適用範囲]
+    固定した$A,B$については，射影を使う構成により$\mathrm{Rel}=\wp(A\times B)$全体を扱える．意味論で問題になるのは，望む同一性基準・存在論的分類を持つ証拠を，共通の役割で供給できるかである．$\gamma$の適用範囲は明示して選ぶ．未対応の関係を$E_r=\emptyset$で代用すると，空関係を表すことになる．
+
+    $A,B$が集合なら$\mathrm{Rel}$も集合である．モデルの台$\mathcal M$上の全二項関係もメタ側では集合だが，その総体が$\mathcal M$内の個体であるとは限らない．
+\end{remark}
+\paragraph{カノニカルな引き下げ}
+カノニカルな引き下げとして，$\langle R;R+\ko{nov},\ko{coi},\ko{cal}\rangle$を考える．
+\memo{$R+\ko{nov}\subseteq\ko{konstav}$を基本とするが，$R$の引数が\ko{toika}, \ko{kika}, \ko{loka}, \ko{stcilkant}に属する場合の行き先を検討する．引数ソートだけでなく，関係の意味と証拠の同一性・時間依存性も関わる．適用範囲と辞書上の役割の型は未確定．}
+
+\paragraph{引き下げと超内包性}
+引き下げ対応は関係の成立を証拠と役割によって表し，$C$は論理式から正確検証者のクラスを作る．本章では，選んだ引き下げ対応の族を$C$の正の原子節に用いる．その証拠を状況空間へ組み込み，融合・負側の検証・世界との整合条件を与えることで，複合式の$C$へ拡張する．これらの追加データは，引き下げ対応だけからは決まらない．
+
+引き下げ公理は真理条件を保つが，証拠を内容として残すときの同一性基準までは定めない．また，$\gamma$を外延$r$の関数として選んでも，$C$の合成規則による超内包的な区別は可能である．$X=C[\phi]$とすると，正確検証の連言節により
+\[
+    C[\phi\land\phi]=\{e\fuse f\mid e,f\in X\},
+    \qquad C[\phi]\cap C[\phi]=X.
+\]
+$X$が融合で閉じていなければ両者は異なる．これは原子述語を語義の添字で区別しなくても生じる．
+\memo{同外延の原子述語にも異なる正確検証者を与えたい場合には，外延$r_j$と引き下げの選択$\gamma(j)$を分けられる．現段階ではこの追加の区別を必須としない．}
+
+選んだ対応の証拠が$C$の原子検証者である場合，$C[a\;r\;b]=\{e\in E_r\mid aK_re\land bL_re\}$と書ける．一般の引き下げが，固定した$C$の検証者と一致するとは限らず，$C$の出力だけから役割を含む対応全体が一意に復元されるわけでもない．
+
+\begin{example}[割り当てを証拠とする引き下げ]
+    構造と，表示しない自由変数への割り当てを固定する．$\phi$の表示する変数を$x_1,\ldots,x_n$，個体領域を$D$とし，
+    \[
+        E_\phi=\{\sigma\in D^n\mid\sigma\models\phi\},\qquad
+        K_i(a,\sigma)\iff\sigma(x_i)=a
+    \]
+    と置くと，$\phi$が定める$n$項関係は$E_\phi$と各射影$K_i$へ引き下げられる．通常の充足では，同じ変数集合上で$E_{\phi\land\psi}=E_\phi\cap E_\psi$，$E_{\phi\lor\psi}=E_\phi\cup E_\psi$となる．分解の存在自体は，これらの保存性を要しない．
+
+    正確検証で状況$e$を固定し$E_{e,\phi}=\{\sigma\mid e\vf_\sigma\phi\}$とする場合も，射影による分解はできる．ただし連言では
+    \[
+        E_{e,\phi\land\psi}=\bigcup_{e_1\fuse e_2=e}
+        (E_{e_1,\phi}\cap E_{e_2,\psi})
+    \]
+    となり，固定した$e$での交わりの保存は一般には成り立たない．この例の証拠は割り当て$\sigma$であり，$C$が集める状況$e$とは異なる．
+\end{example}
+
+\subsection{状況フレーム}\label{subsec:situation-frame}
+論理式レベルの引き下げのためには，状況の側に構造が要る．\ref{subsec:frame}節のフレーム（世界の集合$W$）を，truthmaker semantics \cite{fine-tms} の状態空間に倣って精密化する．
+\begin{definition}[状況フレーム]
+    構造は，\ref{subsec:frame}節のフレームを拡張した\textbf{状況フレーム}
+    $\langle W,(\rho_w)_{w\in W},\Sit,\sqsubseteq,H,(\rho_e^+,\rho_e^-)_{e\in\Sit}\rangle$を持つ．
+    \begin{itemize}
+        \item $W\subseteq\mathcal M$と$(\rho_w)_{w\in W}$は同節の世界と語彙割り当てである．世界のオントロジー上の分類は\ko{suis}とする．
+        \item $\Sit\subseteq\mathcal M$：\textbf{状況}の集合．$W$との接続は以下の$H$で与え，$W\subseteq\Sit$は要求しない．
+        \item $\sqsubseteq$：$\Sit$上の部分順序．$\langle\Sit,\sqsubseteq\rangle$は完備上半束とし，上限を取る演算を融合$\fuse$と書く．空融合も含む．
+        \item $H\subseteq\Sit\times W$：\textbf{成立関係}．$H(e,w)$は，状況$e$が世界$w$で成立することを表す．任意の$X\subseteq\Sit$と$w\in W$について，
+        \[
+            H\left(\bigsqcup X,w\right)\iff\forall e\in X,\;H(e,w)
+        \]
+        を要求する．
+        \item 各$e\in\Sit$に対して，原子的事実の正確検証・正確反証を与える有限語彙割り当ての対$\langle\rho_e^+,\rho_e^-\rangle$を持つ．
+    \end{itemize}
+\end{definition}
+\begin{remark}
+    成立関係の条件から，$e\sqsubseteq e'$かつ$H(e',w)$なら$H(e,w)$であり，空融合はすべての世界で成立する．全称の正確検証と存在の正確反証には，量化範囲で添字付けられた融合を用いる．
+\end{remark}
+\memo{状況空間全体のオントロジー上の位置づけは未定である．具体的な生起物・トロープを検証者に使う場合も，それらの任意融合や，どの世界でも成立しない状況の分類を定める必要がある．}
+\memo{引き下げの証拠領域から，望む融合構造を構成する方法は未定．集合$T$を$\wp(T)$へ単元集合として埋め込めば合併による融合を付加できるが，具体的な証拠の同一性や存在論的分類との整合性は別に必要．FCAの概念束ではextentとintentが逆向きに動くため，両役割がともに融合を交わりへ移すとは一般に言えない．}
+
+\begin{definition}[原子検証のデータ]
+    対象とする各二項述語$r$について，族として選んだデータ$E_r\subseteq\Sit$，$K_r\subseteq\mathcal M\times\Sit$，$L_r\subseteq\mathcal M\times\Sit$を与える．語彙で実現する場合，これらをそれぞれ$\tilde r,k_r,l_r$の解釈とする．世界$w$での$r$の外延$r_w$との接続には，
+    \[
+        r_w(a,b)\iff\exists e\in E_r\,
+        (H(e,w)\land aK_re\land bL_re)
+    \]
+    を要求する．世界を扱う場合は，この$H$による制限を含めて関係を復元する．この正のデータが$\rho_e^+$を定め，負のデータ$\rho_e^-$は別に与える．
+\end{definition}
+% @issue KONO-0025
+\memo{正負の原子データを世界での二値評価と整合させる供給方法，特に負側の構成は未定．正の引き下げだけから否定文の検証者は決まらない．}
+
+\subsection{正確検証と冠詞$C$}
+以下では，値が定義され世界に依存しない項を持つ二項原子式，否定・連言・選言，固定した第1スコープ上の全称・存在量化を扱う．
+\memo{$n$項原子式は$n$個の役割へ一般化し，関数項は値を評価してから引き下げる方針．世界依存の関数項，未定義項の反証，同一性，他の構文や一般化量化子の正確検証規則は未定．未定の規則と，検証者クラスが空であることは区別する．}
+\begin{definition}[正確検証]
+    語彙割り当て$\rho$と状況フレームを含む構造$\mathfrak A$を固定する．状況$e\in\Sit$，論理式$\phi$（自由変数を許す），変数割り当て$\sigma$に対して，\textbf{正確検証}$e\vf_{\mathfrak A,\sigma}\phi$と\textbf{正確反証}$e\ff_{\mathfrak A,\sigma}\phi$を，以下の節で再帰的に定義する．以下では固定した$\mathfrak A$を省略し，$\sigma$も明確なら省略する．項と語彙の解釈もこの構造と割り当てのもとで行う．
+    \begin{itemize}
+        \item 原子文：$e \vf t_1\; r\; t_2 \iff e \in E_r \land \langle \lbb t_1\rbb, e\rangle \in K_r \land \langle \lbb t_2\rbb, e\rangle \in L_r$．反証は$\rho_e^-$による．
+        \item 否定：$e \vf \lnot\phi \iff e \ff \phi$．$\quad e \ff \lnot\phi \iff e \vf \phi$．
+        \item 連言：$e \vf \phi \land \psi \iff \exists e_1 \vf \phi,\; \exists e_2 \vf \psi,\; e = e_1 \fuse e_2$．$\quad e \ff \phi\land\psi \iff e \ff \phi \lor e \ff \psi$．
+        \item 選言：連言の双対．
+        \item 冠詞束縛（単純節）：
+        \begin{align*}
+            e \vf \{\phi\;\exists_I\}
+                &\iff \exists\sigma'\in S,\;e\vf_{\sigma\vll\sigma'}\phi,\\
+            e \ff \{\phi\;\exists_I\}
+                &\iff e=\bigsqcup_{\sigma'\in S}e_{\sigma'}
+                    \text{かつ各$e_{\sigma'}\ff_{\sigma\vll\sigma'}\phi$},\\
+            e \vf \{\phi\;\forall_I\}
+                &\iff e=\bigsqcup_{\sigma'\in S}e_{\sigma'}
+                    \text{かつ各$e_{\sigma'}\vf_{\sigma\vll\sigma'}\phi$},\\
+            e \ff \{\phi\;\forall_I\}
+                &\iff \exists\sigma'\in S,\;e\ff_{\sigma\vll\sigma'}\phi.
+        \end{align*}
+    \end{itemize}
+    % @issue KONO-0026
+    \memo{ここではFineの固定領域上の単純節を採った（存在文は1つのinstanceによって検証され，全称文は1つのinstanceによって反証される）．Fineは複数のinstanceの検証者・反証者の融合も認めるinclusive節を併記しており，どちらを採るかは論理だけからは決まらず，文の正確な内容をどの粒度で数えるかという設計上の選択である．inclusive節，totality state，inexact verification（$e' \sqsupseteq e \vf \phi$なる$e'$も検証者とみなす）を基本体系に採用するかは別に決める必要がある．}
+\end{definition}
+\begin{remark}[全称と存在の非対称]
+    例えば束縛される項の動く範囲が$\{a,b,c\}$で，$\phi(a),\phi(b),\phi(c)$の正確検証者がそれぞれ$s_a,s_b,s_c$だけなら，$\{\phi\;\forall\}$の正確検証者は$s_a\fuse s_b\fuse s_c$であるのに対し，$\{\phi\;\exists\}$の正確検証者は$s_a,s_b,s_c$の3つである．全称はすべてのinstanceの成立の仕方を融合し，存在はどのinstanceで成立したかを選択肢として残す．反証側ではこの関係が逆転する．
+\end{remark}
+\iffalse
+\begin{remark}[$\Sit$と$\wp(\Sit)$の非対称な役割]
+    $\Sit$上の融合$\fuse$は状況そのものを合成し，$\wp(\Sit)$上の$\cup$は成立の仕方を選択肢として並べる．正の側では，連言・全称に$\Sit$由来の演算（を冪集合へ点ごとに持ち上げたもの）を，選言・存在に$\wp(\Sit)$固有の演算を使う（負の側では逆になる）．これは\texttt{ref/牛丼}で，食べ物の束$L$上の「イクラ$\sqcup$米」と，食べ物の候補集合$\wp(L)$上の合併とを使い分けた構成と同じ型である．
+\end{remark}
+\todo{"牛丼"と書かれても分からないので内容を検討してmain-detailに移す}
+↑"牛丼"読み返したら思ったより内容つまらなかった．特に書くことない．
+\fi
+\begin{remark}[全称量化とtotality state]
+    束縛される項の動く範囲があらかじめ固定されているなら，上の$\forall$節で「すべて」を尽くせる．しかし，領域が世界ごとに変わる場合や，``all $A$s are $B$s''のような制限つき量化では，列挙したinstance以外に対象がないことも内容に含めたい．このためFineは，「存在する個体はちょうど$C$である」という\textbf{totality state} $\tau_C$（制限つき量化には「$A$である個体はちょうど$C$である」という相対化された$\tau_{A,C}$）を加える案を提示する．このとき``all $A$s are $B$s''の正確検証者は，概略
+    \[
+        \tau_{A,C}\fuse\bigsqcup_{a\in C}s_a
+        \qquad (s_a\text{は}B(a)\text{の正確検証者})
+    \]
+    という形になり，$C$の各要素が$B$であるという正の状態だけでなく，それらが$A$のすべてであるという網羅性も含む．そのため，個々の内惑星が岩石質だという連言と，「すべての内惑星が岩石質だ」という全称文とは，通常の真理条件が一致しても異なるtruthmakerを持ちうる\cite{fine-tms,champollion-tms}．採否は上のmemo（KONO-0026）と併せて決める．
+\end{remark}
+\begin{definition}[冠詞$C$]
+    $C \in Q^\Omega_{1,V}$を\textbf{状況化演算子}と呼び，以下のように解釈する．
+    \[
+        \rho(C)(S, \phi) = \mathrm{cls}\{e \in \Sit \mid \exists \sigma' \in S,\; e \vf_{\sigma\vll\sigma'} \phi\}
+    \]
+    すなわち$\{\phi\; C_I\}$は，「$\phi$（ラベル$I$の項をスコープ内で動かしたもの）を正確に成立させる状況」のクラスである．
+\end{definition}
+\begin{definition}[命題化演算子$K$]\label{def:K-article}
+    $K \in Q^\Omega_{1,V}$を\textbf{命題化演算子}と呼び，形式文法章のフレーム（\ref{subsec:frame}節）の上で以下のように解釈する（定義は形式文法章からここへ移した）．
+    \[
+        \rho(K)(S, \phi) = \mathrm{cls}\{w \in W \mid \exists \sigma' \in S.\; \lbb\phi\rbb_{\rho\vll\rho_w,\; \sigma\vll\sigma'} = 1\}
+    \]
+    束縛項を持たない場合（$S = \{\emptyset\}$），これは$\phi$の表す命題（$\phi$が真になる世界のクラス）に退化する．$[K], \langle K\rangle \in Q^\Omega_{1,1}$は
+    \begin{align*}
+        \rho([K])(S,\phi) &= (\forall w \in W.\; \exists\sigma'\in S.\; \lbb\phi\rbb_{\rho\vll\rho_w,\sigma\vll\sigma'} = 1)\\
+        \rho(\langle K\rangle)(S,\phi) &= (\exists w \in W.\; \exists\sigma'\in S.\; \lbb\phi\rbb_{\rho\vll\rho_w,\sigma\vll\sigma'} = 1)
+    \end{align*}
+    であり，それぞれ必然性$\Box$，可能性$\Diamond$に対応する．
+\end{definition}
+\begin{remark}[型的制約]
+    出力は$W \subseteq \mathcal{M}$の部分クラスなので，$Q^\Omega_{1,V}$の適用結果型$\Omega^V$と整合する．また旧定義では第1スコープ$S$が現れていなかったが，上の定義で他の冠詞と扱いが揃う．
+\end{remark}
+\begin{remark}[$K$は$C$の粗視化である]
+    世界での二値評価と正確検証・正確反証を接続するため，対象とする論理式$\phi$について次の整合条件を要求する：
+    \begin{align*}
+        \lbb\phi\rbb_{\rho\vll\rho_w,\sigma}=1
+        &\iff\exists e\in\Sit,\;H(e,w)\land e\vf_\sigma\phi,\\
+        \lbb\phi\rbb_{\rho\vll\rho_w,\sigma}=0
+        &\iff\exists e\in\Sit,\;H(e,w)\land e\ff_\sigma\phi.
+    \end{align*}
+    原子式にこの両条件が成り立つ場合，成立関係の融合条件と正確検証の再帰節により，固定領域・世界に依存しない固定スコープ上の否定・連言・選言・全称・存在へ条件を延ばせる．この条件が成り立ち，$C$と$K$で同じ第1スコープ$S$を使うとき，
+    \[
+        \rho(K)(S,\phi)=\mathrm{cls}\{w\in W\mid\exists e\in\rho(C)(S,\phi),\;H(e,w)\}
+    \]
+    となり，$K$は$C$の出力を世界単位に粗視化したものになる．原子文の場合は，$\tilde r,k_r,l_r$による成立状況を$H(e,w)$で制限して，世界$w$での関係$r$を復元する．
+    \memo{正負の原子割り当てを，この被覆条件を満たすように与える方法は未完である．特に負側の供給はKONO-0025と関わる．世界依存のスコープ・関数項と未対応構文への拡張も残る．後続の粗視化の等式は，必要な被覆条件が成り立つ範囲で用いる．}
+\end{remark}
+\subsection{選択肢と冠詞$E$}
+$C$は「何が$\phi$を成立させるか」を状況の粒度で保つ．疑問文と解決意味論（inquisitive semantics）が要るのはそれより粗く，世界より細かい「選択肢」の粒度である．ここでは選択肢の内容を$C$から導き，それを冠詞$E$とする．$E$は元々inquisitive semantics流に疑問の選択肢を作る演算子として構想され，一度は談話モジュールの発話規則（Hamblin流の$\mathrm{Alt}$）に吸収されていた．以下で$\mathrm{Alt}$が$E$の世界粒度への射影であることを確かめ，$E$を文内の冠詞として復活させる（2026-08-29，暫定）．
+
+\begin{definition}[状況の世界化]
+    状況$e \in \Sit$に対して，$e$が成立する世界のクラスを
+    \[
+        \uparrow e := \mathrm{cls}\{w \in W \mid H(e,w)\}
+    \]
+    と書く．$\uparrow e$は「$e$が成り立っている」という情報状態であり，$e$がどの世界でも成立しなければ空である．
+\end{definition}
+$\uparrow$は順序を逆にし，融合を交わりへ移す：$e \sqsubseteq e'$なら$\uparrow e \supseteq \uparrow e'$，$\uparrow(e \fuse e') = \uparrow e \cap \uparrow e'$（成立関係$H$の融合条件から従う）．
+\begin{definition}[冠詞$E$]
+    $E \in Q^\Omega_{1,V}$を\textbf{選択肢化演算子}と呼び，
+    \[
+        \rho(E)(S,\phi) = {\downarrow}\{\uparrow e \mid e \in \rho(C)(S,\phi)\}
+    \]
+    と解釈する．${\downarrow}$は$\wp(W)$の包含についての下方閉包である．出力は情報状態（世界のクラス）を要素とするクラスなので，各情報状態は名詞化して個体として持つ．$\rho(E)(S,\phi)$の包含極大元を$\phi$の\textbf{選択肢}と呼ぶ．
+\end{definition}
+下方閉な情報状態のクラスは，inquisitive semanticsが命題と呼ぶものである\cite{inquisitive}．情報状態$s$が$\phi$を\textbf{支持}することを$s \in \rho(E)(S,\phi)$と定めれば，支持は定義から持続的（$s$が支持すれば$s$の部分集合も支持する）である．
+
+\begin{proposition}[$E$は$C$と$K$の間にある]
+    \leavevmode
+    \begin{enumerate}[label=(\arabic*)]
+        \item $\bigcup \rho(E)(S,\phi) = \rho(K)(S,\phi)$．
+        \item 束縛項を持たない$\phi,\psi$について，$E[\phi\lor\psi] = E[\phi]\cup E[\psi]$，$E[\phi\land\psi] = \{s\cap t \mid s\in E[\phi],\,t\in E[\psi]\}$．よって$s$は$\phi\lor\psi$を支持$\iff$$\phi$か$\psi$を支持，$\phi\land\psi$を支持$\iff$両方を支持．
+        \item $E$は正確検証と非正確検証を区別しない：$C[\phi]$を$\{e' \mid \exists e \in C[\phi],\, e \sqsubseteq e'\}$（inexact検証者）に置き換えても$E[\phi]$は変わらない．
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    (1)は整合条件（remark［$K$は$C$の粗視化である］）そのもの．(2)は$C$の計算規則$C[\phi\lor\psi]=C[\phi]\cup C[\psi]$，$C[\phi\land\psi]=C[\phi]\fuse C[\psi]$と，$\uparrow$が$\fuse$を$\cap$へ移すことから．(3)は$e\sqsubseteq e'$なら$\uparrow e' \subseteq \uparrow e$なので，$\uparrow e'$は既に${\downarrow}\{\uparrow e\}$に入っていることから．
+\end{proof}
+(2)は，inquisitive semanticsの連言・選言の節がそのまま出ることを言う．状態空間を$\wp(W)$に固定したときに「点ごとの融合と交わりが一致する」のは，$\uparrow$が束の反準同型であることの特別な場合であり，$\Sit$を抽象的に置いたままでも成り立つ．(3)は，正確検証者と非正確検証者の区別が$E$の粒度では消えることを言う．したがってinquisitive semanticsは，truthmaker semanticsのうち$E$の段で見える部分である．
+
+\begin{remark}[原子と否定での違い]
+    inquisitive semantics（InqB）との差は二つあり，どちらもtruthmaker側（$C$）に置く．
+    \begin{itemize}
+        \item \emph{原子}．InqBでは原子$p$の支持は$s \subseteq |p|$であり，原子は選択肢を一つしか持たない．本文では原子文の正確検証者が複数ありうるので（引き下げの非一意性），$\uparrow e_1, \uparrow e_2$が比較不能なら原子文自体が複数の選択肢を持つ．$C[p]$に極大元が一つだけあるとき，InqBの原子節に一致する．
+        \item \emph{否定}．InqBの否定は$s$が$\phi$を支持する部分状態を持たないこと，すなわち$s \cap K[\phi] = \emptyset$であり，選択肢は一つである．本文では$E[\lnot\phi] = {\downarrow}\{\uparrow e \mid e \in C^-[\phi]\}$で，反証者の側から選択肢が出る．世界粒度では両者は一致する（(1)と否定の整合条件から$\bigcup E[\lnot\phi] = W \setminus K[\phi]$）が，本文の否定は選択肢を残す：$E[\lnot(\phi\land\psi)]$は$C^-[\phi]$由来と$C^-[\psi]$由来の二つの選択肢を持ちうる．また$E[\lnot\lnot\phi] = E[\phi]$である（InqBでは二重否定が選択肢を潰す）．
+    \end{itemize}
+    $E$自身には否定の節がなく，すべて$C$のbilateralな定義から導かれる．「はい/いいえ」の二選択肢が$\{(\phi\lor\lnot\phi)\; E\} = {\downarrow}(\{\uparrow e \mid e\in C^+[\phi]\}\cup\{\uparrow e \mid e \in C^-[\phi]\})$として出るのはこの帰結である．
+    原子文が同じ解答の中で成立の仕方ごとに複数の選択肢を持つことは，談話モジュールの解答規則が$E^D$の情報的内容（全要素の合併）で更新する（形式文法章「談話モジュール」，2026-09-05）ため，解答の更新には影響しない．選択肢の粒度が効くのは成立の仕方を問う「なぜ」型の問いに限り，そこでは$C$粒度へ送る．
+\end{remark}
+
+\begin{proposition}[談話モジュールの問いは$E$の持ち上げである]
+    疑問発話の提示構文$\phi=\{\theta\;E_I\}$に対し，談話モジュールは$E$の第1スコープ$S$を保ったまま，世界を可能性$\langle w,g\rangle$へ置き換えて選択肢を作る．$g$を固定し，$S$も世界に依存しない場合には，
+    \[
+        E^D_s(S,\theta)=\{\{\langle w,g\rangle\in s\mid w\in v\}\mid v\in\rho(E)(S,\theta)\}.
+    \]
+    一般には，形式文法章の$U_e(S,\theta)$で各可能性のスコープと割り当てを検査する．新規の自由な$F$項があれば，それだけを存在閉包してから同じ操作を行う．
+\end{proposition}
+\begin{proof}
+    $g$と$S$を固定すると，$U_e$は$\uparrow e$を$s$へ制限したものになる．包含についての下方閉包はこの制限と可換なので，上の式を得る．
+\end{proof}
+\begin{remark}[疑問位置と自由項]
+    $E$の束縛項は解答を区別するパラメータであり，その範囲は第1スコープで定まる．他の自由な$F$項の存在閉包は，未指定の参与者などを補うための操作である．例えば「どの猫が何かを食べるか」では猫を$E$で束縛し，食べる対象の$F$だけを閉じる．両方を一括して存在閉包すると，猫ごとの解答の区別を失う．
+    $E$なしの$\Omega$型の提示は，談話モジュールでは極性疑問として$E_{\mathrm{pol}}$に送る．$E$付きで束縛ラベルが空の場合は，その$E$の選択肢をそのまま用い，極性疑問へ自動変換しない．
+\end{remark}
+$E$を積む形にしたことで談話モジュールに入ったのは，(a) 部分解答・選言的解答を同じ更新則で扱うこと（更新後の状態が問いの内容を支持するときだけ問いを除く），(b) 「いいえ」側の選択肢が反証者から出ること（know系の書き分けの節．負側の被覆条件が保証されない間は世界粒度の$E_{\mathrm{pol}}$を使う）である．(c) exhaustive読みに要るtotality state（remark［全称量化とtotality state］，KONO-0026）は未決のまま．要素の任意選択による更新は空状態の選択や述べていない事実の伝達を許すので採らない．口語文法章は\ko{ena}を$E$の基本形，\ko{ha} $\cdots$ \ko{tos}／\ko{no}を括弧端形として暫定的に対応させている（同章「冠詞と括弧の語形」「疑問文」）．
+\begin{remark}[inquisitive semanticsとの対応の限界]
+    本文の$E$は$\Sit$を$\wp(W)$に固定しない．InqBの状態は世界の集合で，順序は逆包含であるが，本文では$\sqsubseteq$（部分--全体）を向きの基準にし，$\wp(W)$側の順序は$\uparrow$で導く．「なぜ」型の疑問のように成立の仕方そのものを問う疑問は$E$では書けず，$C$（または$\mathrm{Cf}$）の粒度が要る．inquisitive semanticsとtruthmaker semanticsの橋渡しには既存研究がある（Ciardelli系のsupport semantics，Punčochářのsubstructural inquisitive logicsなど）が，本節の構成はそれらに依拠せず，整合条件から直接導いた．
+\end{remark}
+
+\subsection{族版冠詞$\mathrm{Kf},\mathrm{Cf}$}\label{subsec:s-index}
+「第1スコープ$S$を消費して1個の値を返す」（$\forall,\exists,K,C$）か「$S\ni\sigma'\mapsto$値の族として残す」（$\mathrm{Lf},M,\mathrm{Kf},\mathrm{Cf}$）かの区別は，冠詞署名の保持標識$\mathrm{keep}(q)\in\{1,V\}$として形式文法章の$Q^\gamma_{\alpha,\beta}$に取り込まれており，所属表もそちらにある（2026-09-03．旧稿の内容型$\times$潰し／族の表は所属表と重複し，$\mathrm{Lf}$の行が署名と食い違っていたので削除した．2026-09-08）．この族軸は，内包性の粒度軸「$K\to C\to M$（粗$\to$細）」とは直交する．ここでは$K,C$の族版だけを定義する．
+\begin{definition}[族版冠詞]
+    $\mathrm{Kf}, \mathrm{Cf} \in Q^\Omega_{V,V}$を以下のように解釈する（出力は割り当てごとに世界／状況のクラスを返す関数$V^I\to\Omega^V$．切片に単値性は要求しない．2026-09-03）．
+    \begin{align*}
+        \rho(\mathrm{Kf})(S, \phi) &= \{S\ni\sigma' \mapsto \mathrm{cls}\{w \in W \mid \lbb\phi\rbb_{\rho\vll\rho_w,\; \sigma\vll\sigma'} = 1\}\}\\
+        \rho(\mathrm{Cf})(S, \phi) &= \{S\ni\sigma' \mapsto \mathrm{cls}\{e \in \Sit \mid e \vf_{\sigma\vll\sigma'} \phi\}\}
+    \end{align*}
+    束縛項を持たない場合（$S = \{\emptyset\}$）はどちらも1元族に退化する．これは$\mathrm{Lf}, M$と同じ挙動であり，$\mathrm{keep}=V$の冠詞に共通のインターフェイスである．
+\end{definition}
+\begin{remark}[潰しは族から回復できる]
+    $K, C$は対応する族の像の合併である：
+    \[
+        \rho(K)(S,\phi) = \bigcup_{\sigma'\in S} \rho(\mathrm{Kf})(S,\phi)(\sigma'),\qquad
+        \rho(C)(S,\phi) = \bigcup_{\sigma'\in S} \rho(\mathrm{Cf})(S,\phi)(\sigma')
+    \]
+    $M$だけは族が本体である：論理式の側にはクラスの$\bigcup$に当たる演算がなく，潰しに相当するのは$\exists$閉包を引用した$\qquote{\{\phi\;\exists_I\}}$（族の各要素とは別の1つの表現）だからである．
+\end{remark}
+\begin{remark}[用途]
+    「選択肢と冠詞$E$」の節で疑問の内容を作るときの，解答ごとの$C$クラスの族は$\mathrm{Cf}$そのものである．
+    % @issue KONO-0046
+    \memo{$\mathrm{Kf}, \mathrm{Cf}$の実際の使い所（know wh，de dicto，$\mathrm{Alt}$との接続）はまだ確定していない．必要性が確認できた箇所から本文に繋ぐ．}
+\end{remark}
+
+\subsection{否定文・接続詞の意味論}
+接続詞（suinot「だから」等）と時制は，$\dom$が状況（概念）であるような通常の2項述語として辞書に登録する（現行辞書v5には\ko{suinot}・\ko{sol}・\ko{filnot}・\ko{kojannot}・\ko{luis}は未登録であり，登録時に\texttt{arguments}を$\langle$\ko{astav}，\ko{astav}$\rangle$で与える）：
+\[
+    \mathrm{suinot} \in R_2,\qquad \dom \mathrm{suinot} = \langle\text{状況}, \text{状況}\rangle
+\]
+文と文の接続は，$C$項を介して書く：
+\[
+    \{\phi\; C\}\;\; \mathrm{suinot}\;\; \{\psi\; C\}
+\]
+両側の$C$項は裸なので$F$束縛を受け，「$\phi$の成立状況と$\psi$の成立状況の間にsuinot関係がある」と読める（冒頭の例文のように，片側が語彙レベルのwitness明示形で書かれていても同じことである）．
+
+従来の不具合は，否定文には対応するイベントが無いため接続詞が繋げないことだった．正確検証をbilateralに定義し，かつ負側$\rho_e^-$の供給規則（KONO-0025，未決）を採択すれば，これは解消する：$\lnot\phi$の$C$クラスは
+\[
+    \rho(C)(S, \lnot\phi) = \mathrm{cls}\{e \mid \exists\sigma'\in S,\; e \ff_{\sigma\vll\sigma'} \phi\}
+\]
+すなわち$\phi$の\emph{反証者}のクラスであり，一般に空でない．導出される計算規則を$C^+[\phi] = \rho(C)(S,\phi)$，$C^-[\phi] = \rho(C)(S,\lnot\phi)$と書いてまとめると：
+\begin{align*}
+    C^+[\lnot\phi] &= C^-[\phi], & C^-[\lnot\phi] &= C^+[\phi],\\
+    C^+[\phi\land\psi] &= C^+[\phi] \fuse C^+[\psi], & C^-[\phi\land\psi] &= C^-[\phi] \cup C^-[\psi]
+\end{align*}
+（$X \fuse Y = \{e_1 \fuse e_2 \mid e_1 \in X, e_2 \in Y\}$）．接続詞は常に状況クラス間の関係として一様に意味論を持ち，否定・連言・選言のどの複合文にも繋がる．ただし現段階で辞書の引き下げから構成されるのは正の原子節だけであり，否定文の$C$クラスが空でないことは負側の供給に条件づけられた暫定的主張である．
+
+\subsection{粒度とhyperintensionality}
+引き下げは一意でない．この非一意性は欠点ではなく，hyperintensionalityの表現手段である．
+\begin{definition}[粒度]
+    文に個体（またはクラス）を対応させる操作$c, c'$について，$c$が$c'$より\textbf{細かい}とは，任意の$\phi, \psi$に対して$c[\phi] = c[\psi] \Rightarrow c'[\phi] = c'[\psi]$が成り立つことをいう．
+\end{definition}
+体系にすでにある演算子は，この前順序の上に一列に並ぶ：
+\begin{center}
+\begin{tabular}{lll}
+    \toprule
+    演算子 & 出力 & 区別の細かさ \\
+    \midrule
+    $M$（引用符）／記号化$\qquote{\bullet}$ & 表現そのもの & 最細（構文的同一性）\\
+    $C$（状況化） & 正確検証者のクラス & 中間（成立の仕方）\\
+    $E$（選択肢化） & 情報状態の下方閉族 & $C$と$K$の間（選択肢）\\
+    $K$（命題化） & 成立する世界のクラス & 粗（真理条件）\\
+    真理値 & $\{0,1\}$ & 最粗 \\
+    \bottomrule
+\end{tabular}
+\end{center}
+各段の間には粗視化の写像がある：表現は（解釈を経て）$C$クラスを定め，$C$クラスは成立関係$H$で世界に持ち上げれば$K$クラスを定め，$K$クラスは$w_0$での所属で真理値を定める．逆は一般に定まらない．
+
+hyperintensionality問題——論理的に同値な文を区別したいという要請——への回答は，したがって「どの段の対象を使うか選べ」である．数学の定理どうしのように$K$クラスが一致してしまう文でも，$C$クラス（何がそれを成立させるか）や表現は異なりうる．「対象言語が必要だ」と漠然と感じられてきたのは最細段の必要性であり，文内では引用符$M$がその実装である（本章冒頭に草稿として残してある記号化された論理式$E(L)$は，これを言語の階層$L_\omega$として整備する未採用の実装案である）．対象言語と引き下げの役割が近接して見えるのは，両者が同じスペクトラムの両端だからである．真理条件的意味論と超内包的意味論を同じように扱うという目標は，「粒度の選択をパラメータにする」という形で実現される．
+
+\subsection{態度動詞の目的語}
+knowを例に，態度動詞の目的語の書き分けを整理する．前小節の各段がそのまま選択肢になる．以下，束縛ラベルを含まない文$\phi$について$\rho(C)(S,\phi)$を$C[\phi]$と略記する．
+\begin{remark}[knowは略記である]
+    以下の$\mathrm{know}$および$\mathrm{know}^\dagger$はコノメノの辞書語彙ではなく，知識状態トークンを主体役割と内容役割について射影して得るメタ言語上の略記である（2026-09-03．生起物の章は「知る」のような状態述語を他動詞にしないと裁定し，辞書の\ko{loyst}は\ko{anemin}に属する一項概念である）．すなわち
+    \[
+        \mathrm{Know}(a,c) \iff \exists k\,[\,\ko{loyst}(k)\land \ko{wal}(a,k)\land \ko{to}(c,k)\,]
+    \]
+    であり，主体は\ko{wal}（\ko{loyst}が経験状態である限り．口語の\ko{walka loyst to}$\cdots$がこの形），内容対象は無標の\ko{to}で結ぶ．内容対象専用の下位役割は立てない（2026-09-03裁定．主体の\ko{wal}と無標の\ko{to}で識別する）．角括弧内の$[a\; \mathrm{know}\; c]$表示は意味構造の短縮形であって，体系Pの原始的な二項述語ではない．$\mathrm{know}^\dagger$（content版）も独立の語彙ではなく，\ko{loyst}の内包プロファイル（$\mathrm{Alt},\mathrm{Sat}$）を内容対象に適用した派生関係である．
+\end{remark}
+\begin{enumerate}
+    \item[(a)] \textbf{表現を知る}：$[\text{taso}\;\; \mathrm{know}\;\; \phi^{M_1}]$．引用符$M$による最細粒度．メタ言語的な知識（「この文を知っている」）のときに使う．
+    \item[(b)] \textbf{成立の仕方を知る（de re状況読み）}：$[\text{taso}\;\; \mathrm{know}\;\; \{\phi\; C\}^{F}]$．$\{\phi\;C\}$は$\Omega^V$型なので，(Plm-at)によりそのまま第1スコープになれる．裸なので$F$束縛を受け，「$\phi$のある特定の成立の仕方（根拠・証拠）を知っている」，すなわち$\exists e \in C[\phi],\; \mathrm{know}(\text{taso}, e)$と読める．なお内包性（「りんごが食べたい」が現実のりんご食べを含意しないこと）は量化子ではなく\emph{ドメイン}が担う：$\Sit$は$H(e,w_0)$を満たさない状況も許すので，この形は現実の成立を含意しない．現実性を主張したければ$H(e,w_0)$を明示的に足す\suppl{Fineによる欲求のverifier分析，Moltmannのattitudinal objects \cite{moltmann-attobj}が近縁}．
+
+    ただし，\emph{これは通常のknow that・believe thatではない}．正確検証の選言節から$C[\phi\lor\psi] = C[\phi]\cup C[\psi]$なので，
+    \[
+        \exists e\in C[\phi\lor\psi],\,\mathrm{know}(a,e) \iff
+        (\exists e\in C[\phi],\,\mathrm{know}(a,e)) \lor (\exists e\in C[\psi],\,\mathrm{know}(a,e))
+    \]
+    が述語論理だけで導出されてしまい，「犯人はAかBだと信じているが，どちらだとは信じていない」という未解決の選言的態度が表せない．この形は，成立の仕方を1つ選んで根拠として持つことを明示する\emph{有標な}構文として残す．
+    \item[(c)] \textbf{特定の状況を知る}：同じ形で，$F$が立てた談話指示子を後続の照応で受ける（談話モジュールの機構そのまま）．特定／不特定の区別は，新しい装置ではなく$F$の動的意味論の既存の区別に帰着する．
+    \item[(d)] \textbf{内容を知る（know that）・問いを解決している（know wh）}：通常のknow that・know whは，(b)のように状況を1つ選ぶのではなく，主体の情報状態と$\phi$の内容（$C$クラスまたはその族）との関係として書く．次節で内包動詞の一般的な枠組みとともに定式化する．
+\end{enumerate}
+
+\begin{remark}[部門の分担]
+    目的語の「選択の仕方」は3つの問いに分解され，担当部門が異なる．
+    \begin{itemize}
+        \item \emph{在庫の問い}（どんな内容対象があるか）：表現・状況・命題・性質といった対象の種類と粒度順序，粗視化写像は，上位オントロジーの一部である（世界がsuisに分類されるのと同様に，状況・表現もskon木上に位置を持つ）．これはオントロジー部門．
+        \item \emph{語彙ごとの選択}（knowは何を取るか）：各動詞がどの段の対象を取るかは$\dom$制約として辞書に書く．knowのように複数段を許す動詞は，$\dom_2$を上位概念（内容対象）にして粗視化写像による多義解消を許す．これは辞書章（語彙意味論）．
+        \item \emph{文脈での確定}（この文ではどの読みか）：実際の発話でどの段・どの状況が選ばれるかは，善意的解釈・照応解決の仕事であり，語用論（談話モジュール以降）．
+    \end{itemize}
+    つまり「オントロジー部門に入るか」への答えは：在庫と順序は入る，動詞ごとの選択は辞書の$\dom$（オントロジーが供給する概念を使って書く），実行時の選択は入らない，である．
+\end{remark}
+
+\section{内包動詞と不特定性}\label{sec:intensional-verbs}
+「りんごが食べたい」「ユニコーンを探す」の目的語は，現実の特定個体を指さない（非存在含意の不在・不特定性）．旧稿はこれを，存在量化子に似た専用の量化子$N$で処理してきた（$\exists x{:}A,\,\phi$に対する$Nx{:}A,\,\phi$という構文上の対立）．本節では，制作議論（\texttt{detail/2026-08-04/}，\texttt{detail/2026-08-05/}）の結論に従い，$N$を内包動詞の語彙意味論へ還元する\textbf{内容対象方式}を採る．
+
+\subsection{$N=\exists$の撤回とde dicto量化}
+% まず，「独自装置に見えた$N$の実体は（$\Sit$ないし個体領域上の）普通の存在量化である」というかつての整理は撤回する．$N$を現在世界での$\exists$として評価すると，前節(b)と同じ理由で選言に分配してしまい（集合上の存在量化は和を保存する），未解決の選言的態度が表せない．
+$N$の意図は\textbf{de dicto量化}，すなわち一般化量化子を内包的関係の内側へ持ち上げる演算である．態度・探索などの内包的な語彙$r$は，主体$a$と評価世界$w$に相対的な\textbf{代替世界}の集合$\mathrm{Alt}_r(a,w) \subseteq W$を定める（信念ならdoxastic代替$\mathrm{Dox}_a(w)$，探索なら探索が成功する目標世界．フレームのremarkで予告した「具体的な様相語彙は$W$の部分集合への相対化として導入する」の実例である）．このとき
+\begin{align*}
+    \text{de re} &: \exists x\;\forall v\in\mathrm{Alt}_r(a,w)\;\cdots x\cdots
+    &&\text{同じ$x$を全代替世界で追跡する}\\
+    \text{de dicto} &: \forall v\in\mathrm{Alt}_r(a,w)\;\exists x\;\cdots x\cdots
+    &&\text{witnessは世界ごとに異なってよい}
+\end{align*}
+という量化順序の対立が本体である．de dicto側は合成$\Box_{\mathrm{Alt}}\circ\exists$であり，量化順序$\forall\exists$から自動的に選言へ分配せず，$\mathrm{Alt}$への通常の条件（serial／reflexive／transitive／Euclidean）に応じてSystem K（＋D/T/4/5）の推論を正確に回収する．とくに信念については，世界と正確検証の整合条件（remark［$K$は$C$の粗視化である］）のもとで
+\[
+    \forall v\in\mathrm{Dox}_a(w)\;\exists e\in C[\phi]\;(e\sqsubseteq v) \iff \Box_a\phi
+\]
+が成り立つ．これが推論閉包を持つ通常のbelieve/know thatの粗い読みである．
+
+\subsection{内容対象方式}
+\todo{5-2第8章「対象に\ko{nato}以外をとる場合」（\ko{mintos}をとる\ko{anemin}，\ko{astav}をとる「好む」「望む」，\ko{kika}をとる「絵を描く」等）は補文の話なので本節へ移植する（2026-09-07決定，未移植）．}
+de dicto量化を体系へ入れる方法として，$N$を冠詞として新設することは\emph{採らない}．理由は冠詞インターフェイスの外延性である：(Plm-pt)の解釈$\lbb\{\phi\,d_I\}\rbb = \rho(d)(S,\phi)$において，第2スコープ$\phi$は表現のまま渡るが，第1スコープ$S$は現在の$\rho$で外延計算済みの集合として渡る．de dictoには制限部を代替世界$v$ごとに評価し直すことが必要であり，これは$S$からは復元できない．代わりに，\textbf{内包の仕事を動詞側の辞書データに置く}．
+
+\begin{definition}[内包動詞の辞書データ]
+    内包的な2項述語（seek, want, know等）に対して，辞書は以下を備える：
+    \begin{itemize}
+        \item \textbf{instance版}$r \in R_2$：通常の個体を取る（de re用）．
+        \item \textbf{content版}$r^\dagger \in R_2$：$\dom_2 r^\dagger$が\textbf{内容対象}であるような変種．
+        \item \textbf{内包プロファイル}$\langle \mathrm{Alt}_r, \mathrm{Sat}_r\rangle$：代替世界関数と，各代替世界内での充足条件．
+    \end{itemize}
+    $r^\dagger$の解釈は\textbf{持ち上げ規則}
+    \[
+        \lbb [t_1\; r^\dagger\; t_2] \rbb_{\rho\vll\rho_w} = 1 \iff
+        \forall v\in \mathrm{Alt}_r(\lbb t_1\rbb, w)\;\exists x\;
+        \bigl(\mathrm{inst}_v(x, \lbb t_2\rbb) \land \mathrm{Sat}_r(\lbb t_1\rbb, x, v)\bigr)
+    \]
+    で与える．ここで$\mathrm{inst}_v(x, c)$は「世界$v$において$x$が内容対象$c$のinstanceである」という世界相対の実現関係である．
+\end{definition}
+内容対象の位置には，語彙的な概念なら\textbf{タイプ個体}（上位オントロジーのタイプ側），複合的な制限部（「赤い傘」）なら\textbf{状況概念クラスの名詞化}（remark［性質の取り出しは単項の場合である］と同じ構成），文補語なら\textbf{$C$クラス}が入る．名詞化子で\emph{現在の外延}を渡すことは不可である：外延が空のユニコーンとペガサスが区別できず，非存在含意の不在も説明できない．文補語の場合は$\mathrm{inst}_v(e, C[\phi]) \iff e \in C[\phi]$（$C$クラスは世界に依存しない），$\mathrm{Sat}_{\mathrm{know}}(a,e,v) \iff e \sqsubseteq v$と置けば，前小節の$\Box_a\phi$がこの規則の特殊例として出る．
+
+\begin{definition}[持ち上げ公理]
+    $N$接辞つきの項を持つ文は，content版へのη展開型の言い換えとして定義する：
+    \[
+        [t_1\; r\; t^{N}] \iff [t_1\; r^\dagger\; (\text{$t$の内容対象})]
+    \]
+    引き下げ公理・witness明示と同じく，コンパクト形と明示形を同値とする書き換え公理である．
+\end{definition}
+したがって$N$は冠詞ではなく表層の糖衣であり，冠詞インターフェイスは変更されない．de re読み・特定読みは従来どおり無標の$F/\exists$束縛で書く（裸項＝$F$束縛が無標であるから，コノメノではde reこそデフォルトである）．また$\{[\text{taso}\; \mathrm{know}\; \{\phi(t^{\exists_1})\; E\}^F]\; \exists_1\}$のような\emph{開いた内容}（外側の冠詞に束縛される項を含む補語）は，$E$の解釈が環境の割り当て$\sigma$に依存する（$\sigma\vll\sigma'$）ことからそのまま合成的に扱える：witnessが全代替世界で固定される（de reの本質）のは，$\sigma$が世界量化の外で固定されるからである．
+
+\begin{remark}[辞書の不変条件（案）]
+    これは意味論上要求される語彙仕様（上位分類の章）の案であり，現行辞書v5の不変条件ではない（対応フィールドは\texttt{dictionary.tex}にもJSONにもない）．採択時には保存形式と整合性検査を辞書章に追加する．
+    内包動詞はinstance版$r$とcontent版$r^\dagger$の対を持ち，持ち上げ公理で結ばれなければならない．content版しか持たない語彙を作ると，その動詞のde re読みが書けなくなる．
+\end{remark}
+\begin{remark}[第1スコープの内包化は保留]
+    冠詞インターフェイス自体を内包化する（第1スコープも表現のまま渡し，「値が$S$のみに依存する冠詞」を外延的と宣言して分類する）案も可能だが，保留する．内容対象方式で書きにくいのは\emph{非存在型}のde dicto（「ほとんどの$A$を探す」のde dicto読み）だが，自然言語の不透明動詞はほぼ存在型読みしか取らないという観察があり\cite{zimmermann-opacity}，必要性が確認されてから再検討する．なお固定領域$M$では無制限量化についてBarcan式・逆Barcan式がともに成立するため，de re/de dictoの対立が生じるのは制限つき量化（制限部の外延が世界依存）に限られる．
+    % @issue KONO-0036
+    \memo{非存在型de dictoの実例が見つかったら第1スコープの内包化を再検討する（タスクツリー「理論/内容対象方式の定式化」参照）．}
+\end{remark}
+\begin{remark}[Montague流との関係]
+    動詞が内容（内包）を引数に取るという分析は，``seek a unicorn''を主体と一般化量化子の内包との関係とみなしたMontagueの扱い\cite{montague-ptq}，不透明動詞の性質分析\cite{zimmermann-opacity}，およびMoltmannのobject-based truthmaker semantics \cite{moltmann-attobj}と同方向である．
+\end{remark}
+
+\subsection{信念・知識の3段の読み}
+以上を合わせると，「$a$は$\phi$だと信じる／知っている」には少なくとも3つの読みが区別され，一方だけを残すのではなく併存させる．
+\begin{center}
+\begin{tabular}{p{37mm}p{40mm}p{33mm}}
+    \toprule
+    形 & 意味 & 用途\\
+    \midrule
+    $[a\;\mathrm{know}^\dagger\;\{\phi\,C\}]$ \newline （$=\Box_a\phi$） & $\forall v\in\mathrm{Dox}_a(w)\,\exists e\in C[\phi],\; e\sqsubseteq v$ & 推論閉包を持つ通常読み（System K系）\\
+    $[a\;\mathrm{know}\;\{\phi\,C\}^F]$ & $\exists e\in C[\phi],\;\mathrm{know}(a,e)$ & de reな状況読み・根拠（有標）\\
+    $C[\phi]\le D_a$ & 内容が総信念内容の部分 & hyperintensionalな読み\\
+    \bottomrule
+\end{tabular}
+\end{center}
+第3のcontent読みは，$C[\phi]$の\emph{要素}を選ぶのではなく，$C[\phi]$\emph{全体}を主体の総信念内容$D_a$（truthmaker命題）とconjunctive parthoodで比較する\cite{jago-belief}．この読みは連言で分配する一方，選言の導入（$\phi$から$\phi\lor\psi$）を許さず，無関係な主題を信念内容へ勝手に足すRoss型の推論を防ぐ．第1の読みは古典的に同値な文を区別しない（System Kとして振る舞うことの代価）．したがってこの3段は，前節の粒度スペクトラム（$K$粗視化／$C$クラス）の態度動詞版である．
+    % @issue KONO-0037
+\todo{de re状況読みの$\mathrm{know}(a,e)$（instance版）に課す閉包条件（融合閉包・部分への遺伝・正負の整合性）と，入れ子の態度（$\mathrm{know}(a,e)$という態度事実自体の検証者）は未定式化．}
+
+\subsection{know系の書き分け}\label{subsec:know-forms}
+know that $\phi$／know if $\phi$／know whether $\phi$ or not／know wh（「誰が来たか知っている」）の4形は，素朴には，間接疑問文を取るとき動詞の意味が「（正しい内容を）知っている」から「（問いを）判定できる」へ変わるように見える．解決意味論（inquisitive semantics）流の一様な扱いでは，動詞を1つにできる可能性がある．以下はその方針候補であり，負側の供給・内容対象の型・totality state・口語形との対応が未決なので，現時点では採択しない：
+\begin{quote}
+    $a$ knows $c$ $\iff$ $a$の情報状態$\mathrm{Dox}_a(w)$が内容対象$c$を\textbf{解決}し（$c$のいずれかの選択肢にコミットし），解決された選択肢が$w$で事実である（factivity）．
+\end{quote}
+「知っている」と「判定できる」が同じに見えるのは，knowの本体がもともと「解決している」だからである．4形の違いは，補語の内容対象の形にすべて吸収される．
+\begin{center}
+\begin{tabular}{p{40mm}p{40mm}p{32mm}}
+    \toprule
+    形 & 内容対象 & 備考\\
+    \midrule
+    know that $\phi$ & 単一の世界粒度選択肢${\downarrow}\{K[\phi]\}$（truthmakerの違いを保持する有標な読みには$E[\phi]$・$C[\phi]$を別途用いる） & 解決＝前小節の$\Box_a\phi$\\
+    know if $\phi$ & 極性疑問専用の粗視化$E_{\mathrm{pol}}[\phi] = {\downarrow}\{K[\phi],\,W\setminus K[\phi]\}$ & 世界レベルで定義（負の状況個体を要求しない）．正負の被覆条件が成り立つ場合に限り${\downarrow}\{\bigcup_{e\in C^+[\phi]}{\uparrow}e,\ \bigcup_{e\in C^-[\phi]}{\uparrow}e\}$と一致\\
+    know whether $\phi$ or not & 同上の選択肢明示形 & η展開型の言い換え\\
+    know wh & $\{\phi\; E_I\}$（解答ごとの族$\{C[\phi(d)]\}_{d}$の選択肢化） & exhaustiveにはtotality state\\
+    \bottomrule
+\end{tabular}
+\end{center}
+各形について注意を挙げる．
+\begin{itemize}
+    \item \textbf{know if}の2選択肢は，正確検証をbilateralに定義したことから追加装置なしに得られる：$C^-[\phi]$（反証者クラス）が「いいえ」側の選択肢そのものである．口語の疑問括弧$\mathrm{ha}\ldots\mathrm{tos}$（$\mathrm{hato}\;\phi\;\mathrm{tos} \equiv \mathrm{ha}\,(\phi\lor\lnot\phi)\,\mathrm{tos}$）と同源であり，「選択肢と冠詞$E$」の節の$\{(\phi\lor\lnot\phi)\; E\}$に一致する．負側の供給源（KONO-0025）がここで実質的な前提になる．
+    \item \textbf{know whether or not}は選択肢を構文上明示した形であり，witness明示・持ち上げ公理と同じη展開型の言い換えとして扱える．
+    \item \textbf{know wh}は，mention-some読みですら真の解答$d$を全認識代替世界で固定する必要がある（$\exists d\,(\phi_w(d) \land \forall v\in\mathrm{Dox}_a(w),\, v \models \phi(d))$．witnessを世界ごとに変えてよいde dicto層と，固定すべき解答ラベルの層が別物であることに注意）．exhaustive読みには完全解答，すなわち正のinstanceの列挙に加えて「ほかにはいない」というtotality state（remark［全称量化とtotality state］）が要る．
+    \item factivity条項を外せばbelieve，「解決していないが問いを内容対象に持つ」とすればwonderになる．動詞ごとの違いは$\langle\mathrm{Alt},\mathrm{Sat}\rangle$とfactive条項の有無に局所化される．
+\end{itemize}
+    % @issue KONO-0038
+\memo{この一様意味論は方針候補であり未採択．「解決する」関係の定式化，選択肢の族という内容対象の型（冠詞$E$の出力）のオントロジー上の位置，totality stateの採否（KONO-0026），負側の供給（KONO-0025）が前提．検証は\texttt{corpus/}で4形の書き分け例文を作って行う（達成基準：4形が書き分けられること）．}
+
+\end{document}

@@ -1,0 +1,225 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+
+\chapter{演習問題：形式文法・形式意味論}
+本章は，形式文法章・形式意味論章の内容を能動的に確認するための演習問題集である（本文には未登録の別冊）．解答は\texttt{formal-exercises-answers.tex}にある．難易度は★（定義の確認）／★★（計算・翻訳）／★★★（証明・設計の検証）．問8・問13は本文の記述や設計そのものを検算する検証問題であり，解答が本文への修正提案を含む．
+
+\section{辞書と基本体系(P)}
+
+\paragraph{問1（★）辞書と型}
+辞書に語彙 $f$（$\arity f = 2,\ \isFunc f = 1$），$p$（$\arity p = 0,\ \isFunc p = 0$），$c$（$\arity c = 1,\ \isFunc c = 0$）があるとする．
+\begin{enumerate}[label=(\alph*)]
+    \item 各語の $\tArity$，$\type$，および $A_n$，$R_n$，$F_n$ への所属を答えよ．
+    \item $\type p = V^0 \to \Omega$ が型の規約のもとで $\Omega$ と同型であることを確認せよ．
+    \item 2項述語の型 $V^2 \to \Omega$ を currying で1引数関数の入れ子に書き換えよ．
+\end{enumerate}
+
+\paragraph{問2（★）冠詞の分類}
+次の冠詞を冠詞署名 $Q_{1,1}$，$Q_{V,1}$，$Q_{1,V}$，$Q_{V,V}$（および $\mathrm{arg}$ の別）に分類せよ（形式意味論章で導入されるものを含む）：
+\[
+    \forall,\quad \exists,\quad L,\quad F,\quad \mathrm{Lf},\quad M,\quad C,\quad E,\quad K,\quad [K],\quad \langle K\rangle,\quad \mathrm{Kf},\quad \mathrm{Cf}
+\]
+さらに，粒度軸と直交する第2の軸（第1スコープを潰すか，$S$-indexed族として残すか）でも分類せよ．
+
+\paragraph{問3（★）平坦性とKG}
+文「白い犬が庭で吠える」を考える．
+\begin{enumerate}[label=(\alph*)]
+    \item この文を，語彙レベルの基本的な関係の連言（KG的表現）に分解せよ．語彙は適当に立てて良い．
+    \item この平坦な表現方法が「すべての犬が吠える」に対して破綻する理由を，冠詞（量化子の埋め込み）の役割と関連づけて述べよ．
+\end{enumerate}
+
+\paragraph{問4（★★）構文導出と束縛対応の探索}
+群の逆元公理の翻訳
+\[
+    \{[G^{\forall_1} \cdot G^{\exists_1}] = e\mathbin{,} [G^{\exists_1} \cdot G^{\forall_1}] = e\;\; \exists_1\}
+\]
+について：
+\begin{enumerate}[label=(\alph*)]
+    \item 省略されている一番外側の(Plm-pt)を復元した完全形を書け．
+    \item 完全形が $\Omega$ 型の表現であることを，構文規則の適用列（どの部分表現にどの規則を使うか）として示せ．
+    \item 量化の対応関係の探索アルゴリズムを実行し，環境スタック $E$ の変化と結果マップ $R$ を示せ．
+\end{enumerate}
+
+\paragraph{問5（★★）スコープの決定}
+\begin{enumerate}[label=(\alph*)]
+    \item 文 $\{\{[A^{\exists_1}\; r\; B^{\forall_1}]\;\exists_1\}\;\forall_1\}$ において，どの(Plm-pt)がどの接辞付き項を束縛するかをスタックの動きから説明し，述語論理への翻訳を与えよ（$\exists_1$と$\forall_1$は同じラベル1を使っていることに注意）．
+    \item 文 $\{[A^{\forall_1}\; r\; B^{\forall_1}]\mathbin{,} [B^{\forall_1}\; s\; C^{\forall_2}]\;\forall_{12}\}$ について，同値関係 $\sim$ による $T/{\sim}$ の分割と第1スコープ $S$ を求め，述語論理への翻訳を与えよ．ラベルの一致が解釈に与える効果に注意すること．
+\end{enumerate}
+
+\paragraph{問6（★★）解釈の計算}
+モデルを $\lbb A\rbb = \{1,2\}$，$\lbb B\rbb = \{2,3\}$，$\lbb r\rbb = \{\langle 1,2\rangle, \langle 2,2\rangle\}$ とする．次の値を計算せよ．
+\begin{enumerate}[label=(\alph*)]
+    \item $\lbb \{\{[A^{\forall_1}\; r\; B^{\exists_1}]\;\exists_1\}\;\forall_1\} \rbb$
+    \item $\lbb \{\{[A^{\exists_1}\; r\; B^{\forall_1}]\;\forall_1\}\;\exists_1\} \rbb$
+    \item $\lbb \{[A^{L_1}\; r\; B^{\exists_1}]\;\exists_1 L_1\} \rbb$
+\end{enumerate}
+
+\paragraph{問7（★★）論理式の翻訳}
+\begin{enumerate}[label=(\alph*)]
+    \item 順序の稠密性 $\forall x \forall y\, (x < y \to \exists z\, (x < z \land z < y))$ をコノメノに翻訳せよ（$\mathbb{Q} \in R_1$，${<} \in R_2$）．交互型の連鎖 $t < t < t$ を活用すること．
+    \item 「任意の自然数より大きい素数が存在する」$\forall n \in \mathbb{N}.\; \exists p \in \mathbb{N} \cap P.\; n < p$ を翻訳せよ（$P$は素数の概念）．集合Boole演算子を使うこと．
+    \item 逆に，$\{[G^{\forall_1}\cdot G^{\forall_1}] = e\;\;\forall_1\}$ を述語論理へ翻訳し，逆元公理（問4）との違いを述べよ．
+    \item Peano算術の翻訳例にある $\{[\mathbb{N} s] = [\mathbb{N} s]\; F\}^\forall =$ を，略記を全て展開した完全形に書き直し，これが後者関数の単射性を表すことを説明せよ．どの略記（$F$の補完・$\{\phi\}^{Fq}$型の略記・アリティと異なる引数個数の適用）が使われているかを列挙すること．
+\end{enumerate}
+
+\paragraph{問8（★★★）検証：略記$\{\phi\; Fq\}$の展開規則}
+本文の略記規則によれば，$q\in Q^\Omega_{1,1}$について
+\[
+    \{\phi(t,\cdots,t)\; Fq\} \quad\text{は}\quad \{[\{\phi(t^{F_1},\cdots,t^{F_n})\; F_{1\cdots n}\}^q\; A]\; q\} \quad\text{の略記}
+\]
+である．ZFCの対の公理の翻訳 $\{\{V \in V^{\exists} \ni V\; \exists\}\,F\forall\}$ にこの展開を適用し，解釈を最後まで計算せよ．得られた真理条件は $\forall x \forall y \exists z\, (x \in z \land y \in z)$ と一致するか．一致しない場合，どこで食い違うのかを特定し，略記規則の修正案を提案せよ．また，その修正案が内包性・冪集合の翻訳（いずれも$F\forall$を使う）を壊さないことを確認せよ．
+
+\paragraph{問9（★★）名詞化子と部分性}
+標準モデル $\mathcal{M} = H_\kappa(U)$ で考える．
+\begin{enumerate}[label=(\alph*)]
+    \item 次の各クラスについて，$\setop{(\bullet)}$ が定義されるかどうかを判定せよ：(i) 単元クラス $\{x \mid [x = t]\}$，(ii) $A$（alkono，全個体），(iii) $\emptyset$（kwilfon），(iv) Russellクラス $R$．
+    \item $\setop{A}$ が未定義であるとき，原子文 $[t\; \text{litoi}\; \setop{A}]$ と文 $\lnot[t\; \text{litoi}\; \setop{A}]$ の真理値をそれぞれ答えよ．
+    \item 仮に $\setop{(\bullet)}$ が全域関数だったとすると矛盾が生じることを，名詞化子の公理（所属）を使って導出せよ．
+    \item 解釈領域を $H_\kappa(U)$ ではなく $R_\omega(U)$（有限ランク集合）で構成する案が採られなかった理由を述べよ．
+\end{enumerate}
+
+\section{線形文モジュール(S)}
+
+以下，問10--11では次の小辞書を使う：概念 $\ko{meacc}$（猫）$\preceq \ko{doclen}$（動物）$\preceq \ko{alkono}$，$\ko{lun}$（魚）$\preceq \ko{doclen}$，$\ko{hamin}$（食事行為）$\preceq \ko{movec}$（行為）$\preceq \ko{alkono}$（$\ko{doclen}$と$\ko{movec}$は比較不能）．関係 $\ko{ja}$（動作主）：$\dom \ko{ja} = \langle \ko{doclen}, \ko{movec}\rangle$，$\ko{e}$（被動者）：$\dom \ko{e} = \langle \ko{alkono}, \ko{movec}\rangle$．
+
+\paragraph{問10（★）統語ソートと転置の強制}
+\begin{enumerate}[label=(\alph*)]
+    \item トークン $\ko{meacc}$，$\ko{hamin}$，未知語 $\ko{blorp}$ の統語ソートを答えよ．
+    \item 線形文 $\ko{hamin}\; \ko{ja}\; \ko{meacc}$ について，ハードフィルタH1がどの解析を残すかを判定し，読みを与えよ．$v_\tau$がいくつになるかも述べよ．
+    \item 線形文 $\ko{meacc}\; \ko{ja}\; \ko{hamin}\; \ko{e}\; \ko{lun}$ の善意的解釈を求めよ．
+\end{enumerate}
+
+\paragraph{問11（★★）善意的解釈の計算}
+$a_1, a_2 \in A$（同ソート），$S \subseteq A \times A$ とする．本文のコメントアウトされた表に「？」付きで残されていた行を，現行の善意的解釈で解決する．
+\begin{enumerate}[label=(\alph*)]
+    \item 先行詞リスト $\Delta = [a_1]$ のもとで線形文 $a_2\,S\,S$ を解釈せよ．マッチするパターン，先行詞リストの増分更新，H2（共項排除）の適用，最終的な読みを順に示せ．
+    \item 同じ $\Delta$ のもとで $a_2\,S\,S^c\,a_2$（$S^c$は$S$の否定）を解釈せよ．旧稿の表ではこの行に「$a_2$の代入は矛盾」という備考があったが，現行の善意的解釈では矛盾の回避は候補選択に影響するか．理由とともに答えよ．
+\end{enumerate}
+
+\paragraph{問12（★★★）$R^n$と大域的最小化}
+$\Delta = [a, b, c]$（$k = 3$）とし，$R$のみを$n$回並べた線形文 $R^n$ を考える．
+\begin{enumerate}[label=(\alph*)]
+    \item 冗長ゼロ（$v_{\mathrm{red}} = 0$）の読みが可能な最大の $n$ を求めよ．
+    \item $n = 6$ のときの善意的解釈（勝つ読み）を，本文の $k=4$ の例に倣って頂点列として与えよ．純粋な貪欲がどこで行き詰まり，大域的最小化がどこで新近性を犠牲にするかを明示すること．
+\end{enumerate}
+
+\paragraph{問13（★★★）検証：線形化と往復条件}
+$a, b, c, d \in A$（同ソート），$S \subseteq A \times A$（両方向ともソート整合）とする．型付き関係グラフ $G$ を，辺 $a \to b$，$b \to c$，$c \to a$（三角形）と $b \to d$ の4辺からなるものとする．
+\begin{enumerate}[label=(\alph*)]
+    \item 奇数次数の頂点を数え，一筆線形化の可否と必要な最小断片数を判定せよ．
+    \item 一筆の歩道を1つ選び，素朴に「再訪した頂点をブランクにする」方針でなぞり語列を作れ．その線形文を善意的解釈にかけると 元のグラフの原子連言に戻らないことを示せ（どのブランクがどこへ解決されてしまうかを計算すること）．
+    \item (b)の失敗を修正する書き方を，体系Sと指示詞モジュールの装置の範囲で提案せよ．裸語の反復が修正にならない理由も述べよ．
+    \item この観察が標準形関数 $\mathrm{nf}(m)$ の設計（往復条件）に課す要件を1つ述べよ．
+\end{enumerate}
+
+\section{指示詞と談話モジュール(D)}
+
+\paragraph{問14（★）指示詞}
+\begin{enumerate}[label=(\alph*)]
+    \item ブランクには共項排除H2が課されるのに，指示詞には課されない．$A^{F_1}\,R\,\dem{1}{-}$（指示詞の直前では$F_1$に対応する指示子が$\Delta$の先頭にある）が表す読みを述べ，この非対称性が本文のどの設計判断の実現になっているかを説明せよ．
+    \item 基本体系の同じ$F_i$による項の共有と，指示詞の$n$個前による指定を区別せよ．小麦が先行詞リストの2番目にあるとき，$\dem{2}{\ko{kwafnant}}$（その植物部分）が何を指し，リストをどう更新するか示せ．続けて同じ小麦を「その食べ物」と呼ぶにはどの番号を使うか．主要部とブランクのH1検査も説明せよ．さらに，小麦が数の外延に属さないとき「その数」の値を求め，H1検査と外延による制限を区別せよ．
+\end{enumerate}
+
+\paragraph{問15（★★）体系Dのトレース}
+$W = \{w_1, w_2\}$，$\lbb A\rbb = \{1,2\}$（世界に依らない），$\lbb b\rbb = 9$，$\lbb r\rbb_{w_1} = \{\langle 1,9\rangle\}$，$\lbb r\rbb_{w_2} = \{\langle 2,9\rangle\}$ とする．初期文脈を $s_0 = \{\langle w_1, \emptyset\rangle, \langle w_2, \emptyset\rangle\}$，$\Theta_0 = []$ とし，談話
+\[
+    u_1 = \langle\mathsf S,\ [A^{F_1}\; r\; b]\rangle,\qquad
+    u_2 = \langle\mathsf Q,\ \{[A^{E_1}\;r\;b]\;E_1\},\ I=(1)\rangle,\qquad
+    u_3 = \langle\mathsf A,\ \{1 \mapsto 1\}\rangle
+\]
+を解釈する（$u_2$の$E_1$の第1スコープは$A$である）．
+\begin{enumerate}[label=(\alph*)]
+    \item $u_1$ の後の情報状態 $s_1$ を，$\mathrm{Wit}$ 機構による談話指示子 $\delta_1$ と定数$b$に対応する指示子の導入を含めて計算せよ．
+    \item $u_2$ が積む選択肢の族 $Q$ を解答候補ごとに計算せよ．
+    \item $u_3$ の後の情報状態 $s_3$ と $\Theta_3$ を計算せよ．
+    \item 談話の順序を $[u_3, u_1, u_2]$ に入れ替えると何が起きるか．適切性条件の観点から述べよ．
+\end{enumerate}
+
+\section{符号化と自己言及}
+
+\paragraph{問16（★★）冠詞$M$（引用符）}
+\begin{enumerate}[label=(\alph*)]
+    \item $\lbb \{[A^{M_1}\; r\; b]\; M_1\}\rbb$ を計算し，出力がどのような関数（族）になるかを述べよ．また，これが $E(L)$ の代入公理のコノメノ実装になっていることを説明せよ．
+    \item 文 $\{[G^{\forall_1}\; P\; \{[G^{\forall_1}\; r\; b]\; M\}]\;\forall_1\}$（内側の$M$は自分のラベルを持たない）において，$\forall_1$に束縛される項と，$M$のスコープ内に現れる $G^{\forall_1}$ の扱いの違いを述べよ．外側の量化が引用の中身に「代入されない」ことの帰結は何か．
+    \item パラメータ付き引用 $q = \{A^{M_1} \uvdash \bot\; M_1\}$ から値 $\qquote{v \uvdash \bot}$ を取り出す項を，集合による関数適用の糖衣を使って書け．
+\end{enumerate}
+
+\paragraph{問17（★★★）自己言及と接地}
+\begin{enumerate}[label=(\alph*)]
+    \item 始代数的符号化（表現＝有限構文木，または$H_\kappa(U)$の$\in$による整礎符号化）のもとで，不動点方程式 $m = \qquote{m \uvdash \bot}$ が解を持たないことを論証せよ．
+    \item 終余代数的符号化のもとで嘘つき文 $\lambda = \qquote{\lambda \uvdash \bot}$ が存在するとする．$\uvDash$ を1ステップ評価の最小不動点として定義し，ギャップを偽側に倒す（closing off）方針を取ったとき，(i) $m' \uvDash \lambda$ の真偽（任意の$m'$について），(ii) 外側での $\lambda \uvdash \bot$ の真偽，(iii) T双条件 $m' \uvDash \qquote{\phi} \leftrightarrow \phi$ が破れる箇所，をそれぞれ答えよ．矛盾の導出がどの段階で阻止されているかを明示すること．
+    \item 「宇宙全体」を1つの構造 $m_0$ として立てて全面的な引用剥がし $m_0 \uvDash \qquote{\phi} \leftrightarrow \phi$ を置く案は，体系のどの装置によって阻止されるか．Russellクラス（問9）との構造的類似を指摘せよ．
+\end{enumerate}
+
+\section{引き下げとtruthmaker意味論}
+
+\paragraph{問18（★）引き下げ対応}
+\begin{enumerate}[label=(\alph*)]
+    \item 本文の例(2)（$E = A$，$K = I$（恒等関係），$L = R$）が引き下げ対応の定義を満たすことを確認せよ．
+    \item $E = B$（$R$の値域側の集合）とする第3の自明な引き下げ対応を構成せよ．
+    \item 「猫が魚を食べる」を，動詞を述語とする書き方とイベント意味論的な書き方の両方で書き，両者の同値性がどの引き下げ対応の成立に相当するかを示せ．
+\end{enumerate}
+
+\paragraph{問19（★★）正確検証の計算}
+原子文 $\phi$，$\psi$ の正確検証者・反証者を $C^+[\phi] = \{s_1\}$，$C^+[\psi] = \{s_2, s_3\}$，$C^-[\phi] = \{t_1\}$，$C^-[\psi] = \{t_2\}$ とする（$s_i, t_i$は互いに異なる原子的状況，融合は自由に取れるとする）．次を計算せよ．
+\begin{enumerate}[label=(\alph*)]
+    \item $C^+[\phi \land \psi]$，$C^-[\phi \land \psi]$，$C^+[\phi \lor \psi]$
+    \item $C^+[\lnot(\phi \land \psi)]$ と $C^+[\lnot\phi \lor \lnot\psi]$（De Morganは$C$の粒度で保たれるか）
+    \item $C^+[\phi \land \phi]$ と $C^+[\phi \lor (\phi \land \psi)]$（冪等性と吸収律は$C$の粒度で保たれるか）
+    \item 束縛される項の動く範囲が $\{a, b, c\}$ で $\phi(x)$ の正確検証者がそれぞれ $s_a, s_b, s_c$ のみであるとき，$\{\phi\;\forall\}$ と $\{\phi\;\exists\}$ の正確検証者，および両者の正確反証者（反証者は $t_a, t_b, t_c$ とする）
+\end{enumerate}
+
+\paragraph{問20（★★）$C$・$K$・$E$の計算}
+状況空間を $\Sit = \wp(\{\alpha, \bar\alpha, \beta, \bar\beta\})$（$\sqsubseteq = \subseteq$，$\fuse = \cup$），世界を4つの評価点 $W = \{w_{\alpha\beta}, w_{\alpha\bar\beta}, w_{\bar\alpha\beta}, w_{\bar\alpha\bar\beta}\}$ とし，$H(e,w_{uv})\iff e\subseteq\{u,v\}$ とする．原子文 $\phi, \psi$ について $C^+[\phi] = \{\{\alpha\}\}$，$C^-[\phi] = \{\{\bar\alpha\}\}$，$C^+[\psi] = \{\{\beta\}\}$，$C^-[\psi] = \{\{\bar\beta\}\}$ とする．
+\begin{enumerate}[label=(\alph*)]
+    \item $K[\phi]$，$[K]\phi$，$\langle K\rangle\phi$ を計算せよ．
+    \item $E[\phi \lor \psi]$ の選択肢（包含極大元）を求め，$\bigcup E[\phi\lor\psi] = K[\phi\lor\psi]$ を確認せよ．$E[\phi \land \psi]$ の選択肢はいくつか．
+    \item 「はい／いいえ」の2選択肢 $\{(\phi \lor \lnot\phi)\; E\}$ を計算せよ．
+    \item $E[\lnot\lnot\phi] = E[\phi]$ を，$C$のbilateralな計算規則から1行で導け．
+\end{enumerate}
+
+\paragraph{問21（★★）粒度の分離}
+粒度の列（表現／$C$／$E$／$K$／真理値）について：
+\begin{enumerate}[label=(\alph*)]
+    \item 真理値は同じだが $K$ クラスが異なる文の対を挙げよ．
+    \item $K$ クラスは同じだが $C$ クラスが異なる文の対を挙げよ（問19の結果が使える）．
+    \item $C$ クラスは同じだが表現としては異なる文の対を挙げよ．
+    \item 「$E$ クラスは同じだが $K$ クラスが異なる文の対」は存在するか．存在しないならば証明せよ．
+\end{enumerate}
+
+\paragraph{問22（★★）接続詞と否定文}
+\begin{enumerate}[label=(\alph*)]
+    \item 例文 \ko{kant nito halee nocto plabetces}（$[\text{kant}\; \text{tov}\; \text{plabetces}]$ のwitness明示形）について，状況概念・役割にあたる語彙を指摘し，対応する引き下げ公理のインスタンスを書け．
+    \item 「雨が降らなかったから，道が乾いている」を，文接続の標準形 $[\{\cdot\; C\}\;\mathrm{suinot}\;\{\cdot\; C\}]$ で書け（語彙は適当に立てて良い）．否定文の側の $C$ 項が空クラスにならない理由を，bilateralな正確検証の定義から説明せよ．
+    \item この書き換え（witnessの明示化）が「意味を変えない」ことは何によって保証されるか．また本文がこれを$\eta$展開に喩える理由を述べよ．
+\end{enumerate}
+
+\section{態度・内包性}
+
+\paragraph{問23（★★★）信念の3つの読みと選言的態度}
+探偵が「犯人はAかBだ」と信じているが，どちらが犯人かは決めかねている．$\phi$＝「Aが犯人」，$\psi$＝「Bが犯人」とする．
+\begin{enumerate}[label=(\alph*)]
+    \item de re状況読み $\exists e \in C[\phi \lor \psi],\ \mathrm{believe}(a, e)$ が
+    $(\exists e \in C[\phi],\ \mathrm{believe}(a,e)) \lor (\exists e \in C[\psi],\ \mathrm{believe}(a,e))$
+    に分配されてしまうことを導出せよ（この読みでは探偵の状態が表せない）．
+    \item de dicto読み $\Box_a(\phi \lor \psi)$ が $\Box_a\phi \lor \Box_a\psi$ を含意しないことを，$\mathrm{Dox}_a(w)$ と正確検証者からなる具体的な反例モデルで示せ．
+    \item content読み $C[\phi] \le D_a$（conjunctive parthood）が選言導入（$\phi$から$\phi\lor\psi$）で閉じない理由を述べ，これがRoss型の推論のどのような不具合を防ぐかを説明せよ．
+\end{enumerate}
+
+\paragraph{問24（★★★）内包動詞とde dicto}
+\begin{enumerate}[label=(\alph*)]
+    \item 「ユニコーンを探す」の de re 読みと de dicto 読みを $\mathrm{Alt}_{\mathrm{seek}}$ を使って書き分け，de re $\Rightarrow$ de dicto は常に成り立つが逆は成り立たないことを，2つの代替世界からなる反例モデルで示せ．
+    \item $N$（不特定の冠詞）を $Q$ の要素として新設する案が採れない理由を，(Plm-pt)の解釈 $\lbb\{\phi\, d_I\}\rbb = \rho(d)(S, \phi)$ における第1スコープ $S$ の受け渡し方から説明せよ．また，内容対象の位置に名詞化子で現在の外延を渡す案が退けられる理由（ユニコーンとペガサス）を述べよ．
+    \item 固定領域 $\mathcal{M}$ のもとで無制限量化についてBarcan式 $\forall x \Box\phi \to \Box\forall x\phi$ が成り立つことを確認し，de re／de dictoの対立が制限つき量化に限って生じる理由を述べよ．
+\end{enumerate}
+
+\paragraph{問25（★）know系の書き分け}
+「誰が窓を割ったか」を巡って，容疑者は$A$と$B$の2人であるとする（$\phi_A$＝「$A$が割った」，$\phi_B$＝「$B$が割った」）．次の各文について，一様意味論（「knowの本体は解決である」）のもとで補語の内容対象を書け．
+\begin{enumerate}[label=(\alph*)]
+    \item 「太郎は$A$が割ったことを知っている」（know that）
+    \item 「太郎は$A$が割ったかどうか知っている」（know if）
+    \item 「太郎は誰が割ったか知っている」（know wh，mention-some読み）
+    \item (c)のexhaustive読みに追加で必要になる装置は何か．また，knowをbelieve・wonderに変えると意味論のどの部品が変わるか．
+\end{enumerate}
+
+\end{document}

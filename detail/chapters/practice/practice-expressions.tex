@@ -1,0 +1,245 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{各種の表現}\label{chap:practice-expressions}
+\section{動詞文}
+\todo{自動詞文，他動詞文，授与文，使役文，体験文の格フレームと線形化を揃える．時制とアスペクトは本節に置く．モダリティは命題化・態度の記述と接続して制作する．}
+イベント文の参与者は意味役割（\ko{flentos}）で繋ぐ．役割はどれも裸の生起物トークンを第2項とする二項関係で，担い手射影・境界・存在期間・直接因果などの原始関係から定義される（生起物の章「総則」）．どの役割を必ず言及するかは語彙側の事実であり，役割の真偽を狭めない．学習上の「主格・対格」のような既定の役割は置かない．できるだけ細かい役割を使うことを勧める．
+役割語彙の定義は生起物章「総則」に置く．ここでは，役割を使って組む文型を検討する．
+\begin{exe}
+ \ex \ko{komatci tae noolja sowa khaatov lja kuistent}\hfill 小町は家から学校へ行く．
+ \ex \ko{waka wal nanoy to komatci}\hfill 私は小町を愛する．
+\end{exe}
+\memo{授与文・情報伝達文では，受領者を直前の対象物でなくイベントへ接続する必要がある．旧表の「渡す，対象物，受領者」を一直線に並べた例はその辺を保証しないため，表ごとの移植はしない．証拠文の共有頂点を示してから線形化する．}
+役割は排他的でない．「立ち上がる」の人は\ko{tae}$\cap$\ko{e}，「喜ばせる」の経験者は\ko{wal}$\cap$\ko{e}である．どの役割を使うか迷ったら上位の\ko{to}で書いてよいが，\ko{e}以下の区別（創造/破壊）と，\ko{melem}／\ko{kelem}という表層形を使えるか（結果的/過程的）は語彙が決めるので，主要語彙の格フレームに従う（生起物の章「kistoi」，2026-09-02暫定）．
+\begin{exe}
+    \ex \ko{waka ja canoy me calom}\hfill \sentence{私は絵を描く}（絵の存在は描画の終端で始まる）
+    \ex \ko{waka ja hamin ke kalam}\hfill \sentence{私はりんごを食べる}（りんごの存在は食事の終端で終わる）
+\end{exe}
+\ko{ke}$\subseteq$\ko{e}なので，\ko{ke}の代わりに\ko{e}を使うことは真理条件上常に適格であり，情報量が落ちるだけである（2026-09-07暫定）．
+
+\subsection{時制とアスペクト}
+時制接辞は過去\ko{+ik}・現在\ko{+en}・未来\ko{+as}である．
+\begin{exe}
+    \ex \ko{waka ja haminas ke kalam}\hfill \sentence{私はりんごを食べるだろう}
+\end{exe}
+
+
+5-2の展開では\ko{$a$+ik}＝\ko{$a$ aki selov liimes kans}\sentence{現在より前のある時点で$a$する}であり，現理論ではイベント状況と発話時状況の二項関係と読める．アスペクト体系はイベント上位分類の再編に依存するため固定しない（生起物の章「アスペクト演算子」）．
+\ko{+en}は「発話時が$[\mathrm{moila}(a),\mathrm{fiila}(a)]$に入る」（進行中）と暫定定義し，単純現在は\ko{konstav}の場合として吸収する．時間的一致（従属節の同時）は別扱い（2026-09-07暫定）．
+
+
+\section{空間関係}
+英語の in/on/at に当たるのは，所在関係\ko{tov}と内部関係の一族である．前置詞より細かく分かれているので，語釈だけでは使い分けにくい．辞書上は\ko{hanovna}（部分性に類する関係）の下に\ko{litamma}としてまとまっている（\ko{aitos}の分類は未整備で，この木も暫定である）．
+\begin{figure}[H]
+    \centering
+    \begin{forest}
+        dir tree
+        [\tn{litamma}{内部関係の総称}
+            [\tn{litam}{内部}
+                [\tn{tollitam}{混在型}]
+                [\tn{khoflitam}{収容型}]
+            ]
+            [\tn{sovlitam}{接触}]
+            [\tn{fetam}{間内部}]
+            [\tn{koplis}{中身-容器}]
+        ]
+    \end{forest}
+    \caption{\ko{litamma}の分類木（辞書v5）．}
+\end{figure}
+
+\paragraph{第1項の傾向}
+二つのものを結ぶ関係で，一方が小さい・従属的で他方が大きい・独立的なら，第1項に前者を置く．部分--全体，中身--容器，物--場所がその例である．これは語順の傾向であって，$R_2$一般の規則ではない．
+
+\paragraph{内部と部分の違い}
+「$A$が$B$の内部にある」は，$B$が包む領域に別の対象$A$が入っていることで，$A$は$B$の部分ではない．指は手の部分だが，ミルクティーの中のタピオカはミルクティーの部分ではない．部分は「部分・所属・所有」の節で扱う．
+
+\begin{center}
+\begin{tabular}{llp{0.42\linewidth}}
+    \toprule
+    語 & 目安 & 意味 \\
+    \midrule
+    \ko{tov} & at & $A$は$B$にある．$B$は場所（\ko{haikant}） \\
+    \ko{litam} & in & $A$は$B$の中にある．下位の二つの上位語 \\
+    \ko{tollitam} & in（混在） & 土の中の化石，水の中の氷，カゴの装飾模様 \\
+    \ko{khoflitam} & in（収容） & 胃の中の食べ物，金庫の中のスイッチ，カゴの中のりんご \\
+    \ko{sovlitam} & on & $B$の周りに$A$が接触してある．壁の絵，机の本，着ている服 \\
+    \ko{fetam} & among & 集団$B$の構成員の間に$A$がある．葉の間の鳥，森のリス \\
+    \ko{koplis} & in（容器） & 容器としての$B$に$A$が収容される．完全に内側でなくてよい \\
+    \bottomrule
+\end{tabular}
+\end{center}
+\begin{exe}
+    \ex \ko{komatci tov kuistent}\hfill \sentence{小町は学校にいる}
+    \ex \ko{kalam khoflitam folka}\hfill \sentence{カゴにりんごが入っている}
+    \ex \ko{kalam koplis lobin}\hfill \sentence{皿にりんごが盛られている}
+    \ex \ko{calom sovlitam sastov}\hfill \sentence{机に絵が置かれている}
+    \ex \ko{melisbon sovlitam coto}\hfill \sentence{その人は服を着ている}
+    \ex \ko{klaafem fetam kagle}\hfill \sentence{森の中に鳥がいる}
+    \ex \kox{氷} \ko{tollitam kisa}\hfill \sentence{水に氷が入っている}
+    \ex \kox{化石} \ko{tollitam} \kox{土}\hfill \sentence{土の中に化石がある}
+\end{exe}
+\ko{koplis}と\ko{litam}の差は，皿の上に積まれたりんごに出る．一番上のりんごは皿からはみ出していても，皿が容器としてそれを収容していることは変わらないので\ko{koplis}が立ち，\ko{khoflitam}は立たない．
+\ko{koplis}を\ko{litamma}の下に置くのは暫定である．\ko{litam}は幾何学的な内部，\ko{koplis}は容器というロールであり，オントロジー上は分けるべきものを，口語での使い分けのためにここでは一箇所に並べている．
+\memo{\ko{tov}の第2項\ko{haikant}と\ko{nito}/\ko{nocto}（場所である／位置付けられる）の分担は時空間モジュールの側で決める．所在句をイベント文へ直結する口語形がないことは「文型と線形文」の節．}
+
+\section{部分・所属・所有}
+日本語の「〜の」「〜である」に潰れる関係を，部分・構成員・概念包含・所有で分ける．由来は二つに分かれる．\ko{hanov}・\ko{hanem}・\ko{micto}・\ko{hacto}は辞書の\ko{hanovna}（\ko{aitos}の下）にある持続物の間の関係，\ko{skon}・\ko{litoi}は形式文法章の集合語彙（$\subseteq$，$\in$）である．オントロジー上は別の位置にあるものを，使い分けのためにここでは一つの表に置く．
+\begin{center}
+\begin{tabular}{llp{0.5\linewidth}}
+    \toprule
+    語 & 意味 & 区別 \\
+    \midrule
+    \ko{hanov} & $A$は$B$の部分 & 物理的部分．推移的 \\
+    \ko{hanem} & $A$は集団$B$の構成員 & 推移的でない \\
+    \ko{skon} & 概念$A$は概念$B$に含まれる & 両項に\ko{+im} \\
+    \ko{litoi} & 個体$A$は概念$B$に属する & 右項に\ko{+im}．「コピュラ文」の小節 \\
+    \ko{micto} & $A$を$B$が所有する & 所有権 \\
+    \ko{hacto} & $A$を$B$が占有・使用する & 所有権を問わない \\
+    \bottomrule
+\end{tabular}
+\end{center}
+\begin{exe}
+    \ex\begin{xlist}
+        \ex \ko{misuy hanov kina}\hfill \sentence{指は手の一部である}
+        \ex \ko{kina hanov coto}\hfill \sentence{手は人の一部である}
+        \ex \ko{misuy hanov coto}\hfill \sentence{指は人の一部である}
+    \end{xlist}
+    \ex\begin{xlist}
+        \ex \ko{litofim skon suistonim}\hfill \sentence{ペンは文房具である}
+        \ex \ko{suistonim skon kinecim}\hfill \sentence{文房具は人工物である}
+    \end{xlist}
+    \ex \ko{komatci hanem cotent}\hfill \sentence{小町はその店の店員である}
+    \ex \ko{komatci litoi cotoim}\hfill \sentence{小町は人である}
+    \ex \ko{khaatov hactoka}\hfill \sentence{私はその家を使っている（住んでいる）}
+\end{exe}
+\ko{hanov}は推移的だが\ko{hanem}はそうでないので，二つを混ぜた連鎖からは何も出ない．
+\begin{exe}
+    \ex \ko{misuy hanov kina hanov coto}$\Longrightarrow$\ko{misuy hanov coto}
+    \ex *\ko{kina hanov coto hanem} \kox{議会}$\Longrightarrow$\ko{kina hanov} \kox{議会}
+\end{exe}
+\ko{skon}の両項に\ko{+im}が要るのは，裸の\ko{litof}が特定のペンを指すからである（\ref{sec:practice-terms}）．最後の例は，家の所有権があるかは分からないが住んでいることは分かる．
+
+\paragraph{部分への推論}
+「そのりんごを食べた（食べ切った）」から「そのりんごのすべての部分を食べた」が出る．
+\begin{exe}
+    \ex \ko{kaja haminik ke kalam}$\Longrightarrow$\ko{kaja haminik ke kalam hanojoy san}
+\end{exe}
+\ko{ke}自身からはこの分配は導かれず（持続物の章「hanov推論」），食べる概念の語彙推論として未決である．「財布が盗まれた」から「中のお金が盗まれた」は自然な予想だが自動には出ず，言わなければ真にならない．
+\ko{hanov}は辞書・持続物の章では\ko{matonakt}上の順序関係であり，\ko{coto}や\ko{kina}のような\ko{noflem}に使うのは暗黙変換\ko{noflem}$\to$\ko{matonakt}の換喩的省略である（持続物の章「noflemとmatonakt」）．推移性は順序関係の公理から出る．部分への分配が\ko{hanem}・\ko{litam}・\ko{koplis}・\ko{hacto}にも及ぶかは，同章「hanov推論」のとおり自動には出ず，語彙推論として明示する．
+
+\section{性質と比較}
+性質語は述語ではなく項である．「赤い」「長い」は量（\ko{latent}）の語で，対象とは\ko{ansa}や\ko{locka}で結ばれる（量・性質モジュール）．
+
+\paragraph{定値量}
+色や長さのような値は\ko{lekostent}（定値量）の項で，\ko{ansa}\sentence{$x_2$の質の値は$x_1$である}で担い手と結ぶ．
+\begin{exe}
+    \ex\begin{xlist}
+        \ex \ko{fylam ansa kalam}\hfill 表層形
+        \ex \ko{fylam nila canon noccea kalam}\hfill トロープ明示形
+    \end{xlist}
+    \glt \sentence{そのりんごは赤い}
+\end{exe}
+トロープ明示形は「赤という値を持つ個別の質が，そのりんごに内在する」と読む．\ko{ansa}は\ko{nila}と\ko{noccea}の合成を縮めた関係である（引き下げ対応）．どの次元の値かを言い分けるには次元類（\ko{stoit}長さ・\ko{hoomi}温度など）を使う．
+
+\paragraph{形容量}
+「長い」「重い」のような程度の語は\ko{nosnant}（形容量）で，\ko{locka}で対象と結ぶ．
+\begin{exe}
+    \ex \ko{stoona locka litof}\hfill \sentence{そのペンは長い}
+    \ex \ko{kadoa locka folka}\hfill \sentence{そのカゴは重い}
+    \ex \ko{mofloa locto stoona}\hfill \sentence{とても長い（この長さ程度は「とても」の側にある）}
+\end{exe}
+理論上の一次的な表現は「このペンの全長が18cmであることが長い」であり，「このペンは長い」は二次的な短縮である（量・性質モジュール）．「小さい象は大きい蟻より大きい」の類は，形容量が種を基準タイプとして査定することから出る．基準タイプ（種・規格・経験者反応・期待・目的・規範）は語彙仕様側にあり，口語では明示しない．
+程度副詞（\ko{mofloa}「とても」など）の一般形はこの\ko{locto}構文である（量・性質モジュール）．
+
+\paragraph{評価語}
+\ko{klazna}\sentence{美しい}，\ko{mumina}\sentence{無駄な}，\ko{walsa}\sentence{当たり前の}も形容量として同じ構文に乗る．評価者・目的への相対化は基準タイプの仕事で，「$X$として」を渡す関係は未決である（量・性質モジュール）．
+
+\paragraph{比較}
+順序のある値の比較は\ko{liimes}「$\leq$」・\ko{sammes}「$\geq$」で，同一は\ko{kast}，近似は\ko{nakast}である．\ko{liimes}は汎用で，時点の前後（\ref{sec:practice-number}の時制展開\ko{aki selov liimes kans}）にも量の大小にも使う．
+\begin{exe}
+    \ex \kox{私の身長} \ko{liimes} \kox{小町の身長}\hfill \sentence{私は小町より背が低い}
+\end{exe}
+対象同士を直接比べる短い形（「私は小町より低い」を値の取り出しなしで言う形）は未整備である．最上級に当たる冠詞\ko{miklait}/\ko{moklait}（argmin/argmax）と\ko{miklaitent}/\ko{moklaitent}（min/max）は辞書にあるが，用例がない．
+\todo{比較構文の短い形と，\ko{miklait}系の用例を作る．値の取り出しには\ko{ansa}の転置か\ko{+oy}系の派生が要るはずである．}
+
+\section{数と暦}\label{sec:practice-number}
+\paragraph{自然数}
+自然数は素因数分解と10進位取り記数法を併用し，数詞ごとに\textbf{乗法形}と\textbf{位取形}がある．
+\begin{center}
+\begin{tabular}{ccc@{\hspace{2em}}ccc}
+    \toprule
+    数 & 乗法形 & 位取形 & 数 & 乗法形 & 位取形 \\
+    \midrule
+    0 & \ko{lin} & \ko{ne} & 5 & \ko{la} & \ko{lo} \\
+    1 & \ko{ko} & \ko{y} & 6 & \ko{no} & \ko{na} \\
+    2 & \ko{ka} & \ko{ke} & 7 & \ko{ce} & \ko{ca} \\
+    3 & \ko{lu} & \ko{le} & 8 & \ko{ha} & \ko{he} \\
+    4 & \ko{me} & \ko{mi} & 9 & \ko{se} & \ko{sa} \\
+    \bottomrule
+\end{tabular}
+\end{center}
+10は\ko{to}/\ko{ta}．11・12・15・16・23・27・30・32・35には\ko{yli}・\ko{melu}・\ko{kule}・\ko{fa}・\ko{mosa}・\ko{stea}・\ko{nola}・\ko{pa}・\ko{kulon}の乗法形がある．0個以上の位取形の後に乗法形が並ぶ列は10進法で読み，全体はそれらの積である．
+\begin{exe}
+    \ex \ko{kenesemelu} $=$ \ko{keloneha}\hfill \sentence{$209\times4\times3 = 2508$}
+\end{exe}
+巨大数の慣用名（\ko{monsta}：モンスター群の位数，\ko{kopton}：ルービックキューブの配置数）もある．
+\paragraph{内複数と数詞句}\label{par:counted-plural}
+内複数を別のメタ言語述語で定義せず，既存のコノメノの式へ展開する（2026-09-08改訂・暫定）．$P$を集合個体として与えると，
+\[
+ \ko{$P$+le}=\ko{les leta skon $P$ fol}
+ =\{V^L\mathrel{\subseteq}P\;L\}.
+\]
+これは\ko{skon}の第2項を$P$に固定し，第1項を\ko{le}で抽象する操作である．得られるのは$P$の部分集合のクラスであり，それ自体を集合個体として使うときは名詞化する．この意味でべき集合をとる操作に当たる．$P$が初めから集合個体なら\ko{+im}は不要であり，概念語からその外延集合を渡すなら\ko{+im}を明示する．例えば，人の外延が集合になる場合には，
+\[
+ \ko{cotole}=\ko{les leta skon cotoim fol}.
+\]
+\todo{内複数を真クラスの概念にも適用するかを検討する．真クラスの概念にも適用するなら，未定義な名詞化を経由しないコノメノの長形を与えること．}
+
+\begin{remark}[空集合]
+\ko{skon}は$\subseteq$なので，この展開には空集合も単元集合も含まれる．旧記述の「空でない部分集合」という制限はこの式からは出ず，今回の暫定展開には含めない．非空性を要求する用法があるなら，内複数そのものの制限なのか，数量や文の側の条件なのかを区別して書く必要がある．
+\end{remark}
+
+\ko{lu+las}を前置する数詞句は，ここから選ぶ集合の要素数を三に制限する．集合体\ko{klant}の存在は要求しない．例えば持続物の章の
+\begin{exe}
+ \ex \ko{lulas kalamle san ke haminik ja coto}
+ \glt 彼はりんごを三つ食べた．
+\end{exe}
+では，選んだりんご集合の要素へ\ko{san}で分配する．食べたりんご全体が三つだけだとは要求せず，同一の食事イベントへの参与も数量だけでは決まらない．数詞句の濃度制限，集合を選ぶ冠詞，要素へ分配する冠詞を一つの操作にまとめない．
+\ko{laskast}は等濃度であり，自然数と集合の間ではその要素数を表す（形式文法の\ref{rem:finite-cardinality}）．旧版5-2の短縮$n\;\ko{laskast}=\ko{$n$+las}$を用いる．これを使うと，数詞句は
+\[
+ \ko{$n$+las $P$+le}
+ =\ko{les $n$ laskast leta skon $P$ fol}
+\]
+へ展開できる．\ko{leta}が表す一つの集合に，左から濃度，右から包含の条件がかかる．例えば\ko{lulas kalamle}の長形は\ko{les lu laskast leta skon kalamim fol}である．この展開は集合を集める\ko{les}で閉じており，その集合の存在を述べたり，その要素へ述語を分配したりはしない．\ko{+las}は数詞に付く短縮形であり，任意の語に付く接辞ではない．現行辞書の音列\ko{las}「数」とも区別する．
+
+\paragraph{選ぶ集合と数える全体}
+$P$を猫の集合，$B$を来たものの集合として，どちらも集合個体で与えられる場合を考える．次の二つでは，左は条件を満たす$n$個の部分集合を集め，右は条件を満たすもの全体の個数を述べる（2026-09-08暫定）．
+\begin{align*}
+ &\ko{les $n$ laskast leta skon cu $P$ mite $B$ nais fol}\\
+ &\ko{$n$ laskast cu $P$ mite $B$ nais}
+\end{align*}
+左はクラスを作る句，右は文であり，左だけでは「$n$匹来た」という文にはならない．左で作ったクラスが空でないことを述べれば「少なくとも$n$匹来た」になるが，この読みを右の「ちょうど$n$匹来た」と混同しない．
+
+\begin{exe}
+ \ex \ko{lin laskast cu $P$ mite $B$ nais}\hfill ゼロ匹
+ \ex \ko{ko laskast cu $P$ mite $B$ nais}\hfill ちょうど一匹
+ \ex \ko{lu laskast cu $P$ mite $B$ nais}\hfill ちょうど三匹
+\end{exe}
+それぞれの文否定は，式全体を\ko{meide}と\ko{tos}で括る．例えば\ko{meide lu laskast cu $P$ mite $B$ nais tos}は「来た猫はちょうど三匹，ではない」であり，「三匹以上は来ていない」ではない．
+
+\begin{remark}[ゼロ数量]
+\ko{lin laskast cu $P$ mite $B$ nais}は，\ko{cu $P$ mite $B$ nais kast kwilfon}と同じ内容である．その文否定は該当者が少なくとも一匹いることを述べる．一方，ゼロ個の部分集合を選ぶ句では，猫が何匹来ていても空集合を選べる．空集合の全要素へ述語を分配しても，「ゼロ匹来た」にはならない．この違いは，内複数に空集合を含めるかとは別の問題である．
+\end{remark}
+\todo{数詞句を通常の文へ接続する冠詞・分配の長形を揃える．上の全体計数と部分集合選択を区別し，集合個体$P,B$を引数にした式から，名詞句とイベントを含む実際の文へ展開すること．口語・文語のどちらを実践編の基準にするかは未決．短縮形の制作に先立って，既存の語彙・冠詞で書く．}
+
+数個体，集合の濃度，順序上の位置，束縛ラベルは区別する．序数には順序対象が必要であり，束縛ラベルだけでは序数にならない．指示詞の番号は，参照時点の先行詞リスト上の位置である．序数は当面，順序組と成分射影の長形を使う．\ko{+oy}／\ko{+al}を裸の名詞に付けて序数化する案は，ラベル・片側固定との区別が失われるため採らない．
+
+\paragraph{添え字}
+語に第$n$の添え字を付ける接辞はラベル接辞$x+(\ko{oi}+n)$である（\ref{sec:practice-morph}）．自然数はここで乗法形を使う（\ko{sanoilu}＝$\forall_3$）．
+
+\paragraph{時間の語彙}
+\ko{kans}\sentence{今}を基準に，\ko{honos}\sentence{今日}・\ko{senos}\sentence{昨日}・\ko{lonos}\sentence{明日}・\ko{culos}\sentence{週}・\ko{malos}\sentence{年}がある．
+\todo{日付・時刻の書き方（年月日の順序，数詞との結合，曜日）は本文に決定がない．設計してから書く．}
+
+
+\end{document}

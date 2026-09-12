@@ -1,0 +1,112 @@
+@use "sass:color";
+@use '../../styles/index.scss' as *;
+
+$tree-line-width: 2px;
+
+.wordTree {
+  @include flex-column(1);
+  min-width: 500px;
+  padding: 12px 16px;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+  ul::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    width: $tree-line-width;
+    background: rgba($fg-main, 0.2);
+  }
+}
+.wordItemMain {
+  padding-bottom: 5px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 8px 4px 12px;
+  border-radius: $radius;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.1s;
+  span {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .id {
+    color: color.adjust($bg, $lightness: 40%);
+    font-weight: bold;
+  }
+  .entry {
+    font-weight: bold;
+  }
+  .translation {
+    color: $muted;
+    font-weight: 400;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: $tree-line-width;
+    background: rgba($fg-main, 0.2);
+  }
+  &.hasChildren::before {
+    color: $muted;
+  }
+  &.open::before {
+    transform: rotate(90deg);
+  }
+  &:hover {
+    background: color.adjust($bg, $lightness: 8%);
+  }
+  &.edited {
+    color: $edited;
+    .translation {
+      color: color.adjust($edited, $lightness: -15%);
+    }
+  }
+  &.editedAncestor {
+    .entry {
+      color: color.adjust($edited, $lightness: -20%);
+    }
+  }
+  &.focus {
+    background: $accent-color;
+    border-radius: 0px;
+    color: #fff;
+    .id {
+      color: color.adjust($accent-color, $lightness: 40%);
+    }
+    .translation {
+      color: color.adjust($accent-color, $lightness: 30%);
+    }
+    &::before {
+      background: rgba($fg-main, 0.4);
+    }
+    &:hover {
+      background: color.adjust($accent-color, $lightness: 5%);
+    }
+  }
+}
+.wordItemChildren {
+  margin-left: 1rem;
+}
+ul {
+  margin-left: 30px;
+  padding-left: 0px;
+}
+li {
+  list-style: none;
+}

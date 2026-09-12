@@ -1,0 +1,99 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{複文と談話}\label{chap:practice-discourse}
+\section{文をつなぐ}
+
+本節の「つなぐ」には，命題の論理結合，集合形成，疑問の選択肢，状況間関係の四つが混在するので区別する．
+命題連言\ko{lite}は通常省略され，並置・コンマで表される．\ko{mi}は5-2では集合形成，
+入門では疑問の選択肢を並べる「または」に使われる．平叙文の論理和は\ko{liko}なので，
+\ko{mi}を一般的な命題論理の「または」としない方が安全である．
+
+状況間の接続には\ko{na}（同時），\ko{sol}（後続），\ko{suinot}（順接），
+\ko{filnot}（逆接），\ko{kojannot}（対比），\ko{luis}（原因--結果）がある．
+肯定の動詞文では，動詞が表す生起物項どうしを直接結ぶ．例えば\ko{hamin suinot deiz}は，食事と睡眠の二つの生起物を\ko{suinot}で結ぶ．この構文に$C$は要らない．参与者を付けた例と照応は\ref{sec:practice-sentence}を参照．
+\begin{remark}[否定文の接続]
+「食べなかったので寝た」の前件は，食事イベント項ではない．否定内容$\lnot\phi$から$\{\lnot\phi\;C\}$を作り，その検証状況を選んで後件の生起物に結ぶ必要がある．$C$の出力は状況のクラスなので，状況項には例えば$\{\lnot\phi\;C\}^{F_i}$を使う．$\{\lnot\phi\;C\}$自体を状況個体と同一視しない．
+\end{remark}
+\todo{否定前件の検証状況を選ぶ冠詞・括弧のコノメノでの長形を定める．「食べなかったので寝た」で，食事イベントを導入せずに否定前件を接続できることを確認する．負の検証状況の供給条件は形式意味論の未決事項に従う．}
+
+\section{文の種類と定型}
+
+\subsection{疑問文}
+一つの選択肢「$A$である」を\ko{ha} $A$ \ko{tos}で作り，末尾の\ko{no}で
+回答を要求する．\ko{no}が終端を明らかにするとき\ko{tos}は省略できる．
+\begin{exe}
+    \ex \ko{ha non eto (tos) no}\hfill あなたは誰ですか
+    \ex \ko{ha non milun enata no}\hfill あなたの名前は何ですか
+\end{exe}
+複数候補は\ko{mi}で並べる．肯定・否定の二択には\ko{hato} $A$ \ko{no}を使う．
+\begin{exe}
+    \ex \ko{hato takto manom no}\hfill これはお菓子ですか
+\end{exe}
+\ko{ena}は疑問冠詞で，\ko{ena coto}=\ko{eto}「誰」，
+\ko{ena alkono}=\ko{enata}「何」である．疑問詞があっても入門では文全体を
+\ko{ha} $\cdots$ \ko{no}で囲む．これは5-2からの変更点である．
+
+\ko{ha} $\cdots$ \ko{tos}は，疑問詞疑問文でもスコープを明示する必要から導入された
+選択肢形成の括弧である．Yes/No形は
+\[
+    \ko{hato}\;\phi\;\ko{tos}
+    \quad\equiv\quad
+    \ko{ha}\;(\phi\lor\lnot\phi)\;\ko{tos}
+\]
+と分析される．形式意味論章の選択肢化演算子$E$（2026-08-29）はこの構成をそのまま与える：
+\ko{ha} $\cdots$ \ko{tos}は$\{\phi\; E_I\}$，\ko{hato}形はその$\phi\lor\lnot\phi$の場合で，
+「いいえ」側の選択肢は反証者から出る．括弧内の$E_i$に対応するラベル列を$I$とし，$\langle\mathsf Q,\{\phi\;E_I\},I\rangle$として談話へ渡す．$E$を伴わない$\Omega$型の提示は極性疑問として扱う．\ko{hato}の正負を世界粒度の2枝にする処理は$E_{\mathrm{pol}}$による．
+
+答えは正しい選択肢の中身を返す．Yes/No疑問には\ko{nai}で肯定，\ko{mei}で否定できる．
+
+\subsection{命令（旧案）}
+5-2は命令を「聞き手が未来に$\phi$するか」という疑問へ帰着し，\ko{no}を弱い依頼，
+\ko{jo}, \ko{saa}を強い命令態度とする．入門に実例がなく，体系Dにも命令文種がないため，
+作文可能性を示す旧案として残し，現行の必須規則とはしない．
+
+返事は慣用表現\ko{nai}／\ko{mei}（辞書v5）で行う．入門が返事に許す\ko{konston}／\ko{baile}のうち，\ko{konston}は真理値文$R_0$の論理定数（恒偽は\ko{bailek}）であって返事の語ではなく，\ko{baile}は辞書未登録なので実践編では使わない（2026-09-03，暫定）．
+文種と話者態度を別スロットにする案（体系Dの発話種別を文種$\times$態度の組にする）は，疑問＋強い命令のような組合せのための候補として残す．
+
+\subsection{定型表現}
+\begin{longtable}{lp{0.70\linewidth}}
+    \toprule
+    語 & 使用感 \\
+    \midrule
+    \endhead
+    \ko{saitovna} & 会話開始の宣言．「もしもし」「諸君らに告ぐ」に近い．旧\ko{saitona}は\ko{saina}へ縮まりやすい音が好まれず改訂された． \\
+    \ko{klantovna} & 天気・相手などの漠然とした良さを述べる，やや改まった挨拶．旧形は\ko{klantona}． \\
+    \ko{klammja} & 祈りを与える宣言を同時に遂行する．労い・慰めにも使う．旧形は\ko{klamija}． \\
+    \ko{meliitaja} & 相手が来たことを祝う．「ようこそ」「おかえり」． \\
+    \bottomrule
+\end{longtable}
+\ko{nai}, \ko{mei}, \ko{wajang}, \ko{litto}も慣用表現に置ける．
+
+辞書v5の\ko{saitovna}, \ko{klantovna}, \ko{klammja}は入門形より新しい音韻改訂である．入門本文・語彙表の旧形と，辞書に残る旧形\ko{saitona}（id 39）の更新は本文外の作業．
+慣用表現の談話効果は，開始・終了や応答の行為を発話履歴$H$へ記録することで扱う（形式文法章「談話モジュール」）．返事\ko{nai}／\ko{mei}は極性疑問の提示命題$\phi$／$\lnot\phi$を解答内容とする解答規則で処理し，受諾・拒否・受領・呼掛けへの返答には適用しない．祈願（\ko{klammja}）は祈願行為の履歴更新であり，祈願内容の実現という情報更新にはしない．
+
+\section{制作履歴として判明したことと残る未決事項}
+\begin{enumerate}
+    \item 一般的なVSO強制は撤回する．ただし接続詞中置では，右項をイベントにするため後続節V-firstを好む慣例と動機がある．
+    \item 一人称の複数形は\ko{waka}と人称接辞に由来する遊戯的変形であり，\ko{ka}=2との衝突は設計時に重視されていなかった．同音異義を許すか，人称短縮を形態解析でのみ認めるかは辞書実装の未決事項である．
+    \item \ko{ha … tos}は疑問スコープの明示と旧冠詞$E$の表層化のため導入された．\ko{hato}\;$\phi$\;\ko{tos}は\ko{ha}\;$(\phi\lor\lnot\phi)$\;\ko{tos}と同値である．\ko{hatast}$\to$\ko{hato}の語形変更理由だけは不明である．
+    \item \ko{saitona}/\ko{klantona}/\ko{klamija}から\ko{saitovna}/\ko{klantovna}/\ko{klammja}への変更は音韻改訂であり，後者が新しい．
+    \item 単独の\ko{komatci kast coto}は分類文でなく「小町はその人である」という同一性文である．分類は$F\exists$閉包を伴う同一性文として表せる．
+    \item \ko{seton}/\ko{setota}から\ko{sedon}/\ko{sedota}への変更は音韻改訂であり，新形を採る．指示詞の番号は参照時点の先行詞リストの位置を表す．局所談話区間では空のリストから始め，区間を出ると外側のリストへ戻る（形式文法章「談話モジュール」，暫定）．
+    \item 5-2の述語論理積\ko{mintsa}・恒偽\ko{vailek}は，形式文法章の語彙定義に合わせて\ko{mite}・\ko{bailek}に置き換える．
+    \item 5-2の依存積\ko{litefla}・依存和\ko{likofla}，像\ko{fonowa}，列\ko{flowa}，カリー化と\ko{laf}の運用は基本語彙から外れるので移植しない．必要になれば形式文法章側で整備する．
+\end{enumerate}
+\begin{devbox}
+\textbf{辞書v5未登録の語形}（2026-09-03，\texttt{konomeno-v5.json}で検査）．実践編が使う語形のうち次は未登録であり，辞書側の移行対象である．
+\begin{itemize}
+    \item 括弧：\ko{cu} $\cdots$ \ko{nais}，\ko{fol}，\ko{floi} $\cdots$ \ko{tos}，\ko{fonoi} $\cdots$ \ko{tos}，\ko{meide} $\cdots$ \ko{tos}，\ko{min} $\cdots$ \ko{tos}．登録済みの括弧は\ko{ha … no}，\ko{hato … no}，\ko{klamf … ja}，\ko{minac … tos}の4件である．
+    \item 冠詞：\ko{sun}系，括弧端形（\ko{fes}，\ko{sas}，\ko{kos}，\ko{les}，\ko{sus}など）と\ko{+ta}形（\ko{santa}，\ko{leta}）．基本形\ko{san}・\ko{kon}・\ko{fante}・\ko{mefante}・\ko{anic}・\ko{le}・\ko{laf}・\ko{fe}・\ko{ena}・\ko{miklait}系は登録済み．
+    \item 指示詞：\ko{sen}系・\ko{seta}系はすべて未登録．
+    \item 論理と集合：論理演算の12語（\ko{liko}〜\ko{delissa}），\ko{sto}系，射影\ko{tojo}/\ko{toal}，接辞\ko{+ykof}・\ko{+esk}系・\ko{+oy}/\ko{+al}．\ko{te}は登録済み（id 1046，二項関数）．
+    \item 数と時：濃度の\ko{laskast}・\ko{+las}，時制展開の\ko{aki}・\ko{selov}（\ko{selov}は\ko{tselselov}，\ko{lokac-selovmili}などの複合語のみ）．
+    \item 語彙：\ko{locto}（\ko{locka}はid 659で登録済みだが引数未設定），「医者」，\ko{konston}・\ko{bailek}，\ko{baile}，\ko{nakast}，状況間関係\ko{na}・\ko{sol}・\ko{suinot}・\ko{filnot}・\ko{kojannot}・\ko{luis}．
+\end{itemize}
+\end{devbox}
+
+
+
+\end{document}

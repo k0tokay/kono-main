@@ -1,0 +1,42 @@
+@use './styles/index.scss' as *;
+
+.rightClickMenu {
+  position: absolute;
+  background: $bg-elevated;
+  border-radius: $radius;
+  border: 1px solid rgba(#fff, 0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 4px 0;
+  z-index: 1000;
+  min-width: 160px;
+  overflow: hidden;
+
+  li {
+    list-style: none;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: $fg-main;
+    cursor: pointer;
+    transition: background 0.12s;
+
+    &:hover {
+      background: rgba($accent-color, .15);
+      color: #fff;
+    }
+
+    // アイコンを入れたい場合
+    .icon {
+      width: 16px; height: 16px;
+      fill: currentColor;
+    }
+  }
+
+  hr {
+    margin: 4px 0;
+    border: none;
+    border-top: 1px solid rgba(#fff,0.1);
+  }
+}

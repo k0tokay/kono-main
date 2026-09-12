@@ -1,0 +1,61 @@
+@use '../../styles/index.scss' as *;
+
+.window {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  .mainWindow {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  font-size: $font-size;
+}
+
+.divider {
+  width: 4px;
+  cursor: col-resize;
+  flex: 0 0 auto;
+  z-index: 2;
+  background-color: $bg;
+  border-left: 1px solid rgba($fg-main, 0.1);
+  &:hover {
+    background: $accent-color;
+  }
+}
+
+.leftContainer, .rightContainer {
+  @include flex-column(1);
+  flex: 0 0 auto;
+  height: calc(100vh - #{$menuheight});
+  background-color: $black; // ページがないときの背景色
+  .pageTab {
+    //background: $bg-elevated;
+    .tab {
+      &.active {
+        background: $accent-color;
+        color: #fff;
+      }
+    }
+    .addTab {
+      float: right;
+    }
+  }
+}
+
+.innerLeftContainer, .innerRightContainer {
+  @include flex-column(1);
+  overflow: auto;
+  // min-width: 500px; // overflowと一緒につけると変になる
+  margin: 0px;
+  background-color: $bg; // ページがあるときの背景色
+  width: 100%;
+}
+
+.innerLeftContainer {
+  z-index: 0;
+}
+.innerRightContainer {
+  z-index: 1;
+}

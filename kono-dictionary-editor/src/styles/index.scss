@@ -1,0 +1,130 @@
+@use "sass:color";
+
+
+$accent-color: #2f9681; // teal
+$bg-dark: #181a1b;
+$bg-elevated: #242424;
+$fg-main: #eef0f1;
+$radius: 0px;
+
+$basic: #dddddd;
+$bg: #242424;
+$muted: #828282;
+$black: $bg-dark;
+$edited: #3ad1b2;
+$notvalid: #ff6a4c;
+$focus: #d89de9;
+
+$menuheight: 50px;
+$font-size: 14px;
+
+$gap-md: 5px;
+
+
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  height: 100vh;
+  color: $fg-main;
+  background: $bg; // 全部bgにする
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+button {
+  background: $bg-elevated;
+  color: $fg-main;
+  border: 1px solid transparent;
+  border-radius: $radius;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.15s;
+  &:hover { background: color.adjust($bg, $lightness: 25%);}
+  &.primary { background: $accent-color; color: #fff; }
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  min-height: 100vh;
+  font-size: medium;
+
+  color-scheme: light dark;
+  color: $basic;
+  background-color: $bg;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: $basic;
+  text-decoration: inherit;
+}
+
+
+.textForm {
+  background-color: $black;
+  min-height: 40px;
+  padding: 10px;
+  align-items: center;
+  color: $fg-main;
+  box-sizing: border-box;
+  font-size: 1em;
+  &:focus {
+    outline: none;
+  }
+  border: 1px solid transparent;
+}
+
+.menuBar {
+  padding: 6px 12px;
+  display: flex;
+  gap: 10px;
+  background: $bg-elevated;
+  border-bottom: 1px solid rgba(#fff, 0.05);
+  color: $basic;
+  height: #{$menuheight};
+  box-sizing: border-box;
+}
+
+@mixin flex-column($grow: 0) {
+  display: flex;
+  flex-direction: column;
+  flex: $grow;
+}
+
+.card {
+  background: $bg-elevated;
+  padding: $gap-md;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-md;
+}
+
+.checkboxForm {
+  display: flex;
+
+  .checkboxHeader {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    font-size: $font-size;
+    font-weight: 600;
+    color: $fg-main;
+
+    input[type="checkbox"] {
+      display: inline-block;
+      margin: 10px 20px;
+      cursor: pointer;
+    }
+  }
+}

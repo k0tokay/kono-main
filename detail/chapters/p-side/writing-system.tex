@@ -1,0 +1,119 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{文字}
+\section{転写}
+\section{マリータスユ（maliitasuy）}\label{sec:maliitasuy}
+
+マリータスユは，抽象絵画を模して作られたコノメノの表音文字である．
+読み書きの効率よりも，文字としての美しさや可愛らしさを重視して設計されている．
+子音と母音にはそれぞれ複数の字形があり，音節ごとにそれらを組み合わせて一つのまとまりを作る．
+
+\newcommand{\maliitasuygraphic}[2][]{%
+  \IfFileExists{chapters/p-side/figures/maliitasuy/#2}{%
+    \includegraphics[#1]{chapters/p-side/figures/maliitasuy/#2}%
+  }{%
+    \includegraphics[#1]{figures/maliitasuy/#2}%
+  }%
+}
+
+\subsection{音節字形の構成}
+
+音節を，\ref{vpsi}節の記法に従って$\sigma=\omega\nu\kappa$と表す．
+ここで$\omega$はオンセット，$\nu$は音節核，$\kappa$はコーダである．
+マリータスユでは，オンセットを持つ音節の字形を，おおむね次の三種類の子音字と母音字から組み立てる．
+\begin{description}
+  \item[子音の基本形] オンセット末尾の子音$\omega_{-1}$を表し，音節全体の骨格となる字形．
+  \item[子音の前置形] $|\omega|=2$のとき，オンセット先頭の子音$\omega_1$を表し，基本形に重ねる字形．
+  \item[子音の後置形] コーダ$\kappa$の子音を表し，基本形の右側に添える字形．
+\end{description}
+旧資料では母音だけで始まる音節の組み立て方が明示されていないため，以下ではオンセットを持つ音節を扱う．
+
+\subsubsection{子音の基本形}
+
+子音の基本形を図\ref{fig:maliitasuy-base}に示す．
+各字形には「地面」と呼ばれる水平の基準線がある．
+図は無声子音の字形を示しており，対応する有声子音は地面を三重線にして表す．
+また，各基本形には母音字を取り付ける位置が二つある．
+図中で$a$と記された点は\ko{a}・\ko{e}を，$i$と記された点は\ko{o}・\ko{i}・\ko{y}・\ko{u}・\ko{v}を取り付ける位置である．
+
+\begin{figure}[H]
+  \centering
+  \maliitasuygraphic[width=\linewidth]{suy01.png}
+  \caption{子音の基本形}
+  \label{fig:maliitasuy-base}
+\end{figure}
+
+\subsubsection{母音}
+
+母音字とその取り付け方を図\ref{fig:maliitasuy-vowels}に示す．
+二重母音は二つの母音字を発音順に配置し，字形によっては一部を重ねる．
+\ko{ae}と\ko{ea}は，図に示す専用の組み合わせで表す．
+
+\begin{figure}[H]
+  \centering
+  \maliitasuygraphic[width=\linewidth]{suy04.png}
+  \caption{母音字と基本形への取り付け方}
+  \label{fig:maliitasuy-vowels}
+\end{figure}
+
+\subsubsection{子音の前置形と後置形}
+
+子音の前置形は，図\ref{fig:maliitasuy-prefix}のように基本形へ重ねて用いる．
+同図の下部には，\ko{m}・\ko{n}・\ko{l}の後に\ko{j}または\ko{w}が続く組み合わせの作例も示されている．
+これは旧資料が想定していた子音結合に基づくものであり，現行の音韻制約との対応は今後整理する必要がある．
+子音の後置形は，図\ref{fig:maliitasuy-postfix}の字形を，基本形の$i$位置の右側に並べて用いる．
+
+\begin{figure}[H]
+  \centering
+  \maliitasuygraphic[width=\linewidth]{suy02.png}
+  \caption{子音の前置形}
+  \label{fig:maliitasuy-prefix}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \maliitasuygraphic[width=\linewidth]{suy03.png}
+  \caption{子音の後置形}
+  \label{fig:maliitasuy-postfix}
+\end{figure}
+
+\subsection{表記例}
+
+以下に，単語と文をマリータスユで表記した例を示す．
+
+\begin{exe}
+  \ex \ko{maliitasuy}\hspace{1cm}\ko{konomeno}
+  \glt この文字\hspace{1cm}この言語
+\end{exe}
+\begin{figure}[H]
+  \centering
+  \maliitasuygraphic[width=.34\linewidth]{suy05.png}
+  \hfill
+  \maliitasuygraphic[width=.34\linewidth]{suy06.png}
+  \caption{単語の表記例：\ko{maliitasuy}と\ko{konomeno}}
+  \label{fig:maliitasuy-example-words}
+\end{figure}
+
+\begin{exe}
+  \ex \ko{kwilisan kotoko tae kansav towano aki salov san}
+  \glt 黒い狐はいつもあなたを見ている
+\end{exe}
+\begin{figure}[H]
+  \centering
+  \maliitasuygraphic[width=\linewidth]{suy07.png}
+  \caption{文の表記例：黒い狐はいつもあなたを見ている}
+  \label{fig:maliitasuy-example-fox}
+\end{figure}
+
+\begin{exe}
+  \ex \ko{hase aki lameitowankaf moila no}
+  \glt 夏休みはいつ始まるの？
+\end{exe}
+\begin{figure}[H]
+  \centering
+  \maliitasuygraphic[width=\linewidth]{suy08.png}
+  \caption{文の表記例：夏休みはいつ始まるの？}
+  \label{fig:maliitasuy-example-summer}
+\end{figure}
+
+\end{document}

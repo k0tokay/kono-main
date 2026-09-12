@@ -1,0 +1,38 @@
+# 音韻規則候補の例．1行1制約．
+#   パターンのみ / 名前<TAB>パターン / 名前<TAB>パターン<TAB>tier
+# tier は segment（既定）か syllable．
+# '#' は行頭か空白の直後だけコメント（語境界記号と衝突しないように）．
+#
+#   python3 scripts/eval_constraints.py $D --file candidates.example.txt --baseline unigram --fit
+
+# --- phonology.tex に書いてある既知の制約（再検証） ---
+MAX-CLUSTER-3	*[C][C][C][C]
+NO-Q-IN-CLUSTER	*[Q][C]
+FINAL-SJV	*([S]|[J])[+syl,-low,+high]#
+
+# --- 音節構造 ---
+NO-HIATUS	*[+syl].[+syl]
+NO-CODA-CLUSTER-MEDIAL	*[coda_size=2,final=false]	syllable
+NO-SUPERHEAVY-MEDIAL	*[weight=superheavy,initial=false,final=false]	syllable
+NO-COMPLEX-ONSET-MEDIAL	*[onset_size=2,initial=false]	syllable
+
+# --- 共起（OCP） ---
+OCP-PLACE-LABIAL	*[place=labial][place=labial]
+OCP-NASAL	*[N][N]
+OCP-LIQUID	*[L][+syl][L]
+NO-VOICED-CLUSTER	*[+cons,+voi][+cons,+voi]
+
+# --- 語頭・語末 ---
+NO-INITIAL-CLUSTER	*#[C][C]
+NO-FINAL-CLUSTER	*[C][C]#
+NO-FINAL-VOICED-OBSTRUENT	*[-son,+cons,+voi]#
+
+# --- アクセント側（accent 列のある語彙に対してのみ意味がある） ---
+NONFINALITY-F	*[accent=F,final=true]	syllable
+STRESS-TO-WEIGHT	*[accent=F,weight=light]	syllable
+NO-R-NONFINAL	*[accent=R,final=false]	syllable
+
+# 注意: アクセント側の制約は baseline サンプルにアクセントが無いため
+# E=0 になり、O/E と verdict は無意味になる（O 列だけ読むこと）．
+# アクセントの帰無仮説は「同じ韻律構造でアクセント位置をランダム化」で
+# 作るべきで、これは手順 D（accent_model.py）で扱う．

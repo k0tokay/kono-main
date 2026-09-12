@@ -1,0 +1,533 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{各種オントロジーの分類木}
+ここでは，BFO，DOLCE系のDOLCE+DnS Ultralite (DUL)，GFO，YAMATOの
+名前付きクラス間の上位分類を比較できる形で示す．木は主として
+\relpath{archive/archive002/upper-ontology/data/}以下のOWLファイルに明記された
+\texttt{rdfs:subClassOf}から構成した．OWLの制約式，定義クラス，および多重継承の
+交差辺は，最上位分類を読み取るために必要な場合を除いて省略している．
+
+\section{BFO}
+出典データは\relpath{archive/archive002/upper-ontology/data/bfo.owl}である．
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.85}
+    [entity
+      [continuant $\to$]
+      [occurrent $\to$]
+    ]
+  \end{forest}
+  \caption{BFOの最上位分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.58}
+    [continuant
+      [generically dependent continuant]
+      [independent continuant
+        [immaterial entity
+          [continuant fiat boundary
+            [one-dimensional continuant fiat boundary]
+            [two-dimensional continuant fiat boundary]
+            [zero-dimensional continuant fiat boundary]
+          ]
+          [site]
+          [spatial region
+            [one-dimensional spatial region]
+            [three-dimensional spatial region]
+            [two-dimensional spatial region]
+            [zero-dimensional spatial region]
+          ]
+        ]
+        [material entity
+          [fiat object part]
+          [object]
+          [object aggregate]
+        ]
+      ]
+      [specifically dependent continuant
+        [quality
+          [relational quality]
+        ]
+        [realizable entity
+          [disposition
+            [function]
+          ]
+          [role]
+        ]
+      ]
+    ]
+  \end{forest}
+  \caption{BFOのContinuant以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.78}
+    [occurrent
+      [process
+        [history]
+        [process profile]
+      ]
+      [process boundary]
+      [spatiotemporal region]
+      [temporal region
+        [one-dimensional temporal region]
+        [zero-dimensional temporal region]
+      ]
+    ]
+  \end{forest}
+  \caption{BFOのOccurrent以下の分類}
+\end{figure}
+
+\section{DOLCE系：DOLCE + DnS Ultralite}
+出典データは\relpath{archive/archive002/upper-ontology/data/dolce-lite.owl}である．ファイル名は
+\texttt{dolce-lite.owl}だが，内容はDOLCE+DnS Ultralite 4.2であり，古典的な
+DOLCEそのものの分類木ではない．
+% https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/ontologydesignpatterns.org/ont--dul--DUL--owl/2021.04.08-030256/ont--dul--DUL--owl_type%3DgeneratedDocu.html#d4e3480
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.8}
+    [Entity
+      [Abstract]
+      [Event]
+      [Object]
+      [Quality]
+      [Information entity]
+    ]
+  \end{forest}
+  \caption{DULの最上位分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.78}
+    [Abstract
+      [Formal entity
+        [Set]
+      ]
+      [Region
+        [Amount]
+        [Physical attribute]
+        [Social attribute]
+        [Space region]
+        [Spatio-temporal region]
+        [Time interval]
+      ]
+    ]
+  \end{forest}
+  \caption{DULのAbstract以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.85}
+    [Event
+      [Action]
+      [Process]
+    ]
+  \end{forest}
+  \caption{DULのEvent以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.7}
+    [Object
+      [Agent
+        [Person
+          [Natural person, name=dul-natural-person]
+          [Social person, name=dul-social-person]
+        ]
+        [Physical agent, name=dul-physical-agent
+          [, name=dul-natural-person-2, dashed]
+          [Organism, name=dul-organism]
+        ]
+        [Social agent, name=dul-social-agent
+          [Collective agent
+            [Community]
+            [Group]
+          ]
+          [Organization]
+          [Personification]
+          [, name=dul-social-person-2, dashed]
+        ]
+      ]
+      [Physical object
+        [, name=dul-physical-agent-2, dashed]
+        [Physical artifact
+          [Designed artifact
+            [Designed substance, name=dul-designed-substance]
+          ]
+        ]
+        [Physical body
+          [Biological object
+            [, name=dul-organism-2, dashed]
+          ]
+          [Chemical object]
+          [Substance
+            [Functional substance
+              [, name=dul-designed-substance-2, dashed]
+            ]
+          ]
+        ]
+        [Physical place]
+      ]
+      [Social object, name=dul-social-object]
+    ]
+    \draw[dashed] (dul-natural-person-2.east) to[out=0, in=0] (dul-natural-person.east);
+    \draw[dashed] (dul-social-person-2.east) to[out=0, in=0] (dul-social-person.east);
+    \draw[dashed] (dul-physical-agent-2.north) to[out=90, in=-90] (dul-physical-agent.south);
+    \draw[dashed] (dul-organism-2.east) to[out=0, in=0] (dul-organism.east);
+    \draw[dashed] (dul-designed-substance-2.east) to[out=0, in=0] (dul-designed-substance.east);
+  \end{forest}
+  \caption{DULのObject以下の分類（AgentとPhysical object）}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.8}
+    [Social object
+      [Collection
+        [Collective]
+        [Configuration]
+        [Type collection]
+      ]
+      [Concept
+        [Event type
+          [Task]
+        ]
+        [Local concept]
+        [Parameter
+          [Unit of measure]
+        ]
+        [Role]
+      ]
+      [Description
+        [Contract]
+        [Design]
+        [Diagnosis]
+        [Goal]
+        [Method]
+        [Narrative]
+        [Norm]
+        [Plan
+          [Project]
+          [Workflow]
+        ]
+        [Relation
+          [Pattern]
+          [Social relation]
+        ]
+        [Right]
+        [Theory]
+      ]
+      [Information object]
+      [Place]
+      [Situation
+        [Plan execution]
+        [Transition]
+        [Workflow execution]
+        [Time-indexed relation
+          [Classification]
+          [Parthood]
+        ]
+      ]
+      [Social agent]
+    ]
+  \end{forest}
+  \caption{DULのSocial object以下の分類}
+\end{figure}
+
+Qualityには，DUL本体で明示された下位クラスはない．Qualityの値域に相当する抽象物は
+Region以下に置かれ，QualityとRegionは\texttt{hasRegion}によって結ばれる．
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.85}
+    [Information entity
+      [Information object]
+      [Information realization]
+    ]
+  \end{forest}
+  \caption{DULのInformation entity以下の分類}
+\end{figure}
+
+\section{GFO}
+出典データは\relpath{archive/archive002/upper-ontology/data/gfo-basic.owl}である．このOWLでは
+CategoryとIndividualに共通する名前付き上位クラスが明記されていないため，以下では
+二つの木として示す．
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.85}
+    [Category
+      [Concept]
+      [Symbol structure]
+      [Universal]
+    ]
+  \end{forest}
+  \caption{GFO BasicのCategory以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.75}
+    [Individual
+      [Abstract]
+      [Concrete $\to$]
+      [Property $\to$]
+      [Relator]
+      [Role $\to$]
+      [Space time entity $\to$]
+    ]
+  \end{forest}
+  \caption{GFO BasicのIndividual以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.68}
+    [Concrete
+      [Perpetuant]
+      [Presential
+        [Amount of substrate]
+        [Material boundary]
+        [Material object]
+      ]
+      [Processual structure
+        [Occurrent
+          [Change
+            [Continuous change]
+            [Discrete change]
+          ]
+          [Event]
+          [History]
+        ]
+        [Process
+          [Continuous process]
+          [Discrete process]
+          [Processual role]
+          [State]
+        ]
+      ]
+    ]
+  \end{forest}
+  \caption{GFO BasicのConcrete以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.78}
+    [Property
+      [Relational role]
+    ]
+  \end{forest}
+  \qquad
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.78}
+    [Role
+      [Processual role]
+      [Relational role]
+      [Social role]
+    ]
+  \end{forest}
+  \caption{GFO BasicのPropertyとRole以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.7}
+    [Space time entity
+      [Space entity
+        [Spatial boundary
+          [Line]
+          [Point]
+          [Surface]
+        ]
+        [Spatial region
+          [Topoid]
+        ]
+      ]
+      [Time entity
+        [Temporal region
+          [Chronoid]
+        ]
+        [Time boundary
+          [Left time boundary]
+          [Right time boundary]
+        ]
+      ]
+    ]
+  \end{forest}
+  \caption{GFO BasicのSpace time entity以下の分類}
+\end{figure}
+
+\section{YAMATO}
+出典データは\relpath{archive/archive002/upper-ontology/data/yamato.owl}である．このファイルには
+\texttt{rdf:ID}の重複が5種類あるため，厳格なRDF/XMLローダーでは読み込みに失敗する．
+ここではXMLとして読み込み，1194個のクラス要素を1189個の一意なクラスへ統合した上で，
+URIで直接指定された1347本の\texttt{rdfs:subClassOf}辺を抽出した．以下では
+\texttt{particular}以下の上位層のみを示し，\texttt{CONTEXT}，
+\texttt{ROLE-CONCEPT}，\texttt{ROLE-HOLDER}等からのメタレベルの交差辺は省略する．
+ノード名は\verb|\tn{英語}{日本語}|で併記する．日本語はOWL内の
+\texttt{rdfs:label}を優先し，日本語ラベルがないクラスには訳語を補った．
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.85}
+    [\tn{particular}{個物}
+      [\tn{substrate}{基盤} $\to$]
+      [\tn{independent entity}{実在物} $\to$]
+      [\tn{dependent entity}{従属的実在物} $\to$]
+    ]
+  \end{forest}
+  \caption{YAMATOのparticular以下の最上位分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.72}
+    [\tn{substrate}{基盤}
+      [\tn{space}{空間}
+        [\tn{0D space}{0次元空間}]
+        [\tn{1D space}{1次元空間}]
+        [\tn{2D space}{2次元空間}]
+        [\tn{3D space}{3次元空間}]
+      ]
+      [\tn{substance}{物質}
+        [\tn{hydrogen}{水素}]
+        [\tn{iron}{鉄}]
+        [\tn{oxygen}{酸素}]
+      ]
+      [\tn{time}{時間}
+        [\tn{absolute time}{絶対時間}
+          [\tn{time interval}{時区間}]
+        ]
+        [\tn{relative time}{相対時間}
+          [\tn{time duration}{時間長}]
+        ]
+        [\tn{time point}{時点}
+          [\tn{clock time}{時刻}]
+          [\tn{date}{日付}]
+        ]
+      ]
+    ]
+  \end{forest}
+  \caption{YAMATOのsubstrate以下の分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.68}
+    [\tn{independent entity}{実在物}
+      [\tn{abstract}{抽象物}
+        [\tn{number}{数}]
+        [\tn{point}{点}]
+        [\tn{set}{集合}]
+        [\tn{structure}{構造}
+          [\tn{figure}{形}]
+        ]
+        [\tn{truth}{真理値}]
+        [\tn{unit}{単位}]
+      ]
+      [\tn{physical}{具体物}
+        [\tn{continuant}{持続物}
+          [\tn{integral entity}{統合体}]
+          [\tn{non-integral}{非統合体}]
+        ]
+        [\tn{occurrent}{生起物}
+          [\tn{event}{イベント}]
+          [\tn{stative}{状態的}
+            [\tn{process}{プロセス}]
+          ]
+        ]
+      ]
+      [\tn{semi-abstract}{準抽象物}
+        [\tn{meaning}{内容}
+          [\tn{content}{命題}]
+        ]
+        [\tn{mind}{精神}]
+        [\tn{representation}{表現関連}]
+        [\tn{representation form}{表現形態}]
+      ]
+    ]
+  \end{forest}
+  \caption{YAMATOのindependent entity以下の上位分類}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree,
+    for tree={scale=0.68}
+    [\tn{dependent entity}{従属的実在物}
+      [\tn{generically dependent}{一般的依存}
+        [\tn{generic role}{一般ロール}
+          [\tn{food}{食糧}]
+          [\tn{fuel}{燃料}]
+        ]
+        [\tn{quality value}{属性値}
+          [\tn{categorical}{カテゴリカル}]
+          [\tn{quantity}{量}
+            [\tn{qualitative quantity}{定性的量}]
+            [\tn{quantitative quantity}{定量的量}]
+            [\tn{special}{特殊}]
+          ]
+        ]
+      ]
+      [\tn{specifically dependent}{個別的依存}
+        [\tn{disposition}{傾向}]
+        [\tn{feature}{特徴}]
+        [\tn{quality}{質}
+          [\tn{generic quality}{属性}]
+          [\tn{property}{特性}]
+        ]
+        [\tn{role}{ロール}
+          [\tn{continuant role}{持続物ロール}]
+          [\tn{occurrent role}{生起物ロール}]
+        ]
+      ]
+    ]
+  \end{forest}
+  \caption{YAMATOのdependent entity以下の上位分類}
+\end{figure}
+
+\end{document}

@@ -1,0 +1,519 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{生起物の分類 -- astav以降}
+この章では\kotr{astav}{生起物}以下の分類と，そこで導入される意味役割について述べる．
+\section{基礎理論の検討}
+\begin{remark}
+DOLCE, YAMATOの分類は採用しない．
+\begin{enumerate}
+    \item \emph{DOLCE}：分類に用いられている累積性CM・等質性HOM・原子性ATという性質は個体に付く性質ではなく，述語に付くメタ性質であるため，skon木の分岐の定義に使うことができない．これは\ko{astav}に固有の問題ではなく，\ko{nato}の可算・不可算にも同じ問題が生じる．
+    \item \emph{YAMATO}：
+    \begin{enumerate}
+        \item 先述の可算・不可算の問題．
+        \item YAMATOは1つの語彙を event と process の両方に割り当てる．どちらを第1のものと考えて登録すべきかが不明．
+        \item action, behavior ($\sqsubseteq$ process)に大量の分類があり，一見してprocess以下におくことが妥当かどうか疑わしいものもある(change, achievement action など)．そして，これらについてYAMATOの概説論文では述べられていない．
+    \end{enumerate}
+\end{enumerate}
+
+\end{remark}
+
+\todo{参照した基礎理論（GBGの射影署名$\langle o,q,t\rangle$——「実際の分類」節の枠内注で修正済み——，Kimの性質例化，DnSのCourse/EventType）と採否を本節にまとめる．}
+
+\section{実際の分類}
+\begin{figure}[H]
+  \centering
+  \scalebox{0.78}{%
+  \begin{forest}
+    dir tree
+    [\tn{astav}{生起物}
+      [同一性の源泉, draw=none, edge={dashed}
+        [〈単純生起物〉
+          [変動パタン, draw=none, edge={dashed}
+            [\tn{konstav}{維持}]
+            [\tn{saistav}{遷移・進行}]
+            [\tn{milistav}{瞬間・境界}]
+            % [\tn{kalastav}{瞬間的遷移}]
+          ]
+          [$q$の次元, draw=none, edge={dashed}
+            [\tn{tastoi}{内部配位}]
+            [\tn{liskono}{外部配位}]
+          ]
+        ]
+        [〈複合生起物〉
+          [〈集成生起物〉
+            [\tn{flanov}{同種反復}]
+            [〈プロセス集合体〉]
+          ]
+          [〈文脈的複合生起物〉]
+          [〈場面〉]
+        ]
+      ]
+    ]
+  \end{forest}}
+  \caption{\kotr{astav}{生起物}の上位分類}
+\end{figure}
+一次分類を次の二分とする．
+\begin{itemize}
+    \item \textbf{単純生起物}：射影$(o,q,t)$——担い手・量種・時間——を持つ開ハブである．$\langle o,q,t\rangle$は射影署名（分類）であって同一性基準ではなく，同一性は原始的様式で運用する（2026-09-02改稿，後述の枠内注）．
+    \begin{itemize}
+        \item \emph{判定}：「何がどの次元でどのような軌道を取るのか」が言えるか．次のような場合も含む．
+        \begin{enumerate*}
+            \item 次元のとり得る値が複雑であり数値で容易に記述できない場合（例：「歩く」など）
+            \item 瞬間的である，ないし，端点以外の値に不明・任意性がある場合（例：「着く」など）
+        \end{enumerate*}
+    \end{itemize}
+    \item \textbf{複合生起物}：この射影署名を持たず，同一性の機構が別に与えられる．
+\end{itemize}
+\begin{leftlinebox}
+射影$q$は\emph{量種}（長さ・配位・所有者など）であり，個々の値（\ko{latent}，18cm）ではない．量種は値のクラスなので，一階性を保つには概念個体（上位分類の章）として個体化する．各時点の断面は\emph{段階}である：内在的$q$なら\ko{canon}$\langle o,\text{値}\rangle$，関係的$q$なら$R+\mathrm{nov}$のハブ$\langle o,n\rangle$．単純生起物はこの段階の履歴であり，\ko{konstav}は段階が一つで持続するもの，\ko{saistav}は段階が交代するもの，\ko{milistav}は当該解像度で交代だけがあるものと言い直せる．Kimの性質例化$\langle o,P,t\rangle$（旧版の書き方）は，値空間が$\{P,\lnot P\}$へ退化した段階に対応する．GBGの$\langle o,q,t\rangle$を成り行きで採用していたが，GBGの$q$（持続する量次元）とコノメノの\ko{canon}（値込みトロープ）は水準が違うため，本枠内注の読みで修正する（2026-09-02）．
+\end{leftlinebox}
+
+複合生起物は，同一性の機構によってさらに三分される．
+\begin{itemize}
+    \item \textbf{集成生起物}：成員集合で個別化される．
+    \begin{itemize}
+        \item \emph{判定}：複数の単純生起物トークンから演算子（$+\text{fla}$）や関係（〈生成〉）で組み立てられる．
+    \end{itemize}
+    \item \textbf{文脈的複合生起物}：記述がなければトークンが存在せず，下位生起物の山があるだけであるもの．試験・会議・運動会・戦争など．
+    \begin{itemize}
+        \item \emph{判定}：部分をすべて挙げても「それが1つの何であるか」が決まらない
+    \end{itemize}
+    \item \textbf{〈場面〉}：時空領域の極大和として個別化される．UFOのsceneに相当する．
+    \begin{itemize}
+        \item \emph{判定}：担い手として時空領域そのものしか挙げられない
+    \end{itemize}
+\end{itemize}
+
+単純生起物は複数軸による分類を採用し，次のように分類する：
+\begin{itemize}
+  \item \textbf{変動パタン}：$t$の各時点で$q$の値を返す関数を$q$の変動パタンと呼ぶ．
+  \begin{itemize}
+    \item \ko{milistav}：$t$が当該解像度で原子的であり経過を持たない．
+    % \item \ko{kalastav}：$t$が原子的(ないし重要でなく)であり終点の値で同一性が決まる．
+    \item \ko{konstav}：$t$が幅をもち，$q$の変動パタンが定数である．
+    \item \ko{saistav}：$t$が幅をもち，$q$の変動パタンが非定数である．
+  \end{itemize}
+  \item \textbf{$q$の次元}：$q$の$o$に対する関係性や種類による．
+  \begin{itemize}
+      \item 第1層（\ko{tastoi}内部／\ko{liskono}外部）は\emph{外延的に与える}（2026-08-26採択．内包的定義の試み――空間的商構成，メレオロジー的局所随伴――は決め手を欠いたため旧稿に落とした．局所性テスト「$o$の外部を取り替えても値が変わらないか」は割当時のヒューリスティックとして使ってよい）．
+      \item 第2層：$q$の種類．現行在庫の第1層への割当は次の通り．
+  \end{itemize}
+\end{itemize}
+\begin{center}
+\small
+\begin{tabular}{lp{0.72\linewidth}}
+\hline
+第1層 & $q$の種類 \\
+\hline
+内部（\ko{tastoi}系） & config（身体配位・姿勢・「開いている」等の物理的配位），形状，相（phase），温度，生理（bio），心理（psycho：痛み・気分・認識・態度） \\
+外部（\ko{liskono}系） & 位置（loc），所有（poss），社会関係（soc），情報・表現内容（info），物質量・個数・価格等のスケール量，存在（$q_\exists(t)=t\ \text{aki}\ \text{stae}(o)$の像），関係の引き下げ$R+\text{nov}$の像一般 \\
+係争 & 色（反射特性と読めば内部，見えと読めば外部）．物質量は局所性テストでは内部に出るが，「食べる」$=$\ko{noskono}系の既存扱いと揃えて外部に置く \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{leftlinebox}
+（2026-09-02裁定）\sentence{$o$ to $v$ naz $\qquote{R}$ lja $N\ni n$}と主張できるとき，$n$ to $v'$ naz $\qquote{R^\trans}$ lja $o$，$o$ to $v''$ naz $\qquote{Rn}$なども言えるが，最初の表現を特別視する理由は\emph{ない}．これらはすべて同じ$R+\mathrm{nov}$ハブ$h=\langle o,n\rangle$の記述である：$o$を固定すれば「$o$の$R$値」の軌道，$n$を固定すればその転置，$\qquote{Rn}$は$\{h\in R+\mathrm{nov} : \mathrm{cal}(h)=n\}$という素性定義クラスの存在言明である．関係的$q$は$R+\mathrm{nov}$ハブの射影を一つ固定した\emph{カリー化ビュー}であって，一次的な個体はハブである（上位分類の章・記述規則）．
+\end{leftlinebox}
+
+\iffalse
+\subsection{内部/外部配位：tastoi/liskono}
+たいていの語彙が指す現象には，内部配位のトークンと外部配位上のトークンが複合的に並立する．語の$q$軸値は現象全体ではなく，その語の達成条件と格フレームを担う\emph{主トークン}で決める．「食べる」の達成条件は食べ物の物質量が減って存在閾値を横切ることだから，主トークンは食べ物を担い手とする\ko{liskono}（\ko{noskono}，$q=$物質量，\ko{kistoi}派生）である．これは実質「食べられる」側のトークンだが，コノメノに態はないので支障はない．咀嚼・嚥下の身体配位トークンは並立する別トークンとして立つ．逆に「歩く」の達成条件は位置変化を要求しないから，主トークンは\ko{tastoi}であり，位置変化トークンが並立する．
+
+「歩く」の主トークンは単純生起物である：$o=$身体全体，$q=$身体配位で，単一の$\langle o,q,t\rangle$により個別化される．複雑さは分類ではなく$q$の値空間の構造（高次元）と軌道の形に置かれる（次の定式化）．各脚の動きは担い手の部分に対応する並立トークンであり，歩行トークンの同一性には関与しない．
+
+\ko{tastoi}/\ko{liskono}は$q$の局所性，様態／結果は主要概念の達成条件の型なので，両者は直交する（「tastoiとliskono」節）．
+
+\paragraph{$q$軸第1層の定義：メレオロジー的局所性}
+$q$軸第1層（\ko{tastoi}／\ko{liskono}）を，動作主にも行為性にも依存せず，メレオロジー的局所性で定義する（2026-08-25改訂．旧定義は空間的な商構成を基本とし，非空間的$q$へは「外的参照を要するか」という非形式的基準で一般化していたが，本改訂で局所性を定義に昇格し，商は空間的$q$の標準構成に降格する）．
+\begin{leftlinebox}
+\textbf{定義（内在的／関係的）}　可決定次元$q$が担い手$o$に対して\emph{内在的}であるとは，各時点$t$の値$q(t)$が$o$の部分の状態のみに随伴すること，すなわち$o$の外部をどう取り替えても$q(t)$が変わらないことをいう．そうでない$q$は\emph{関係的}である．\ko{tastoi}系は内在的$q$の，\ko{liskono}系は関係的$q$のトークンである．
+\end{leftlinebox}
+定義に必要なのはメレオロジーと随伴だけである．これは\ko{tae}の内部駆動性――config変化の駆動源が$o$の内部か外部かという問い（「意味役割の分類」節）――と同じ局所性概念であり，第1層と駆動役割が同一の道具立てに乗る：前者は\emph{値の決定}の局所性，後者は\emph{駆動源}の局所性である．
+
+判定では，局所性を\emph{測定のスケール相対性}と混同しないこと．値の表現が単位や参照枠に相対的でも，値の決定が$o$の内部で閉じていれば内在的である．したがって温度（平均運動エネルギー）は内在的側に入る（2026-08-24版の外延指定では関係的側だったが，本基準により再配置）．位置・情報・社会関係，および関係の引き下げ（$R+\text{nov}$）の像は，値が$o$の外部との関係で決まるので関係的である．色のように読みに依存する$q$（反射特性なら内在的，見えの色なら関係的）は，$q$の在庫（第3層）のフィールドで外延的に指定し，局所性テストは値付けの判定基準として使う．心理・生理の$q$（痛み・気分）は外部の取り替えに対して不変なので内在的である．
+
+\paragraph{内部配位：空間的$q$の標準構成}
+位置割り当てはそれ自体関係的なデータだが，そこから内在的な値を作る標準構成が商である．道具はmetloskに既にある．
+\begin{leftlinebox}
+\textbf{定義（内部配位）}　$o$を部分構造を持つ具体物とし，時刻$t$における$o$の配置を，
+各部分$p\sqsubseteq o$への位置割り当て$\pi_t : P(o)\to\mathfrak{L}(M)$とする（metloskの位置付与）．
+$G$を全体の外的自由度を表す群（既定は並進．概念により回転・相似を追加する．
+「必要な変換で生成される同値関係を直接定義する」というmetloskの規約に従う）とするとき，
+$o$の$t$における内部配位とは商値$[\pi_t]_G$である．
+\end{leftlinebox}
+すなわち内部配位とは，部分への位置割り当てを全体の剛体的自由度で割った商である．商が消しているのはまさに$o$の外部への参照であり，残った値は部分の相対配置のみに随伴するから，上の定義の意味で内在的になる．「同じ軌道を端点で記述するか形で記述するか」という記述の選択の問題は，$q$の値の局所性の違いに置き換わる．帰結は次の通り．
+\begin{enumerate}
+    \item \emph{無循環}．第1層の定義に必要なのはメレオロジーと随伴（空間ケースではさらに位置付与）だけである．
+    転ぶ・揺れる・震える・はためくも内部配位変化（config $\cap$ 動作主なし）に分類できる．
+    $q$軸の値としての内部配位は行為性から切り離され，旧\ko{tastoi}（様態行為）は
+    config $\land$ \ko{tae}という交差に退く．
+    \item \ko{tae}の旧定義（動作主と対象のpart-whole）は定義条件ではなく\emph{定理}になる：
+    configの担い手は$o$全体で，それを駆動するのは$o$の部分（筋肉・駆動系）だから，
+    undergoer $\sqsubseteq$ initiatorが構成から従う．INDの「agent $=$ patient同一」の緩和と同型である．
+    \item 走る／歩くの別は同じconfig空間内の\emph{軌道の類}の違いなので，トークン増殖は起きない．
+    $\langle o,q,t\rangle$が同じなら同一トークンであり，どの様態概念に落ちるかは軌道の形で決まる．
+\end{enumerate}
+\begin{itemize}
+    \item 姿勢概念（立つ・座る）は回転を割らない$G$を選ぶ必要があり，鉛直方向という外的参照
+    （\ko{notlileka}の$F$）が混入して局所性を破る．内在的と関係的の混合型として，概念ごとの$G$の選択を明示する．
+    \item 液体・気体（煙が揺らめく）は部分が不安定なので，$\pi$を部分の族ではなく密度場・位置場に
+    する拡張が要る．商の構成は同じ．
+\end{itemize}
+\fi
+
+\section{意味役割の分類}
+% 2026-09-02 全面改稿．旧稿（2026-08-25，codex協議）は役割の第2項を記述付き生起物
+% ⟨D,v⟩＝〈dastav〉としていた．却下の理由は上位分類の章・却下録，経緯は
+% detail/2026-08-25/semrole-discussion-log.md と detail/2026-09-02/semrole-decomposition-log.md を参照．
+\subsection{総則：役割は裸トークン上の導出述語である}
+意味役割（\ko{flentos}）はすべて，裸の生起物トークンの上の2項述語であり，少数の原始関係——担い手射影，\ko{nila}，\ko{skon}，\ko{moila}／\ko{fiila}，\ko{stae}，因果先行$\mathrm{luis}^{+}$，\ko{na}，部分$\mathrm{incl}$——からの要素分解（上位分類の章・設計規範）によって定義される．役割の真偽は記述に相対化されない．全役割に共通する型は
+\[
+    \mathrm{flentos}\subseteq \mathrm{alkono}\times\mathrm{astav}
+\]
+である（個別役割は第1項を制限しうる）．
+
+旧稿（2026-08-25）は「同じ裸トークン$\langle B,\text{存在},t\rangle$でも『死ぬ』と記述するか『殺す』と記述するかで役割が異なる」という観察から，役割の第2項を記述付き生起物$\langle D,v\rangle$（〈dastav〉）とする設計を採っていた．本稿はこの観察を次の二層で解消する（2026-09-02採択）．
+\begin{enumerate}
+    \item \emph{オントロジー層}：裸トークンと段階ハブの上で役割を定義する．真理条件はここで閉じる．
+    \item \emph{語彙層}：各概念（辞書項目＝概念個体，上位分類の章）の語彙仕様が，主トークンの指定（どの$q$のトークンを主とするか），定義的役割（属＋種差に現れる役割条件），完了状態スキーマ$\mathrm{compl}_C$（後述）を持つ．語彙層は真理条件に触れない．
+\end{enumerate}
+「殺す」は原始概念ではなく，「死ぬ」$\land\,\exists x\,\mathrm{towa}(x,\cdot)$という素性による定義クラスである（態のない本言語では主トークンは被動側にあるという「食べる」の既裁定と同型）．記述相対性に見えたものは，どの役割の存在を\emph{定義に含む}概念でトークンを分類するかの違いであって，役割自体の相対性ではない．同様に，各概念が「必ず言及する」役割（旧稿のProfiledCause・EndpointFocus$_D$）は語彙層の事実であり，役割の真偽を狭めない：「水が凍る」の文に\ko{towa}項として背景の冷気を明示することは適格かつ（実際に冷気が原因なら）真であり，「凍る」が\ko{towa}を定義に含まないことはこれを偽にも非文にもしない——言及が任意になるだけである．
+
+\subsection{個体在庫と原始関係}
+本節で使う個体は3種である．
+\begin{enumerate}
+    \item \emph{裸の生起物トークン}$v$：開ハブ．射影$(o,q,t)$（「実際の分類」節の枠内注）．
+    \item \emph{段階ハブ}$h$：各時点の断面．内在的$q$なら\ko{canon}$\langle o,\text{値}\rangle$，関係的$q$なら$R+\mathrm{nov}$のハブ$\langle o,n\rangle$．$\mathrm{proj}(x,h)$で「$x$が$h$の担い手または値個体である」ことを表す．
+    \item \emph{概念個体}$C$：辞書項目（上位分類の章）．$v\in C$は\ko{skon}による分類である．
+\end{enumerate}
+原始関係は，担い手射影$o(\cdot)$，\ko{nila}（値射影），\ko{skon}（分類），\ko{moila}／\ko{fiila}（境界），\ko{stae}（存在期間），因果先行$\mathrm{luis}^{+}$（推移的・非反射的．裸トークン間で記述非依存．未造語），\ko{na}（同時）である（総則の一覧と同じ）．直接因果\ko{luis}は原始ではなく，$\mathrm{luis}^{+}$の\emph{被覆関係}として定義する：
+\[
+ x\,\mathrm{luis}\,y\ :\Longleftrightarrow\ x\,\mathrm{luis}^{+}\,y\ \land\ \lnot\exists z\,(z\neq x\land z\neq y\land x\,\mathrm{luis}^{+}\,z\land z\,\mathrm{luis}^{+}\,y).
+\]
+原始を推移的な側に置くのは，$\mathrm{luis}$を原始として$\mathrm{luis}^{+}$をその推移閉包で定義すると一階では書けない（有限ステップの到達可能性はコンパクト性により定義不能）のに対し，被覆関係は一階で定義できるからである．両者が一致する（$\mathrm{luis}^{+}$が\ko{luis}の推移閉包に等しい）のは，任意の対の間に有限の極大鎖がある場合であり，稠密な因果連鎖ではそれを仮定しない（2026-09-03採択．旧稿は\ko{luis}を原始とし$\mathrm{luis}^{+}$をメタ記法としていた．\texttt{2026-09-02/kento-AB-codex-log.md}）．役割はすべてこれらからの定義であり，新しい原始関係を導入しない．
+\ko{astav}の部分関係$\mathrm{incl}$は原始に数える（2026-09-05採択，暫定．decisions/0003）．既存の原始関係だけから定義することはできない：\ko{astav}は開ハブなので，射影・期間・分類・因果配置がすべて同じ別トークン（同じ人が同時に行う「歩く」と「話す」）を許し，それらを交換しても既存関係は不変だから，非対称になりうる部分順序は既存語彙で定義不能である（時間包含＋担い手の一致で定義する案は反対称性に反する反例で棄却）．最小の公理系は次のとおり：
+\[
+\begin{aligned}
+&\mathrm{incl}\subseteq\ko{astav}\times\ko{astav};\quad \mathrm{incl}(a,a);\quad \mathrm{incl}(a,b)\land\mathrm{incl}(b,a)\Rightarrow a=b;\quad \mathrm{incl}(a,b)\land\mathrm{incl}(b,c)\Rightarrow\mathrm{incl}(a,c);\\
+&\mathrm{incl}(a,b)\Rightarrow \mathrm{stae}(a)\subseteq_T\mathrm{stae}(b);\qquad \mathrm{pincl}(a,b):\Longleftrightarrow \mathrm{incl}(a,b)\land a\neq b.
+\end{aligned}
+\]
+$\subseteq_T$は時間領域の包含である．\ko{na}を$\mathrm{stae}(a)\cap\mathrm{stae}(b)\neq\emptyset$と読めば，部分は全体と同時であり，部分と同時なものは全体とも同時であることが従う（逆向きの遺伝は要求しない）．融合・補充原理は複合生起物の構成を定める段階で加える．現行の\ko{luis}（被覆）は$\mathrm{incl}$を使わない；解像度$\gamma$ごとの採用トークン$G_\gamma$を$\mathrm{incl}$の極小部分から定め，$\mathrm{luis}_\gamma(x,y):\Longleftrightarrow x\,\mathrm{luis}^{+}\,y\land G_\gamma(x)\land G_\gamma(y)\land\lnot\exists z[G_\gamma(z)\land x\,\mathrm{luis}^{+}\,z\land z\,\mathrm{luis}^{+}\,y]$として粒度付きの直接因果を得る（未実装）．kiinai--na分析では，道具使用$u$が主行為$v$の手段であるための必要条件を$\mathrm{na}(u,v)\land[\mathrm{incl}(u,v)\lor\exists r(\mathrm{incl}(r,v)\land u\,\mathrm{luis}^{+}\,r)]$とする（\ko{na}だけでは「扉を開けながら電話を使う」の電話が扉開けの道具になる）．十分条件には意図または行為ロール条件が要り，既存関係だけからは定義されない（暫定）．
+
+\subsection{役割の定義一覧}
+\rele{to}{alkono}{astav}{構成参与：$x_1$は$x_2$の担い手であるか，$x_2$の関係的$q$の値に入る個体である}
+\rele{e}{alkono}{astav}{完了参与：$x_1$は非状態トークン$x_2$の\ko{to}であり，$x_2$の終端境界が，$x_1$を射影する正の段階の開始境界または終了境界と一致するか，その境界を直接引き起こす（$\subseteq$\ko{to}）}
+\rele{tae}{nato}{astav}{内部駆動される担い手（$\subseteq$\ko{to}）}
+\rele{towa}{nato}{astav}{直接因果源の担い手：$x_1$の起動トークンから$x_2$へ，独立の内部駆動源を経ない\ko{luis}連鎖がある}
+\rele{ja}{kaeno}{astav}{意図的起動者；起動側では$\subseteq$\ko{tae}，結果側では$\subseteq$\ko{towa}}
+\rele{wal}{nato}{astav}{経験状態トークンの担い手（$\subseteq$\ko{to}）}
+\rele{sowa}{alkono}{astav}{$q$軌道の始点値・始状態（中立）}
+\rele{lja}{alkono}{astav}{$q$軌道の終点値・終状態（中立：到達を主張しない目標値を含む）}
+\rele{noct}{nato}{astav}{受領着点：関係的$q\in\{\text{所有},\text{情報}\}$の\ko{lja}値個体であって\ko{e}（$\subseteq$\ko{lja}$\cap$\ko{e}）}
+\rele{kinoct}{nato}{astav}{情報伝達の受領着点（$\subseteq$\ko{noct}）}
+\rele{me}{nato}{astav}{被創造物：$x_1$は$x_2$の担い手，$x_2$の$q$は存在，$x_2$の終端境界は$\mathrm{stae}(x_1)$の\ko{moila}境界と同一（$\subseteq$\ko{e}）}
+\rele{ke}{nato}{astav}{被破壊物：$x_1$は$x_2$の担い手，$x_2$の$q$は存在，$x_2$の終端境界は$\mathrm{stae}(x_1)$の\ko{fiila}境界と同一（$\subseteq$\ko{e}）}
+\ko{melem}・\ko{kelem}は独立の意味役割ではなく，過程的創造概念・過程的破壊概念が選ぶ\ko{e}の表層形である（「kistoi」節，2026-09-02暫定）．$x_2$の終端境界は，$x_2$が\ko{saistav}なら\ko{fiila}で結ばれた境界，\ko{milistav}なら$x_2$自身と略記する．\ko{me}・\ko{ke}は\ko{luis}を使わない：$x_2$は$x_1$の存在変化トークンそのものであり，外的な制作・破壊行為$s$との関係は$\mathrm{luis}(s,x_2)$で書き，行為者は$x_2$上の\ko{towa}／$\mathrm{ja}_{\mathrm{res}}$として導く（主トークンが被動側にあるという「食べる」「殺す」の既裁定と同型）．
+包含関係は\ko{me}・\ko{ke}$\subseteq$\ko{e}$\subseteq$\ko{to}，\ko{kinoct}$\subseteq$\ko{noct}$\subseteq$\ko{lja}，\ko{tae}$\subseteq$\ko{to}，\ko{wal}$\subseteq$\ko{to}である．役割は排他的でなく，「立ち上がる」の担い手は\ko{tae}$\cap$\ko{e}，「喜ばせる」の経験者は\ko{wal}$\cap$\ko{e}になりうる．
+辞書v5の意味役割木と引数ソートは本節の改稿前である（\ko{e}＝被動作主で引数$\langle$\ko{nato}，\ko{tovlent}$\rangle$，\ko{towa}・\ko{noct}・\ko{kinoct}が未登録，\ko{me}/\ko{ke}は音列としてのみ登録．2026-09-03検査）．移行対象とし，現時点の辞書実装から本節の適格性を判定しない．
+
+\subsection{\ko{to}と\ko{e}：アスペクト対}
+\ko{to}はトークンの\emph{構成要素であること}だけを言い，完了を主張しない：進行中・未達の参与も\ko{to}である．\ko{e}は\emph{完了参与}であり，両者は担い手側のアスペクト対をなす．値側にも同じ対がある：\ko{lja}（目標値・中立）と\ko{noct}（着）．「渡そうとしたが届かなかった」の宛先は\ko{lja}のみ，届けば\ko{noct}である．
+
+\ko{e}の定義（2026-09-02採択，同日に終了境界へ対称化，2026-09-05に因果肢を$v$の終端境界へ対称化・暫定）：
+\begin{whynot}
+2026-09-02の形は最後の連言肢を$\mathrm{Term}(b,v)\lor\mathrm{luis}(v,b)$としていた．因果肢$\mathrm{luis}(v,b)$は$v$が未終了でも成り立つので完了参与の意図に反する．$v$の終端境界$c$を立てて$\mathrm{Term}(c,v)\land(c=b\lor\mathrm{luis}(c,b))$とし，境界の共有と因果を対称に書く（codex 2026-09-05 形式検査済み）．
+\end{whynot}
+\begin{align*}    
+ \mathrm{e}(x,v)\ &:\Longleftrightarrow\
+ \mathrm{to}(x,v)\ \land\ v\notin\mathrm{konstav}\
+ \\&\land\
+ \exists h\,\exists b\,\exists c\,\bigl[\,\mathrm{proj}(x,h)\ \land\ (\,\mathrm{moila}(b,\mathrm{stae}(h))\ \lor\ \mathrm{fiila}(b,\mathrm{stae}(h))\,)\ \land\ \mathrm{Term}(c,v)\ \land\ (\,c=b\ \lor\ \mathrm{luis}(c,b)\,)\,\bigr].
+\end{align*}
+$b$は\ko{milistav}トークンである．$\mathrm{Term}(b,v):\Longleftrightarrow(v\in\mathrm{saistav}\land\mathrm{fiila}(b,v))\lor(v\in\mathrm{milistav}\land b=v)$は「$b$が$v$の終端境界である」ことの略記であり，\ko{fiila}が\ko{milistav}$\times$\ko{saistav}上の関係なので瞬間トークン$v$では$v$自身を終端境界とする（2026-09-03，型の修正）．$h$の側の第1選言肢は\emph{結果段階の誕生}（凍る—固体状態，立ち上がる—立位），第2選言肢は\emph{先行段階の終了}（食べる—食物の存在段階の終了境界）である．終了境界を用いる場合に参照するのは終了以前に存在した正の段階$h$であり，終了後の非存在状態を段階として立てない（形式意味論章で未決の「負の状況概念を独立個体として実体化しない」という暫定条件，以下D6と呼ぶ，と両立する）．$c$は$v$の終端境界である．第1選言肢は\emph{境界の共有}：$v$の終了境界がそのまま$b$である．第2選言肢は\emph{因果}：$v$の終端境界$c$が$b$を直接引き起こす（殴る—対象の破損状態）．ここで要求するのは被覆としての直接因果である：押下終了—信号伝播—点灯開始のように媒介トークンがあれば$\mathrm{luis}(c,b)$は偽であり，媒介を許す読みは$\mathrm{luis}^{+}$で別に書く．また$\mathrm{Term}$は\ko{saistav}・\ko{milistav}にしか定義されないので，\ko{e}の定義域は終端境界を持つ$v$に限る（複合生起物への$\mathrm{Term}$の一般化は未定．2026-09-05）．型は既存装置に乗る：段階ハブ$h$は時間依存の個体（\ko{haltoika}）なので$\mathrm{stae}(h)$が立ち，\ko{moila}・\ko{fiila}は\ko{milistav}$\times$\ko{saistav}の関係として定義済みである．
+
+帰結を列挙する．
+\begin{enumerate}
+    \item \emph{事実性}：$h$が実際に始動していなければ\ko{e}は偽．描きかけの絵は\ko{me}でない．進行中・未達の被創造物への言及は名詞化子の部分性（negative free logic，形式意味論の章）の管轄であり，\ko{e}の側ではimperfectiveを扱わない．
+    \item \emph{patientではない}：「走者 \ko{e} 走る」は，走行概念の$\mathrm{compl}_C$が走者を射影する正の結果段階を供給し，その境界が走行終端と一致する場合に限り真である．\ko{e}は一般的な「行為を完遂した担い手」を直接表さない（走者が走行の前後を通じて存在し新しい段階を立てなければ\ko{e}は偽）．\ko{e}は「影響を受けた対象」ではなく完遂した参与を表し，patient的な内容はすべて下位役割（$h$の$q$の指定）と明示的な\ko{lja}・\ko{naz}が担う．裸の\ko{e}が伝えるのは終端の存在だけである．「終える」と「やめる」の区別は語彙層（後述のTel）へ送る．
+    \item \emph{状態の排除}：$v\notin$\ko{konstav}条項により，状態は\ko{e}を立てない．「$x$が欲しい」の$x$，「知る」「持つ」の対象は\ko{to}止まりである．状態他動詞に\ko{tae}・$\mathrm{ja}_{\mathrm{src}}$が立たない既裁定（\ref{konstav}節）の\ko{e}版に当たる．
+    \item \emph{随伴の排除}：参照されるだけの参与者は\ko{e}にならない．「見られている」「欲されている」というハブは$v$と\emph{同時に}始まる——その誕生境界は$v$の\ko{moila}側にあって\ko{fiila}と共有されず，また見ることは被見状態を\ko{luis}で引き起こすのではなく\emph{構成}する（因果的分解と構成的分解の区別，「行為のロール性」節）．帰結だけが\ko{e}を立て，随伴は立てない．
+    \item \emph{負イベントへの制約}：補集合状態（「もう見られていない」）を個体として実体化すると，任意の参与者の\ko{e}が終了時に自明に真となる．よって本定義は負の状況概念の非実体化（D6）を健全性条件として要求する——D6への新しい論拠である．
+    \item \emph{下位役割は$h$の分類に寄生する}：\ko{e}の細分は独立の木ではなく$q$在庫の写しである．\ko{me}／\ko{ke}＝\ko{e}$\land$（$v$の$q$＝存在）$\land$終端境界が$\mathrm{stae}(x)$の開始／終了境界，\ko{noct}＝\ko{lja}値個体$\land$\ko{e}$\land$（$q\in\{$所有，情報$\}$），\ko{kinoct}＝\ko{noct}$\land$（$q$＝情報）．旧係争「\ko{noct}$\subseteq$\ko{e}か\ko{noct}$\subseteq$\ko{lja}か」（2026-08-26）は解消する：両方成り立つ．
+\end{enumerate}
+
+\subsection{\ko{towa}と\ko{ja}}
+\[
+ \mathrm{towa}(A,v)\ :\Longleftrightarrow\
+ \exists s\,\bigl[\,o(s)=A\ \land\ s\,\mathrm{luis}^{+}\,v\ \land\
+ \text{連鎖の中間トークンのどれも独立の内部駆動源を担い手に持たない}\,\bigr].
+\]
+因果先行$\mathrm{luis}^{+}$はトークン間の関係だが\ko{towa}の第1項は個体なので，$A$からその起動トークン$s$へ担い手射影$o(s)=A$で渡ってから原始の因果先行$\mathrm{luis}^{+}$を辿る（旧稿のsourceBearerはこの担い手射影のことであり，新しい原始関係ではない）．中間条件の「連鎖上の中間トークン」は$x\,\mathrm{luis}^{+}\,z\land z\,\mathrm{luis}^{+}\,v$を満たす$z$であり，一階で量化できる（「個体在庫と原始関係」節）．$s$は\ko{tastoi}や\ko{tae}に限らず，風の運動・静的な絵・自然過程など任意の\ko{astav}でよい．中間条件——連鎖上の中間トークンが\ko{tae}ないし$\mathrm{ja}_{\mathrm{src}}$の担い手を持たないこと——が旧稿の$\mathrm{Direct}_D$（標準フレーム上の実装的subevent縮約）を置き換える．帰結：
+\begin{enumerate}
+    \item 自律的な代理人・被使役者は中間に$\mathrm{ja}_{\mathrm{src}}$を持つので連鎖を切る（「AがBに割らせた」でAは\ko{towa}でない．\ko{tact}廃止・\ko{luis}接続の設計と整合）．
+    \item 遠因は暴発しない：因果を十分に遡ると通常どこかで別の内部駆動源を経由する．
+    \item 道具も\ko{towa}になりうる（「ハンマーが窓を割った」．ハンマーの運動は内部駆動でないから連鎖を切らず，行為者の\ko{towa}と共存する）．意図性の区別は$\mathrm{ja}$が担い，道具の意味論は従来どおりkiinai--na分析（「道具の扱い」節）である．
+\end{enumerate}
+$\mathrm{ja}$は二地点の型付き和のまま維持する（2026-08-25採択を裸トークン上に移植）：
+\begin{align*}
+ \mathrm{ja}_{\mathrm{src}}(A,s)&\Longleftrightarrow
+ \mathrm{tae}(A,s)\land\mathrm{Int}(A,s),\\
+ \mathrm{ja}_{\mathrm{res}}(A,v)&\Longleftrightarrow
+ \mathrm{towa}(A,v)\land
+ \exists s\bigl(\mathrm{ja}_{\mathrm{src}}(A,s)\land s\,\mathrm{luis}^{+}\,v\bigr).
+\end{align*}
+裸の\ko{ja}は$\mathrm{ja}(A,v)\Longleftrightarrow\mathrm{ja}_{\mathrm{src}}(A,v)\lor\mathrm{ja}_{\mathrm{res}}(A,v)$である．$\mathrm{Int}(A,s)$は$A$の意図（\ko{kaeno}）が$s$と\ko{na}で併存し$s$を目標とすることの略記である（「目標とする」は既存関係に展開されていない未定義の略記であり，$\mathrm{ja}_{\mathrm{src}}$／$\mathrm{ja}_{\mathrm{res}}$の定義はその分だけ暫定）\ques{意図の定式化は\ko{kaeno}側の仕事として残る}．無条件の\ko{ja}$\subseteq$\ko{tae}や\ko{ja}$\subseteq$\ko{towa}は立てない．
+
+\subsection{完了条件と語彙層：Tel}
+「完了条件がある概念」は骨格木の枝ではなく，概念個体上の\emph{定義クラス}として立てる：$C\in\mathrm{Tel}$ $:\Leftrightarrow$ $C$の語彙仕様が完了状態スキーマ$\mathrm{compl}_C$（トークンから指定の段階ハブ型への対応）を持つ．真理条件は\ko{e}で閉じており$\mathrm{Tel}$を読まない．$\mathrm{Tel}$を読むのは辞書（無標の\ko{e}でどの$h$が標準的に立つか）と実用文法（「終える」と「やめる」の区別：telicな$C$では$\mathrm{compl}_C$の$h$が始動したときだけ「終えた」，atelicな$C$では\ko{e}は停止と区別されない）だけである．旧\ko{kalastav}の直観「終点の値で同一性が決まる個体」は，変動パタン軸の第4値ではなく$\mathrm{moila}(\mathrm{stae}(h))$——終点状態で個体化された境界トークン——として回収される．
+
+\subsection{分類図}
+次の木は排他的な実在分類ではなく，各役割の\emph{導入点を探す索引}である．同じ役割の複数箇所への表示と枝をまたぐ交差を許す（\ko{noct}は\ko{lja}$\cap$\ko{e}）．刺激は，静的な対象・知覚内容なら無標の\ko{to}，因果刺激なら\ko{towa}に置く．
+
+\begin{figure}[H]
+    \centering
+    \scalebox{0.8}{%
+    \begin{forest}
+        dir tree
+        [\tn{flentos}{意味役割}
+            [\tn{to}{構成参与}
+                [\tn{to}{無標：主題・内容・Target}]
+                [\tn{e}{完了参与}
+                    [〈存在・同一性境界〉
+                        [\tn{me}{被創造物}]
+                        [\tn{ke}{被破壊物}]
+                    ]
+                ]
+                [\tn{tae}{内部駆動の担い手}
+                    [\tn{ja}{意図的起動（起動側）}]
+                ]
+                [\tn{wal}{経験の担い手}]
+            ]
+            [\tn{towa}{因果源}
+                [\tn{ja}{意図的因果源（結果側）}]
+            ]
+            [〈軌道値役割〉
+                [\tn{sowa}{始点値・始状態}]
+                [\tn{lja}{終点値・終状態}
+                    [\tn{noct}{受領着点（$\cap$\ko{e}）}
+                        [\tn{kinoct}{情報受領着点}]
+                    ]
+                ]
+            ]
+        ]
+    \end{forest}
+    }
+    \caption{意味役割の導入点索引}
+\end{figure}
+
+\subsection{回帰判定}
+次表の役割は各語の主トークン上のものとする．必要な場合だけ並立する起動トークンを別記する．
+\begin{longtable}{p{0.16\linewidth}p{0.25\linewidth}p{0.48\linewidth}}
+\hline
+主要概念 & 参与者 & 役割 \\
+\hline
+凍る & 水；液体／固体 & 水：\ko{to}$\cap$\ko{e}；液体：\ko{sowa}，固体：\ko{lja}．背景の冷気：\ko{towa}は真だが「凍る」は言及を要求しない（任意項）．\\
+倒す（風） & 風；木；直立／転倒 & 風：\ko{towa}；木：\ko{to}$\cap$\ko{e}；直立：\ko{sowa}，転倒：\ko{lja}．\\
+喜ばせる & 刺激；経験者 & 刺激：\ko{towa}；経験者：\ko{to}$\cap$\ko{wal}$\cap$\ko{e}（心理状態変化は非状態）．\\
+気に入る & 経験者；対象 & 経験者：\ko{to}$\cap$\ko{wal}；対象：無標の\ko{to}．状態なので\ko{e}・\ko{tae}なし（非状態条項）．\\
+見る & 経験者；知覚対象 & 経験者：\ko{to}$\cap$\ko{wal}；知覚対象：無標の\ko{to}．被見は随伴なので\ko{e}なし．\\
+恐れる & 経験者；恐怖対象 & 経験者：\ko{to}$\cap$\ko{wal}；恐怖対象：無標の\ko{to}．\\
+殴る & 行為者；対象 & 起動トークンで行為者：\ko{to}$\cap$\ko{tae}$\cap\mathrm{ja}_{\mathrm{src}}$，結果トークンで\ko{towa}$\cap\mathrm{ja}_{\mathrm{res}}$；対象：無標では\ko{to}．殴打が対象の破損・移動・痛み等の正の段階境界を実際に引き起こした場合に限り\ko{e}を併せ持つ（\ko{luis}肢）．\\
+弾く（楽器） & 行為者；楽器 & 行為者：\ko{to}$\cap$\ko{tae}$\cap\mathrm{ja}_{\mathrm{src}}$；楽器：無標の\ko{to}（音トークン上では\ko{towa}にもなる）．\\
+走る & 走者 & \ko{to}$\cap$\ko{tae}（意図的なら$\mathrm{ja}_{\mathrm{src}}$）．\ko{e}は走者を射影する結果段階が終端で立つ場合に限る．\\
+食べる & 食物；行為者 & 主結果トークンで食物：\ko{to}$\cap$\ko{e}$\cap$\ko{ke}，行為者：\ko{towa}$\cap\mathrm{ja}_{\mathrm{res}}$で\ko{to}なし．並立する咀嚼・嚥下トークンでは行為者：\ko{to}$\cap$\ko{tae}$\cap\mathrm{ja}_{\mathrm{src}}$．\\
+立ち上がる & 人；座位／立位 & 人：\ko{to}$\cap$\ko{tae}$\cap$\ko{e}（意図的なら$\mathrm{ja}_{\mathrm{src}}$）；座位：\ko{sowa}，立位：\ko{lja}（境界共有肢）．\\
+渡す & A；本；B & 主トークン（本，$q=$所有者）でA：\ko{towa}$\cap\mathrm{ja}_{\mathrm{res}}$，本：\ko{to}$\cap$\ko{e}，B：\ko{noct}（所有ハブ$\langle\text{本},B\rangle$の値個体として\ko{lja}$\cap$\ko{e}）．未達ならBは\ko{lja}のみ．Aの起動トークンではA：\ko{to}$\cap$\ko{tae}$\cap\mathrm{ja}_{\mathrm{src}}$．\\
+知らせる & A；内容；B & A：\ko{towa}$\cap\mathrm{ja}_{\mathrm{res}}$，内容：無標の\ko{to}，B：\ko{kinoct}．Bの認識状態の成立は並立する経験状態トークン上の\ko{wal}．\\
+\hline
+\end{longtable}
+
+以上により，心理述語の刺激，移動・所有・情報伝達の終端，および主トークンと起動トークンの役割を，同じ要素分解の原理で扱う．
+
+\begin{araidashi}
+    \item $\mathrm{incl}$（\ko{astav}部分論）は原始に数え，最小公理系を置いた（2026-09-05）．粒度付き直接因果$\mathrm{luis}_\gamma$と手段性の十分条件は未実装．
+    \item 負の状況概念（D6）：本節の帰結5により，非実体化が\ko{e}の健全性条件になった．
+    \item 進行形・未達（描きかけの絵への言及）は名詞化子の部分性へ（形式意味論の章）．
+    \item $\mathrm{compl}_C$の語彙仕様様式は辞書の章で定める．
+    \item $\mathrm{Int}$（意図の併存）の定式化．
+    \item 回帰13語を超える辞書全体での負荷試験（攻撃工程）．
+\end{araidashi}
+
+\section{アスペクト演算子}
+旧版の\ko{kalastav}（完遂）は独立クラスとしては廃止し，\ko{saistav}に統合する（2026-08-25改訂）．完遂性はクラスの別ではなく，\ko{saistav}トークン$a$に対して開始境界・終了境界の\ko{milistav}トークンが存在するという\emph{関係的事実}である．\ko{moila}／\ko{fiila}は関数ではなく2項関係とする（2026-08-21採択．metloskでは既に時間値上の関係として定義されている）．
+\rele{moila}{milistav}{saistav}{$x_1$は$x_2$の開始境界である}
+\rele{fiila}{milistav}{saistav}{$x_1$は$x_2$の終了境界である}
+\ko{moila}は各\ko{saistav}に対して部分関数的に一意，\ko{fiila}は終了したプロセスにのみ立つ条件付き関係である（終了しなかったプロセスに\ko{fiila}のトークンは存在しない）．「始まる」「終わる」という語彙は，演算子ではなく開始境界・終了境界という\ko{milistav}クラスの語である．
+同様に\ko{konstav}へは「$a$し始める前/終わった後の状態」を対応させる関数がある．
+\funce{linha}{saistav}{konstav}{$x_1$し始める前の状態}
+\funce{meiha}{saistav}{konstav}{$x_1$し終わった後の状態}
+時間に依存する全ての概念（つまり\ko{haltoika}）は，その誕生から死滅までを一つのイベントと捉えることができる\footnote{「人」に対する「人生」．}．これを\ko{stae}で表す．
+\funce{stae}{haltoika}{saistav}{$x_1$の一生}
+
+\ko{milistav}（達成）は一瞬で完結する出来事であり，\emph{変動パタン軸の第3値}とする（2026-08-24改訂）：$t$が当該解像度で原子的（点）であり，経過を持たず値の遷移だけがあるトークン．5-2は「着く」「経由する」「生まれる」を初めから\ko{milistav}に属する原生語彙としていた．一方で，多くの出来事は解像度を下げることで\ko{milistav}とみなすことができる（上位分類の章で述べた時空間的近似）．この2つの由来は区別しない：どちらも「当該解像度で$t$が点」という同じ変動パタン軸の値であり，解像度相対性は\ko{skon}木を実在論的に読まないという採択条件（devbox）が吸収する．変動パタン軸の値なので$q$軸と独立に交差し，「着く」$=$\ko{milistav}$\cap$\ko{liskono}（$q=$位置）のように分類できる．
+
+\begin{araidashi}
+    \item 関係化（2026-08-21）により，5-2の「定義域は\ko{kalastav}か\ko{saistav}か」問題と「終了しなかったプロセスにも\ko{fiila}が存在する」問題は解消した．
+    \item \ko{kalastav}の廃止（2026-08-25）により，プロセス$a$から完遂$\{\text{moila}系, a, \text{fiila}系\}$を束ねる演算子は不要になった．旧\ko{kalastav}の仕事（完遂への言及）は\ko{fiila}トークンの存在言明が引き受ける．辞書に\ko{kalastav}が残っていれば削除ないし\ko{saistav}への統合が要る（D5）．
+\end{araidashi}
+
+\section{konstav}\label{konstav}
+\ko{konstav}には動きがない状態が属する．\ko{anemin}と\ko{halee}は\ko{konstav}を排他的に二分する独自基準ではなく，$q$軸第1層との\emph{名前付き交差}である（2026-08-24改訂）．
+\begin{itemize}
+    \item \ko{anemin}$:=$\ko{konstav}$\cap$内在的$q$（\ko{tastoi}系）．身体配位・生理・心理など，値の決定が$o$の内部で閉じる$q$の維持状態．「ドアが開いている」のような物理的配位の状態もここに入る．
+    \item \ko{halee}$:=$\ko{konstav}$\cap$関係的$q$（\ko{liskono}系）．関係の引き下げ$R+\text{nov}$の像を含む．
+\end{itemize}
+旧来の「内部状態／外部状態」というYAMATO由来の規定は，この交差の非形式的な言い換えだったと再解釈する．新しい基準は独自のテストを要求しない：$q$軸第1層の内在的／関係的の判定がそのまま使える．
+
+知覚・感覚の経験状態は\ko{anemin}の部分集合〈経験状態〉（$q=$psych/bio，未造語）である．経験者役割\ko{wal}は，経験状態トークンの担い手に立つ2項述語である（$\text{wal}\subseteq\text{to}$．第2項は裸の\ko{astav}トークン．2026-09-02改稿）．知覚経験を\ko{anemin}へ再配置する裁定（R5）はこの再定義のもとでも保持される．
+\ko{halee}は多くの関係の引き下げの行き先になる．関係$R$の引き下げで得られた\ko{halee}の部分集合は$R+\text{nov}$とし，2項関係は\ko{coi}と\ko{cal}を使う．
+\begin{exe}
+    \ex \begin{xlist}
+        \ex haytoc hacto coto
+        \ex haytoc coi hactonov kon cal coto
+    \end{xlist}
+    \glt 彼は帽子を身につけている
+\end{exe}
+
+\begin{remark}[状態他動詞]
+「持つ」「知る」のような，日本語や英語では他動詞として現れる状態述語は，コノメノでは他動詞ではない（2026-07-09裁定）．これらは\ko{halee}または\ko{anemin}に属し，内部駆動される変化を投影しないので\ko{tae}および$\mathrm{ja}_{\mathrm{src}}$は立たない．この制約は前節の定義から従う：状態は内部駆動される変化を持たないので\ko{tae}が立たず，\ko{e}は非状態条項で排除される（2026-09-02）．
+\end{remark}
+
+\section{flanov}
+旧\ko{kosaistav}は積極的な定義を持たないため廃止候補とし（辞書v5でも「廃止候補」），本節では\ko{flanov}の構成だけを扱う．\ko{flanov}は，\ko{nato}における\ko{klant}によく似ている．\ko{flanov}には，\ko{astav}を構成員としたプロセスが属する（典型は\ko{milistav}だが，複数回の「見る」や4年間の「勉強」のように幅のある\ko{saistav}も当該粒度で構成員になる．2026-09-03暫定，旧宣言の\ko{milistav}から広げた）．\ko{hanem}，\ko{fetam}に対応するのは\ko{hanemst}，\ko{afle}である．
+\rele{hanemst}{astav}{flanov}{構成プロセス関係}
+\rele{afle}{astav}{flanov}{間内部プロセス関係}
+そして，$+\text{kla}$に対応するのは$+\text{fla}$である．つまり，\ko{astav}の部分集合$A$に対して$A+\text{fla}$は$A$を構成プロセスとする\ko{flanov}である．
+\begin{exe}
+    \ex lulas kansavleflale kon to monaliza taeka
+    \glt 私はモナリザを(少なくとも)3回見たことがある．
+\end{exe}
+\begin{remark}$A+\text{fla}$を使わないと「lulas kansavle kon to monaliza taeka」となる．
+\end{remark}
+上の例文では，例えば「発話者が3回ルーヴル美術館に訪れてモナリザを見た」ということを表しており，ある回の訪問内で「モナリザの絵から目を逸らしてからもう一回見る」といったことをしても同じ「見る」イベントだとカウントされている．このことを表すためには，見るを表す\ko{kansav}をそのまま使うのではなく，\ko{kansavlefla}を使うべきである．他の例だと，次の例文の2つ目は$A+\text{fla}$を使うべきである．
+\begin{exe}
+\ex 私は英語を4時間勉強している．
+\ex 私は英語を4年間勉強している．
+\end{exe}
+
+\begin{araidashi}
+    \item \ko{flanov}は「同種の\ko{milistav}の繰り返し」のための分類である．これに対して「会議」「戦争」「発表会」のような\emph{異種の行為の束}としての社会的プロセスは別物である．一次分類の三分（「一次分類：同一性の源泉」節）のもとでは，これらは記述による生起物（〈文脈的複合生起物〉，未造語）に落ちる．現行辞書では\ko{halfatcank}「発表会」が\ko{tastoi}直下にあり，移行対象である．
+\end{araidashi}
+
+\section{kistoi}\label{kistoi-sec}
+\ko{kistoi}は主トークンの担い手の存在または通時的同一性を変化させる行為である．この担い手の存在段階が行為の終端で始動ないし消滅するので，対応する役割は必ず\ko{e}の下位になる．5-2ではこれを\ko{liskono}ではなく\ko{danses}（他動詞的行為）に含めることにしていたが，本章では\ko{liskono}の下に置く（現行辞書もそうなっている）．
+
+理由は分類軸の整理である．\ko{noskono}以下の4分類は，変化する対象がどの概念クラスかによる分類である．これに対して\ko{kistoi}は，何が変化したか，すなわち\ko{naz}の値が存在であることによる分類である．両者は直交するので，
+\begin{itemize}
+    \item 「りんごを食べる」は\ko{noskono}かつ\ko{kistoi}，
+    \item 「行く」は\ko{noskono}であって\ko{kistoi}ではない，
+\end{itemize}
+のように交差分類になる．5-2のように\ko{kistoi}だけを変化の枝の外に例外的に置くと，「変化行為とは何か」を述べるたびに例外を追記することになる．存在も変化する属性の一つとみなし，例外を無くすのが本章の方針である．
+
+\ko{kistoi}は創造行為\ko{kynoy}と破壊行為\ko{baist}に分かれる．
+\alke{kynoy}{kistoi}{作る，創造行為}
+\alke{baist}{kistoi}{壊す，破壊行為}
+本言語はなぜか\ko{kistoi}の分節が特に細かく，\ko{kynoy}と\ko{baist}はさらにそれぞれ2つに分かれる．
+\ko{likynoy}（結果的創造），\ko{nakynoy}（過程的創造），\ko{libaist}（結果的破壊），\ko{nabaist}（過程的破壊）の4語がそれである．ただしこれらは次に述べるとおり概念個体上の定義クラスであり，\ko{skon}木の下位クラスとしては宣言しない（辞書v5は旧木のまま．移行対象）．
+結果的／過程的の別は，裸の生起物トークン上の意味役割ではなく，概念個体の語彙仕様に属する語彙的な提示素性とする（2026-09-02暫定．旧定義「結果的＝行為中に対象が存在しない」は創造と破壊で非対称であり，「欠けたりんごは別物」という部分論的本質主義を持続物の章にない形で前提していたため改めた．経緯は\texttt{2026-09-02/b6-ke-kelem-codex-log.md}）．結果的概念は，対象の存在または通時的同一性の切替えを終端の結果として提示する．過程的概念は，制作中の対象への言及，または対象の段階的な喪失を通常の提示として許す．この別は意味役割の真理値を変えず，同じ裸トークンをどの概念で分類するかだけを制約する．したがって\ko{likynoy}等の4クラスは，裸トークンの\ko{skon}下位クラスではなく，Telと同じく概念個体上の定義クラスである．
+
+\ko{kistoi}の意味役割は，終端で存在を開始する参与者\ko{me}と，終端で存在を終了する参与者\ko{ke}の二つである（「役割の定義一覧」）．\ko{melem}と\ko{kelem}は独立した意味役割ではなく，過程的創造概念および過程的破壊概念が選択する完了参与\ko{e}の表層形であり，形式表示ではそれぞれ\ko{e}に正規化する．
+\begin{example}例えば次のように使い分ける．
+\begin{enumerate}
+    \item \ko{me}：絵を描く．完成した絵の存在開始を制作の終端として提示する．
+    \item \ko{melem}：言語を作る．制作中にも同じ言語への言及を許す過程的創造概念であり，\ko{melem}は\ko{e}の語彙的に選択された表層形である．
+    \item \ko{ke}：ファイルを削除する．ファイルの存在終了を削除トークンの終端として提示する．
+    \item \ko{kelem}：死体を火葬する．対象の段階的な喪失を提示する過程的破壊概念であり，\ko{kelem}は\ko{e}の表層形である．
+\end{enumerate}
+丸呑みと少しずつ食べる場合のように，同じ対象と現象を異なる概念で分類できることがある．この違いは役割の真理値ではなく概念の語彙的提示素性に属する．「りんごを食べる」の\ko{ke}は，りんごの存在段階が食事の終端で終わることだけを言い，行為中のりんごの同一性には立ち入らない．
+\end{example}
+\memo{暫定：結果的／過程的の語彙クラスの在庫と，\ko{melem}／\ko{kelem}を\ko{e}へ正規化する形式文法上の規則は，辞書と口語文法の移行を確認するまで確定扱いにしない．}
+
+\section{astav-astav間の関係}
+いわゆる接続詞は\ko{astav}-\ko{astav}間の関係として実装される．主には次のものがある．
+\rele{na}{astav}{astav}{同時関係，$x_1$と$x_2$は同時的に行われている}
+\rele{sol}{astav}{astav}{後続関係，$x_1$のあとに$x_2$が行われる}
+\rele{suinot}{astav}{astav}{順接関係，$x_1$だから$x_2$である}
+\rele{filnot}{astav}{astav}{$x_1$だが$x_2$である}
+\rele{kojannot}{astav}{astav}{$x_1$の一方で$x_2$である}
+\kox{因果先行}（$\mathrm{luis}^{+}$）：\ko{astav}$\times$\ko{astav}上の推移的・非反射的な原始関係．$x_1$が$x_2$の因果連鎖上で先行する（未造語．2026-09-03）．
+\kox{部分}（$\mathrm{incl}$）：\ko{astav}$\times$\ko{astav}上の反射的・反対称的・推移的な原始関係．$x_1$が$x_2$の部分である（未造語．2026-09-05，「個体在庫と原始関係」節）．
+\rele{luis}{astav}{astav}{原因-結果関係（直接因果），$x_1$によって$x_2$が起きた．$\mathrm{luis}^{+}$の被覆関係として定義される（「個体在庫と原始関係」節）}
+この\ko{luis}は裸の生起物トークン間の実在的関係であり，主要概念や格フレームを変えても真理値を変えない．記述相対的なのは，同じ因果構造のどこを\ko{towa}等として文法的に投影するかである．
+
+\subsection{naと引き下げを用いた構文}
+「彼は学校でりんごを食べている」ということを表現したいとする．この主張は次のように2つの部分に分けられる．
+\begin{exe}
+\ex
+\begin{xlist}
+    \ex coto tov kuistent
+    \glt 彼は学校にいる
+    \ex coto ja haminen ke kalam
+    \glt 彼はりんごを食べている
+\end{xlist}
+\end{exe}
+この2つをそのまま連言で繋いでも良いが，a.とb.が同時に起きていることを示すのが普通であり，そのためには\ko{tov}を\ko{halee}へ引き下げて\ko{na}で2つの\ko{astav}を結びつける．
+\begin{exe}
+    \ex coto ja haminen ke kalam na tojov coi cal kuistent ($=$ coto$^*$ ja haminen$^*$ ke kalam$^*$ $\_$ na tojov coi $\_$, cal kuistent$^*$)
+\end{exe}
+上の例のように\ko{coi}の後が省略でき，\ko{cal}がそのまま続くような場合は，$a$ \ko{coi} \ko{cal}を$a+\text{cal}$と略すことにする．
+
+他にももっぱらこのような構文で使われる関係がいくつかある．
+\rele{poka}{nato}{nato}{$x_1$は$x_2$と一緒にいる}
+\rele{dehta}{nato}{nato}{$x_1$は$x_2$の代わりである}
+このような関係を意味役割のように\ko{nato}-\ko{astav}間の関係として実装しないのは，前述の「彼はケーキ／私の代わりにチョコレートを食べた」のような曖昧性があるためである．この曖昧性は，使役を役割から追い出して\ko{luis}で繋ぐ設計（\ko{tact}廃止）と同じ動機によるものである．
+
+\subsection{道具の扱い}
+道具は\ko{kino}で表すが，その意味論は主行為上の役割としてではなく，「使う」（\ko{kiinai}）という下位行為を\ko{na}ないし\ko{luis}で主行為に繋ぐ形で与える．
+\begin{quote}
+$x$ \ko{ja} 主行為 \ko{kino} $y$ $\;\equiv\;$ $x$ \ko{ja} 主行為 \ko{na} （$x$ \ko{ja} \ko{kiinai} \ko{to} $y$）
+\end{quote}
+道具$y$は無標では\ko{to}であり，使用によって道具側に実際の結果段階（摩耗・破損など）が立つ場合に限り\ko{to}$\cap$\ko{e}とする（\ko{e}の定義は道具に結果段階境界を要求するため）．
+すなわち道具格は主概念上の格スロットではなく，埋め込まれた下位イベントである．これはSchankのConceptual Dependency Theory\citep{schank1972}が INSTRUMENT について採ったのと同じ設計であり，「道具は動詞で表す」というコノメノの従来方針には先例がある．\ko{towa}の連鎖判定では，実装的な道具イベント自体は独立の内部駆動源を持たないため連鎖を切らない（「\ko{towa}と\ko{ja}」節の中間条件．旧稿の$\mathrm{Direct}_D$は廃止）．したがって\ko{kino}構文を明示しても，主行為上の行為者の\ko{towa}と共起できる．残る仕事は，「使う」が主行為に対する手段としてカウントされる条件を書くことであり，これは次節のロール機構が担う．
+
+\section{行為のロール性}
+「計算する」の実態は「指を折る」等の基底行為である．しかし，
+\begin{enumerate}
+    \item 計算を知らない者が同じ動きをしてもそれは計算ではなく，
+    \item 計算を意図せずに指を折ることもできる．
+\end{enumerate}
+つまり「計算する」という概念は基底行為の運動学的性質では定義できず，コンテキスト（実践・意図）が構成している．「待つ」は極限例で，基底行為がほぼ任意（座っている・立っている・スマホを見ている）であり，期待という内部状態だけがそれを構成する．
+
+これは既存理論では，Anscombe\citep{anscombe1957}の「記述の下での行為」，Goldman\citep{goldman1970}のlevel-generation（因果的生成と慣習的生成の区別），Searle\citep{searle1995}のcounts-as（構成的規則），溝口のロール理論\citep{mizoguchi2015roles}の生起物版に当たる．直接の先行機構はDnSのCourse/EventType\citep{gangemi-mika2003}である．GFO\citep{herre2006gfo}のProcessual Roleは参与者ごとのプロセスの層（mover/moved）であり，「基底行為全体が文脈により別の行為概念になる」という本節の機構とは別物である（2026-07-29のcodex相談，\relpath{detail/2026-07-29/codex-astav-dolce-yamato.md}）．
+
+\begin{definition}[行為ロール]
+行為ロール概念$R$は，基底行為クラス$B \subseteq \text{astav}$（プレイヤーの資格．しばしばほぼ$\top$）と，既存関係——\ko{na}・\ko{luis}，動作主の意図（\ko{kaeno}）との併存，併存する\ko{anemin}，社会的実践への参与，因果的帰結——からなる条件式$C_R(x)$による，概念個体上の定義クラスである：
+\[
+    x \in R \iff x \in B \land C_R(x)
+\]
+（counts-asであって因果ではない）．一般関数$\mathrm{context}(x)$は立てない（2026-09-03．旧稿の$\mathrm{context}$は型・個体化・同一性を持たない新装置だった．既存関係だけで$C_R$を展開できない例は未形式化として残す）．
+\end{definition}
+\begin{example}
+\begin{enumerate}
+    \item 計算する $=$（$B$：記号操作めいた行為（開いた集合），$C$：計算実践＋計算の意図）
+    \item 待つ $=$（$B$：ほぼ$\top$，$C$：期待（\ko{anemin}）が\ko{na}で併存）．「待つ」は行為概念というより「期待と任意行為の同時束」のロールである．
+    \item 約束する・買う・売る $=$ $C$が社会制度であるもの（Searle的counts-asの典型）．
+    \item 使う $=$（$B$：対象への任意の物理的操作，$C$：主行為の手段であること）
+\end{enumerate}
+\end{example}
+
+行為ロールは\ko{astav}の木に固定位置を持たない．プレイヤー$B$の位置に寄生するものであり，分類としては\ko{liflom}（ロール）の下位，すなわちプレイヤーが\ko{astav}であるロールタイプとして置く．これは\ko{nato}側で個別ロールとロールタイプが分かれたのと平行な扱いである．
+
+\paragraph{判定テスト}（辞書作業用）
+\begin{enumerate}
+    \item 「知らずに／意図せずに$x$することは可能か」――可能なら$x$はロール性がある．
+    \item 「$x$を実現する動きに共通の運動学的核があるか」――無いほどロール性が高い．
+\end{enumerate}
+
+\begin{remark}[2種類の分解]
+役割の分解理論（decisions/0003）との関係では，分解には\emph{因果的分解}（起動トークン上の$\mathrm{ja}_{\mathrm{src}}$を\ko{luis}で結果トークンへ結び，結果側へ$\mathrm{ja}_{\mathrm{res}}$を投影するもの；\ko{kistoi}系）と\emph{構成的分解}（counts-as，行為ロール）の2種類があると整理できる．「$n$ \ko{ja} 計算 \ko{kino} 指」のような文は，因果ではなく構成の連鎖で読むべきである．
+\end{remark}
+
+\begin{araidashi}
+    \item 行為ロールタイプのクラスは未造語である（D3）．
+    \item 「待つ・計算する・約束する・買う／売る」が現行木に置き場が無かったのは，クラスが足りなかったからではなく，ロール機構が無かったためだと診断している．この診断が正しいかは，実際に辞書へ登録してみないと確認できない．
+    \item 停電・沈黙・断食のような負のイベントは未処理であり，形式意味論側の「負の状況概念」の係争と同件である（D6）．
+\end{araidashi}
+
+\end{document}

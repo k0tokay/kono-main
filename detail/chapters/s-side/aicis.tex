@@ -1,0 +1,239 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+% \chapter{個別従属物の分類 -- aicis以降}
+\chapter{量・性質モジュール} % あと多分chapterにならない．
+\subsection{一次分類}
+本章では，量や性質の記述に関するモジュールをまとめる．DOLCEのqualityとqauleの区別\citep{borgo2022dolce}，および，YAMATOの量と性質の区別\citep{mizoguchi2012}に従い次のように分類する．
+\todo{DOLCE，YAMATO（およびBFO）との対応表を書く．\ko{latent}がBFOのgenerically dependent continuantに当たるかどうかもそこで確認する．}
+\begin{figure}[H]
+  \centering
+  \begin{forest}
+    dir tree
+    [(root), draw=none
+    [\tn{toika}{具体物}, name=toika
+        [\tn{aicis}{個別従属物}
+            [\tn{canon}{トロープ}, name=canon]
+            [\tn{haikant}{特徴}]
+            [(個別のロール)]
+            [(個別の傾向)]
+        ]
+        [$\cdots$]
+    ]
+        [\tn{loka}{抽象物}
+            [\tn{latent}{量}, name=latent
+                [\tn{lekostent}{定値量}, name=lekostent]
+                [\tn{nosnant}{形容量}, name=nosnant]
+            ]
+            [$\cdots$]
+        ]
+    ]
+    % いま見るとこれ射影と逆向きだ 引き下げの定義どっちになってるんだっけ
+    % あとでグラフ表記の図を書くからこれいらないかも
+    \draw[<-, >=Stealth, dashed] (canon) to[out=0,in=0]node[fill=white]{{\small nila}} (latent);
+    \draw[<-, >=Stealth, dashed] (canon) to[out=150,in=60]node[fill=white]{{\small noccea}} (toika);
+    \draw[->, >=Stealth, dashed] (nosnant) to[out=0,in=0]node[fill=white]{{\small lofna}} (canon);
+    \draw[<-, >=Stealth, dashed] (toika) to[out=-45,in=135]node[fill=white]{{\small ansa}} (latent);
+    \draw[<-, >=Stealth, dashed] (toika) to[out=-45,in=135]node[fill=white]{{\small locka}} (nosnant);
+    \draw[<-, >=Stealth, dashed] (nosnant) to[out=270,in=270]node[fill=white]{{\small locto}} (latent);
+    \end{forest}
+    \caption{量・性質モジュールの分類木．}
+\end{figure}
+\begin{itemize}
+    \item \emph{\kotr{canon}{トロープ}}：対象に内在する個別の質を表す．担い手と値への原始射影を持つ開ハブである（上位分類の章）．関係としての\ko{noccea}は担い手から\ko{canon}へ（\ko{toika}$\times$\ko{canon}），\ko{nila}は値から\ko{canon}へ（\ko{latent}$\times$\ko{canon}）向き，「\ko{canon}から担い手・値への射影」はそれぞれの逆関係による関数的射影を指す（2026-09-03．辞書v5の引数順もこの向きに改めた）．担い手関係は\ko{canon}に限らない：一般担い手関係$\mathrm{bear}\subseteq$\ko{toika}$\times$\ko{aicis}を立て，\ko{noccea}はその\ko{canon}への制限$\mathrm{bear}\cap(\ko{toika}\times\ko{canon})$である．傾向トークン・個別ロールの担い手もこの関係で与え，持続物の章の定義クラス（\ko{kaeno}・\ko{kinano}）はこれを用いて書く（2026-09-05採択，暫定．$\mathrm{bear}$は未造語）．量種は値の型から導出し，方向・部位等の依存の基部を要する語義では外側の関係として付加する．例えば，担い手が小町，値が160cm（長さ量）であるトロープは「小町の身長は160cmである」を表す．
+    \begin{itemize}
+        \item \emph{担い手}：\ko{toika}であり，\ko{nato}に限らず，継続時間や最大音量を持つ\ko{astav}も含む．
+        \item \emph{依存の基部}：高さと幅を分ける方向，痛みの部位など．全長/体長 のように「どこの長さを問うているのか」という基準差を表す．
+        \suppl{高さはYAMATOではロールとして扱うがここではそれよりも一般的な枠組みに統合する}
+        これに関しては特別に語彙を立てない．
+    \end{itemize}
+    コノメノでは，モード説（値が変われば別トロープ）を採用し，DOLCE流（同じトロープが時間とともに異なる値を取る）を採用しないということに注意．
+    作品タイプの語数や指定テンポは\ko{kika}の未造語の記述関係として扱い，\ko{canon}を立てない（暫定．表現章の未決一覧の同件と揃えた，2026-09-03）．
+    \item \emph{\kotr{latent}{量}}：質の取りうる値や程度(明言化されない場合を含む)．
+    YAMATOの定量的量・定性的量に対応して次のように分類する：
+    \begin{itemize}
+        \item \emph{定値量}：単位付き数値，ラベル名等の値で指定される量．
+        値記述は\ko{lekostent}では区別されない．18 cm と 0.18 m は同じ定値量である．測定が生成した数値・単位・誤差の記録は量ではなく情報対象として扱う．
+        \todo{これはYAMATOで表現$+$性質モジュールで議論されてた気がする．忘れた}
+        \item \emph{形容量}：値のみでなく個別の質に依存する量．評価者や目的に依存する量を含む．
+    \end{itemize}
+\end{itemize}
+
+性質の記述で頻出する関係を\ref{fig:qq-graph}にまとめる．\ko{ansa}は\sentence{この鉛筆の全長は18cmである}といった量-担い手の関係を表す．\ko{nosnant}は\ko{canon}を担い手に持つと定める．\sentence{$\langle\text{鉛筆}, 18\text{cm}, \text{全長}\rangle$は長い} (自然な文にすると\sentence{この鉛筆の全長は18cmであることは長い})を一次的な表現とし，\sentence{この鉛筆は長い}は二次的な表現とする．\ko{ansa}$\subseteq$\ko{latent}$\times$\ko{toika}は量と担い手の一般関係で，\ko{nila}と\ko{noccea}から誘導される．\ko{lofna}$\subseteq$\ko{nosnant}$\times$\ko{canon}は形容量が\ko{canon}の値を含む査定領域を選ぶ関係であり，\ko{ansa}の部分関係では\emph{ない}（第2項が\ko{canon}とその担い手で異なり，意味も「値の一致」と「領域への所属」で異なる）．正しい構成は並列である：\ko{ansa}＝\ko{nila}$\circ$\ko{noccea}，\ko{locka}＝\ko{lofna}$\circ$\ko{noccea}，\ko{locto}＝\ko{nila}$\circ$\ko{lofna}．\ko{nila}の第1項は\ko{lekostent}に限らず\ko{latent}全体とし，形容量が値として現れる場合は高階\ko{canon}の程度値を表す（「とても長い」）．辞書v5の\ko{ansa}・\ko{nila}の第1引数は\ko{lekostent}になっていたが，本章に合わせて\ko{latent}へ改めた（2026-09-03．旧稿の「\ko{lofna}は\ko{ansa}のドメイン制限」は撤回）．
+
+程度副詞は\ko{locto}で書ける（\kotr{mofloa locto stoona}{この長さ程度はとても長い}．口語文法章「性質と比較」）．
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[
+      rel/.style={font=\small, text=red!65!black},
+      ind/.style={font=\small, text=blue!65!black},
+      dc/.style={-{Implies}, double, double distance=2pt, shorten >=10pt, shorten <=4pt}
+    ]
+    \node (nos)   at ( 0, 3.2)   {\ko{nosnant}};
+    \node (canon) at ( 0, 0.4)   {\ko{canon}};
+    \node (toika) at (-3.2,-1.1) {\ko{toika}};
+    \node (latent) at ( 3.2,-1.1) {\ko{latent}};
+    % canonを介する二項関係
+    \draw (nos)   -- node[rel, fill=white](lofna){\ko{lofna}}  (canon);
+    \draw (toika) -- node[rel, fill=white](noccea){\ko{noccea}} (canon);
+    \draw (latent) -- node[rel, fill=white](nila){\ko{nila}}   (canon);
+    % 引き下げ対応で誘導される二項関係
+    \draw (toika) -- node[ind, above left=1pt](locka){\ko{locka}} (nos);
+    \draw (nos)   -- node[ind, above right=1pt](locto){\ko{locto}} (latent);
+    \draw (toika) -- node[ind, below=2pt](ansa){\ko{ansa}}  (latent);
+    % 引き下げ対応
+    \draw[dc] ($(toika)!0.5!(nos)$)   -- (canon);
+    \draw[dc] ($(nos)!0.5!(latent)$)   -- (canon);
+    \draw[dc] ($(toika)!0.5!(latent)$) -- (canon);
+  \end{tikzpicture}
+  \caption{質と量の関係グラフ．$\Rightarrow$は引き下げ対応：外周の各関係（\ko{locka}，\ko{locto}，\ko{ansa}）は\ko{canon}を介する2つの関係から誘導される．}
+  \label{fig:qq-graph}
+\end{figure}
+
+\subsection{下位分類}
+\begin{figure}[H]
+    \centering
+    \begin{forest}
+        dir tree
+        [\tn{lekostent}{定値量}, name=lekostent
+            [カテゴリー値
+              [血液型]
+              [$\cdots$]
+            ]
+            [実数値
+              [程度軸, draw=none, edge={dashed}
+                [空]
+                [満杯]
+                [$\cdots$]
+              ]
+              [次元軸, draw=none, edge={dashed}
+                [\tn{stoit}{長さ}]
+                [\tn{solmak}{質量}]
+                [$\cdots$]
+              ]
+            ]
+            [高次元値
+                [\tn{kaci}{色空間}]
+                [\tn{eeni}{音空間}]
+                [\tn{luzca}{味空間}]
+                [\tn{hvlumi}{匂い空間}]
+                [$\cdots$]
+            ]
+        ]
+    \end{forest}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{forest}
+        dir tree
+        [\tn{nosnant}{形容量}
+          [汎用程度量 [mofloa・niina]]
+          [一次元査定量 % フィールド：次元評価（lekostent類を1つ参照）
+          [stoona・kadoa・温度4語・kakta $\cdots$]]
+          [多次元査定量 % フィールド：集約規則（全称・存在・加重——Sassoon）
+          [klazna・mumina・walsa・haluna $\cdots$]]
+        ]
+    \end{forest}
+\end{figure}
+
+形容量の下位分類は\emph{構造軸}（何を査定するか）だけを木に出す．汎用程度量は次元評価を持たない程度（\ko{mofloa}「とても」，\ko{niina}「普通な」）．一次元査定量は\ko{lekostent}の次元類を1つ参照して査定する．多次元査定量は複数次元の集約規則を持つ．
+極性（超過／不足／中間／端点近傍）と\emph{基準タイプ}（何に相対化するか：種／測定規格／経験者反応／期待・分布／目的・能力／規範）は構造軸と独立に交差するので，木に出さない．これらは分類に用いる素性軸であり，辞書語彙の形式フィールドにはしない（2026-08-29，2026-09-03確認）．基準タイプが種のときに限り査定は\ko{canon}と百科事典的公理で閉じ，それ以外は「$X$として」等の追加引数を要する．辞書では2026-08-29に旧\ko{nosnant}配下52語をこの分類へ再配置し，各語の次元評価・極性・基準を\texttt{contents}に記録した（\relpath{2026-08-29/nosnant-reclassification.md}）．
+
+\todo{
+\begin{enumerate}
+    \item 言語上のラフな判定テストとしての「$X$がある」，「この鉛筆が18cmであることは長い」構文．
+    \item 小さい象/大きい蟻の話．
+    \item 副詞の話．nilofと再帰の話．
+\end{enumerate}
+}
+
+\subsection{評価語と傾向}
+
+美しい，良い，無駄ななどの評価語と，「楽しい」の評価読みは，評価者・目的・観点に依存するが，
+形容量から外さず，多次元査定量として基準タイプ（規範・目的・能力・経験者反応）を持たせる（暫定）．
+\paragraph{「$X$として」} 「$X$として」は単一の関係を表さない（2026-09-07採択，暫定．codex検討）．少なくとも五つの働きを区別する：(1) \emph{査定基準}の指定（定規として短くても鉛筆として長い），(2) \emph{個別ロール}の資格での行為参与（教師であっても，その発言を教師の資格でしたとは限らない．\ko{liflom}のロールタイプ，\ko{aicis}の個別ロール，$\mathrm{bear}$，行為への接続），(3) 使用行為の\emph{用途}（石をハンマーとして使っても設計されたハンマーにはならない．使用行為の参与関係と意図内容），(4) 既定の\emph{見做し}辺を経た対象選択（本の内容と冊子），(5) 記述・判断の\emph{内容への埋め込み}（Aが記録と認めてもBが認めるとは限らない．内容対象方式）．各用法は既存の二項関係と必要な引き下げで表し，共通する原始的な「として」関係は設けない．評価者相対性も一種類ではない：「Aの基準では美しい」は(1)，「Aは美しいと思う」は(5)である．
+査定基準は依存の基部と区別する．依存の基部は全長・幅など何を測るかを指定し，査定基準はその質をどの規格・比較対象・目的・評価に照らして判定するかを指定する．基準の省略は文脈または語彙仕様から補える場合に限り，対象の種所属だけから基準の一意性は導かれない（同じ対象が鉛筆でも定規でもありうる）．基準$b$を指定した査定は，$b$の下で定義された形容量$a_b$（メタ記法．新しい項形成関数ではない）と\ko{canon}の\ko{lofna}関係で表す：
+\[
+\mathrm{noccea}(x,q)\land\mathrm{nila}(v,q)\land\mathrm{lofna}(a_b,q),\qquad
+\mathrm{lofna}(a_b,q)\iff q\text{が指定次元・依存の基部に適合し，}q\text{の値が}b\text{の定める査定領域に属する}.
+\]
+同じ$q$について基準を取り替えても物理的な値$v$は変わらない．語彙仕様は基準の名称だけでなく，適用する量次元と判定条件を与えなければならない．「ハンマーとして使う」は使用行為$e$を立て，$x$がその打撃用途の参与者であることを述べる（用途は行為の意図内容・参与関係から定義する語義で，$x$の人工物性・機能傾向・打撃の成功は含意しない）．「教師として発言する」は個別ロール$r$について$\mathrm{bear}(x,r)$に加え，発言$e$が$r$の資格に基づくことを要する（ロール成立文脈と行為への接続は未定義なので条件付き）．
+\ko{bisnae}「不安にさせるような」や\ko{jakina}「疲れさせるような」は領域ではなく傾向（BFOのdisposition）を表す．
+傾向タイプは\ko{loka}，その個別例は\ko{aicis}に属する．\ko{-nae}は基底となる\ko{anemin}状態
+タイプから傾向タイプと担い手述語を作る派生であり，結果が一度生じただけでは傾向を含意しない
+\citep{roehl-jansen2011}．
+
+多義は真理条件が分かれる場合に限り語義を分ける．例えば「楽しい」は経験者状態（\ko{anemin}），
+楽しさを生じさせる傾向，刺激への評価を分け，「うるさい」は音量の形容量，煩わしさを生じさせる傾向，
+規範的な評価を分ける．\ko{joluna}「濡れている」は湿り領域の形容量読みと，その領域に留まる
+状態（\ko{konstav}）読みを分ける．
+
+\section{特徴}
+
+\ko{haikant}は，穴，模様，膨らみのように，担い手に依存して個別化される特徴を表す．
+単に値空間上の位置を持つだけなら\ko{canon}を使う．旧分類の\ko{fenant}系は時空間モジュールへ
+移したため，場所や環境を表す語を\ko{haikant}へ一律に入れない．空，地面，天井，夜景などの
+現行配置は，担い手と同一性基準を個別に再検討する．
+
+\iffalse
+案：
+
+haikant 空間的従属物（改）
+├─ 〈形状特徴〉         宿主の形に内属．宿主が変形すれば従動する
+│   ├─ 〈正特徴〉       膨らみ danto，角 dadais，稜線 klomilis，
+│   │                   ドレープ kokoloft，歪み khentole，ミルククラウン postoliita
+│   ├─ 〈負特徴〉       穴 ekno，凹み sebin，空洞 halekno，分断 selekno，ヒビ pilin
+│   │                   ※ Casati–Varzi の hole 理論がそのまま使える（宿主の補空間に住む依存者）
+│   └─ 〈表面パタン〉   模様 lolokac（インスタンス側．タイプ側は kika へ）
+├─ 〈境界面ロール〉     参照構造の鉛直に相対的な面ロール：天井 stanok，床/地面 saida，（壁）
+├─ 〈相対領域〉         宿主に相対的な fiat 領域：内側 mija，外側 sawa（litam 系の対応物）
+├─ 〈投影特徴〉         視点・光源に依存：輪郭，影 khinolis，ハイライト lapkoin，
+│                       逆光 altalis，反射光 lawain，スポットライト lehaap
+└─ 〈景観・見え〉       視点からの領域の見え：夜景 honokwi，星空 selenem，晴天 aswam
+
+\fi
+
+個別のロールも\ko{aicis}に属する．ロールタイプは\ko{loka}下の\ko{liflom}，特定の担い手が
+ある文脈で担うロールは個別従属物である．担い手との対応は一般担い手関係$\mathrm{bear}$（前節）で与える．ロールを成立させる文脈の型は未造語である．
+
+\begin{devbox}
+\textbf{未決事項}　値空間，換算関係，評価，傾向，個別のロールの概念クラスは未造語である．
+なお，実数値の次元類は2026-08-29に一括造語し辞書登録済みである：
+\ko{solmak}質量・\ko{hoomi}温度・\ko{skolit}速さ・\ko{kement}硬さ・\ko{khalot}広がり・
+\ko{glumet}深さ・\ko{paksut}厚み・\ko{gustot}濃度・\ko{jalkot}輝度・\ko{igat}年齢・
+\ko{wolgat}湿り・\ko{kulmit}角度・\ko{kalhet}粗さ・\ko{dalgat}変動・\ko{hajont}分散・
+\ko{ostit}鋭さ（既存：\ko{stoit}長さ），高次元値に\ko{eeni}音空間（既存：\ko{kaci}・\ko{luzca}・\ko{hvlumi}）．
+スラブ・テュルク・ウラル系の借用を音韻制約と音列印象に合わせて改造した（語源は各語の辞書contentsに記録，経緯は\relpath{detail/discussion/discussion001/2026-08-29/dimension-coinage.md}）．
+\ko{kika}の記述関係，\ko{haikant}の下位分類，各語義の暗黙引数（基準・規約）は，865語の再分類で検証する．
+辞書で行き先の類が未造語のため\ko{nosnant}直下に暫定配置のまま残る語：\ko{luzantoja}・\ko{hvlumja}（\ko{ansa}の存在言明で書けるか要検証），\ko{johena}・\ko{klafena}（傾向），\ko{kena}・\ko{khina}（参照時への前後関係），\ko{kliina}・\ko{nosta}・\ko{najamoi}（高階記述）．
+また\ko{setayno}（力／耐性／効果）と\ko{kiswa}（個数）は次元類が未造語である．
+\end{devbox}
+
+\iffalse
+メモ
+
+気になったこと
+
+順序対による個体化は引き下げの特殊例だと思っている．
+V \subseteq {<a,b,c>| a\in A, b\in B, c\in C}
+π1(v) = a を K1(v,a)と書く．2,3も同様．
+とすると，二項関係R(a,b)が∃v\in V, K1(v,a) ∧ K2(v,b)で誘導される．R'(b,c)やR''(a,c)も同様に誘導される．
+...まあこれを見るとcanonが一次なのは確かにそうだね．
+
+C3
+・mofloa書き換え式の型破綻とは？今の文法で書くと，a\in nosnantで，stoona, mofloa \subseteq nosnant, stoit \in lekostentで，
+    (1) [a stoona] \Leftrightarrow [a mofloa], {a lofna canon^∃ nila lekostent^L ∃L}^∀ stoit
+        訳：aが"長い" \Leftrightarrow aが"程度超過"かつ「量x(18cmなど)はaである」というxは全て長さ次元にある
+・高階無限増殖はむしろ仕様なのでは？(「とても」が「とても」を修飾して良い)
+・>_rとθ_rを使った書き方はmofloaの定義に使えるかも？
+
+C4
+時制が必要なときだけ(汎用的な？)引き下げを使うのが言語全体でのやり方．常に時制をとるような関係は最初から引き下げを使う．
+18cm nila q はある時点で18cmだったことを言っていて，時刻をつけるなら，18cm coi nila+nov cal q aki t
+
+C10
+「vは**機会として**良い」みたいなことはどっちが書きやすい？あるいはどっちもダメ？
+\fi
+
+\end{document}

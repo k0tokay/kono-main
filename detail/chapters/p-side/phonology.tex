@@ -1,0 +1,348 @@
+\documentclass[../../main-detail.tex]{subfiles}
+\begin{document}
+\chapter{音韻と造語}
+\section{本章の対象}
+本章は，現行の音韻・語形体系と，語形の印象に関する理論，制作・改訂の方法，観察をまとめる．音韻の規則は使用時の形を定め，造語の目標はその体系を使い，必要なら改訂するための方向を与える．現行の規則すべてを同じ審美的な原理から導くことは要求しない．以後，他章でいう「音韻章」は本章の現行体系を指す．
+
+\section{現行の音韻・語形体系}
+音素目録，配列と発音，アクセント，活用，複合時の音形を扱う．未確定の一般化はその箇所に記し，後半の制作案とは区別する．
+\paragraph{凡例}（ラテン文字で書いた）綴り字を$\langle \bullet\rangle$，音声を$[\bullet]$と書く．音素の表記$/\!\bullet\!/$は使用しない($\langle \bullet\rangle$と同じ)ことにする．
+% LLM向けメモ：textipaとunicodeの対応
+% W → ɯ
+% C → ɕ
+% \c{c} → ç
+% 2 → ʌ
+% 9 → ɘ
+% O → ɔ
+% \t{tC} → t͡ɕ
+% \t{d\textctz} → d͡ʑ
+% R → ɾ
+% X → χ
+% P → ʔ
+\subsection{音素目録}
+音素目録は以下の表の通り．セル内の文字は綴り字であり（$\langle\bullet\rangle$は省略する），1つのセルは2つに分かれている．子音の場合は無声・有声，母音の場合は非円唇・円唇をそれぞれ表している．\_ は同じセル内のもう片方が空白であることを表している．
+\begin{table}[H]
+  \caption{子音の一覧}
+    \centering
+    \begin{tabular}{ccccccc}
+      \toprule
+      & 唇音 & 歯茎音 & 後部歯茎音 & 硬口蓋音 & 軟口蓋音 & 声門音\\
+      \midrule
+      摩擦音 & f\ (b) & s\ z & c\ zc & & kh\ \_ & h\ \_\\
+      破擦音 & & ts\ \_ & tc\ \_\\
+      破裂音 & p\ b & t\ d & & & k\ g &\\
+      鼻音 & m & n & & & & ng\\
+      流音 & & l\\
+      接近音 & w & & & j\\
+      \bottomrule
+    \end{tabular}
+\end{table}
+\begin{table}[H]
+  \caption{母音の一覧}
+    \centering
+    \begin{tabular}{cccc}
+      \toprule
+      & 前舌 & 中舌 & 後舌\\
+      \midrule
+      狭 & i\ y & & u\ v\\
+      半狭\\
+      & e\ \_ & & \_\ o\\
+      半広\\
+      広 & & a & \\
+      \bottomrule
+    \end{tabular}
+\end{table}
+\begin{remark}\hfill
+    \begin{itemize}
+        \item 
+    いくつかの音素は実現される範囲が広い．
+    \begin{itemize}
+        \item 流音は\lt{l}のみであり，\textipa{[R]}$\sim$\textipa{[l]}をカバーする．いわゆる``\lt{r}と\lt{l}''の区別はない．
+        \item \lt{u}は\textipa{[9]}$\sim$\textipa{[W]}をカバーする．通常の「ウ」よりも非円唇で曖昧母音に近い役割を果たす．
+        \item \lt{v}は子音\textipa{[v]}\emph{ではなく}，母音\textipa{[u]}であることに注意．
+        \item \lt{c}は\textipa{[C]}$\sim$\textipa{[S]}，\lt{tc}は\textipa{[\t{tC}]}$\sim$\textipa{[\t{tS}]}をカバーする．
+        \item \lt{kh}は\textipa{[\c{c}]}$\sim$\textipa{[x]}$\sim$\textipa{[X]}をカバーする．
+    \end{itemize}
+    \item 口蓋化：$\text{s}^\rho = \text{c}$，$\text{z}^\rho = \text{zc}$，$\text{ts}^\rho = \text{tc}$，$\text{t}^\rho = \text{tc}$，$\text{d}^\rho = \text{zc}$，$\text{ts}^\rho = \text{tc}$，$\text{h}^\rho = \text{kh}$として，接辞の付加などで左辺の綴り字が発生した際には，右辺に変換することで解決する：$x\in\{\text{s}, \text{z}, \text{t}, \text{d}, \text{ts}, \text{h}\}$，$v\in \{\text{i}, \text{y}, \text{u}, \text{v}\}$について，\lt{$x$j} $\mapsto$ \lt{$x^\rho$}，\lt{$xv$} $\mapsto$ \lt{$x^\rho v$}．これに加えて，\lt{ji} $\mapsto$ \lt{i}と変換する．（\lt{$x$w}は\emph{変換しない}）
+    \end{itemize}
+\end{remark}
+\subsection{綴り字と発音の乖離}
+
+\begin{remark}
+    綴りとの乖離は，作者が実際に読んだときに自然に出てくる発音から反映されている．
+\end{remark}
+\paragraph{母音}
+\begin{enumerate}
+    \item 
+母音字の連続（\lt{ae}など）は必ずしもその母音の並びでそのまま発音されない．
+\begin{enumerate}
+    \item そのまま発音するパターン：\lt{ai}=\textipa{[ai]}，\lt{ay}=\textipa{[ay]}，\lt{au}=\textipa{[a9]}，\lt{oi}=\textipa{[oi]}，\lt{ou}=\textipa{[o9]}．\lt{ei} = \textipa{[ei]}，\lt{ey} = \textipa{[ey]}，\lt{ui} = \textipa{[Wi]}，\lt{uy} = \textipa{[Wy]}．
+    \item 融合して長母音になるパターン：\lt{ae}=\lt{ea}=\textipa{[\ae:]}，\lt{oe}=\textipa{[\oe:]}，\lt{oy}=\textipa{[\o:]}．
+    \item \lt{v}に引っ張られるパターン：\lt{av}=\textipa{[o:]}，\lt{ov}=\textipa{[o:]}．
+\end{enumerate}
+\memo{中間的な母音をたくさん追加しているが実際にこのように細かく発音されているとは限らない．もっと大雑把にするかもしれない．}
+\item 
+単母音で書かれていても実際には伸ばして発音されることがある．Fに伴う長音化は\ref{phonology-lengthening}節で定める．その他の長音化の条件は未確定である．
+\end{enumerate}
+\paragraph{子音}
+\begin{enumerate}
+    \item 語末の（単独の）破裂音は\textipa{[P]}で発音される．
+    \item 語末の鼻音と破裂音の連続（\lt{nt}など）は，鼻音も脱落し\textipa{[P]}で発音される（要検討）．
+    \item 3つの子音字が連続するとき，中央の子音が脱落する場合がある（おそらく英語と同様）．
+\end{enumerate}
+
+\subsection{音節構造}
+以下の記法を固定する．
+\begin{enumerate}[label=(\arabic*)]
+    \item 子音の集合を$C$，母音の集合を$V$と表す．
+    \item 調音法ごとの子音の集合をそれぞれ，摩擦音$S$，破擦音$Q$，破裂音$T$，鼻音$N$，流音$L$，接近音$J$と表す．$C = S\cup Q\cup T\cup N\cup L\cup J$である．
+    % \item 音素は小文字のラテン文字を用いて$x,c,v$のように表す．
+    % \item 音素列は太字で$\bm{x},\bm{c},\bm{v}$のように表す．
+\end{enumerate}
+
+音節$\sigma$は次の3つの部分からなる．
+\begin{itemize}
+    \item \textbf{オンセット}(onset) $\omega\;\; (0\leq |\omega| \leq 2)$：音節頭の子音列．
+    \item \textbf{(音節)核}(nucleus) $\nu\;\; (1\leq |\nu| \leq 2)$：音節の中心をなす母音列．
+    \item \textbf{コーダ}(coda) $\kappa\;\; (0\leq |\kappa| \leq 2)$：音節末の子音列．
+\end{itemize}
+すなわち，音節$\sigma = \omega\nu\kappa$である．
+
+
+\subsection{音韻制約}
+\subsubsection{二重子音・母音の制約}\label{vpsi}
+\paragraph{$\omega$の制約}
+$|\omega| = 2$のとき，以下の表にある組み合わせのみ許容される．
+\begin{table}[H]
+  \centering
+  \caption{$\omega$の制約}
+  \begin{tabular}{cccccccc}
+    \toprule
+    $\omega_0$＼$\omega_1$ & $S$ & $Q$ & $T$ & $N$ & $L$ & $J$\\
+    \midrule
+    $S$ & & ○ & ○ & ○ & ○ & ○\\
+    $Q$ & & & & & & & \\
+    $T$ & & & & & ○ & ○\\
+    $N$ & & & & & ○ & ○\\
+    $L$ & & & & & & ○\\
+    $J$ & & & & & & &\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\paragraph{$\nu$の制約}
+$|\nu|=2$のとき，$\nu$は以下の表にある組み合わせのみ許容される．
+\begin{table}[H]
+  \caption{$\nu$の制約}
+  \centering
+  \begin{tabular}{cccccccc}
+    \toprule
+    $\nu_1$＼$\nu_2$ & a & o & e & i & y & u & v\\
+    \midrule
+    a & ○ & & ○ & ○ & ○ & ○ & ○\\
+    o & ○ & ○ & ○ & ○ & ○ & ○ & ○\\
+    e & ○ & & ○ & ○ & ○ & &\\
+    i & & & & ○& & & \\
+    y & & & & & ○ & & \\
+    u & & & & ○ & ○ & ○ & \\
+    v & & & & & & & ○\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\paragraph{$\kappa$の制約}
+$|\kappa|=2$のとき，$\kappa$は以下の表にある組み合わせのみ許容される．
+\begin{table}[H]
+  \centering
+  \caption{$\kappa$の制約}
+  \begin{tabular}{cccccccc}
+    \toprule
+    $\kappa_0$＼$\kappa_1$ & $S$ & $Q$ & $T$ & $N$ & $L$ & $J$\\
+    \midrule
+    $S$ & & & ○ & & &\\
+    $Q$ & & & & & &\\
+    $T$ & & & ○ & & &\\
+    $N$ & ○ & & ○& & &\\
+    $L$ & & & ○ & ○ & &\\
+    $J$ & & & & & & &\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+% @issue KONO-0010
+\todo{
+    実際の使用頻度を載せるといいのでは？
+}
+\subsubsection{その他の制約1}
+\begin{itemize}
+  \item 2文字で表記される子音と被る綴りは使用されない．つまり，ts,tc,zc,khが現れるときはすべて1つの子音を指し，2つの子音の連続を指すものではない．
+  \item 単語内の(同一音節とは限らない)子音列の長さは3以下である．
+\end{itemize}
+\subsubsection{その他の制約2}
+語彙の統計情報から新しい音素配列の制約を発見したら追記していく．
+\begin{itemize}
+  \item 語末に音素列$\bm{x}\in (S\cup J)V$があれば，$x_2\in\{\text{a},\text{e}\}$
+\end{itemize}
+\subsection{音節化}
+% @issue KONO-0011
+\todo{意味的・形態的境界が最大オンセット原則に優先する条件を検討する}
+多音節語において音素列を音節に分割する際，原則として\textbf{最大オンセット原則}(Maximal Onset Principle, MOP)を採用する．
+これは，音韻制約を満たす範囲で，できるだけ多くの子音をオンセットに割り当てるという原則である．
+
+例えば，\textit{likka}を音節化するとき，音節間の子音列\textit{kk}はオンセットとして許容されないが，\textit{k}は許容される．MOPにより後半の\textit{k}を後続音節のオンセットに，前半の\textit{k}を先行音節のコーダに割り当てるため，\textit{lik.ka}と分割される．同様に，\textit{plappe}, \textit{telissa}はそれぞれ\textit{plap.pe}, \textit{te.lis.sa}と分割される．
+
+一般に，子音列$c_1 c_2 \cdots c_k$が音節の間にあるとき，$c_j c_{j+1}\cdots c_k$がオンセットとして許容され，残りがコーダとして許容される最小の$j$を見つけ，$c_1\cdots c_{j-1}$を先行音節のコーダに，$c_j\cdots c_k$を後続音節のオンセットに割り当てる．例えば，\textit{kwilwa}では\textit{lw}がオンセットとして許容されるため，\textit{kwi.lwa}と分割される．
+
+ただし，話者が語中に意味的または形態的な境界を感じる場合は，その境界がMOPに優先することがある．この境界は必ずしも明確な形態素境界でなくてもよく，語ごとにある程度曖昧でありうる．例えば，\textit{nazloft}と\textit{suiskant}では，それぞれ\textit{zl}と\textit{sk}がオンセットとして許容されるにもかかわらず，意味的なまとまりを保って\textit{naz.loft}, \textit{suis.kant}と分割される．
+
+\textbf{[暫定観察]} 刺激語の転写にも，\textit{fas.kan.ka}，\textit{mas.nan.ta}，\textit{pan.lan.ca}のようにMOPより狭いオンセットを選ぶ例がある．これらを意味的境界による分割とは断定しない．アクセント規則の検証には転写された音節境界を用いるが，語中のオンセット制約を一律に狭めるかは未確定である．
+
+なお，語境界をまたぐ再音節化は起こらない．
+
+\subsection{音節の軽重}
+\textbf{[暫定規則：2026-09-11]} アクセント位置を選ぶための\emph{重さ}と，音節内で下降を実現するための\emph{長さ}を区別する．例えば\textit{bleca}の\textit{ble}は二重オンセットによって重いが，Fを担うときは\textit{blee.ca}と母音を伸ばす．二重オンセットがあるだけでは，音節内の下降に必要な長さは満たされない．
+
+\begin{definition}[位置選択用の重さ]
+長音化・重子音化を加える前の音節$\sigma=\omega\nu\kappa$に対して，
+\[
+ W(\sigma)=q(\nu)+\mathbf{1}_{|\omega|=2}+\mathbf{1}_{|\kappa|>0},
+ \qquad
+ q(\nu)=\begin{cases}1&\text{短母音}\\2&\text{長母音・二重母音}\end{cases}
+\]
+とする．$\mathbf{1}_P$は条件$P$が真なら1，偽なら0である．$W=1$を\textbf{軽音節}，$W\geq2$を\textbf{重音節}と呼ぶ．
+\end{definition}
+したがって，V・CVは軽く，VV・CVC・CCVは重い．CVCCもCVCと同じく$W=2$とする．以下の位置規則は重いか否かだけを用い，重音節どうしの大小は比較しない．
+
+\begin{remark}
+この$W$をモーラ数とは呼ばない．「CCVはタラ，CVCCはタク」のようなリズムの捉え方を重さに反映しているが，カタカナの拍数をそのまま発音時間や音調の担い手に対応させるものではない．コーダの第2子音を加算するか否かも，以下の位置規則からは判別できない．
+\end{remark}
+
+\paragraph{モーラと下降の実現}
+モーラ($\mu$)を用いて長さを表す際は，短母音核を1$\mu$，長母音・二重母音核を2$\mu$とする．オンセットはこのモーラ数に含めない．Fの実現では，長母音・二重母音，または短母音に後続する共鳴子音コーダ（鼻音・流音・接近音）を，下降を担えるライムとして扱う．短母音と阻害音コーダだけでは不足するため，後述の長音化を適用する．鼻音コーダを含む\textit{ken}はそのままFを担えるが，\textit{glef}は\textit{gleef}となる．
+\memo{コーダ全体へのモーラの割当ては未確定である．鼻音以外の共鳴子音への一般化，阻害音コーダの時間的な寄与，超重音節を独立に設ける必要性は，位置選択用の$W$とは別に検証する．}
+
+\memo{実情としてはCVNとCVVNは区別がはっきりしてないのも．CVVNは禁止でもいい．LはCVVLで長音化する．あとJVとJVVも区別がはっきりしてないからJVV禁止．}
+
+\subsection{アクセント}
+コノメノは高低アクセントを持つ．音節の高さをH（高）とL（低），音節内の下降をF，上昇をRと書く．以下では単純語の単独読みを対象とし，音節位置を語頭から$\sigma_1,\ldots,\sigma_n$と数える．
+
+\paragraph{型と位置}
+\textbf{[暫定規則：2026-09-11]} 語のアクセントを，音節内で下降する\textbf{F型}，音節間で下降する\textbf{H$\to$L型}，\textbf{下降なし型}に分ける．型は語ごとに指定し，綴りの重さだけからは決めない．例えば\textit{pafanpa}にはLFLとHLLの両方の判断があり，同じ分節音列から型を一意に導く規則は立てない．
+
+\begin{definition}[F型の既定位置]
+F型と指定された語では，次の順にFの位置を決める．
+\begin{enumerate}
+    \item 語ごとに位置の指定があれば，それを用いる．
+    \item 単音節語では，その音節に置く．
+    \item 多音節語では，語末を除いて左から最初の重音節に置く．そこに重音節がなければ，後ろから2番目の音節に置く．
+\end{enumerate}
+\end{definition}
+例えば\textit{la.fla.sa}では第2音節が重いためそこを選ぶ．\textit{ka.na.plof}では語末の\textit{plof}を候補から外し，後ろから2番目の\textit{na}を選ぶ．同じ規則により，\textit{fa.ca.pa.blo}では第3音節の\textit{pa}を選ぶ．語頭2音節に限る規則ではない．位置選択後の長音化により，それぞれ\textit{la.flaa.sa}，\textit{ka.naa.plof}，\textit{fa.ca.paa.blo}となる．
+
+\begin{definition}[F型の音調]
+Fが$\sigma_k$にあるとき，既定の音調は次の通りとする．
+\begin{itemize}
+    \item $k=1$なら，Fの後は語末までL．
+    \item $k>1$なら，語頭をL，その後Fの直前までをHとし，Fの後は語末までL．
+\end{itemize}
+\end{definition}
+これにより，第2音節のFはLFL，第3音節のFはLHFLのようになる．例えば\textit{napanka}はLFL，\textit{facapablo}はLHFLである．語ごとの音調指定はこの既定形に優先する．
+
+\paragraph{H$\to$L型と下降なし型}
+H$\to$L型の既定形は，語頭Hとそれ以降のLからなるHL$\cdots$Lとする．下降位置や語頭の高さに指定があればそれを優先し，\textit{koylosaki}のHHLL，\textit{capastom}のLHLなどを認める．F型の重さ規則はこの型には適用しない．下降なし型は\textit{waka}のHH，\textit{kotoko}のHHH，\textit{noskono}のLHHのように，語ごとに高さを指定する．
+\begin{remark}
+この区別は，FとH$\to$Lが発音上まったく無関係だという主張ではない．型の選択と位置の選択を分けるための規則である．新しい語では，まず型を選び，F型なら既定位置を試す．既存語の型・位置を一律にこの既定値へ変更しない．
+\end{remark}
+
+\paragraph{ライムの延長}\label{phonology-lengthening}
+\textbf{[検討中：2026-09-11]} 母音の長音化と重子音化を，音節のライムを延長する2つの実現としてまとめる．例えば\textit{la.sa}に対して，母音を伸ばせば\textit{laa.sa}，後続子音を先行音節のコーダにも担わせれば\textit{las.sa}となる．どちらも\textit{la}のライムを延長するが，実測時間が等しいことや，同じ語で自由に交替することまでは意味しない．延長の起こる位置と，母音・子音のどちらで実現するかを分けて考える．音調も延長とは別に指定され，H・Lの音節にも延長が起こる．
+
+\paragraph{Fに伴う母音長音化}
+\textbf{[暫定規則：2026-09-11]} Fの位置を選んだ後，その音節のライムが長母音・二重母音も共鳴子音コーダも持たなければ，短母音を長音化する．二重オンセットや阻害音コーダは，この長音化を免除しない．例えば\textit{bleca}は\textit{blee.ca}（FL），\textit{glefcana}は\textit{gleef.ca.na}（FLL），\textit{femala}は\textit{fe.maa.la}（LFL）となる．\textit{kenfa}は鼻音コーダを持つため，\textit{ken.fa}（FL）のままでよい．この長音化から位置選択へ戻って計算し直すことはしない．綴りにある長母音は入力として保ち，この規則によって短縮しない．
+
+\begin{remark}
+母音長音化と重子音化は，Fの実現については完全に交換可能ではない．\textit{la.sa}を\textit{las.sa}としても，阻害音コーダではFを担う共鳴部分が不足する．一方，\textit{glo.ma}を\textit{glom.ma}とすれば，鼻音コーダによってFの許可条件を満たしうる．重子音化を選ぶ条件と，Fを許可する条件は区別する．
+\end{remark}
+
+\paragraph{非F音節の延長}
+\textbf{[暫定観察]} 重子音化は，後ろから2番目の\textbf{次末音節}に集中する．例えば\textit{kee.la.sa}は\textit{kee.las.sa}（FLL），\textit{pa.na.ma.la.sa}は\textit{pa.na.ma.las.sa}（HLLLL）となる．後者は下降直後の音節ではないため，下降後という位置だけでは説明できない．刺激資料の子音追加18箇所のうち，17箇所が次末音節にある（重複する語の判断を含む）．残る1箇所は\textit{glom.ma.las.sa}（FLLL）の語頭である．
+
+短母音核・コーダなし・非Fという条件を満たす次末音節では，語末音節の構造に応じて延長の方法が分かれる．延長前の形で比較すると，次の分布になる．
+\begin{table}[H]
+  \centering
+  \caption{非Fの次末音節の延長（箇所数，重複判断を含む）}
+  \begin{tabular}{lrrr}
+    \toprule
+    語末音節の構造 & 母音長音化 & 重子音化 & 延長なし\\
+    \midrule
+    単純なCV & 0 & 17 & 78\\
+    CCオンセットを持つ & 5 & 0 & 3\\
+    その他の長核・コーダを持つ音節 & 4 & 0 & 23\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\textbf{[検討中]} 次末音節を延長するとき，軽い語末の前では重子音化を，重い語末の前では母音長音化を選ぶ，という一般化を立てる．例えば\textit{kee.la.sa}は\textit{kee.las.sa}となる一方，\textit{fa.ca.glot}は\textit{fa.caa.glot}（HLL）となる．ただし，これは延長の生じた26箇所での方法の分岐であり，延長自体の生起条件ではない．同じ対象条件を満たす104箇所では延長がない．
+
+この次末音節の一般化で，非Fの母音長音化を尽くすことはできない．\textit{tom.maa.fa.ca}（FLLL）ではF直後，\textit{naa.blan.na}（LFL）ではF直前の非次末音節が伸びる．\textit{la.saaf.nom}（HLL）のように，すでにコーダを持つ音節の母音も伸びる．また，\textit{na.ma.kee}（LHH）のような語末長音化もある．語末の伸びを発話末の効果とする分析は，句中形との比較まで保留する．
+% @issue KONO-0009
+\todo{延長するか否かの条件を決める．次末音節における母音長音化と重子音化の選択，次末以外の延長，語末の伸びを，句中形と単独読みで比較する．}
+
+\paragraph{適用範囲と残る反例}
+\textbf{[暫定観察]} 手起こし刺激資料では，F型の既定位置は119件中112件，型内の音調規則は119件すべてに一致する．いずれもF型であることと転写の音節境界を与えた比較であり，綴りからアクセント全体を予測する精度ではない．位置規則の反例は，\textit{pacataka}の第2音節，\textit{kefaca}・\textit{kenama}・\textit{mekana}の語頭，\textit{facatoo}・\textit{malakee}・\textit{tanakeep}の語末であり，当面はこれらを個別指定する．語末Fもこの指定によって認める．
+
+\memo{\textit{kwilwa}（FR）は長短の転写がなく，この規則が予測する\textit{kwii.lwa}を未確認である．重子音化した\textit{glomalasa}の\textit{glom.ma.las.sa}（FLLL）は表面上では鼻音コーダを持つが，語頭で重子音化を選ぶ条件が未定のため，現段階では全体を規則的には生成できない．}
+
+\paragraph{句末と複合語}
+\textbf{[保留]} 語末Rは句末の境界上昇として扱う候補とする．\textit{non}が単独ではR，句中ではHとなる観察はあるが，句中・平叙文末・疑問文末の対照は不足している．また，\textit{pakatot}のHLHのように，下降後に語末がHへ戻る刺激転写もある．したがって「下降後は常にL」とはせず，上の音調規則は既定形とする．語末Hの回復をRと同じ境界効果で説明できるかは未確定である．
+
+複合語のアクセント合成は別に定める必要がある．\textit{oibandali}（HLLR）では前方の下降が残る一方，\textit{meliikansav}（HLLF）では後方にも下降が現れる．F型の位置規則を複合語全体へ自動適用しない．
+
+\subsection{活用}
+% @issue KONO-0041
+\todo{これは5-2から移植したもの．改訂されるまではこれで行く．}
+\begin{definition}関数$f:A\rightarrow B$，$g:C\rightarrow D$に対して，$f\vlr g:A\cup C \rightarrow B\cup D$を$f\vlr g = f\cup g|_{C\backslash A}$と定義する．つまり$(f\vlr g)(x) = \text{if }x\in \text{dom}f \text{ then }f(x) \text{ else }g(x)$である．
+\end{definition}
+\begin{proposition}
+$(f\vlr g)\vlr h = f\vlr(g\vlr h)$が成り立つ．($\vlr$は結合的である．)
+\end{proposition}
+\begin{definition}関数$f:A\times B\rightarrow C$に対して，$f^\trans(x,y)=f(y,x)$と定義する．
+\end{definition}
+\subsubsection{母音結合}
+\begin{definition}
+$(x,y)\in V^2$が\ref{vphi}節で定義された制約を満たすとき，$\Phi(x,y)=xy$とする．また，$(x,y)\in\{\text{i},\text{y},\text{u},\text{v}\}^2$に対して，
+\[\mu(x,y)=\begin{cases}
+  \text{i} & (x,yがどちらも円唇音でない)\\
+  \text{y} & (\text{otherwise})\\
+\end{cases}\]
+とする．
+\end{definition}
+\begin{definition}母音列$\bm{x},\bm{y}$に対して，$\bm{x}+\bm{y}$を以下で(下から2つ目の場合は再帰的に)定義する．(以下の太字の$\bm{x},\bm{y}$は長さが2以上であるとする．)また，一般の音素列に対して，$\bm{x}+\bm{y}$は$x$の最後の母音列と$y$の最初の母音列に対して$+$を行いそれ以外を変えない操作とする．
+\[\begin{cases}
+\varepsilon + \varepsilon = \text{a}\\
+\varepsilon + y = y\\
+x + \varepsilon = x\\
+x + y = (\Phi \vlr \Phi^\trans \vlr \mu)(x,y)\\
+x + \bm{y} = x\text{j}y_1\\
+\bm{x}y + z = \bm{x} + (y + z)\\
+\bm{x} + \bm{y} = x_1\text{j}\bm{y}\\
+\end{cases}\]
+\end{definition}
+\subsubsection{子音結合}
+あまり使われないが，母音結合に似た操作として子音結合も定義できる．(音節を跨ぐときの子音の配列に関する制約は厳しくないため，大きな変形は必要にならない．)
+\begin{definition}
+  $(x,y)\in C^2$が\ref{vpsi}，\ref{vpsi2}節で定義された制約を満たすとき，$\Psi_1(x,y)=xy$，$\Psi_2(x,y)=xy$とし，$\Psi = \Psi_1\vlr \Psi_2 = \Psi_2\vlr \Psi_1$とおく．%すると，$\text{dom}(\Psi\vlr \Psi^\trans) = C^2\backslash (C\times Q \cup Q \times C)$となる．
+  また，$x\in Q$に対して，$\nu(x)=\text{if }x=\text{ts}\text{ then }\text{s}\text{ else }\text{c}$とする．
+\end{definition}
+\begin{definition}
+子音列$\bm{x},\bm{y}$に対して，$\bm{x}\oplus \bm{y}$を以下で(一番下の場合は再帰的に)定義する．また，一般の音素列に対して，$\bm{x}\oplus\bm{y}$は$x$の最後の子音列と$y$の最初の子音列に対して$\oplus$を行いそれ以外を変えない操作とする．
+\[\begin{cases}
+\varepsilon \oplus \varepsilon = \text{n}\\
+\varepsilon \oplus y = y\\
+x \oplus \varepsilon = x\\
+x \oplus y = ((\nu \vlr \text{id})(x))((\nu \vlr \text{id})(y))\\
+x \oplus \bm{y} = x\text{a}\bm{y}\\
+\bm{x}y \oplus \bm{z} = \bm{x} \oplus (y \oplus \bm{z})\\
+\end{cases}\]
+\end{definition}
+
+\subsection{複合時の音形}
+\textbf{[暫定観察]} \ko{mili}，\ko{toli}など\lt{i}で終わる語から複合を作ると，\texttt{miljoa-}，\texttt{toljona-}のような形が現れ，2音節目を伸ばしたくなるという従来の記録がある（\lt{a}，\lt{o}についても同様との記録）．\lt{joa}が挿入されるという記述だったが，形の対応だけから同一の挿入操作とは確定できない．後続成分，活用の母音結合との関係，適用条件は未整理である．複合による命名の選択は後半の「制作と改訂の方法」で扱う．
+
+\end{document}
