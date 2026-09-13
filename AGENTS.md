@@ -4,7 +4,7 @@
 
 ## 最初に読む
 
-コノメノの理論を調査・変更するときは，まず `workflow/workflow.tex` を読み，次に対象箇所とその依存箇所を読む．各サブプロジェクトの `AGENTS.md` や `CLAUDE.md` は作業上の補足であり，以下の権威構造を上書きしない．
+コノメノの理論を調査・変更するときは，まず `workflow/workflow.tex`（美意識・権威・文体・心構え）を読み，次に対象箇所とその依存箇所を読む．作業手順はハーネス `.claude/`（スキル・サブエージェント・フック）にあり，地図は `.claude/README.md` にある．各サブプロジェクトの `AGENTS.md` や `CLAUDE.md` は作業上の補足であり，以下の権威構造を上書きしない．
 
 ## ディレクトリ構成
 
@@ -21,7 +21,8 @@ introduction/           『コノメノ入門』（停滞中）
 story/                  小説・メタフィクション理論
 kono-dictionary-editor/ 辞書エディタ（React + Vite，GitHub Pages へデプロイ）
 kono-phonology/       音韻分析ツール
-workflow/               開発ワークフロー（workflow.tex）と文体マニュアル（style-manual/）
+workflow/               判断基準（workflow.tex：美意識・権威・文体・心構え）と文体マニュアル（style-manual/）
+.claude/                ハーネス（skills/ agents/ scripts/ settings.json）．作業手順の正．地図は README.md
 bib/                    参考文献（references.bib のみ git 管理，PDF は管理外）
 local/                  日記，旧gitの履歴，一時物など非公開物（git管理外）
 archive/                旧 ref/ などの過去資料（git管理外）
@@ -58,11 +59,16 @@ archive/                旧 ref/ などの過去資料（git管理外）
 - 新しい形式的装置（評価インデックス，タプル，高階化など）を導入する案は，先に上位分類の章「設計規範」への適合を検査する．二項関係＋引き下げ＋既存装置（フレーム・体系D・語義レコード）で書けないことを示せない限り採らない．
 - 調査・レビューだけを依頼された場合は勝手に採択しない．理論の制作・改訂を依頼された場合は，必要な検討を行ったうえで権威ある本文を更新する．
 
-## 文体とレビュー
+## ハーネス（作業手順）
 
-文章編集では `workflow/workflow.tex` の「文体について」と「読者質問パス」を適用する．改訂経緯や旧記法への言及は日付ログに置き，本文には現行の定義・規則と理解に必要な説明だけを残す．
+手順は `.claude/` のスキルとして起動する．文章編集では `workflow/workflow.tex` の「文体について」と `/reader-questions` を適用する．改訂経緯や旧記法への言及は日付ログに置き，本文には現行の定義・規則と理解に必要な説明だけを残す．
 
-レビューとコメント反映では `workflow/workflow.tex` の「AI用タスク：精読検証パス」に従う．
+- 精読レビュー：`/precision-review <章>`，コメント反映：`/review-respond <対象名>`
+- マーカー掃討：`/marker-sweep <章>`，制作：`/production <経路> <対象>`，移植：`/practice-port`
+- 造語：`/coinage`，codex への反論依頼：`/codex-consult`，区切りのコミット：`/checkpoint`
+- 分担：`investigator`（調査），`verifier`（検算・ビルド・辞書照合），`coiner`（造語）．起動と統合は主担当の一セッションが行う．
+
+フックが `archive/` と辞書JSONへの直接書き込みを拒否し，本文編集後に文体の機械検査を返し，`git commit` の前にビルドスタンプを要求する．
 
 ## コノメノの構造
 
