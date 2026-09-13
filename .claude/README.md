@@ -2,6 +2,13 @@
 
 `workflow/workflow.tex` に散文で書いていた開発ワークフローを，Claude Code のハーネス（スキル・サブエージェント・フック）へ移したもの．**手順の正はここ**，理論の正は『詳説』本文，美意識と心構えは `workflow/workflow.tex` に残す．
 
+構成は三つのピースからなる（スキルファースト駆動開発の型）．
+1. **業務スキル**：個別タスクの手順．標準形式「入力／禁止事項／手順／チェックリスト」にそろえる．守られにくい禁止事項は該当手順の直前に再掲する．
+2. **品質ガード**：`scripts/quality-gate.sh`．人間レビューの前に機械判定で合否を返す．コミットはこれを通らないとフックが拒否する．
+3. **自己進化スキル**：`/retro`（Keep/Problem/Try）→ `/improve-skill`（スキル差分に変換，機械化できるものはフックへ）→ `/eval-skill`（過去タスクでドライラン，再現性・改善度・副作用）．記録は `retro/` と `dryrun/` に残す．
+
+二度以上起こる作業は，依頼を実行する前にスキルを書く．依頼の定型：「〜のスキルを作って．要件は質問して詰めて．スキル自体は再現性をドライランで評価して．」
+
 ## 地図（workflow.tex の節 → 部品）
 
 | 旧節 | 部品 | 種類 |
@@ -12,7 +19,8 @@
 | 反問プロンプト | `/counter-question` | スキル |
 | 精読検証パス 1〜4 | `/precision-review`（別文脈なら `precision-reviewer` エージェント） | スキル／エージェント |
 | 精読検証パス 5〜7 | `/review-respond` | スキル |
-| AIの分担と作業の区切り | `investigator`，`verifier`，`coiner` エージェント；`/checkpoint`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
+| AIの分担と作業の区切り | `investigator`，`verifier`，`coiner` エージェント；`/checkpoint`＋`scripts/quality-gate.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
+| 制作→ワークフロー（手順の改良） | `/retro`，`/improve-skill`，`/eval-skill`；`retro/`，`dryrun/` | スキル／記録 |
 | フィードバック経路付きの制作 | `/production` | スキル |
 | memo／todo掃討 | `/marker-sweep` | スキル |
 | 実践編の制作・移植 | `/practice-port` | スキル |
@@ -30,7 +38,10 @@
 - `/practice-port <旧稿範囲> <移植先>`：旧稿から実践編へ移植する．
 - `/coinage <概念…>`：造語を Fable に依頼する．
 - `/codex-consult <主題> <問い>`：codex へ一往復投げる．
-- `/checkpoint [要旨]`：差分確認→ビルド→コミット．
+- `/checkpoint [要旨]`：差分確認→品質ガード→コミット．
+- `/retro <スキル> <主題>`：Keep/Problem/Try を `retro/` に残す．
+- `/improve-skill <スキル>`：未反映の Try/FAIL をスキル差分にして適用する．
+- `/eval-skill <スキル|--all>`：過去タスクでドライラン評価し `dryrun/` に残す．
 
 ## サブエージェント（`agents/`）
 
@@ -51,11 +62,12 @@
 | PreToolUse (Edit/Write/Bash) | `scripts/guard-paths.py` | `archive/` と辞書JSONへの直接書き込みを拒否．`git commit` の前に `precommit-check.py` を走らせる |
 | PostToolUse (Edit/Write) | `scripts/tex-lint.py` | `detail/` の .tex に対し，araidashi・環境の対応・ラベルと表の増加・日付なし「暫定」・残った aitodo/aimemo を報告 |
 
-`precommit-check.py` は，`detail/` の .tex がステージされていればビルドスタンプ（`local/build-artifacts/detail-build.ok`，`scripts/build.sh` が書く）を要求し，複数領域の混在と gitignore 対象の混入を警告する．検査はコマンド実行前のステージ状態を見るので，`git add` と `git commit` は別のコマンドに分ける（同じ行に書くと未ステージのまま検査される）．
+`precommit-check.py` は，品質ガードのスタンプ（`local/build-artifacts/quality-gate.ok`，`scripts/quality-gate.sh` が書く）がステージ済みファイルより新しいことを要求し，複数領域の混在と gitignore 対象の混入を警告する．検査はコマンド実行前のステージ状態を見るので，`git add` と `git commit` は別のコマンドに分ける（同じ行に書くと未ステージのまま検査される）．
 
 ## スクリプト（`scripts/`）
 
-- `build.sh [章.tex]`：全体ビルド（＋章単独）．成功でスタンプを書く．
+- `quality-gate.sh [--full]`：変更領域に応じて，本文ビルド＋文体lint＋issues同期＋スクリプトのテスト，辞書 validate＋テスト，音韻テスト，ハーネス自身（settings.json，スクリプト構文，スキルの標準形式）を検査し，合格でスタンプを書く．
+- `build.sh [--full] [章.tex]`：全体ビルド（＋章単独）．`--full` は bibtex 込み．
 - `consult.sh <codex|fable|opus|sonnet> <名前> <prompt.md>`：外部モデルへ read-only で一往復．プロンプトと応答を今日の日付ログへ保存．環境変数 `KONO_CODEX_MODEL`（既定 gpt-5.6-sol），`KONO_CODEX_EFFORT`（high），`KONO_FABLE_EFFORT`（medium）．
 - `newlog.sh`：今日の日付ログディレクトリを作る．
 
