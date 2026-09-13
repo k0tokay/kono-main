@@ -39,6 +39,8 @@ def main():
     if tool == "Bash":
         cmd = ti.get("command", "") or ""
         if re.search(r"(^|[;&|(]\s*)git\s+commit\b", cmd, re.M):
+            if re.search(r"(^|[;&|(]\s*)git\s+add\b", cmd, re.M):
+                deny("[guard] git add と git commit を同じコマンドに書かない．検査はコマンド実行前のステージ状態を見るので，先に git add を別コマンドで実行してから git commit する．")
             r = subprocess.run([sys.executable, os.path.join(ROOT, ".claude/scripts/precommit-check.py")],
                                capture_output=True, text=True)
             if r.returncode != 0:
