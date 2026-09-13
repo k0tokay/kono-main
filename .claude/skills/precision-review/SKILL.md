@@ -9,6 +9,7 @@ allowed-tools: Read, Grep, Glob, Write, Bash(python3 *), Bash(npm run *), Bash(g
 - $0：対象の章ファイルまたは範囲（例 `detail/chapters/s-side/endurants.tex`）．
 - $1 以降：照合する過去レビュー・提案書・裁定ログ（複数可，任意）．
 - 権威は `detail/main-detail.tex` から読まれる有効本文だけ．`\iffalse` 内や過去ログの記述は，有効本文の問題と区別する．
+- アンカー（`AGENTS.md` の表）：対象の作業種別のアンカーを先に読み，レビュー冒頭に「アンカーに照らした」と書く．借用概念は原典（`bib/`）に当たる．
 - 文体は `write-concise-japanese` に従う．
 
 今日: !`date +%F` ／ ログ置き場: !`bash ${CLAUDE_PROJECT_DIR}/.claude/scripts/newlog.sh` ／ 基準コミット: !`git -C ${CLAUDE_PROJECT_DIR} rev-parse --short HEAD`
@@ -38,7 +39,7 @@ allowed-tools: Read, Grep, Glob, Write, Bash(python3 *), Bash(npm run *), Bash(g
 報告：レビューのパス，項目数（分類別），評価点，作者の裁定が要る項目（根の変更・趣味判断）を短く．
 
 ## チェックリスト
-- [ ] 冒頭に有効行範囲・基準コミット・検証範囲・未読範囲がある．
+- [ ] 冒頭に有効行範囲・基準コミット・検証範囲・未読範囲・アンカーと原典の照合状況がある．
 - [ ] 各項目に番号・`ファイル:行`・疑問・根拠・修正案・対応状態・優先度がある．
 - [ ] 「問題があるという判断自体の検証」の節がある．
 - [ ] 軽微な機械的問題が一項目に束ねられている．

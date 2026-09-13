@@ -68,14 +68,29 @@ archive/                旧 ref/ などの過去資料（git管理外）
 - 造語：`/coinage`，codex への反論依頼：`/codex-consult`，区切りのコミット：`/checkpoint`
 - 分担：`investigator`（調査），`verifier`（検算・ビルド・辞書照合），`coiner`（造語）．起動と統合は主担当の一セッションが行う．
 
-フックが `archive/` と辞書JSONへの直接書き込みを拒否し，本文編集後に文体の機械検査を返し，`git commit` の前に品質ガード（`.claude/scripts/quality-gate.sh`）の通過を要求する．
+フックが `archive/` と辞書JSONへの直接書き込みを拒否し，本文編集後に文体の機械検査を返し，`git commit` の前に形式検査（`.claude/scripts/formal-check.sh`）の通過を要求する．
+
+### アンカー
+
+作業種別ごとに，最初に読む一つを固定する．依存箇所を読む前にこれを読み，レビューや制作の冒頭で「アンカーに照らした」と書く．
+
+| 作業 | アンカー |
+|---|---|
+| オントロジー（上位分類・持続物・生起物・辞書の分類） | `detail/chapters/s-side/upper-classification.tex` の「構築方法論」（設計規範・分類作法・検証方法・記述規則） |
+| 形式意味論・体系D・冠詞 | `detail/chapters/s-side/formal-semantics.tex` の「引き下げ対応と超内包性」 |
+| 形式文法・体系P/S | `detail/chapters/s-side/formal-grammar.tex` の冒頭定義 |
+| 音韻・造語・文字 | `detail/chapters/p-side/phonology.tex` の現行規則と `kono-phonology/konophon` |
+| 実践編・例文 | `sketch/main-sketch.tex`（作者未レビュー）と `detail/chapters/practice/practice-foundations.tex` |
+| 借用した概念（OntoClean，YAMATO，DOLCE，BFO，メレオロジー，内包意味論） | `bib/references.bib` の原典（PDF は `bib/` 配下，git 管理外） |
+
+借用概念について本文の主張を検証するときは，本文の言い換えではなく原典に当たる．原典を読まなかった場合はその旨を成果物に書く．
 
 ### スキルファースト
 
 - 二度以上起こりうる作業は，依頼を実行する前にスキル（`.claude/skills/<名前>/SKILL.md`）として書く．今回限りの指示ではなく，次回も使える能力として書き出す．スキルは「入力／禁止事項／手順／チェックリスト」の形にそろえる．
-- 新しいスキルや大きく変えたスキルは，本番に使う前に過去の類似タスクで `/eval-skill` のドライラン評価（再現性・改善度・副作用）を通す．
-- タスクを終えたら `/retro` で Keep/Problem/Try を残し，Try は `/improve-skill` でスキルの差分として返す．手順の改良を口頭の合意や日付ログだけで終えない．
-- 依頼の定型：「〜のスキルを作って．要件は質問して詰めて．スキル自体は再現性をドライランで評価して．」
+- タスクを終えたら `/retro` で Keep/Problem/Try を残し，Try は `/improve-skill` でスキルの差分として返す（これは旧ワークフローの経路「制作→ワークフロー」と同じもの）．手順の改良を口頭の合意や日付ログだけで終えない．
+- 新しいスキルや大きく変えたスキルは `/eval-skill` で過去の記録と読み合わせる．実行評価（`--run`）は高価で，判断が本体の作業には向かないので常設にしない．
+- 手順の差分は作者が見る．スキルは制度そのものなので自動反映しない．
 
 ## コノメノの構造
 

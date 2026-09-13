@@ -1,6 +1,6 @@
 ---
 name: retro
-description: タスク終了時の振り返り．使ったスキルの手順に対して Keep/Problem/Try を書き，Try をスキル改良の候補にする．「振り返って」「レトロ」「今回の反省を残して」で使う．
+description: タスク終了時の振り返り（フィードバック経路「制作→ワークフロー」）．使ったスキルの手順に対して Keep/Problem/Try を書き，Try をスキル改良の候補にする．/production と同じループで，戻し先が本文ではなく手順であるだけ．「振り返って」「レトロ」「今回の反省を残して」で使う．
 argument-hint: <使ったスキル名> <主題>
 allowed-tools: Read, Grep, Glob, Write, Bash(git log*), Bash(git diff*), Bash(ls *)
 ---

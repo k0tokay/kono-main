@@ -1,12 +1,13 @@
 ---
 name: production
-description: フィードバック経路付きの理論制作．経路（実践→理論／造語→オントロジー／理論制作→構築方法論／制作→ワークフロー）に位置づけて依頼を組み立て，制作物と反例・更新を成果物にする．「制作して」「翻訳で検証して」「辞書に移植して」で使う．
-argument-hint: <経路: practice|coinage|methodology|workflow> <対象> [成果物の置き場: body|log]
+description: フィードバック経路付きの理論制作．経路（実践→理論／造語→オントロジー／理論制作→構築方法論）に位置づけて依頼を組み立て，制作物と反例・更新を成果物にする．手順そのものへの戻し（制作→ワークフロー）は /retro が同じループを担う．「制作して」「翻訳で検証して」「辞書に移植して」で使う．
+argument-hint: <経路: practice|coinage|methodology> <対象> [成果物の置き場: body|log]
 allowed-tools: Read, Grep, Glob, Edit, Write, Bash(python3 *), Bash(npm run *), Bash(git *), Bash(.claude/scripts/*), Agent
 ---
 
 ## 入力
-- $0：経路．`practice`（実践→理論），`coinage`（造語→オントロジー），`methodology`（理論制作→構築方法論），`workflow`（制作→ワークフロー）．
+- $0：経路．`practice`（実践→理論），`coinage`（造語→オントロジー），`methodology`（理論制作→構築方法論）．手順への戻し（制作→ワークフロー）は同じループの第4の経路で，`/retro` → `/improve-skill` が担う．
+- アンカー：経路に応じて最初に読むもの．`coinage`／`methodology` は上位分類の章「構築方法論」「設計規範」，`practice` は『素描』と実践編基礎．借用した概念（OntoClean，YAMATO，BFO，メレオロジー）は `bib/references.bib` の原典に当たる．
 - $1：対象（章，翻訳したい文章，移植する概念群など）．
 - $2：成果物の置き場．`body`（本文差分）か `log`（日付ログの提案書）．根の変更は必ず `log`．
 - 裁定が要る点の報告形式（既定：結果と反対理由を短く）．

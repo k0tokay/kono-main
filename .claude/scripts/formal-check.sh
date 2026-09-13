@@ -1,10 +1,11 @@
 #!/bin/bash
-# 品質ガード：人間レビューの前に機械判定で合否を返す．コミット前に通す（precommit-check.py が要求）．
-# 使い方: .claude/scripts/quality-gate.sh [--full]      --full は build.sh --full（bibtex 込み）
-# 判定対象は「HEAD との差分がある領域」だけ．全部通れば local/build-artifacts/quality-gate.ok を書く．
+# 形式検査：機械で判定できるものだけを検査する（ビルド・lint・辞書validate・テスト・ハーネス構文）．
+# 理論の質は判定しない．コミット前に通す（precommit-check.py が要求）．
+# 使い方: .claude/scripts/formal-check.sh [--full]      --full は build.sh --full（bibtex 込み）
+# 判定対象は「HEAD との差分がある領域」だけ．全部通れば local/build-artifacts/formal-check.ok を書く．
 ROOT="${CLAUDE_PROJECT_DIR:-$(cd "$(dirname "$0")/../.." && pwd)}"
 cd "$ROOT" || exit 1
-STAMPDIR="local/build-artifacts"; mkdir -p "$STAMPDIR"; STAMP="$STAMPDIR/quality-gate.ok"; rm -f "$STAMP"
+STAMPDIR="local/build-artifacts"; mkdir -p "$STAMPDIR"; STAMP="$STAMPDIR/formal-check.ok"; rm -f "$STAMP"
 FULL=""; [ "${1:-}" = "--full" ] && FULL="--full"
 CHANGED=$( { git diff --name-only HEAD; git diff --name-only --cached; git ls-files --others --exclude-standard; } | sort -u )
 FAIL=0; RESULTS=()
@@ -65,7 +66,7 @@ fi
 echo "----"
 if [ $FAIL -eq 0 ]; then
   echo "$(date '+%F %T') $(git rev-parse --short HEAD) $(printf '%s; ' "${RESULTS[@]}")" > "$STAMP"
-  echo "[gate] 合格．スタンプ: $STAMP"; exit 0
+  echo "[check] 合格．スタンプ: $STAMP"; exit 0
 else
-  echo "[gate] 不合格．失敗した項目を直してから再実行する．"; exit 1
+  echo "[check] 不合格．失敗した項目を直してから再実行する．"; exit 1
 fi
