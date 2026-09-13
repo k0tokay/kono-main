@@ -16958,7 +16958,8 @@
       ],
       "lower_covers": [
         740,
-        50
+        50,
+        1088
       ],
       "arguments": [],
       "tags": [],
@@ -25684,6 +25685,33 @@
       "arguments": [],
       "tags": [],
       "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1088,
+      "entry": "cotel",
+      "translations": [
+        "人（生物学的な人）",
+        "ホモ・サピエンス"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        739
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "T3"
+      ],
+      "contents": [
+        {
+          "title": "詳説に基づく語義（2026-09-14）",
+          "text": "生物学的な人（ホモ・サピエンス）。全世界で cotel ⊆ halov。広義の人 coto（人格・社会的地位による）とは交差する（生物学的にはヒトだが人格を認めない対象は cotel だが coto でない）。語形は cot-＋el（分類の音列）。出典：detail/chapters/s-side/endurants.tex，造語 2026-09-14。"
+        }
+      ],
       "variations": [],
       "relations": [],
       "is_function": false
