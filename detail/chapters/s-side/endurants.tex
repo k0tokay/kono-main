@@ -6,11 +6,13 @@
   \centering
   \begin{forest}
     dir tree
-    [\tn{nato}{持続物}
-      [\tn{takto}{基底個体}]
-      [\tn{klant}{集合体}]
-      [\tn{matonakt}{材料量}]
+    [\tn{nato}{持続物}, name=nato
+      [\tn{takto}{基底個体}, name=takto]
+      [\tn{klant}{集合体}, name=klant]
+      [\tn{matonakt}{材料量}, name=matonakt]
     ]
+    \treerel{nato}{klant}{hanem}
+    \treeloop{matonakt}{hanov}
   \end{forest}
   \caption{natoの骨格木（2026-09-03）}
 \end{figure}
