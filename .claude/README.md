@@ -15,8 +15,9 @@
 |---|---|---|
 | 文体について | `skills/write-concise-japanese`（→ `workflow/style-manual/…_v5` へのシンボリックリンク）＋ `scripts/tex-lint.py` | スキル＋PostToolUse フック |
 | 権威ある本文 | `scripts/session-context.sh`，`scripts/guard-paths.py` | SessionStart／PreToolUse フック |
-| 読者質問パス | `/reader-questions` | スキル |
+| 読者質問パス | `/reader-questions`；上流の通読所感は `/read-through` | スキル |
 | 反問プロンプト | `/counter-question` | スキル |
+| 通読所感（上流） | `/read-through` | スキル |
 | 精読検証パス 1〜4 | `/precision-review`（別文脈なら `precision-reviewer` エージェント） | スキル／エージェント |
 | 精読検証パス 5〜7 | `/review-respond` | スキル |
 | AIの分担と作業の区切り | `investigator`，`verifier`，`coiner` エージェント；`/checkpoint`＋`scripts/formal-check.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
@@ -29,6 +30,7 @@
 
 ## スキル（`/名前` で起動）
 
+- `/read-through <章|all>`：本文だけを読者として通読し，疑問と違和感を散文で書く（番号・状態なし）．精読より上流．
 - `/precision-review <章>`：精読レビューを日付ログに作る．本文は変えない．
 - `/review-respond <対象名>`：作者コメントに応答し，本文と依存先を直し，レビュー状態を更新する．
 - `/marker-sweep <章> [--dry-run]`：memo/todo/ques/fixme を棚卸しして裁く．
