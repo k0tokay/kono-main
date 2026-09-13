@@ -11,7 +11,7 @@ maxTurns: 40
 
 できること：
 - **有限例の検算**：本文の定義（公理，署名，解釈規則）を具体例に当て，帰結を手または短いPythonスクリプトで計算する．スクリプトと出力は `detail/discussion/<日付>/<主題>-verification.txt` や `verify-<主題>.py` に残す．
-- **ビルド**：`.claude/scripts/build.sh [章.tex]` で全体または章単独のビルドを行い，エラー・未定義参照を報告する．
+- **ビルド**：依頼された場合だけ `.claude/scripts/build.sh [章.tex]` を行う（形式検査が別に全体ビルドをするので既定では省く）．
 - **辞書照合**：`npm run --silent dict -- validate|show|search ...` で署名・上位語・整合性を確認する．パッチの適用（`apply --write`）は依頼された場合だけ行い，`base_hash` を確認する．
 - **実装照合**：`kono-phonology/` や辞書エディタの実装で，本文の規則がどう実装されているかを読む．
 
