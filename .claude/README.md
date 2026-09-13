@@ -69,6 +69,7 @@
 - `quality-gate.sh [--full]`：変更領域に応じて，本文ビルド＋文体lint＋issues同期＋スクリプトのテスト，辞書 validate＋テスト，音韻テスト，ハーネス自身（settings.json，スクリプト構文，スキルの標準形式）を検査し，合格でスタンプを書く．
 - `build.sh [--full] [章.tex]`：全体ビルド（＋章単独）．`--full` は bibtex 込み．
 - `consult.sh <codex|fable|opus|sonnet> <名前> <prompt.md>`：外部モデルへ read-only で一往復．プロンプトと応答を今日の日付ログへ保存．環境変数 `KONO_CODEX_MODEL`（既定 gpt-5.6-sol），`KONO_CODEX_EFFORT`（high），`KONO_FABLE_EFFORT`（medium）．
+- `active-lines.py <file.tex> [--inactive]`：`\iffalse`／`\if0` を除いた有効行範囲を出す．精読レビューの冒頭に使う．
 - `newlog.sh`：今日の日付ログディレクトリを作る．
 
 ## 注意
