@@ -1,25 +1,25 @@
 \documentclass[../../main-detail.tex]{subfiles}
 \begin{document}
 \chapter{持続物の分類 -- nato以降}
-\ko{nato}の骨格木は，設計規範（上位分類の章「構築方法論」：骨格木は構成木，素性は定義クラス）に従い，射影署名またはコンストラクタの異なる三つの構成場合だけからなる（2026-09-03改訂）．
+\section{一次分類}
 \begin{figure}[H]
   \centering
   \begin{forest}
     dir tree
     [\tn{nato}{持続物}, name=nato
-      [\tn{takto}{基底個体}, name=takto]
-      [\tn{klant}{集合体}, name=klant]
-      [\tn{matonakt}{材料量}, name=matonakt]
+        [\tn{noflem}{統合体}, name=noflem
+            [\tn{takto}{基底個体}, name=takto]
+            [\tn{klant}{集合体}, name=klant]
+        ]
+        [\tn{matonakt}{材料量}, name=matonakt]
     ]
     \treerel{nato}{klant}{hanem}
     \treeloop{matonakt}{hanov}
+    \treerel[via=right]{matonakt}{noflem}{manov}
   \end{forest}
-  \caption{natoの骨格木（2026-09-03）}
+  \caption{\kotr{nato}{持続物}の一次分類}
 \end{figure}
-\[
-  \ko{nato} ::= \ko{takto} \mid \ko{klant} \mid \ko{matonakt},\qquad \ko{noflem} := \ko{takto}\cup\ko{klant}
-\]
-\ko{noflem}（統合体）は関係署名に用いる略記であり，骨格の節点ではない．
+\memo{どういう基準で分類したのかを書く}
 \begin{itemize}
   \item \ko{takto}（基底個体）：他の持続物からの構成射影を持たない基底場合．個体化基準は各下位種（語義概念）が語彙仕様の\emph{同一性プロファイル}として供給する（「骨格外の分類」節）．人・机・石・山・心臓．
   \item \ko{klant}（集合体）：構成員射影\ko{hanem}：\ko{nato}$\times$\ko{klant}を持つ開ハブ．森・紙束・群れ．
@@ -28,7 +28,7 @@
 \end{itemize}
 \ko{kaeno}／\ko{kinano}，\ko{kines}，\ko{halov}，\ko{halonant}などの分類は骨格外に置き，定義クラス・原始クラス・同一性プロファイル・見做しグラフで扱う（「骨格外の分類」節）．辞書の包摂辺には骨格外の分類も含まれるため，表示上の親子関係をそのまま構成の違いとは読まない．
 \begin{whynot}
-旧木（\ko{noflem}$\to$\ko{haltakto}$\to$\ko{takto}／\ko{kommaton}，\ko{klant}；\ko{takto}$\to$\ko{kaeno}／\ko{kinano}$\to$\ko{kines}／\ko{halov}／\ko{halonant}）を採らない理由：(1) \ko{haltakto}／\ko{klant}の分岐は解像度に依存し，剛な骨格辺にならない．(2) \ko{kommaton}／\ko{takto}は「均質か」という素性であって射影の違いではない．(3) \ko{kaeno}／\ko{kinano}は意志の有無という素性で，旧\ko{kinano}は負のクラスである（現行の\ko{kinano}は機能物として正に再定義した．「定義クラスと原始クラス」節）．\ko{halov}が\ko{kinano}の下にある限り\ko{kaeno}$\cap$\ko{halov}は空になり，「エージェントである生物」を書けない．(4) \ko{noflem}は固有の射影を持たず，構成節点ではない．
+旧木（\ko{noflem}$\to$\ko{haltakto}$\to$\ko{takto}／\ko{kommaton}，\ko{klant}；\ko{takto}$\to$\ko{kaeno}／\ko{kinano}$\to$\ko{kines}／\ko{halov}／\ko{halonant}）を採らない理由：(1) \ko{haltakto}／\ko{klant}の分岐は解像度に依存し，剛な骨格辺にならない．(2) \ko{kommaton}／\ko{takto}は「均質か」という素性であって射影の違いではない．(3) \ko{kaeno}／\ko{kinano}は意志の有無という素性で，旧\ko{kinano}は負のクラスである（現行の\ko{kinano}は機能物として正に再定義した．「定義クラスと原始クラス」節）．
 \end{whynot}
 
 \begin{whynot}
@@ -163,6 +163,7 @@ YAMATOの「機能を失えば同一性を失う機能物」「形を失えば�
 \memo{広義の人の音形候補は\ko{caenot}（未採択）．人格主体と制度上の地位を持つプレイヤを一つのクラスにまとめる必要十分条件は未決である．制度上の地位がなくても人格を認める対象と，人格を仮定しない制度上の主体を区別して検査する．地位のロールタイプ自体は\ko{nato}の個体ではない．}
 \memo{地理的対象を定義クラスと呼ぶには，位置・境界・形態・通時的連続性の列挙だけでなく，必要十分条件が要る．建物にもこれらの手掛かりがあるため，現状の説明だけでは山との分類境界を判定できない．}
 旧\ko{konkaeno}／\ko{calfkaeno}の別は，\ko{klant}への見做しの有無として読み替える．表現の実現は表現章（\ref{chap:kika}）の\ko{saden}（\ko{kilem}$\to$\ko{haltoika}）で扱う．媒体—表現実現物という専用クラスおよび\ko{kilemkto}・\ko{mehakt}は立てない（2026-08-29採択）．
+\iffalse
 \subsection{見做しグラフと語義分割}
 一語が異なる同一性基準を持つ個体を規則的に指す場合，それらを同一個体の交差とはせず，有限個の存在論的節点と型付き二項関係の連結グラフ，および各節点を同じ語形で呼ぶという語彙化決定からなる\emph{見做しグラフ}で結ぶ（上位分類の章の見做し目録の一般化．従来の二側面の見做しは節点数が二の場合）．特定の三項組を二項関係から復元できない反例が確認された場合に限り，三成分への射影を持つ閉じた束ハブを導入する．
 \begin{example}
@@ -180,5 +181,5 @@ YAMATOの「機能を失えば同一性を失う機能物」「形を失えば�
     \item 音：音トークンは原則\ko{astav}．音源は別の\ko{nato}個体，音質は\ko{canon}，反復可能な音形は表現形態．「音」を共通の\ko{nato}節点として立てない．
   \end{enumerate}
 \end{example}
-
+\fi
 \end{document}
