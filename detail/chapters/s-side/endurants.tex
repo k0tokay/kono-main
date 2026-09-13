@@ -15,38 +15,50 @@
     ]
     \treerel{nato}{klant}{hanem}
     \treeloop{matonakt}{hanov}
-    \treerel[via=right]{matonakt}{noflem}{manov}
+    \treerel[via=direct,from=north,to=south]{matonakt}{noflem}{manov}
   \end{forest}
   \caption{\kotr{nato}{持続物}の一次分類}
 \end{figure}
-\memo{どういう基準で分類したのかを書く}
-\begin{itemize}
-  \item \ko{takto}（基底個体）：他の持続物からの構成射影を持たない基底場合．個体化基準は各下位種（語義概念）が語彙仕様の\emph{同一性プロファイル}として供給する（「骨格外の分類」節）．人・机・石・山・心臓．
-  \item \ko{klant}（集合体）：構成員射影\ko{hanem}：\ko{nato}$\times$\ko{klant}を持つ開ハブ．森・紙束・群れ．
-  \rele{hanem}{nato}{klant}{構成員関係，構成員-集合体関係，$x_1$は$x_2$(集合体)の構成員である}
-  \item \ko{matonakt}（材料量）：部分関係\ko{hanov}と融合外延性を持つメレオロジー的個体．水・鉄・血．
-\end{itemize}
-\ko{kaeno}／\ko{kinano}，\ko{kines}，\ko{halov}，\ko{halonant}などの分類は骨格外に置き，定義クラス・原始クラス・同一性プロファイル・見做しグラフで扱う（「骨格外の分類」節）．辞書の包摂辺には骨格外の分類も含まれるため，表示上の親子関係をそのまま構成の違いとは読まない．
+\section{分類基準}
+一次分類は，個体の\emph{存在条件}と\emph{統一関係の型}による（2026-09-14．上位分類の章「骨格木と構成」．原子を仮定しないので構成による分類とは呼ばない）．
+\begin{enumerate}
+  \item \emph{存在条件}．部分（構成素）が存在すればそれだけで存在する個体を\emph{和}，部分の存在に加えて部分の間に統一関係$R$が成り立つことを要する個体を\emph{統合体}と呼ぶ．統合体であることは，構成素の集合$B$が$R$について閉じかつ連結（$R$-閉包系）であることと定める．\citet{simons1987parts}の integral whole，OntoCleanの unity（\citet{guarino2009ontoclean}）に当たる．和は部分に外延的（同じ部分を持てば同一），統合体は外延的でない（同じ構成素からなる別個体がありうる．構成素が入れ替わっても同じ個体でありうる）．
+  \item \emph{統一関係の型}．統合体は，$R$が\emph{一様}（全構成素が全体に対して同じ役割を持つ．木と森，人と群衆）か，\emph{機能的構成}（構成素が異なる役割を担い，機能依存の連鎖で結ばれる．心臓と体，エンジンと車）かで分ける（UFOの collective／functional complex，\citet{guizzardi2011collectives,sales-guizzardi2017fleet}）．一様な統合体では，$R$-閉包系の元を\emph{$R$-原子}と呼び，構成員関係は「$R$-原子である」ことである．ゆえに構成員関係は推移しない（構成員の部分は構成員でない）．
+\end{enumerate}
+判定テスト：(a) 部分をすべて散らしても同じ個体か（はい→和）．(b) 同じ構成素からなる別個体を考えられるか，構成素が入れ替わっても同じ個体か（はい→統合体）．(c) 構成素を入れ替えても役割が変わらないか（はい→一様，いいえ→機能的構成）．
 \begin{whynot}
-旧木（\ko{noflem}$\to$\ko{haltakto}$\to$\ko{takto}／\ko{kommaton}，\ko{klant}；\ko{takto}$\to$\ko{kaeno}／\ko{kinano}$\to$\ko{kines}／\ko{halov}／\ko{halonant}）を採らない理由：(1) \ko{haltakto}／\ko{klant}の分岐は解像度に依存し，剛な骨格辺にならない．(2) \ko{kommaton}／\ko{takto}は「均質か」という素性であって射影の違いではない．(3) \ko{kaeno}／\ko{kinano}は意志の有無という素性で，旧\ko{kinano}は負のクラスである（現行の\ko{kinano}は機能物として正に再定義した．「定義クラスと原始クラス」節）．
+物体の和（りんご三つの和）を\ko{nato}の個体として立てない．外延的な寄せ集めは材料量にだけ認め，物体の複数は内複数（実践編）で扱う．構成員に外延的な集まり（Linkのsum，トランプ一組を外延的に見た場合）は閉ハブになるが，設計規範により閉ハブは形式的構築に限るので，集合（形式的対象）か材料の和へ回す．
 \end{whynot}
-
+\begin{whynot}
+旧木（\ko{noflem}$\to$\ko{haltakto}$\to$\ko{takto}／\ko{kommaton}，\ko{klant}；\ko{takto}$\to$\ko{kaeno}／\ko{kinano}$\to$\ko{kines}／\ko{halov}／\ko{halonant}）を採らない理由：(1) \ko{haltakto}／\ko{klant}の分岐は解像度に依存し，剛な骨格辺にならない．(2) \ko{kommaton}／\ko{takto}は「均質か」という素性であって存在条件の違いではない．(3) \ko{kaeno}／\ko{kinano}は意志の有無という素性で，旧\ko{kinano}は負のクラスである（現行の\ko{kinano}は機能物として正に再定義した．「定義クラスと原始クラス」節）．\ko{halov}が\ko{kinano}の下にある限り\ko{kaeno}$\cap$\ko{halov}は空になり，「エージェントである生物」を書けない．
+\end{whynot}
 \begin{whynot}
 可算・不可算の基準（クラスに属する個体の部分がまたそのクラスに属するか, dissectivityと呼ばれる）は，クラスに対するメタ性質であり，個体の分類には使えない．例えば「1杯の紅茶」とみなせるある概念を考えたとき，「1杯の紅茶」に属すると考えればnon-dissective，「紅茶」としてはdissective，「紅茶または人」としてはnon-dissective，「全てのもの」としてはdissectiveとなり，概念に対してはdissectivityが定まらないという問題がある．
-「紅茶」（材料量）と「1杯の紅茶」（分量・容器で個体化された量）は同一性基準が異なる別個体であり，同じ個体の二側面ではなく見做しグラフで結ぶ（「見做しグラフと語義分割」節．2026-09-07）．
+「紅茶」（材料量）と「1杯の紅茶」（分量・容器で個体化された量）は同一性基準が異なる別個体であり，同じ個体の二側面ではなく見做しグラフで結ぶ（「見做しグラフと語義分割」節．2026-09-07）．統一関係の型による分類はこの問題を持たない：同じ船たちを一様な集合体（船団）とも機能的構成（艦隊組織）とも見られるが，それは同じ個体の二つの値ではなく，構成で結ばれた二つの個体である（見做しグラフ）．
 \end{whynot}
 
-\section{三つの構成場合}
-\subsection{matonakt：材料量と融合外延性}
-\ko{matonakt}は非統合体一般ではなく，材料量を表す構成場合である（2026-09-03採択）．旧稿の基準「物理的部分の位置関係に依存するか」およびYAMATOの統合体（all parts are identifiable）／unityは形式的定義を持たないので採らない．
+\section{各場合の解説}
+\subsection{matonakt：材料量}
+\ko{matonakt}は和である．旧稿の基準「物理的部分の位置関係に依存するか」は採らない（2026-09-03）．
 \rele{hanov}{matonakt}{matonakt}{部分性関係，部分-全体関係，$x_1$は$x_2$(全体)の物理的部分である}
-\ko{hanov}は\ko{matonakt}上の部分関係で，公理系はGEM（半順序，強補充，非空集合の和の存在．DOLCEが抽象物と生起物に採る非時間的部分関係の公理系 \citet{masolo-etal2003} Ad5--Ad9）を材料量に採る．同じ部分を持つ材料量は同一である（\emph{融合外延性}）．
-\begin{remark}
-\ko{hanov}は（\ko{nato}上ではなく）\ko{matonakt}上の二項関係である．\ko{noflem}の概念インスタンス，例えばcoto「人」kina「手」に対してもその物理的部分が考えられるが，それは暗黙の変換$U:\ko{noflem}\rightarrow\ko{matonakt}$（見做しの一種．「骨格外の分類」節）があり，「kina hanov coto」は「$\text{kina }U\text{ hanov coto }U$」の換喩的省略と考える．
-\end{remark}
+\ko{hanov}は\ko{matonakt}上の部分関係で，公理系はGEM（半順序，強補充，非空集合の和の存在．DOLCEが抽象物と生起物に採る非時間的部分関係の公理系 \citet{masolo-etal2003} Ad5--Ad9）を材料量に採る．同じ部分を持つ材料量は同一である（\emph{融合外延性}）．散在する材料量の和も材料量である．
+\rele{manov}{matonakt}{noflem}{材料関係，$x_1$は$x_2$の全材料量である}
+\ko{manov}は\ko{noflem}の各個体に，同じ時期のその全材料量を一意に対応させる（時間変化は\ko{manov}のハブの時制で扱う．設計規範「時制は開ハブで表す」）．\ko{hanov}は\ko{nato}上ではなく\ko{matonakt}上の関係なので，\ko{noflem}の個体，例えばcoto「人」kina「手」の物理的部分について「kina hanov coto」と書くのは，両者の材料量の間の\ko{hanov}の換喩的省略である（2026-09-14．旧$U$は\ko{manov}に統合した）．
 \begin{example}
 砂山の形をしたある量の砂がある．その砂山を崩して砂を散り散りにしたとすると，砂山としての同一性は維持されなくなるが，(ある量の)砂としての同一性は維持される．砂山は\ko{takto}（同一性プロファイルは形態と地理的位置），(ある量の)砂は\ko{matonakt}（融合外延性）である．
 \end{example}
+\subsection{klant：集合体}
+\ko{klant}は統一関係が一様な統合体である．
+\rele{hanem}{nato}{klant}{構成員関係，構成員-集合体関係，$x_1$は$x_2$(集合体)の構成員である}
+\ko{hanem}は\ko{klant}の統一関係の原子関係であり，推移しない（構成員の部分は構成員でない：手 hanov 人 hanem 議会 から 手 hanem 議会 は出ない）．構成員が同じでも別の集合体でありうる（同じ人からなる委員会とサークル）．空の集合体，構成員一つの集合体は認めない．何が入れ替わっても同じ集合体かは各種の同一性プロファイルが定める（「中位分類」）．
+\begin{example}
+  \begin{enumerate}
+    \item \ko{klant}：紙束，森，網，カゴの中の果物，動物の群れ，電車から降りる人達
+    \item \ko{klant}でないもの：人，一杯の紅茶（\ko{takto}），水（\ko{matonakt}）
+  \end{enumerate}
+\end{example}
+\subsection{takto：基底個体}
+\ko{takto}は統一関係が機能的構成である統合体，または構成素を持たない統合体である．構成素の間の統一関係は\ko{hanov}とは別に立てる（未整備．2026-09-14）．個体化基準は各下位種が\emph{同一性プロファイル}として供給する（「中位分類」）．
 \begin{example}
   \begin{enumerate}
     \item \ko{takto}：一杯の紅茶（容器と量の見做しを伴う），心臓，人，机，石，本，山
@@ -54,66 +66,6 @@
     \item \ko{matonakt}：鉄，水，血，(適当なものの)寄せ集め
   \end{enumerate}
 \end{example}
-\iffalse
-\subsection{hanov推論}
-存在量化・全称量化された項は，上位語・下位語に置き換えることができる．
-\begin{proposition}$A\subseteq B$とする．このとき，
-  \begin{enumerate}
-    \item $A\text{ kon }p$ならば，$B\text{ kon }p$
-    \item $B\text{ san }p$ならば，$A\text{ san }p$
-  \end{enumerate}
-\end{proposition}
-具体的に次のような例である．
-\begin{exe}
-\ex kaja haminik ke kalam kon $\Longrightarrow$ kaja haminik ke nome kon
-\glt 私はあるりんごを食べた $\Longrightarrow$ 私はある果物を食べた
-\end{exe}
-一方で，下位語-上位語関係skonではなく，部分-全体関係hanovでも同じような推論が許される場合がある．例えば，
-\begin{exe}
-\ex 私はそのりんごを食べた(食べ切ったとする) $\Longrightarrow$ 私はそのりんごの全ての部分を食べた
-\end{exe}
-のような推論が可能である．これをコノメノに訳すと次のようになる．
-\begin{exe}
-\ex kaja haminik ke kalam $\Longrightarrow$ kaja haminik ke kalam hanojoy san
-\end{exe}
-ただし\ko{ke}自身からは\ko{hanov}部分への全称分配は導かれない（\ko{ke}は対象の存在期間の終了境界とイベント終端の一致だけを言う．生起物の章）．「食べ切った」からどの部分を食べたと推論できるかは，食べる概念の語彙公理と対象の粒度に依存するので，一般公理にせず未決の語彙推論として扱う．なお，解釈によってはhanov以外に部分や内部に関連する関係，例えば後述するhanemやlitam，fetam，koplis，hactoでも同じような推論が考えられる．例えば，
-\begin{exe}
-\ex ?財布が盗まれた $\Longrightarrow$ 財布の中の(すべての)お金が盗まれた
-\end{exe}
-という推論は解釈にもよるが自然である．このような推論は自動的にできないので(「多分お金も盗まれたんだろうな」という予想はつくが)明示的に言わないと真であることが確定しない．
-\subsection{klant：集合体}
-\ko{klant}は構成員射影を持つ構成場合である．
-\rele{hanem}{nato}{klant}{構成員関係，構成員-集合体関係，$x_1$は$x_2$(集合体)の構成員である}
-\begin{example}
-  \begin{enumerate}
-    \item \ko{klant}：紙束，森，網，カゴの中の果物，動物の群れ，電車から降りる人達\cite{ontmain}(第6章)
-    \item \ko{klant}でないもの：人，一杯の紅茶（\ko{takto}），水（\ko{matonakt}）
-  \end{enumerate}
-\end{example}
-\paragraph{解像度}
-ある対象を構成員を持つものとして捉えるかは解像度による（水と水分子，布と糸）．旧稿はこれを\ko{haltakto}$\leftrightarrow$\ko{klant}の変換としたが，解像度は骨格辺を変えない：水分子で見た水は\ko{matonakt}の基礎部分の粒度の選択であり，糸の集まりとしての布を別に立てるなら\ko{takto}の布と\ko{klant}の糸束を見做し関係で結ぶ（「骨格外の分類」節）．
-% @issue KONO-0022
-\todo{解像度の変換（粒度間の商写像，見做し）がどのように実装されるのか，どのように推論に関わっているかなどの考察が必要．}
-
-\ko{takto}はその一部（\ko{hanov}の意味で，$U$を介して）に\ko{klant}を含むことができる．
-\begin{example}
-  木(葉の集まりを持つ)，教室(机とイスのセットの集まりを持つ)，ラケット(ラケットの網の部分を持つ)
-\end{example}
-ほとんどの部分が\ko{klant}であるような\ko{takto}や，\ko{klant}に機能や制度といった抽象的な部分を付け足したような\ko{takto}もある（網戸，社会，葡萄）．旧稿はこれを分類困難としたが，現行では\ko{takto}の個体（同一性プロファイルが制度的継承や形態）と\ko{klant}の個体（構成員）を別個体として立て，見做しグラフで結ぶ．
-\fi
-\iffalse
-\subsection{hanovとhanemの違い}
-hanemはhanovとは違って推移律を満たさない．hanovとhanemを分離して考えることは，次のような推論を説明するために有用である．
-\begin{exe}
-  \ex 手は人の部分である，指は手の部分である$\Longrightarrow$指は人の部分である．
-  \ex *手は人の部分である，人は議会の部分である$\Longrightarrow$手は議会の部分である．
-\end{exe}
-hanovとhanemを使うと次のようになる．
-\begin{exe}
-  \ex 指 hanov 手 hanov 人 $\Longrightarrow$ 指 hanov 人
-  \ex *手 hanov 人 hanem 議会 $\Longrightarrow$ 手 hanov?hanem? 議会
-\end{exe}
-\fi
 \subsection{内部関係}
 hanovやhanemに似た関係として内部関係がある．
 \rele{litam}{noflem}{nato}{内部関係，内部-全体関係，$x_1$は$x_2$の中にある}
@@ -124,13 +76,13 @@ hanovやhanemに似た関係として内部関係がある．
   \item fetam：木の中の(葉の間にいる)鳥，森の中のリス
 \end{enumerate}
 \end{example}
-\section{骨格外の分類}
-骨格木の外で，語義概念に付く分類を三種に分ける（2026-09-03）．
+\section{中位分類}
+一次分類の下で，語義概念に付く分類を三種に分ける（2026-09-03）．
 \subsection{同一性プロファイル}
-\ko{takto}の下位種は，共通の追加射影によって分岐させず，各語義概念が個体の計数・持続に用いる\emph{同一性基準}を語彙仕様（上位分類の章）として宣言する．\ko{klant}の下位種も同様に宣言する（森：地理的位置と構成員の入れ替わりへの耐性，委員会：制度的継承）．候補は，機能，形態，生命的連続性，材料的連続性，制度的継承，地理的位置と境界履歴であり，排他的な枝ではなく複数を併用できる．
+\ko{takto}の下位種は，共通の追加射影によって分岐させず，各語義概念が個体の計数・持続に用いる\emph{同一性基準}を語彙仕様（上位分類の章）として宣言する．\ko{klant}の下位種も同様に宣言する（森：地理的位置と構成員の入れ替わりへの耐性，委員会：制度的継承）．候補は，機能，形態，生命的連続性，材料的連続性，制度的継承，地理的位置と境界履歴であり，排他的な枝ではなく複数を併用できる．各候補は統一関係の型に対応し（機能的構成，形態，生物学的統合，材料の外延，制度，位相的位置），併用「$R_1$＋$R_2$」は共通部分$R_1\cap R_2$を統一関係とすることを意味する．個体は挙げた全ての鎖が続く限り同一である（2026-09-14）．材料的連続性を挙げる種は\ko{matonakt}との境界にある．
 \begin{example}
   \begin{enumerate}
-    \item ハンマー・時計：機能＋形態（壊れた時計は通常なお同じ時計であるから，機能喪失は消滅条件ではない）．
+    \item ハンマー・時計：機能＋形態（壊れた時計は機能を発揮しないが，部品の機能的構成と形態を保つので同じ時計．溶けた時計は別個体）．
     \item 山・丘：地理的位置＋境界履歴＋形態（侵食で形が変わっても同じ山）．
     \item 会社・国家：制度的継承（法人格・設立と承継・憲法的秩序）．事業目的や領土の変更に耐える．
     \item 心臓・手：生命的連続性＋機能＋宿主との歴史的連続性．
@@ -146,9 +98,9 @@ YAMATOの「機能を失えば同一性を失う機能物」「形を失えば�
   \item \ko{kinano}（機能物）：\ko{nato}上の定義クラス．旧稿の「非エージェント」という負のクラスではなく，正に定義し直す：$x$が機能傾向タイプ（BFOのfunctionに相当する，設計または選択によって備わった傾向）に属する個別傾向$d$を担う（$\mathrm{bear}(x,d)$）とき，かつそのときに限る（2026-09-05採択，暫定）．\ko{kaeno}と互いに包含せず，交差してよい（意図を持つロボットは両方）．機能を失っても同一個体であり得るので剛でない（$-R$）．機能依存の同一性プロファイルとは別物である（前節）．
   \item \ko{halov}（生物）：\ko{takto}上の原始的な剛性クラス．各世界における生物種から\ko{halov}への包摂は，その世界の語彙解釈に対する種分類データとして与える（現行辞書の子孫の和による閉世界的な完全列挙とはせず，現実で成立する種分類を他の世界へ無条件に複写する規則でもない．ただし，ある種の語義が生物であることを定義条件に含む場合，その包摂は共通公理として維持する．上位分類の章「世界や形式対象」，2026-09-06）．\ko{halov}の剛性は世界をまたいで同一個体として扱う対象の所属を拘束するが，剛性だけから現実世界の種目録や系統上の包摂が他世界でも同じであるとは推論しない．作中で生物と呼ばれる対象の同一性条件が\ko{halov}と両立しない場合は，別概念または対応者として扱う．
   \item \ko{kines}（人工物）：定義クラス．$\exists s\,[\,s\in\ko{kynoy}\land x\ \ko{me}\ s\land \exists A\,(A\ \ko{ja}\ s)\,]$（意図的な創造行為の被創造物）．
-  \item \ko{halonant}（生体部品）：\ko{halov}の個体を$U$で見た材料量の\ko{hanov}部分であって，生命的連続性の同一性プロファイルを持つもの（暫定）．
+  \item \ko{halonant}（生体部品）：\ko{halov}の個体の材料量（\ko{manov}）の\ko{hanov}部分であって，生命的連続性の同一性プロファイルを持つもの（暫定）．
   \item 地理的対象：\ko{takto}上の定義クラス．判定には位置，境界，形態および通時的連続性を用いる．
-  \item \ko{coto}（人）：生物学的な人（ホモ・サピエンス）に固定し，\ko{halov}への包摂を定義条件に含める（したがって全世界で\ko{coto}$\subseteq$\ko{halov}）．人格・社会的地位によって「人」と呼ばれる対象（ロボット，お化け，作中の人型キャラクター）は別語で立て（未造語），\ko{kaeno}とも同一視しない（\ko{kaeno}は意図傾向による定義クラス，広義の人は人格・制度による）．2026-09-07裁定．
+  \item \ko{coto}（人）：人格・社会的地位によって「人」と呼ばれる対象（広義の人．ロボット，作中の人型キャラクターを含みうる）．人称代名詞はこれに基づく．生物学的な人（ホモ・サピエンス）は別語で立て（未造語），\ko{halov}への包摂を定義条件に含める（全世界で生物学的な人$\subseteq$\ko{halov}）．\ko{coto}は\ko{kaeno}と同一視しない（\ko{kaeno}は意図傾向による定義クラス，\ko{coto}は人格・制度による）．2026-09-14裁定（09-07裁定を反転）．
   \item \ko{kaeno}と\ko{halov}は互いに包含せず，交差に名前を与えない．\ko{bafnol}（動物）は種の節点であり，交差ではない（海綿・サンゴは\ko{bafnol}だが\ko{kaeno}でなく，ロボット・組織・お化けは\ko{kaeno}になりうるが\ko{bafnol}でない）．
 \end{itemize}
 \begin{example}
@@ -159,8 +111,8 @@ YAMATOの「機能を失えば同一性を失う機能物」「形を失えば�
     \item \ko{halonant}：心臓，手，葉
   \end{enumerate}
 \end{example}
-\memo{生体部品の定義には型の接続が残る．\ko{hanov}の両項は材料量だが，心臓・手・葉は生命的連続性で個体化する\ko{takto}である．心臓個体$h$について$U(h)\ \ko{hanov}\ U(b)$（$b$は宿主）とする案では，$h$とその材料量を区別できるが，任意の材料部分から器官は選べない．器官としての個体化条件と宿主への接続を明示する必要がある．心臓の音形候補は\ko{talmuk}であり，語形は未採択である．}
-\memo{広義の人の音形候補は\ko{caenot}（未採択）．人格主体と制度上の地位を持つプレイヤを一つのクラスにまとめる必要十分条件は未決である．制度上の地位がなくても人格を認める対象と，人格を仮定しない制度上の主体を区別して検査する．地位のロールタイプ自体は\ko{nato}の個体ではない．}
+\memo{生体部品の定義には型の接続が残る．\ko{hanov}の両項は材料量だが，心臓・手・葉は生命的連続性で個体化する\ko{takto}である．心臓個体$h$の材料量が宿主$b$の材料量の\ko{hanov}部分であるとする案では，$h$とその材料量を区別できるが，任意の材料部分から器官は選べない．器官としての個体化条件と宿主への接続を明示する必要がある．}
+\memo{人格主体と制度上の地位を持つプレイヤを一つのクラス（\ko{coto}）にまとめる必要十分条件は未決である．制度上の地位がなくても人格を認める対象と，人格を仮定しない制度上の主体を区別して検査する．地位のロールタイプ自体は\ko{nato}の個体ではない．}
 \memo{地理的対象を定義クラスと呼ぶには，位置・境界・形態・通時的連続性の列挙だけでなく，必要十分条件が要る．建物にもこれらの手掛かりがあるため，現状の説明だけでは山との分類境界を判定できない．}
 旧\ko{konkaeno}／\ko{calfkaeno}の別は，\ko{klant}への見做しの有無として読み替える．表現の実現は表現章（\ref{chap:kika}）の\ko{saden}（\ko{kilem}$\to$\ko{haltoika}）で扱う．媒体—表現実現物という専用クラスおよび\ko{kilemkto}・\ko{mehakt}は立てない（2026-08-29採択）．
 \iffalse

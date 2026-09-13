@@ -38,6 +38,7 @@
 % 節点に name= を付け，木の直後（\end{forest} の前）で使う．木の辺と重ならないよう外側を直角に回る．
 %   \treerel{from}{to}{label}            from.north から上へ出て右を回り to.east へ（親→子・子→子）
 %   \treerel[via=right]{from}{to}{label} from.east から右へ出て縦に走り to.east へ（右列の節点どうし）
+%   \treerel[via=direct,from=north,to=south]{a}{b}{label} 隣接する節点を直線で結ぶ（木の辺と交わらない隙間があるとき）
 %   \treeloop{node}{label}               node.east の右に自己関係の小さなループ
 %   キー: up=<木の上端からの余白>, right=<木の右端からの余白>（既定 0.35, 0.5 cm），via=top|right．経路は木の外接矩形の外を回る．
 \colorlet{relarrow}{blue!55!black}
@@ -47,10 +48,14 @@
   rel label/.style={fill=white, inner sep=1.2pt, font=\scriptsize\sffamily, text=relarrow},
 }
 \pgfkeys{/treerel/.cd, up/.store in=\treerelup, right/.store in=\treerelright, via/.store in=\treerelvia,
-  up=0.35, right=0.5, via=top}
+  from/.store in=\treerelfrom, to/.store in=\treerelto,
+  up=0.35, right=0.5, via=top, from=north, to=south}
 \NewDocumentCommand{\treerel}{O{} m m m}{%
   \begingroup\pgfkeys{/treerel/.cd,#1}%
-  \ifx\treerelvia\treerelviaRight
+  \ifx\treerelvia\treerelviaDirect
+    \draw[rel arrow] (#2.\treerelfrom) -- (#3.\treerelto)
+      node[rel label, midway, anchor=west, xshift=2pt] {#4};
+  \else\ifx\treerelvia\treerelviaRight
     \draw[rel arrow] let \p1=(#2.east), \p2=(#3.east), \p3=(current bounding box.north east) in
       (\p1) -- (\x3+\treerelright cm, \y1) -- (\x3+\treerelright cm, \y2) -- (\p2)
       node[rel label] at (\x3+\treerelright cm, {(\y1+\y2)/2}) {#4};
@@ -59,9 +64,10 @@
       (\p1) -- (\x1, \y3+\treerelup cm) -- (\x3+\treerelright cm, \y3+\treerelup cm)
       -- (\x3+\treerelright cm, \y2) -- (\p2)
       node[rel label] at (\x3+\treerelright cm, {(\y3+\treerelup cm+\y2)/2}) {#4};
-  \fi
+  \fi\fi
   \endgroup}
 \def\treerelviaRight{right}
+\def\treerelviaDirect{direct}
 \NewDocumentCommand{\treeloop}{O{} m m}{%
   \begingroup\pgfkeys{/treerel/.cd,#1}%
   \draw[rel arrow] (#2.east) ++(0,0.9ex) -- ++(0.45cm,0) -- ++(0,-1.8ex) -- ++(-0.45cm,0)

@@ -1324,8 +1324,7 @@
         739
       ],
       "translations": [
-        "人（生物学的な人）",
-        "ホモ・サピエンス"
+        "人（広義の人）"
       ],
       "simple_translations": [
         "人",
@@ -1339,8 +1338,8 @@
       ],
       "contents": [
         {
-          "title": "詳説に基づく語義（2026-09-11）",
-          "text": "生物学的な人に固定する。全世界で coto ⊆ halov。人格・制度上の人や kaeno 一般とは同一視しない。 出典：detail/chapters/s-side/endurants.tex。"
+          "title": "詳説に基づく語義（2026-09-14）",
+          "text": "人格・社会的地位によって「人」と呼ばれる対象（広義の人。ロボット，作中の人型キャラクターを含みうる）。人称代名詞はこれに基づく。生物学的な人（ホモ・サピエンス）は別語（造語中）。kaeno とは同一視しない。上位語の配置（現在 gnoikel 霊長目）は要変更：広義の人は生物種の下に置けない。出典：detail/chapters/s-side/endurants.tex 2026-09-14 裁定。"
         }
       ],
       "variations": [],
@@ -25528,7 +25527,7 @@
       "entry": "manov",
       "translations": [
         "材料関係",
-        "x1 は x2 の材料である。matonakt × noflem。"
+        "x1 は x2 の全材料量である。matonakt × noflem。noflem の各個体に同じ時期の全材料量を一意に対応させる（2026-09-14）。"
       ],
       "simple_translations": [],
       "category": "語彙",
