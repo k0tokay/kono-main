@@ -80,7 +80,7 @@ archive/                旧 ref/ などの過去資料（git管理外）
 |---|---|
 | オントロジー（上位分類・持続物・生起物・辞書の分類） | `detail/chapters/s-side/upper-classification.tex` の「構築方法論」（設計規範・分類作法・検証方法・記述規則） |
 | 形式意味論・談話モジュール・冠詞 | `detail/chapters/s-side/formal-semantics.tex` の「引き下げ対応と超内包性」 |
-| 形式文法・体系P/S | `detail/chapters/s-side/formal-grammar.tex` の冒頭定義 |
+| 形式文法・基本体系・線形文モジュール | `detail/chapters/s-side/formal-grammar.tex` の冒頭定義 |
 | 音韻・造語・文字 | `detail/chapters/p-side/phonology.tex` の現行規則と `kono-phonology/konophon` |
 | 実践編・例文 | `sketch/main-sketch.tex`（作者未レビュー）と `detail/chapters/practice/practice-foundations.tex` |
 | 借用した概念（OntoClean，YAMATO，DOLCE，BFO，メレオロジー，内包意味論） | `bib/references.bib` の原典（PDF は `bib/` 配下，git 管理外） |
@@ -98,4 +98,4 @@ archive/                旧 ref/ などの過去資料（git管理外）
 
 - **P-side**：音韻・造語・文字．芸術寄り．
 - **S-side**：形式文法・形式意味論・辞書・オントロジー．工学寄り．
-- 形式体系：**体系P**（基本述語論理），**体系S**（ソート体系），**談話モジュール**（談話・動的意味論）．
+- 形式体系：**基本体系**（基本述語論理），**線形文モジュール**（ソート付き線形文），**談話モジュール**（談話・動的意味論）．旧称は体系P・体系S・体系D（形式文法章の冒頭 remark）．
