@@ -17,7 +17,8 @@
 | 権威ある本文 | `scripts/session-context.sh`，`scripts/guard-paths.py` | SessionStart／PreToolUse フック |
 | 読者質問パス | `/reader-questions`；上流の通読所感は `/read-through` | スキル |
 | 反問プロンプト | `/counter-question` | スキル |
-| 通読所感（上流） | `/read-through` | スキル |
+| 通読所感（上流） | `/read-through`（別文脈では `reader`） | スキル／エージェント |
+| 一括起動 | `/advance`（前半：所感・調査・検算・機械的修正・裁定票／後半：波及・辞書・失効点検） | スキル |
 | 精読検証パス 1〜4 | `/precision-review`（別文脈なら `precision-reviewer` エージェント） | スキル／エージェント |
 | 精読検証パス 5〜7 | `/review-respond` | スキル |
 | AIの分担と作業の区切り | `investigator`，`verifier`，`coiner` エージェント；`/checkpoint`＋`scripts/formal-check.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
@@ -29,6 +30,8 @@
 | codex 一往復 | `/codex-consult` → `scripts/consult.sh` | スキル／スクリプト |
 
 ## スキル（`/名前` で起動）
+
+- `/advance <章|節> [--after-edit]`：**一括起動**．アンカー→通読所感（別文脈）→調査→検算→機械的修正→裁定票を一枚にまとめて止まる．作者の編集後は `--after-edit` で波及・辞書・失効点検・コミット．
 
 - `/read-through <章|all>`：本文だけを読者として通読し，疑問と違和感を散文で書く（番号・状態なし）．精読より上流．
 - `/precision-review <章>`：精読レビューを日付ログに作る．本文は変えない．
@@ -49,6 +52,7 @@
 
 | 名前 | モデル | 役 |
 |---|---|---|
+| `reader` | opus / high | 通読所感を別文脈で（ログを見ない読者） |
 | `investigator` | sonnet | 論点調査（読み取り専用，出典付き．借用概念は原典に当たる） |
 | `verifier` | sonnet | 検算・ビルド・辞書照合（本文は変えない） |
 | `coiner` | fable / medium | 造語候補（採否は主張しない） |
