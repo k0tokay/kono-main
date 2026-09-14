@@ -33,6 +33,7 @@
 
 - `/advance <章|節> [--reply | --after-edit]`：**一括起動**．アンカー→通読所感（別文脈）→調査→検算→機械的修正→裁定票を一枚にまとめて止まる．作者が一枚に書き込めば `--reply` で往復（決定した行だけ本文へ，問いは毎回狭く，3 回まで）．作者の編集後は `--after-edit` で波及・辞書・失効点検・コミット．
 
+- `/study <主題>`：根の問いの勉強工程．文献→読書ノート→候補基準→他章への横断照合→構築方法論への規範レコード提案．分類の編集はこの後．
 - `/read-through <章|all>`：本文だけを読者として通読し，疑問と違和感を散文で書く（番号・状態なし）．精読より上流．
 - `/precision-review <章>`：精読レビューを日付ログに作る．本文は変えない．
 - `/review-respond <対象名>`：作者コメントに応答し，本文と依存先を直し，レビュー状態を更新する．
@@ -75,6 +76,7 @@
 - `formal-check.sh [--full]`：変更領域に応じて，本文ビルド＋文体lint＋issues同期＋スクリプトのテスト，辞書 validate＋テスト，音韻テスト，ハーネス自身（settings.json，スクリプト構文，スキルの標準形式）を検査し，合格でスタンプを書く．
 - `build.sh [--full] [章.tex]`：全体ビルド（＋章単独）．`--full` は bibtex 込み．
 - `consult.sh <codex|fable|opus|sonnet> <名前> <prompt.md>`：外部モデルへ read-only で一往復．プロンプトと応答を今日の日付ログへ保存．環境変数 `KONO_CODEX_MODEL`（既定 gpt-5.6-sol），`KONO_CODEX_EFFORT`（high），`KONO_FABLE_EFFORT`（medium）．
+- `def-inventory.py <file.tex>`：章の定義単位（節点・\rele・環境数）を列挙し定義票の雛形を出す．
 - `active-lines.py <file.tex> [--inactive]`：`\iffalse`／`\if0` を除いた有効行範囲を出す．精読レビューの冒頭に使う．
 - `newlog.sh`：今日の日付ログディレクトリを作る．
 

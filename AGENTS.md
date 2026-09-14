@@ -63,7 +63,7 @@ archive/                旧 ref/ などの過去資料（git管理外）
 
 手順は `.claude/` のスキルとして起動する．「ここの制作を進めて」は `/advance <章>` の一言で起動でき，作者が一回で読める一枚（所感・裁定票・削除候補・機械的修正）を出して止まる．作者が編集したら `/advance <章> --after-edit` で波及と検証を行う．文章編集では `workflow/workflow.tex` の「文体について」と `/reader-questions` を適用する．改訂経緯や旧記法への言及は日付ログに置き，本文には現行の定義・規則と理解に必要な説明だけを残す．
 
-- 通読所感（上流，散文）：`/read-through <章>`，精読レビュー：`/precision-review <章>`，コメント反映：`/review-respond <対象名>`
+- 勉強（根の問い）：`/study <主題>`，通読所感（上流，散文）：`/read-through <章>`，精読レビュー：`/precision-review <章>`，コメント反映：`/review-respond <対象名>`
 - マーカー掃討：`/marker-sweep <章>`，制作：`/production <経路> <対象>`，移植：`/practice-port`
 - 造語：`/coinage`，codex への反論依頼：`/codex-consult`，区切りのコミット：`/checkpoint`
 - 分担：`investigator`（調査），`verifier`（検算・ビルド・辞書照合），`coiner`（造語）．起動と統合は主担当の一セッションが行う．
@@ -78,12 +78,14 @@ archive/                旧 ref/ などの過去資料（git管理外）
 
 | 作業 | アンカー |
 |---|---|
-| オントロジー（上位分類・持続物・生起物・辞書の分類） | `detail/chapters/s-side/upper-classification.tex` の「構築方法論」（設計規範・分類作法・検証方法・記述規則） |
+| オントロジー（上位分類・持続物・生起物・辞書の分類） | `detail/chapters/s-side/upper-classification.tex` の「構築方法論」の四節を全部：設計規範（何を立ててよいか），分類作法（木の組み方），検証方法（判定テスト・境界例・攻撃工程の5検査・保存拡大），記述規則（規範レコード＝条文・根拠・採択判例・却下判例，定義の様式＝属＋種差＋判定テスト＋境界例，ハブの記述，却下録） |
 | 形式意味論・談話モジュール・冠詞 | `detail/chapters/s-side/formal-semantics.tex` の「引き下げ対応と超内包性」 |
 | 形式文法・基本体系・線形文モジュール | `detail/chapters/s-side/formal-grammar.tex` の冒頭定義 |
 | 音韻・造語・文字 | `detail/chapters/p-side/phonology.tex` の現行規則と `kono-phonology/konophon` |
 | 実践編・例文 | `sketch/main-sketch.tex`（作者未レビュー）と `detail/chapters/practice/practice-foundations.tex` |
 | 借用した概念（OntoClean，YAMATO，DOLCE，BFO，メレオロジー，内包意味論） | `bib/references.bib` の原典（PDF は `bib/` 配下，git 管理外） |
+
+根の変更（設計規範・分類作法に触れる問い）は，`/study`（勉強 → 他章との横断照合で構築方法論を磨く → 規範レコードで提案）を先に通し，採択後に分類へ戻る．裁定票で根を決めない．規範を変えたら却下録も更新する．
 
 文献の使い方は二つ．第一に，借用概念について本文の主張を検証するときは，本文の言い換えではなく原典に当たる．第二に，より重要なのは，未決の問いに対して**使えそうな既存理論を取ってくる**こと（AIの取り柄は知識の広さ）．問いごとに，それを扱った確立した理論・結果を名指しし，コノメノに当てはめると何が決まり何が残るかを書く．大きな問いなら deep research（`/deep-research` 系のスキル）を回して候補理論の一覧を作る．読まなかった原典・調べなかった分野は成果物に書く．
 
