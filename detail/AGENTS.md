@@ -1,6 +1,6 @@
 # AGENTS.md — コノメノ詳説
 
-人工言語コノメノの理論仕様書『コノメノ詳説 2026年版』のLaTeXソース．権威構造・更新原則・文体はリポジトリ直下の `AGENTS.md` と `workflow/workflow.tex` に従う．
+人工言語コノメノの理論仕様書『コノメノ詳説 2026年版』のLaTeXソース．権威構造・更新原則・文体はルートの入口に従う：Codex は `AGENTS.override.md`，Claude は `AGENTS.md`．以下はこのディレクトリの道具の補足．
 
 ## ビルド
 
