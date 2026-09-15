@@ -417,8 +417,8 @@
       ],
       "contents": [
         {
-          "title": "詳説に基づく語義（2026-09-11）",
-          "text": "持続物を構成員とする集合体。構成員射影 hanem : nato × klant を持つ。単なる集合とは区別する。 出典：detail/chapters/s-side/endurants.tex。"
+          "title": "詳説に基づく語義（2026-09-15）",
+          "text": "持続物を構成員とする外延的な具体的集合体。同じ構成員を持てば同一であり，構成員の交代では別個体となる。hanem による派生的位置を持つ。不純集合は loka の形式構築物として区別し，この区別の非恣意的な根拠は未決。 出典：detail/chapters/s-side/endurants.tex。"
         }
       ],
       "variations": [],
@@ -459,8 +459,8 @@
       ],
       "contents": [
         {
-          "title": "詳説に基づく語義（2026-09-11）",
-          "text": "他の持続物からの構成射影を持たない基底場合。同一性基準は各下位種の語彙仕様が供給する。契約・約束という旧訳はこの語義に含めない。 出典：detail/chapters/s-side/endurants.tex。"
+          "title": "詳説に基づく語義（2026-09-15）",
+          "text": "材料量や集合体などへの文脈（配置・機能・制度・履歴等）の付加によって構成する開ハブ。同一性プロファイルと意思性の二軸で素性分類する。同じ構成員からなる委員会とサークルは，同じ klant への見做しを持つ別個体。契約・約束という旧訳は含めない。 出典：detail/chapters/s-side/endurants.tex。"
         }
       ],
       "variations": [],
@@ -816,7 +816,12 @@
       "tags": [
         "T4"
       ],
-      "contents": [],
+      "contents": [
+        {
+          "title": "詳説に基づく語義（2026-09-15）",
+          "text": "nato と外延的集合体 klant の構成員関係。推移しない。構成員から集合体へ派生的位置を与える。組織への適用はその構成員の klant への見做しを介する。 出典：detail/chapters/s-side/endurants.tex。"
+        }
+      ],
       "variations": [],
       "is_function": false
     },
