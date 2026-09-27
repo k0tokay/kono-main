@@ -20,26 +20,25 @@
 | 読者質問パス | `/reader-questions`；上流の通読所感は `/read-through` | スキル |
 | 反問プロンプト | `/counter-question` | スキル |
 | 通読所感（上流） | `/read-through`（別文脈では `reader`） | スキル／エージェント |
-| 一括起動 | `/advance`（前半：所感・調査・検算・機械的修正・裁定票／後半：波及・辞書・失効点検） | スキル |
 | 精読検証パス 1〜4 | `/precision-review`（別文脈なら `precision-reviewer` エージェント） | スキル／エージェント |
 | 精読検証パス 5〜7 | `/review-respond` | スキル |
 | AIの分担と作業の区切り | `investigator`，`verifier`，`coiner` エージェント；`/checkpoint`＋`scripts/formal-check.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
 | 制作→ワークフロー（手順の改良） | `/retro` → `/improve-skill`（`/eval-skill` は補助）；`retro/`，`dryrun/` | スキル／記録 |
 | フィードバック経路付きの制作 | `/production` | スキル |
 | memo／todo掃討 | `/marker-sweep` | スキル |
+| 辞書の配置の状態 | `/placement-triage` | スキル |
 | 実践編の制作・移植 | `/practice-port` | スキル |
 | 造語依頼（Fable, medium） | `/coinage` → `coiner` | スキル／エージェント |
 | codex 一往復 | `/codex-consult` → `scripts/consult.sh` | スキル／スクリプト |
 
 ## スキル（`/名前` で起動）
 
-- `/advance <章|節> [--reply | --after-edit]`：**一括起動**．アンカー→通読所感（別文脈）→調査→検算→機械的修正→裁定票を一枚にまとめて止まる．作者が一枚に書き込めば `--reply` で往復（決定した行だけ本文へ，問いは毎回狭く，3 回まで）．作者の編集後は `--after-edit` で波及・辞書・失効点検・コミット．
-
 - `/study <主題>`：根の問いの勉強工程．文献→読書ノート→候補基準→他章への横断照合→構築方法論への規範レコード提案．分類の編集はこの後．
 - `/read-through <章|all>`：本文だけを読者として通読し，疑問と違和感を散文で書く（番号・状態なし）．精読より上流．
 - `/precision-review <章>`：精読レビューを日付ログに作る．本文は変えない．
 - `/review-respond <対象名>`：作者コメントに応答し，本文と依存先を直し，レビュー状態を更新する．
 - `/marker-sweep <章> [--dry-run]`：memo/todo/ques/fixme を棚卸しして裁く．
+- `/placement-triage <対象>`：辞書の語に配置の状態（配置／暫定配置／未配置）を付ける．
 - `/reader-questions <範囲> [--edit]`：読者の疑問をログする．`--edit` で編集まで．
 - `/counter-question [議題]`：反問モードで議論する．
 - `/production <経路> <対象>`：フィードバック経路（practice／coinage／methodology）に位置づけて制作する．

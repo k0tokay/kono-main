@@ -61,10 +61,10 @@ archive/                旧 ref/ などの過去資料（git管理外）
 
 ## ハーネス（作業手順）
 
-手順は `.claude/` のスキルとして起動する．「ここの制作を進めて」は `/advance <章>` の一言で起動でき，作者が一回で読める一枚（所感・裁定票・削除候補・機械的修正）を出して止まる．作者が編集したら `/advance <章> --after-edit` で波及と検証を行う．文章編集では `workflow/workflow.tex` の「文体について」と `/reader-questions` を適用する．改訂経緯や旧記法への言及は日付ログに置き，本文には現行の定義・規則と理解に必要な説明だけを残す．
+手順は `.claude/` のスキルとして起動する．根の問いは `/study` で検討し，採択後は本文へ下ろして依存箇所・辞書の波及を同じ変更で直し，`/checkpoint` で区切る．文章編集では `workflow/workflow.tex` の「文体について」と `/reader-questions` を適用する．改訂経緯や旧記法への言及は日付ログに置き，本文には現行の定義・規則と理解に必要な説明だけを残す．
 
 - 勉強（根の問い）：`/study <主題>`，通読所感（上流，散文）：`/read-through <章>`，精読レビュー：`/precision-review <章>`，コメント反映：`/review-respond <対象名>`
-- マーカー掃討：`/marker-sweep <章>`，制作：`/production <経路> <対象>`，移植：`/practice-port`
+- マーカー掃討：`/marker-sweep <章>`，辞書の配置の状態：`/placement-triage`，制作：`/production <経路> <対象>`，移植：`/practice-port`
 - 造語：`/coinage`，codex への反論依頼：`/codex-consult`，区切りのコミット：`/checkpoint`
 - 分担：`investigator`（調査），`verifier`（検算・ビルド・辞書照合），`coiner`（造語）．起動と統合は主担当の一セッションが行う．
 
