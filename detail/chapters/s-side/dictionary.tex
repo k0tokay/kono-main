@@ -38,6 +38,8 @@
 \texttt{upper\_covers}/\texttt{lower\_covers}（双方向リンクで被覆関係を表す），
 \texttt{translations}，\texttt{arguments}（引数概念へのid参照．生存する語彙IDだけを参照し，削除操作では参照を拒否するか代替概念へ置換する），
 \texttt{tags}，\texttt{is\_function}などのフィールドを持つ．
+配置の状態（上位分類章「配置の状態」）は\texttt{tags}で表す：タグなしを配置とし，\texttt{暫定配置}，\texttt{未配置}を付ける（2026-09-26）．
+\todo{\texttt{?}タグの35語を配置の状態へ振り分ける．エディタで未配置の被覆辺を区別して表示する．木の図には配置の語だけを描き，節点ごとに未配置の語数を添える．}
 被覆関係は循環のないDAGをなし，Hasse図として編集される（次節）．
 
 木のトップレベルは次の5つに分かれる：
