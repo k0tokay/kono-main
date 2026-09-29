@@ -1573,7 +1573,8 @@
       "entry": "fonne",
       "category": "語彙",
       "lower_covers": [
-        395
+        395,
+        1091
       ],
       "upper_covers": [
         789
@@ -1632,7 +1633,27 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ],
+      "partitions": [
+        {
+          "key": "数の体系",
+          "axis": "数の体系",
+          "kind": "素性",
+          "disjoint": true,
+          "exhaustive": false,
+          "basis": [
+            "推論"
+          ],
+          "note": "自然数・整数・有理数・実数・複素数は兄弟とし，埋め込み N↪Z↪Q↪R↪C で結ぶ（skon にしない）．上位分類章「下位分類，埋め込み，一般化」"
+        }
+      ]
     },
     {
       "id": 61,
@@ -1678,7 +1699,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "配置",
+          "partition": "数の体系"
+        }
+      ]
     },
     {
       "id": 62,
@@ -1702,7 +1730,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "配置",
+          "partition": "数の体系"
+        }
+      ]
     },
     {
       "id": 63,
@@ -1727,7 +1762,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "配置",
+          "partition": "数の体系"
+        }
+      ]
     },
     {
       "id": 64,
@@ -1751,7 +1793,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "配置",
+          "partition": "数の体系"
+        }
+      ]
     },
     {
       "id": 65,
@@ -1775,7 +1824,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "配置",
+          "partition": "数の体系"
+        }
+      ]
     },
     {
       "id": 66,
@@ -1799,7 +1855,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 67,
@@ -1823,7 +1886,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 68,
@@ -1847,7 +1917,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 60,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 69,
@@ -2662,7 +2739,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 101,
@@ -2673,7 +2757,7 @@
         1021
       ],
       "upper_covers": [
-        306
+        136
       ],
       "translations": [
         "記号",
@@ -2694,7 +2778,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 136,
+          "state": "暫定配置",
+          "partition": "構成"
+        }
+      ]
     },
     {
       "id": 102,
@@ -3463,10 +3554,12 @@
       "entry": "kilemhaisk",
       "category": "語彙",
       "lower_covers": [
-        367
+        367,
+        101,
+        1090
       ],
       "upper_covers": [
-        281
+        789
       ],
       "translations": [
         "表現形態"
@@ -3480,7 +3573,27 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "partitions": [
+        {
+          "key": "構成",
+          "axis": "記号的な形態の構成",
+          "kind": "骨格",
+          "disjoint": true,
+          "exhaustive": false,
+          "basis": [
+            "推論"
+          ],
+          "note": "記号（原子）／記号列（連接）／構文木（構成規則）．同一性の基準が違う．旋律・線画など記号的でない形態はこの分割の外．上位分類章「形式的対象の分類」"
+        }
+      ],
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 137,
@@ -3490,7 +3603,7 @@
         138
       ],
       "upper_covers": [
-        367
+        281
       ],
       "translations": [
         "言語"
@@ -3506,7 +3619,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 281,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 138,
@@ -7136,8 +7256,8 @@
       "category": "語彙",
       "lower_covers": [
         135,
-        136,
-        306
+        306,
+        137
       ],
       "upper_covers": [
         790
@@ -7721,7 +7841,6 @@
       "entry": "klaleme",
       "category": "語彙",
       "lower_covers": [
-        101,
         400,
         401,
         402,
@@ -9065,9 +9184,7 @@
       "id": 367,
       "entry": "suyflos",
       "category": "語彙",
-      "lower_covers": [
-        137
-      ],
+      "lower_covers": [],
       "upper_covers": [
         136
       ],
@@ -9083,7 +9200,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 136,
+          "state": "配置",
+          "partition": "構成"
+        }
+      ]
     },
     {
       "id": 368,
@@ -9115,7 +9239,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 369,
@@ -18253,8 +18384,11 @@
         368,
         59,
         934,
-        935,
-        1014
+        136,
+        1092,
+        1095,
+        1098,
+        1099
       ],
       "arguments": [],
       "tags": [],
@@ -21803,7 +21937,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 935,
@@ -21816,7 +21957,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        789
+        1092
       ],
       "lower_covers": [],
       "arguments": [
@@ -21833,7 +21974,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1092,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 936,
@@ -24275,7 +24423,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        789
+        1096
       ],
       "lower_covers": [],
       "arguments": [
@@ -24292,7 +24440,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1096,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 1015,
@@ -26235,6 +26390,346 @@
       "variations": [],
       "relations": [],
       "is_function": false
+    },
+    {
+      "id": 1090,
+      "entry": "〈構文木〉",
+      "translations": [
+        "構文木",
+        "項"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        136
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "記号から構成規則で組んだ木．記号列とは同一性が違う（同じ記号列が別の構文木を持ちうる）．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 136,
+          "state": "配置",
+          "partition": "構成"
+        }
+      ]
+    },
+    {
+      "id": 1091,
+      "entry": "〈形式言語〉",
+      "translations": [
+        "形式言語"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        59
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "記号列の集合．記号的対象ではなく集合の一種．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 59,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1092,
+      "entry": "〈代数構造〉",
+      "translations": [
+        "代数構造"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        789
+      ],
+      "lower_covers": [
+        1093,
+        1094,
+        935
+      ],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "演算を持つ構造．⟨Σ,T,A,E⟩ で記述する（上位分類章「理論，表示，抽象構造」）．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1093,
+      "entry": "〈群〉",
+      "translations": [
+        "群"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        1092
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "群の公理を満たす代数構造．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1092,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1094,
+      "entry": "〈環〉",
+      "translations": [
+        "環"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        1092
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "環の公理を満たす代数構造．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1092,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1095,
+      "entry": "〈空間〉",
+      "translations": [
+        "空間（数学）"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        789
+      ],
+      "lower_covers": [
+        1096,
+        1097
+      ],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "点の集合に位相・測度などの構造を与えたもの．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1096,
+      "entry": "〈位相空間〉",
+      "translations": [
+        "位相空間"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        1095
+      ],
+      "lower_covers": [
+        1014
+      ],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "開集合系を持つ空間．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1095,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1097,
+      "entry": "〈可測空間〉",
+      "translations": [
+        "可測空間"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        1095
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "σ-代数を持つ空間．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1095,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1098,
+      "entry": "〈順序構造〉",
+      "translations": [
+        "順序構造"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        789
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "順序関係を持つ構造．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1099,
+      "entry": "〈論理体系〉",
+      "translations": [
+        "論理体系"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        789
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "言語と帰結関係の組．記号的対象でも個々の理論でもない（仕様層の側）．（2026-09-29，stcilkant 整理）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     }
   ]
 }
