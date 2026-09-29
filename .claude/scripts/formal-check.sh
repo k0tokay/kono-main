@@ -40,7 +40,7 @@ else
 fi
 # 3. 音韻
 if echo "$CHANGED" | grep -qE '^kono-phonology/'; then
-  run phonology-tests bash -c 'cd kono-phonology && python3 -m unittest discover -q -s tests'
+  run phonology-tests bash -c 'cd kono-phonology && python3 -m pytest -q tests'
 else
   note "SKIP phonology（変更なし）"
 fi

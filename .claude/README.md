@@ -22,13 +22,13 @@
 | 通読所感（上流） | `/read-through`（別文脈では `reader`） | スキル／エージェント |
 | 精読検証パス 1〜4 | `/precision-review`（別文脈なら `precision-reviewer` エージェント） | スキル／エージェント |
 | 精読検証パス 5〜7 | `/review-respond` | スキル |
-| AIの分担と作業の区切り | `investigator`，`verifier`，`coiner` エージェント；`/checkpoint`＋`scripts/formal-check.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
+| AIの分担と作業の区切り | `investigator`，`verifier` エージェント；`/checkpoint`＋`scripts/formal-check.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
 | 制作→ワークフロー（手順の改良） | `/retro` → `/improve-skill`（`/eval-skill` は補助）；`retro/`，`dryrun/` | スキル／記録 |
 | フィードバック経路付きの制作 | `/production` | スキル |
 | memo／todo掃討 | `/marker-sweep` | スキル |
 | 辞書の配置の状態 | `/placement-triage` | スキル |
 | 実践編の制作・移植 | `/practice-port` | スキル |
-| 造語依頼（Fable, medium） | `/coinage` → `coiner` | スキル／エージェント |
+| 造語 | `/coinage`（主担当が直接．検査は `kono-phonology/scripts/check_candidates.py`） | スキル |
 | codex 一往復 | `/codex-consult` → `scripts/consult.sh` | スキル／スクリプト |
 
 ## スキル（`/名前` で起動）
@@ -57,7 +57,6 @@
 | `reader` | opus / high | 通読所感を別文脈で（ログを見ない読者） |
 | `investigator` | sonnet | 論点調査（読み取り専用，出典付き．借用概念は原典に当たる） |
 | `verifier` | sonnet | 検算・ビルド・辞書照合（本文は変えない） |
-| `coiner` | fable / medium | 造語候補（採否は主張しない） |
 | `precision-reviewer` | opus / high | 精読レビュー作成を別文脈で |
 
 主担当（このセッション）が起動と統合を行い，権威構造と確認の窓口を一本化する．AI同士の合意は根拠にしない．

@@ -66,7 +66,7 @@ archive/                旧 ref/ などの過去資料（git管理外）
 - 勉強（根の問い）：`/study <主題>`，通読所感（上流，散文）：`/read-through <章>`，精読レビュー：`/precision-review <章>`，コメント反映：`/review-respond <対象名>`
 - マーカー掃討：`/marker-sweep <章>`，辞書の配置の状態：`/placement-triage`，制作：`/production <経路> <対象>`，移植：`/practice-port`
 - 造語：`/coinage`，codex への反論依頼：`/codex-consult`，区切りのコミット：`/checkpoint`
-- 分担：`investigator`（調査），`verifier`（検算・ビルド・辞書照合），`coiner`（造語）．起動と統合は主担当の一セッションが行う．
+- 分担：`investigator`（調査），`verifier`（検算・ビルド・辞書照合）．造語は主担当が直接行う（`/coinage`）．起動と統合は主担当の一セッションが行う．
 
 工程の順序は，通読所感 → 作者が本文を編集 → 精読検証（検証できる誤りだけ）．AIの判断は上流で言葉として出し，編集は作者と行う．
 
