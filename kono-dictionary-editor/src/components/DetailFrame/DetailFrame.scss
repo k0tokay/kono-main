@@ -263,3 +263,17 @@ input:read-only, textarea:read-only {
   .excluded { opacity: 0.6; }
   .empty { opacity: 0.6; font-size: 0.9em; }
 }
+
+.axiomForm {
+  .axiomRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+    > span:first-child { min-width: 3em; }
+  }
+  .idInput { display: flex; align-items: center; gap: 6px; input { width: 6em; } }
+  .idLabel { opacity: 0.7; }
+  .axiomKind { font-weight: bold; }
+  .axiomSummary { opacity: 0.8; font-family: monospace; }
+}

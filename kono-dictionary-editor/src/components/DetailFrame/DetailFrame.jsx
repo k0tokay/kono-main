@@ -4,6 +4,7 @@ import { useDictState, useDictDispatch } from '../../store/DictionaryContext';
 import { BasicForm, TagForm, LargeListForm, RelationForm, MenuBar, CheckboxForm } from '../CommonForms';
 import { CoverStateForm, PartitionForm } from './PlacementForms';
 import { MitoshiSenseForm, MitoshiTypeForm } from './MitoshiForms';
+import { AxiomForm } from './AxiomForm';
 import './DetailFrame.scss';
 
 // ──────────────────────────────────────────
@@ -114,6 +115,12 @@ export default function DetailFrame() {
           word={word}
           words={words}
           edited={editedSet.has('partitions')}
+          onChange={handleChange}
+        />
+        <AxiomForm
+          word={word}
+          words={words}
+          edited={editedSet.has('axioms')}
           onChange={handleChange}
         />
         <MitoshiTypeForm

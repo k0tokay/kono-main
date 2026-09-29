@@ -1,4 +1,5 @@
 import { pruneCoverStates, validatePlacement } from './placement.js';
+import { axiomRefs, formatAxiom, pruneAxioms, validateAxioms } from './axioms.js';
 import { materializeMitoshiInPlace, pruneMitoshi, sensesOf, validateMitoshi } from './mitoshi.js';
 import { applyDerivedSequenceCovers, isSequenceWord, sequenceCoverMismatches, tokenizePhonemes } from './soundSequences.js';
 
@@ -16,6 +17,7 @@ export const EDITABLE_FIELDS = new Set([
     'cover_states',
     'mitoshi_type',
     'mitoshi_senses',
+    'axioms',
 ]);
 
 export class DictionaryOperationError extends Error {
@@ -296,6 +298,9 @@ export function validateDictionary(data) {
         const mitoshi = validateMitoshi(words);
         errors.push(...mitoshi.errors);
         warnings.push(...mitoshi.warnings);
+        const axioms = validateAxioms(words);
+        errors.push(...axioms.errors);
+        warnings.push(...axioms.warnings);
     }
 
     return { valid: errors.length === 0, errors, warnings };
@@ -398,6 +403,7 @@ function normalizeNewWord(words, operation) {
         ...(operation.word.cover_states ? { cover_states: structuredClone(operation.word.cover_states) } : {}),
         ...(operation.word.mitoshi_type ? { mitoshi_type: structuredClone(operation.word.mitoshi_type) } : {}),
         ...(operation.word.mitoshi_senses ? { mitoshi_senses: structuredClone(operation.word.mitoshi_senses) } : {}),
+        ...(operation.word.axioms ? { axioms: structuredClone(operation.word.axioms) } : {}),
     };
 }
 
@@ -515,6 +521,9 @@ function collectDeletionNeighborhood(words, id) {
         if (asArray(word.relations).some(relation => relation?.entry === id)) {
             semanticReferences.push({ id: word.id, entry: word.entry, field: 'relations' });
         }
+        if (asArray(word.axioms).some(record => axiomRefs(record).includes(id))) {
+            semanticReferences.push({ id: word.id, entry: word.entry, field: 'axioms' });
+        }
     }
 
     return { parentIds: [...parentIds], childIds: [...childIds], semanticReferences };
@@ -553,6 +562,7 @@ export function deleteWordInPlace(words, operation) {
     words[operation.id] = null;
     pruneCoverStates(words);
     pruneMitoshi(words);
+    if (operation.reference_policy === 'remove') pruneAxioms(words);
 
     if (operation.reconnect === 'parents') {
         for (const childId of neighborhood.childIds) {
@@ -704,6 +714,7 @@ export function summarizeWord(data, word, { full = false } = {}) {
             lower_cover_words: asArray(word.lower_covers).map(id => wordLabel(words, id)),
             argument_words: asArray(word.arguments).map(id => wordLabel(words, id)),
             relation_words: asArray(word.relations).map(relation => ({ ...relation, word: wordLabel(words, relation.entry) })),
+            axioms_view: asArray(word.axioms).map(record => formatAxiom(record, id => (words[id] ? `${words[id].entry}(${id})` : `?(${id})`))),
             mitoshi_view: sensesOf(words, word.id).map(sense => ({
                 ...sense,
                 to_word: wordLabel(words, sense.to),
@@ -968,6 +979,7 @@ export function patchSchema() {
             '音列の被覆は綴りから導出される（音素単位の連続部分列）。音列への set_upper_covers は拒否される',
             'cover_states: [{parent, state: 配置|暫定配置|未配置|上位未決, partition}]。記録のない辺は配置。partitions は親の側に置く',
             'materialize_mitoshi は語 id に当たる見做し型 type の仮想語義を、見做し先の直下に同じ綴りの語として作る',
+            'axioms: [{kind: 引き下げ|スロット|定義|式, ...}]。包摂は被覆辺、型付けは arguments が担う。式はスキーマ外として警告される',
         ],
     };
 }

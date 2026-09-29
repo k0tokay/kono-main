@@ -1,22 +1,9 @@
 // src/components/DetailFrame/MitoshiForms.jsx
 // 見做し：見做し型の定義フォームと，語に当たる見做し語義（仮想・実体化済み）の一覧．
 import { MITOSHI_CATEGORY, mitoshiTypes, sensesOf } from '../../domain/mitoshi.js';
+import { IdInput } from './IdInput';
 
 const label = (words, id) => (id != null && words[id] ? `${id} ${words[id].entry}` : '—');
-
-function IdInput({ value, onChange, words }) {
-    return (
-        <span className="idInput">
-            <input
-                className="textForm"
-                type="number"
-                value={value ?? ''}
-                onChange={e => onChange(e.target.value === '' ? null : Number(e.target.value))}
-            />
-            <span className="idLabel">{value != null && words[value] ? words[value].entry : '（未指定）'}</span>
-        </span>
-    );
-}
 
 /** 見做しカテゴリの語：from / to / relation / uniform を編集する． */
 export function MitoshiTypeForm({ word, words, edited, onChange }) {
