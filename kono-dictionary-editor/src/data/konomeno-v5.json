@@ -2708,17 +2708,12 @@
       "entry": "haisk",
       "category": "語彙",
       "lower_covers": [
-        369,
-        370,
-        371,
-        372,
-        373,
-        374,
         788,
         1003,
         1017,
         1018,
-        1024
+        1107,
+        1109
       ],
       "upper_covers": [
         789
@@ -2741,13 +2736,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 789,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 101,
@@ -9252,11 +9241,13 @@
     },
     {
       "id": 369,
-      "entry": "toha",
+      "entry": "kaatoha",
       "category": "語彙",
-      "lower_covers": [],
+      "lower_covers": [
+        370
+      ],
       "upper_covers": [
-        100
+        373
       ],
       "translations": [
         "長方形"
@@ -9277,11 +9268,11 @@
     },
     {
       "id": 370,
-      "entry": "mitoha",
+      "entry": "miitoha",
       "category": "語彙",
       "lower_covers": [],
       "upper_covers": [
-        100
+        369
       ],
       "translations": [
         "正方形"
@@ -9298,13 +9289,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 100,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 371,
@@ -9312,7 +9297,7 @@
       "category": "語彙",
       "lower_covers": [],
       "upper_covers": [
-        100
+        373
       ],
       "translations": [
         "菱形"
@@ -9332,13 +9317,13 @@
     },
     {
       "id": 372,
-      "entry": "klaha",
+      "entry": "klaaha",
       "category": "語彙",
       "lower_covers": [
         930
       ],
       "upper_covers": [
-        100
+        1107
       ],
       "translations": [
         "三角形"
@@ -9358,11 +9343,14 @@
     },
     {
       "id": 373,
-      "entry": "cytoha",
+      "entry": "cyytoha",
       "category": "語彙",
-      "lower_covers": [],
+      "lower_covers": [
+        369,
+        371
+      ],
       "upper_covers": [
-        100
+        374
       ],
       "translations": [
         "平行四辺形"
@@ -9385,10 +9373,11 @@
       "entry": "dantoha",
       "category": "語彙",
       "lower_covers": [
-        891
+        891,
+        373
       ],
       "upper_covers": [
-        100
+        1108
       ],
       "translations": [
         "台形"
@@ -10156,10 +10145,7 @@
       "id": 405,
       "entry": "ai",
       "category": "音列",
-      "lower_covers": [
-        449,
-        468
-      ],
+      "lower_covers": [],
       "upper_covers": [
         482
       ],
@@ -10191,8 +10177,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        482,
-        502
+        482
       ],
       "translations": [
         "動く",
@@ -10217,10 +10202,7 @@
       "id": 407,
       "entry": "ay",
       "category": "音列",
-      "lower_covers": [
-        430,
-        477
-      ],
+      "lower_covers": [],
       "upper_covers": [
         482
       ],
@@ -10242,7 +10224,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        482,
         483
       ],
       "translations": [
@@ -10269,9 +10250,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        483,
-        497,
-        724
+        483
       ],
       "translations": [
         "(大きめの)機械"
@@ -10320,7 +10299,6 @@
         412
       ],
       "upper_covers": [
-        482,
         484
       ],
       "translations": [
@@ -10344,8 +10322,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        411,
-        497
+        411
       ],
       "translations": [
         "絵",
@@ -10387,8 +10364,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        413,
-        491
+        413
       ],
       "translations": [
         "中心",
@@ -10428,7 +10404,6 @@
         417
       ],
       "upper_covers": [
-        482,
         485
       ],
       "translations": [
@@ -10450,8 +10425,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        416,
-        497
+        416
       ],
       "translations": [
         "ネガティブ",
@@ -10470,8 +10444,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        486,
-        722
+        486
       ],
       "translations": [
         "空間"
@@ -10511,7 +10484,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        446,
         488
       ],
       "translations": [
@@ -10532,8 +10504,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        487,
-        497
+        487
       ],
       "translations": [
         "小さめの袋・包み",
@@ -10555,7 +10526,6 @@
         794
       ],
       "upper_covers": [
-        482,
         489
       ],
       "translations": [
@@ -10585,8 +10555,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        422,
-        484
+        422
       ],
       "translations": [
         "乾いた",
@@ -10605,7 +10574,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        482,
         490
       ],
       "translations": [
@@ -10685,11 +10653,9 @@
         429,
         428,
         430,
-        797,
-        800
+        797
       ],
       "upper_covers": [
-        482,
         491
       ],
       "translations": [
@@ -10728,8 +10694,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        427,
-        486
+        427
       ],
       "translations": [
         "音楽",
@@ -10766,7 +10731,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        407,
         427
       ],
       "translations": [
@@ -10787,8 +10751,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        491,
-        722
+        491
       ],
       "translations": [
         "鋭い",
@@ -10866,7 +10829,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        440,
         493
       ],
       "translations": [
@@ -10888,7 +10850,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        446,
         493
       ],
       "translations": [
@@ -10945,9 +10906,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        436,
-        499,
-        505
+        436
       ],
       "translations": [
         "小さめの箱"
@@ -10965,8 +10924,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        436,
-        505
+        436
       ],
       "translations": [
         "狐"
@@ -11005,12 +10963,10 @@
       "entry": "la",
       "category": "音列",
       "lower_covers": [
-        434,
         441,
         560
       ],
       "upper_covers": [
-        482,
         494
       ],
       "translations": [
@@ -11037,8 +10993,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        440,
-        483
+        440
       ],
       "translations": [
         "辛い",
@@ -11057,12 +11012,10 @@
       "category": "音列",
       "lower_covers": [
         443,
-        444,
-        872
+        444
       ],
       "upper_covers": [
-        494,
-        722
+        494
       ],
       "translations": [
         "滑らか",
@@ -11083,8 +11036,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        442,
-        723
+        442
       ],
       "translations": [
         "（抽象的な）構造"
@@ -11107,8 +11059,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        442,
-        496
+        442
       ],
       "translations": [
         "結ぶ",
@@ -11134,8 +11085,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        495,
-        501
+        495
       ],
       "translations": [
         "線",
@@ -11155,8 +11105,6 @@
       "entry": "lo",
       "category": "音列",
       "lower_covers": [
-        420,
-        435,
         447,
         799
       ],
@@ -11186,9 +11134,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        446,
-        486,
-        505
+        446
       ],
       "translations": [
         "柔らかい布",
@@ -11210,7 +11156,6 @@
         449
       ],
       "upper_covers": [
-        482,
         496
       ],
       "translations": [
@@ -11234,7 +11179,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        405,
         448
       ],
       "translations": [
@@ -11256,8 +11200,7 @@
         451
       ],
       "upper_covers": [
-        496,
-        722
+        496
       ],
       "translations": [
         "甘い",
@@ -11286,8 +11229,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        450,
-        505
+        450
       ],
       "translations": [
         "下の",
@@ -11350,8 +11292,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        453,
-        501
+        453
       ],
       "translations": [
         "性質"
@@ -11414,7 +11355,6 @@
         721
       ],
       "upper_covers": [
-        482,
         497
       ],
       "translations": [
@@ -11439,8 +11379,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        457,
-        484
+        457
       ],
       "translations": [
         "健康な",
@@ -11477,7 +11416,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        496,
         498
       ],
       "translations": [
@@ -11498,8 +11436,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        498,
-        501
+        498
       ],
       "translations": [
         "機械"
@@ -11565,9 +11502,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        462,
-        491,
-        505
+        462
       ],
       "translations": [
         "不変な",
@@ -11586,7 +11521,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        484,
         500
       ],
       "translations": [
@@ -11626,7 +11560,6 @@
         468
       ],
       "upper_covers": [
-        482,
         501
       ],
       "translations": [
@@ -11648,7 +11581,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        405,
         467
       ],
       "translations": [
@@ -11668,8 +11600,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        501,
-        722
+        501
       ],
       "translations": [
         "前",
@@ -11733,7 +11664,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        491,
         503
       ],
       "translations": [
@@ -11756,7 +11686,6 @@
         474
       ],
       "upper_covers": [
-        479,
         502
       ],
       "translations": [
@@ -11778,8 +11707,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        473,
-        481
+        473
       ],
       "translations": [
         "角張った",
@@ -11822,11 +11750,9 @@
       "category": "音列",
       "lower_covers": [
         477,
-        503,
         871
       ],
       "upper_covers": [
-        482,
         505
       ],
       "translations": [
@@ -11848,7 +11774,6 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        407,
         476
       ],
       "translations": [
@@ -11868,10 +11793,11 @@
       "id": 478,
       "entry": "te",
       "category": "音列",
-      "lower_covers": [],
+      "lower_covers": [
+        1105
+      ],
       "upper_covers": [
-        505,
-        722
+        505
       ],
       "translations": [
         "量",
@@ -11894,7 +11820,6 @@
       "category": "音列",
       "lower_covers": [
         481,
-        473,
         480,
         554
       ],
@@ -11923,8 +11848,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        479,
-        484
+        479
       ],
       "translations": [
         "関節",
@@ -11941,9 +11865,7 @@
       "id": 481,
       "entry": "tov",
       "category": "音列",
-      "lower_covers": [
-        474
-      ],
+      "lower_covers": [],
       "upper_covers": [
         479
       ],
@@ -11967,18 +11889,7 @@
         405,
         407,
         406,
-        408,
-        411,
-        416,
-        422,
-        424,
-        427,
-        440,
-        448,
-        457,
-        467,
-        476,
-        500
+        1104
       ],
       "upper_covers": [
         4
@@ -11998,8 +11909,7 @@
       "lower_covers": [
         410,
         408,
-        409,
-        441
+        409
       ],
       "upper_covers": [
         4
@@ -12019,11 +11929,7 @@
       "lower_covers": [
         413,
         415,
-        411,
-        423,
-        458,
-        465,
-        480
+        411
       ],
       "upper_covers": [
         4
@@ -12063,8 +11969,6 @@
         419,
         487,
         418,
-        428,
-        447,
         488
       ],
       "upper_covers": [
@@ -12105,8 +12009,7 @@
         420
       ],
       "upper_covers": [
-        486,
-        494
+        486
       ],
       "translations": [],
       "simple_translations": [],
@@ -12162,14 +12065,9 @@
         433,
         436,
         439,
-        414,
         427,
         431,
-        464,
-        472,
-        493,
-        723,
-        795
+        493
       ],
       "upper_covers": [
         4
@@ -12210,8 +12108,7 @@
         872
       ],
       "upper_covers": [
-        491,
-        494
+        491
       ],
       "translations": [],
       "simple_translations": [],
@@ -12230,14 +12127,7 @@
         446,
         798,
         440,
-        442,
-        488,
-        493,
-        724,
-        725,
-        794,
-        800,
-        871
+        442
       ],
       "upper_covers": [
         4
@@ -12255,8 +12145,7 @@
       "entry": "li",
       "category": "音列",
       "lower_covers": [
-        445,
-        821
+        445
       ],
       "upper_covers": [
         494
@@ -12281,11 +12170,8 @@
         455,
         456,
         558,
-        444,
         448,
-        450,
-        460,
-        554
+        450
       ],
       "upper_covers": [
         4
@@ -12305,14 +12191,8 @@
       "lower_covers": [
         462,
         761,
-        409,
-        412,
-        417,
-        421,
         457,
-        498,
-        796,
-        797
+        498
       ],
       "upper_covers": [
         4
@@ -12334,8 +12214,7 @@
         461
       ],
       "upper_covers": [
-        497,
-        722
+        497
       ],
       "translations": [],
       "simple_translations": [],
@@ -12351,9 +12230,7 @@
       "category": "音列",
       "lower_covers": [
         466,
-        437,
-        500,
-        554
+        500
       ],
       "upper_covers": [
         4
@@ -12374,7 +12251,6 @@
         465
       ],
       "upper_covers": [
-        482,
         499
       ],
       "translations": [
@@ -12395,17 +12271,10 @@
       "lower_covers": [
         470,
         504,
-        445,
-        454,
-        461,
         467,
         469,
         502,
-        560,
-        762,
-        795,
-        870,
-        873
+        795
       ],
       "upper_covers": [
         4
@@ -12426,13 +12295,11 @@
       "entry": "st",
       "category": "音列",
       "lower_covers": [
-        406,
         473,
         503
       ],
       "upper_covers": [
-        501,
-        505
+        501
       ],
       "translations": [
         "動作する",
@@ -12453,7 +12320,6 @@
         472
       ],
       "upper_covers": [
-        476,
         502
       ],
       "translations": [],
@@ -12492,17 +12358,8 @@
       "category": "音列",
       "lower_covers": [
         479,
-        437,
-        438,
-        447,
-        451,
-        464,
         476,
-        478,
-        502,
-        721,
-        797,
-        821
+        478
       ],
       "upper_covers": [
         4
@@ -13583,9 +13440,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        479,
-        496,
-        499
+        479
       ],
       "translations": [
         "骨"
@@ -13671,8 +13526,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        485,
-        722
+        485
       ],
       "translations": [
         "下",
@@ -13692,8 +13546,7 @@
       "category": "音列",
       "lower_covers": [],
       "upper_covers": [
-        440,
-        501
+        440
       ],
       "translations": [
         "数"
@@ -17093,8 +16946,7 @@
       "simple_translations": [],
       "category": "音列",
       "upper_covers": [
-        457,
-        505
+        457
       ],
       "lower_covers": [],
       "arguments": [],
@@ -17113,17 +16965,8 @@
         4
       ],
       "lower_covers": [
-        418,
-        431,
-        442,
-        450,
-        469,
-        478,
-        498,
-        559,
         723,
-        724,
-        869
+        724
       ],
       "arguments": [],
       "tags": [],
@@ -17140,12 +16983,9 @@
       "simple_translations": [],
       "category": "音列",
       "upper_covers": [
-        491,
         722
       ],
-      "lower_covers": [
-        443
-      ],
+      "lower_covers": [],
       "arguments": [],
       "tags": [],
       "contents": [],
@@ -17161,12 +17001,9 @@
       "simple_translations": [],
       "category": "音列",
       "upper_covers": [
-        494,
         722
       ],
-      "lower_covers": [
-        409
-      ],
+      "lower_covers": [],
       "arguments": [],
       "tags": [],
       "contents": [],
@@ -17183,8 +17020,7 @@
       "simple_translations": [],
       "category": "音列",
       "upper_covers": [
-        462,
-        494
+        462
       ],
       "lower_covers": [],
       "arguments": [],
@@ -17877,7 +17713,6 @@
       "simple_translations": [],
       "category": "音列",
       "upper_covers": [
-        501,
         761
       ],
       "lower_covers": [],
@@ -18367,7 +18202,8 @@
       "id": 788,
       "entry": "kafon",
       "translations": [
-        "円"
+        "円",
+        "円板"
       ],
       "category": "語彙",
       "upper_covers": [
@@ -18507,8 +18343,7 @@
       ],
       "category": "音列",
       "upper_covers": [
-        422,
-        494
+        422
       ],
       "lower_covers": [],
       "arguments": [],
@@ -18527,12 +18362,9 @@
       ],
       "category": "音列",
       "upper_covers": [
-        491,
         501
       ],
-      "lower_covers": [
-        799
-      ],
+      "lower_covers": [],
       "arguments": [],
       "tags": [],
       "contents": [],
@@ -18549,8 +18381,7 @@
       ],
       "category": "音列",
       "upper_covers": [
-        419,
-        497
+        419
       ],
       "lower_covers": [],
       "arguments": [],
@@ -18569,9 +18400,7 @@
       ],
       "category": "音列",
       "upper_covers": [
-        427,
-        497,
-        505
+        427
       ],
       "lower_covers": [],
       "arguments": [],
@@ -18610,8 +18439,7 @@
       ],
       "category": "音列",
       "upper_covers": [
-        446,
-        795
+        446
       ],
       "lower_covers": [],
       "arguments": [],
@@ -18631,9 +18459,7 @@
       ],
       "category": "音列",
       "upper_covers": [
-        427,
-        487,
-        494
+        487
       ],
       "lower_covers": [],
       "arguments": [],
@@ -19037,9 +18863,7 @@
       ],
       "category": "音列",
       "upper_covers": [
-        462,
-        495,
-        505
+        462
       ],
       "lower_covers": [],
       "arguments": [],
@@ -19934,13 +19758,16 @@
     {
       "id": 868,
       "entry": "tc",
-      "translations": [],
+      "translations": [
+        ""
+      ],
       "category": "音列",
       "upper_covers": [
         4
       ],
       "lower_covers": [
-        869
+        869,
+        1106
       ],
       "arguments": [],
       "tags": [],
@@ -19955,7 +19782,6 @@
       "translations": [],
       "category": "音列",
       "upper_covers": [
-        722,
         868
       ],
       "lower_covers": [
@@ -19978,7 +19804,6 @@
       ],
       "category": "音列",
       "upper_covers": [
-        501,
         869
       ],
       "lower_covers": [],
@@ -19999,8 +19824,7 @@
       ],
       "category": "音列",
       "upper_covers": [
-        476,
-        494
+        476
       ],
       "lower_covers": [],
       "arguments": [],
@@ -20016,7 +19840,6 @@
       "translations": [],
       "category": "音列",
       "upper_covers": [
-        442,
         493
       ],
       "lower_covers": [
@@ -20037,7 +19860,6 @@
       ],
       "category": "音列",
       "upper_covers": [
-        501,
         872
       ],
       "lower_covers": [],
@@ -20540,7 +20362,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 374,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 892,
@@ -21814,7 +21643,7 @@
     },
     {
       "id": 930,
-      "entry": "kleha",
+      "entry": "kleeha",
       "translations": [
         "逆三角形"
       ],
@@ -21840,7 +21669,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 372,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 931,
@@ -24805,7 +24641,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        100
+        1109
       ],
       "lower_covers": [],
       "arguments": [
@@ -26944,6 +26780,141 @@
           "partition": null
         }
       ]
+    },
+    {
+      "id": 1104,
+      "entry": "amp",
+      "translations": [
+        "開"
+      ],
+      "category": "音列",
+      "upper_covers": [
+        482
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1105,
+      "entry": "teto",
+      "translations": [
+        "測定"
+      ],
+      "category": "音列",
+      "upper_covers": [
+        478
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1106,
+      "entry": "tcuif",
+      "translations": [
+        "帰結"
+      ],
+      "category": "音列",
+      "upper_covers": [
+        868
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1107,
+      "entry": "〈多角形〉",
+      "translations": [
+        "多角形"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        100
+      ],
+      "lower_covers": [
+        1108,
+        372
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1108,
+      "entry": "〈四角形〉",
+      "translations": [
+        "四角形"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        1107
+      ],
+      "lower_covers": [
+        374
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1109,
+      "entry": "〈線〉",
+      "translations": [
+        "線",
+        "曲線"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        100
+      ],
+      "lower_covers": [
+        1110,
+        1024
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1110,
+      "entry": "kafois",
+      "translations": [
+        "円周"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        1109
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
     }
   ]
 }

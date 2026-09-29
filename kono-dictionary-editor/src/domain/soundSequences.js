@@ -1,6 +1,7 @@
 // 音列カテゴリの被覆は手で張らず，綴りから導出する．
-// 音列 a が音列 b の上位にあるのは，a の音素列が b の音素列の連続部分列であるとき．
-// 被覆はその順序の Hasse 図（b の上位は，b に含まれる音列のうち極大なもの）．
+// 音列 a が音列 b の上位にあるのは，b の音素列が a の音素列で始まるとき（音素単位の接頭辞．
+// 部分文字列の包含ではない：それだと短い音列があらゆる所に現れすぎる．2026-09-30 作者）．
+// 被覆はその順序の Hasse 図（b の上位は，b の真の接頭辞である音列のうち最長のもの）．
 
 // 綴りの音素目録．正は kono-phonology/konophon/data/phonology.toml の [[phonemes]] spell．
 // test/soundSequences.test.js が toml との一致を検査する．
@@ -28,16 +29,10 @@ export function tokenizePhonemes(spelling) {
     return out;
 }
 
-/** 音素列 a が音素列 b の連続部分列か（a = b も真）． */
-export function isContiguousSubsequence(a, b) {
+/** 音素列 a が音素列 b の接頭辞か（a = b も真）． */
+export function isPhonemePrefix(a, b) {
     if (a.length > b.length) return false;
-    outer: for (let start = 0; start + a.length <= b.length; start++) {
-        for (let k = 0; k < a.length; k++) {
-            if (a[k] !== b[start + k]) continue outer;
-        }
-        return true;
-    }
-    return false;
+    return a.every((token, k) => token === b[k]);
 }
 
 export function sequenceRootId(words) {
@@ -77,14 +72,13 @@ export function deriveSequenceCovers(words) {
     }
 
     for (const item of items) {
-        // item に真に含まれる音列（綴りが同じ別語は含めない：重複は別の警告で扱う）
+        // item の真の接頭辞である音列（綴りが同じ別語は含めない：重複は別の警告で扱う）
         const contained = items.filter(other => other.id !== item.id
             && other.tokens.length < item.tokens.length
-            && isContiguousSubsequence(other.tokens, item.tokens));
-        // 極大元：他の含まれる音列に真に含まれないもの
-        const maximal = contained.filter(a => !contained.some(b => b !== a
-            && b.tokens.length > a.tokens.length
-            && isContiguousSubsequence(a.tokens, b.tokens)));
+            && isPhonemePrefix(other.tokens, item.tokens));
+        // 接頭辞は鎖をなすので，極大元は最長のもの（同じ長さの重複綴りがあれば両方）
+        const longest = Math.max(0, ...contained.map(c => c.tokens.length));
+        const maximal = contained.filter(c => c.tokens.length === longest);
         covers.set(item.id, maximal.length > 0 ? maximal.map(m => m.id).sort((x, y) => x - y) : [rootId]);
     }
     return { covers, errors, rootId };
