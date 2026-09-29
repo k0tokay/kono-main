@@ -118,3 +118,18 @@ li {
   .stateMark { font-weight: bold; padding: 0; }
   .offTreeCount { font-size: 0.8em; opacity: 0.6; }
 }
+
+.partitionGroup {
+  > .partitionLabel {
+    display: inline-block;
+    padding: 2px 8px 2px 12px;
+    font-style: italic;
+    color: $muted;
+    border-left: 2px dashed rgba($fg-main, 0.3);
+    .partitionFlags { margin-left: 8px; font-size: 0.8em; opacity: 0.7; font-style: normal; }
+  }
+  > .partitionChildren {
+    margin-left: 1rem;
+    border-left: 2px dashed rgba($fg-main, 0.15);
+  }
+}

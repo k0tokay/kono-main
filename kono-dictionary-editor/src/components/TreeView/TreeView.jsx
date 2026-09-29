@@ -6,6 +6,28 @@ import { childStateCounts, coverState } from '../../domain/placement.js';
 import './TreeView.scss';
 
 /** 単一ノード */
+/**
+ * 子を分割ごとにまとめる（本文の図の「枠のない中間節点」に当たる）．
+ * 宣言順に分割の群を並べ，どの分割にも参加しない子（未配置など）を最後に置く．
+ * 子が一つもない分割も見出しだけ出す（宣言したが枝がまだない）．
+ */
+function groupChildren(words, word) {
+  const children = (word.lower_covers || []).filter(childId => isValidWordTag(words, childId));
+  const partitions = word.partitions || [];
+  if (partitions.length === 0) return [{ partition: null, children }];
+  const byKey = new Map(partitions.map(p => [p.key, []]));
+  const rest = [];
+  for (const childId of children) {
+    const key = coverState(words[childId], word.id).partition;
+    if (key != null && byKey.has(key)) byKey.get(key).push(childId);
+    else rest.push(childId);
+  }
+  return [
+    ...partitions.map(p => ({ partition: p, children: byKey.get(p.key) })),
+    { partition: null, children: rest },
+  ];
+}
+
 const STATE_MARK = { 暫定配置: '~', 未配置: '·', 上位未決: '?' };
 const STATE_CLASS = { 暫定配置: 'provisional', 未配置: 'unplaced', 上位未決: 'undecided' };
 
@@ -57,10 +79,23 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
 
       {isOpen && hasChildren && (
         <ul className="wordItemChildren">
-          {children.map(childId => isValidWordTag(words, childId) ?
+          {groupChildren(words, word).map(group => group.partition ? (
+            <li key={`p:${group.partition.key}`} className="partitionGroup">
+              <span className="partitionLabel" title={group.partition.note || undefined}>
+                {group.partition.axis || group.partition.key}
+                <span className="partitionFlags">
+                  {[group.partition.kind, group.partition.disjoint ? '排他' : '非排他', group.partition.exhaustive && '網羅'].filter(Boolean).join('・')}
+                </span>
+              </span>
+              <ul className="partitionChildren">
+                {group.children.map(childId => (
+                  <WordItem key={childId} id={childId} parentId={id} editedIds={editedIds} ancestorHighlights={ancestorHighlights} />
+                ))}
+              </ul>
+            </li>
+          ) : group.children.map(childId => (
             <WordItem key={childId} id={childId} parentId={id} editedIds={editedIds} ancestorHighlights={ancestorHighlights} />
-            : null
-          )}
+          )))}
         </ul>
       )}
     </li>
