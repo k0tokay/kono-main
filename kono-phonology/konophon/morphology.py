@@ -65,15 +65,37 @@ def _split_head_consonants(s: Seq) -> tuple[Seq, Seq]:
 
 
 def apply_spelling_rules(text: str, inv: Inventory) -> str:
-    """口蓋化などの綴り字レベル書き換えを適用する."""
+    """口蓋化などの綴り字レベル書き換えを適用する.
+
+    置換は音素単位で行う（``kh`` の中の ``h`` や ``tc`` の中の ``c`` を別の音素と
+    取り違えない）．音素に分けられない綴りだけ文字列置換に落ちる．
+    """
     for _name, mapping in inv.spelling_rules:
+        tokens = inv.tokenize(text)
+        if tokens is None:
+            for src, dst in mapping.items():
+                text = text.replace(src, dst)
+            continue
+        spells = [p.spell for p in tokens]
+        rules = []
+        for src, dst in mapping.items():
+            src_t, dst_t = inv.tokenize(src), inv.tokenize(dst)
+            if src_t is None or dst_t is None:
+                continue
+            rules.append(([p.spell for p in src_t], [p.spell for p in dst_t]))
         changed = True
         while changed:
             changed = False
-            for src, dst in mapping.items():
-                if src in text:
-                    text = text.replace(src, dst)
-                    changed = True
+            for src_s, dst_s in rules:
+                n = len(src_s)
+                for i in range(len(spells) - n + 1):
+                    if spells[i:i + n] == src_s:
+                        spells[i:i + n] = dst_s
+                        changed = True
+                        break
+                if changed:
+                    break
+        text = "".join(spells)
     return text
 
 

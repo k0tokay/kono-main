@@ -587,15 +587,15 @@ R = { doc = "上昇", contour = true, requires_mora = 2 }
 
 [[rules]]
 name = "palatalization_j"
-doc = "x in {s,ts,z,h} について xj -> x^rho"
+doc = "x in {s,z,ts,t,d,h} について xj -> x^rho（phonology.tex「口蓋化」．xw は変換しない）"
 type = "spelling"
-map = { "sj" = "c", "tsj" = "tc", "zj" = "zc", "hj" = "kh" }
+map = { "sj" = "c", "zj" = "zc", "tsj" = "tc", "tj" = "tc", "dj" = "zc", "hj" = "kh" }
 
 [[rules]]
-name = "palatalization_i"
-doc = "x in {s,ts,z,h} について xi -> x^rho i"
+name = "palatalization_v"
+doc = "x in {s,z,ts,t,d,h}，v in {i,y,u,v} について xv -> x^rho v（phonology.tex「口蓋化」）"
 type = "spelling"
-map = { "si" = "ci", "tsi" = "tci", "zi" = "zci", "hi" = "khi" }
+map = { "si" = "ci", "sy" = "cy", "su" = "cu", "sv" = "cv", "zi" = "zci", "zy" = "zcy", "zu" = "zcu", "zv" = "zcv", "tsi" = "tci", "tsy" = "tcy", "tsu" = "tcu", "tsv" = "tcv", "ti" = "tci", "ty" = "tcy", "tu" = "tcu", "tv" = "tcv", "di" = "zci", "dy" = "zcy", "du" = "zcu", "dv" = "zcv", "hi" = "khi", "hy" = "khy", "hu" = "khu", "hv" = "khv" }
 
 [[rules]]
 name = "ji_absorption"

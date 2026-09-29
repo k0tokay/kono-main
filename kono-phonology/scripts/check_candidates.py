@@ -7,6 +7,7 @@
 報告する項目：
   音素化・結合表での厳密な音節化・子音4連続（不可なら ✗）
   F型の既定位置（音韻章の定義）と，そこでの長音化の要否（長核か共鳴子音コーダでなければ要）
+  綴りの規則（口蓋化・ji→i）で別の綴りになるか（なれば △ と正しい綴り）
   語彙の全存命項目との綴りの Levenshtein 距離 ≤1（あれば △，造語章では差し替え）
   3文字以上の「音列」項目との重なり，語頭2字の共有数（全体・親の下）
 """
@@ -18,6 +19,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from konophon import Word  # noqa: E402
+from konophon.inventory import inventory  # noqa: E402
+from konophon.morphology import apply_spelling_rules  # noqa: E402
 from konophon.syllable import Syllabifier  # noqa: E402
 
 DICT = ROOT.parent / "kono-dictionary-editor" / "src" / "data" / "konomeno-v5.json"
@@ -67,6 +70,7 @@ def main():
     if args.parent is not None:
         siblings = [by_id[c]["entry"] for c in by_id[args.parent]["lower_covers"] if c in by_id]
     strict = Syllabifier(fallback_relaxed=False)
+    inv = inventory()
 
     for form in forms:
         try:
@@ -87,13 +91,16 @@ def main():
         k = f_position(word)
         f_syl = word.syllables[k]
         f_note = f"F=σ{k + 1} {f_syl.spell}" + ("（長音化が要る）" if needs_lengthening(f_syl) else "")
+        canonical = apply_spelling_rules(form, inv)
+        if canonical != form:
+            problems.append(f"綴りの規則で {canonical}")
         near = sorted({e for e in lexicon if e != form and lev(form, e) <= 1})
         if near:
             problems.append("距離≤1: " + ",".join(near))
         overlaps = sorted({s for s in sequences if s in form})
         head = sum(1 for e in lexicon if e[:2] == form[:2])
         sib = [e for e in siblings if e[:2] == form[:2]]
-        tag = "✗" if hard else ("△" if near else "✓")
+        tag = "✗" if hard else ("△" if near or canonical != form else "✓")
         extra = f"語頭2字 全体{head}" + (f"・兄弟{len(sib)}({','.join(sib)})" if args.parent is not None else "")
         if overlaps:
             extra += f"／音列 {','.join(overlaps)}"

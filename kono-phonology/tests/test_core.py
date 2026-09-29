@@ -227,6 +227,22 @@ def test_palatalization_applies_after_join():
     assert "sj" not in Seq.of("mes").vplus("ja").spell
 
 
+def test_palatalization_rules_match_phonology_chapter():
+    from konophon.inventory import inventory
+    from konophon.morphology import apply_spelling_rules
+    inv = inventory()
+    # x in {s,z,ts,t,d,h}, v in {i,y,u,v}: xj -> x^rho, xv -> x^rho v
+    assert apply_spelling_rules("tuuf", inv) == "tcuuf"
+    assert apply_spelling_rules("diin", inv) == "zciin"
+    assert apply_spelling_rules("mesja", inv) == "meca"
+    assert apply_spelling_rules("jiik", inv) == "iik"
+    # 置換は音素単位：kh の中の h，tc の中の c を取り違えない（旧実装は khi で止まらなかった）
+    assert apply_spelling_rules("khi", inv) == "khi"
+    assert apply_spelling_rules("tci", inv) == "tci"
+    # xw は変換しない
+    assert apply_spelling_rules("tswa", inv) == "tswa"
+
+
 def test_consonant_join_defricates_affricates():
     assert Seq.of("ats").cplus("tca") == "asca"
 
