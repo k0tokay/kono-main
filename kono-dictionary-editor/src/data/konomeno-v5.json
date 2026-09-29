@@ -1598,8 +1598,8 @@
       "cover_states": [
         {
           "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "state": "配置",
+          "partition": "種類"
         }
       ]
     },
@@ -1638,8 +1638,8 @@
       "cover_states": [
         {
           "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "state": "配置",
+          "partition": "種類"
         }
       ],
       "partitions": [
@@ -2736,7 +2736,13 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": []
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "配置",
+          "partition": "種類"
+        }
+      ]
     },
     {
       "id": 101,
@@ -3585,8 +3591,8 @@
       "cover_states": [
         {
           "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "state": "配置",
+          "partition": "種類"
         }
       ]
     },
@@ -18234,11 +18240,9 @@
         59,
         934,
         136,
-        1092,
-        1095,
-        1098,
         1099,
-        1101
+        1101,
+        1111
       ],
       "arguments": [],
       "tags": [],
@@ -18254,7 +18258,20 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "partitions": [
+        {
+          "key": "種類",
+          "axis": "形式的対象の種類（同一性の基準）",
+          "kind": "骨格",
+          "disjoint": true,
+          "exhaustive": false,
+          "basis": [
+            "推論"
+          ],
+          "note": "同一性の基準が違う種類の外延的な列挙（場合がすべて原子の構成）．数の成員は個々の数で構造 Z とは別．上位分類章「形式的対象の分類」（2026-09-30）"
+        }
+      ]
     },
     {
       "id": 790,
@@ -21813,8 +21830,8 @@
       "cover_states": [
         {
           "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "state": "配置",
+          "partition": "種類"
         }
       ]
     },
@@ -26380,7 +26397,7 @@
       "simple_translations": [],
       "category": "語彙",
       "upper_covers": [
-        789
+        1111
       ],
       "lower_covers": [
         1093,
@@ -26402,9 +26419,9 @@
       "is_function": false,
       "cover_states": [
         {
-          "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "parent": 1111,
+          "state": "配置",
+          "partition": "シグネチャ"
         }
       ]
     },
@@ -26483,7 +26500,7 @@
       "simple_translations": [],
       "category": "語彙",
       "upper_covers": [
-        789
+        1111
       ],
       "lower_covers": [
         1096,
@@ -26504,9 +26521,9 @@
       "is_function": false,
       "cover_states": [
         {
-          "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "parent": 1111,
+          "state": "配置",
+          "partition": "シグネチャ"
         }
       ]
     },
@@ -26587,7 +26604,7 @@
       "simple_translations": [],
       "category": "語彙",
       "upper_covers": [
-        789
+        1111
       ],
       "lower_covers": [],
       "arguments": [],
@@ -26605,9 +26622,9 @@
       "is_function": false,
       "cover_states": [
         {
-          "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "parent": 1111,
+          "state": "配置",
+          "partition": "シグネチャ"
         }
       ]
     },
@@ -26639,8 +26656,8 @@
       "cover_states": [
         {
           "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "state": "配置",
+          "partition": "種類"
         }
       ]
     },
@@ -26705,8 +26722,8 @@
       "cover_states": [
         {
           "parent": 789,
-          "state": "未配置",
-          "partition": null
+          "state": "配置",
+          "partition": "種類"
         }
       ]
     },
@@ -26915,6 +26932,56 @@
       "variations": [],
       "relations": [],
       "is_function": false
+    },
+    {
+      "id": 1111,
+      "entry": "〈構造〉",
+      "translations": [
+        "構造（数学）"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        789
+      ],
+      "lower_covers": [
+        1092,
+        1095,
+        1098
+      ],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "シグネチャと公理を満たす表示で与えられる対象．⟨Σ,T,A,E⟩ で記述する．構造どうしは重なる（束は順序構造でも代数構造でもある）ので，下は非排他の素性の分割（2026-09-30）．"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "partitions": [
+        {
+          "key": "シグネチャ",
+          "axis": "シグネチャの種類",
+          "kind": "素性",
+          "disjoint": false,
+          "exhaustive": false,
+          "basis": [
+            "推論"
+          ],
+          "note": "演算・位相／測度・順序．位相群のように複数に入る．"
+        }
+      ],
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "配置",
+          "partition": "種類"
+        }
+      ]
     }
   ]
 }
