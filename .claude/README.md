@@ -7,7 +7,7 @@
 構成は次の三つ．
 1. **業務スキル**：個別タスクの手順．標準形式「入力／禁止事項／手順／チェックリスト」．守られにくい禁止事項は該当手順の直前に再掲する．各スキルは `AGENTS.md` の**アンカー**（作業種別ごとに最初に読む一つ）を入力に持つ．
 2. **形式検査**：`scripts/formal-check.sh`．機械で判定できるもの（ビルド・文体lint・辞書validate・テスト・ハーネス構文）だけを検査し，コミット前に通す．理論の質は判定しない．人間のレビューを代替しない．
-3. **ループを閉じる部品**：旧ワークフローの「フィードバック経路付きの制作」と同じ一つのループで，戻し先だけが違う．本文へ戻す（`/production practice|coinage`），構築方法論へ戻す（`/production methodology`），手順へ戻す（`/retro` → `/improve-skill`）．`/eval-skill` は新スキルを過去の記録と読み合わせる補助で，実行評価は高価なので常設にしない．
+3. **ループを閉じる部品**：旧ワークフローの「フィードバック経路付きの制作」と同じ一つのループで，戻し先だけが違う．構築方法論へ戻す（`/study`），手順へ戻す（`/retro`：振り返りとスキル差分を一度に，当てるのは作者の了承後）．
 
 二度以上起こる作業は，依頼を実行する前にスキルを書く（スキルファースト）．手順の差分は作者が見る．
 
@@ -18,16 +18,12 @@
 | 文体について | `skills/write-concise-japanese`（→ `workflow/style-manual/…_v5` へのシンボリックリンク）＋ `scripts/tex-lint.py` | スキル＋PostToolUse フック |
 | 権威ある本文 | `scripts/session-context.sh`，`scripts/guard-paths.py` | SessionStart／PreToolUse フック |
 | 読者質問パス | `/reader-questions`；上流の通読所感は `/read-through` | スキル |
-| 反問プロンプト | `/counter-question` | スキル |
 | 通読所感（上流） | `/read-through`（別文脈では `reader`） | スキル／エージェント |
 | 精読検証パス 1〜4 | `/precision-review`（別文脈なら `precision-reviewer` エージェント） | スキル／エージェント |
 | 精読検証パス 5〜7 | `/review-respond` | スキル |
 | AIの分担と作業の区切り | `investigator`，`verifier` エージェント；`/checkpoint`＋`scripts/formal-check.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
-| 制作→ワークフロー（手順の改良） | `/retro` → `/improve-skill`（`/eval-skill` は補助）；`retro/`，`dryrun/` | スキル／記録 |
-| フィードバック経路付きの制作 | `/production` | スキル |
-| memo／todo掃討 | `/marker-sweep` | スキル |
+| 制作→ワークフロー（手順の改良） | `/retro`；`retro/`，`dryrun/`（dryrun は 2026-09-14 の過去記録） | スキル／記録 |
 | 辞書の配置の状態 | `/placement-triage` | スキル |
-| 実践編の制作・移植 | `/practice-port` | スキル |
 | 造語 | `/coinage`（主担当が直接．検査は `kono-phonology/scripts/check_candidates.py`） | スキル |
 | codex 一往復 | `/codex-consult` → `scripts/consult.sh` | スキル／スクリプト |
 
@@ -37,18 +33,12 @@
 - `/read-through <章|all>`：本文だけを読者として通読し，疑問と違和感を散文で書く（番号・状態なし）．精読より上流．
 - `/precision-review <章>`：精読レビューを日付ログに作る．本文は変えない．
 - `/review-respond <対象名>`：作者コメントに応答し，本文と依存先を直し，レビュー状態を更新する．
-- `/marker-sweep <章> [--dry-run]`：memo/todo/ques/fixme を棚卸しして裁く．
-- `/placement-triage <対象>`：辞書の語に配置の状態（配置／暫定配置／未配置）を付ける．
+- `/placement-triage <対象>`：辞書の被覆辺に配置の状態（配置／暫定配置／未配置／上位未決）を付ける．
 - `/reader-questions <範囲> [--edit]`：読者の疑問をログする．`--edit` で編集まで．
-- `/counter-question [議題]`：反問モードで議論する．
-- `/production <経路> <対象>`：フィードバック経路（practice／coinage／methodology）に位置づけて制作する．
-- `/practice-port <旧稿範囲> <移植先>`：旧稿から実践編へ移植する．
-- `/coinage <概念…>`：造語を Fable に依頼する．
+- `/coinage <概念…>`：造語する（主担当が直接．候補表と検査まで．登録は作者）．
 - `/codex-consult <主題> <問い>`：codex へ一往復投げる．
 - `/checkpoint [要旨]`：差分確認→形式検査→コミット．
-- `/retro <スキル> <主題>`：Keep/Problem/Try を `retro/` に残す．
-- `/improve-skill <スキル>`：未反映の Try/FAIL をスキル差分にして適用する．
-- `/eval-skill <スキル|--all> [--run]`：過去の記録と読み合わせて手順の抜け・過剰を出す．`--run` で実行評価．
+- `/retro <スキル> <主題>`：Keep/Problem/Try を `retro/` に残し，Try をスキル差分案にして作者の了承後に当てる．
 
 ## サブエージェント（`agents/`）
 

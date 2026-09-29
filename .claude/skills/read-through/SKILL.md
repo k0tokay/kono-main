@@ -9,7 +9,7 @@ allowed-tools: Read, Glob, Write, Bash(python3 *), Bash(git rev-parse *), Bash(d
 - $0：章ファイル（例 `detail/chapters/s-side/endurants.tex`），または `all`（`detail/main-detail.tex` から読まれる全章を順に）．
 - 読むのは有効本文だけ．有効行範囲: !`python3 ${CLAUDE_PROJECT_DIR}/.claude/scripts/active-lines.py "${CLAUDE_PROJECT_DIR}/$0" 2>/dev/null; true`
 - 今日: !`date +%F` ／ 基準コミット: !`git -C ${CLAUDE_PROJECT_DIR} rev-parse --short HEAD`
-- 読み手の立場：本文だけを初めて通読する注意深い読者．反問の型（`/counter-question`）と美意識の軸（普遍性・分類・突飛さ／目標の高さ・質・統一感・量・難解・不可分性）を持っている．
+- 読み手の立場：本文だけを初めて通読する注意深い読者．反問の型（前提を疑い，同意より別角度の指摘を優先する）と美意識の軸（普遍性・分類・突飛さ／目標の高さ・質・統一感・量・難解・不可分性）を持っている．
 
 ## 禁止事項
 - 日付ログ・過去レビュー・辞書・旧稿・『素描』を読まない．本文だけを読む．

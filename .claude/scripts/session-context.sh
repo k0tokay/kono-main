@@ -18,7 +18,7 @@ cat <<CTX
 - 本文マーカー数(todo/memo/fixme/ques/ai*): $MARKERS ／ issues.py $OPEN
 - $BUILD
 - 権威: detail/main-detail.tex から読まれる本文だけが理論の正．ログ・archive・辞書は正ではない．
-- 手順はスキルにある: /study /read-through /precision-review /review-respond /marker-sweep /placement-triage /reader-questions /counter-question /production /practice-port /coinage /codex-consult /checkpoint ．地図は .claude/README.md ．
-- スキルファースト: 二度以上起こる作業は先にスキルを書く．終えたら /retro，改良は /improve-skill，新スキルは /eval-skill でドライラン．
+- 手順はスキルにある: /study /read-through /precision-review /review-respond /placement-triage /reader-questions /coinage /codex-consult /checkpoint ．地図は .claude/README.md ．
+- スキルファースト: 二度以上起こる作業は先にスキルを書く．終えたら /retro（振り返りとスキル差分案．当てるのは作者の了承後）．
 - 未反映の Try/FAIL: $(grep -L '→ 反映' .claude/retro/*.md .claude/dryrun/*.md 2>/dev/null | grep -v README | wc -l | tr -d ' ') 件
 CTX
