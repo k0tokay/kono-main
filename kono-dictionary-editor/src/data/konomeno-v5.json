@@ -2757,7 +2757,7 @@
         1021
       ],
       "upper_covers": [
-        136
+        281
       ],
       "translations": [
         "記号",
@@ -2776,14 +2776,19 @@
         "T2",
         "T1"
       ],
-      "contents": [],
+      "contents": [
+        {
+          "title": "配置 2026-09-29",
+          "text": "文字・記号の型は制作と共同体に依存する kika．紙や画面に書かれた実現は haikant．形式体系のアルファベットの元は〈記号〉（形態の下）．"
+        }
+      ],
       "variations": [],
       "is_function": false,
       "cover_states": [
         {
-          "parent": 136,
-          "state": "暫定配置",
-          "partition": "構成"
+          "parent": 281,
+          "state": "未配置",
+          "partition": null
         }
       ]
     },
@@ -3555,8 +3560,8 @@
       "category": "語彙",
       "lower_covers": [
         367,
-        101,
-        1090
+        1090,
+        1100
       ],
       "upper_covers": [
         789
@@ -7257,7 +7262,8 @@
       "lower_covers": [
         135,
         306,
-        137
+        137,
+        101
       ],
       "upper_covers": [
         790
@@ -9214,12 +9220,7 @@
       "entry": "mintos",
       "category": "語彙",
       "lower_covers": [
-        882,
-        890,
-        940,
-        944,
-        1013,
-        1034
+        944
       ],
       "upper_covers": [
         789
@@ -12677,7 +12678,9 @@
         525,
         708,
         763,
-        878
+        878,
+        1102,
+        1034
       ],
       "upper_covers": [
         11
@@ -18388,7 +18391,8 @@
         1092,
         1095,
         1098,
-        1099
+        1099,
+        1101
       ],
       "arguments": [],
       "tags": [],
@@ -20202,7 +20206,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        368
+        1102
       ],
       "lower_covers": [],
       "arguments": [
@@ -20215,11 +20219,22 @@
         {
           "title": "分類 v4→v5 (2026-08-18)",
           "text": "v4_id=853／品詞=fN／確信度=3／備考=命題"
+        },
+        {
+          "title": "配置 2026-09-29",
+          "text": "ZFC を文脈として公理ロールを担う論理式の名．"
         }
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1102,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 883,
@@ -20457,7 +20472,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        368
+        1102
       ],
       "lower_covers": [],
       "arguments": [
@@ -20470,11 +20485,22 @@
         {
           "title": "分類 v4→v5 (2026-08-18)",
           "text": "v4_id=859／品詞=fN／確信度=3"
+        },
+        {
+          "title": "配置 2026-09-29",
+          "text": "ZFC を文脈として公理ロールを担う論理式の名．"
         }
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1102,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 891,
@@ -22119,7 +22145,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        368
+        1102
       ],
       "lower_covers": [],
       "arguments": [
@@ -22132,11 +22158,22 @@
         {
           "title": "分類 v4→v5 (2026-08-18)",
           "text": "v4_id=856／品詞=fN／確信度=3"
+        },
+        {
+          "title": "配置 2026-09-29",
+          "text": "ZFC を文脈として公理ロールを担う論理式の名．"
         }
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1102,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 941,
@@ -24393,7 +24430,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        368
+        1102
       ],
       "lower_covers": [],
       "arguments": [
@@ -24406,11 +24443,22 @@
         {
           "title": "分類 v4→v5 (2026-08-18)",
           "text": "v4_id=854／品詞=fN／確信度=3"
+        },
+        {
+          "title": "配置 2026-09-29",
+          "text": "ZFC を文脈として公理ロールを担う論理式の名．"
         }
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1102,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 1014,
@@ -24662,6 +24710,10 @@
         {
           "title": "分類 v4→v5 (2026-08-18)",
           "text": "v4_id=744／品詞=fN／確信度=3／備考=記号"
+        },
+        {
+          "title": "配置 2026-09-29",
+          "text": "矢印の型として kika（suylis の下）．表示された実現は haikant．"
         }
       ],
       "variations": [],
@@ -25051,7 +25103,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        368
+        514
       ],
       "lower_covers": [],
       "arguments": [
@@ -25064,11 +25116,22 @@
         {
           "title": "分類 v4→v5 (2026-08-18)",
           "text": "v4_id=437／品詞=fN／確信度=3"
+        },
+        {
+          "title": "配置 2026-09-29",
+          "text": "理論を文脈とするロール（担い手は論理式）．"
         }
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 514,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 1035,
@@ -26726,6 +26789,110 @@
       "cover_states": [
         {
           "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1100,
+      "entry": "〈記号〉",
+      "translations": [
+        "記号（形式的）"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        136
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "形式体系のアルファベットの元．記号的な形態の原子．文字・記号の型（suylis，kika）とは別．（2026-09-29）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 136,
+          "state": "配置",
+          "partition": "構成"
+        }
+      ]
+    },
+    {
+      "id": 1101,
+      "entry": "〈理論〉",
+      "translations": [
+        "理論"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        789
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "シグネチャと公理系の組（仕様層）．公理・定理のロールの文脈になる．（2026-09-29）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1102,
+      "entry": "〈公理〉",
+      "translations": [
+        "公理"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        514
+      ],
+      "lower_covers": [
+        882,
+        890,
+        940,
+        1013
+      ],
+      "arguments": [],
+      "tags": [
+        "要造語"
+      ],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "理論を文脈とするロール．担い手は論理式で，論理式そのものではない．（2026-09-29）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 514,
           "state": "未配置",
           "partition": null
         }
