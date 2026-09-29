@@ -215,3 +215,35 @@ input:read-only, textarea:read-only {
     }
   }
 }
+.coverStateForm {
+  .coverStateRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+  }
+  .parentLabel {
+    cursor: pointer;
+    min-width: 10em;
+    .id { font-weight: bold; opacity: 0.7; }
+  }
+  .warn { color: #c0392b; font-size: 0.9em; }
+}
+
+.partitionForm {
+  .largeListItemHeader {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    input.textForm { flex: 1; min-width: 4em; }
+  }
+  .partitionFlags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 4px 0;
+    font-size: 0.9em;
+  }
+  .memberCount { opacity: 0.7; margin-left: auto; }
+}

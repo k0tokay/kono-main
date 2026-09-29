@@ -673,8 +673,7 @@
       ],
       "tags": [
         "T5",
-        "定義クラス",
-        "暫定配置"
+        "定義クラス"
       ],
       "contents": [
         {
@@ -688,7 +687,14 @@
           "text": "halovnant"
         }
       ],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 18,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 26,
@@ -1005,12 +1011,18 @@
         37
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 34,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 38,
@@ -1576,12 +1588,18 @@
         59
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 789,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 60,
@@ -1920,12 +1938,18 @@
         71
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 70,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 72,
@@ -2261,12 +2285,18 @@
         83
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 75,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 84,
@@ -2286,12 +2316,18 @@
         84
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 75,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 85,
@@ -2331,12 +2367,18 @@
         86
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 82,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 87,
@@ -2386,12 +2428,18 @@
         88
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 18,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 89,
@@ -3175,12 +3223,18 @@
         126
       ],
       "tags": [
-        "T1",
-        "暫定配置"
+        "T1"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 827,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 127,
@@ -3847,12 +3901,18 @@
         155
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 18,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 156,
@@ -3929,12 +3989,18 @@
         158
       ],
       "tags": [
-        "T3",
-        "暫定配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 230,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 159,
@@ -3954,12 +4020,18 @@
         159
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 78,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 160,
@@ -3980,12 +4052,18 @@
       ],
       "tags": [
         "T3",
-        "T2",
-        "未配置"
+        "T2"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 78,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 161,
@@ -4060,12 +4138,18 @@
         163
       ],
       "tags": [
-        "T2",
-        "未配置"
+        "T2"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 70,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 164,
@@ -4139,12 +4223,18 @@
         166
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 165,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 167,
@@ -4212,12 +4302,18 @@
         169
       ],
       "tags": [
-        "T4",
-        "未配置"
+        "T4"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 582,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 170,
@@ -4313,12 +4409,18 @@
         173
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 18,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 174,
@@ -4413,12 +4515,18 @@
         177
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 70,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 178,
@@ -4697,12 +4805,18 @@
         188
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 627,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 189,
@@ -4795,12 +4909,18 @@
       ],
       "tags": [
         "T3",
-        "T1",
-        "未配置"
+        "T1"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 156,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 193,
@@ -5123,12 +5243,18 @@
         206
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 205,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 207,
@@ -5245,12 +5371,18 @@
         211
       ],
       "tags": [
-        "T4",
-        "未配置"
+        "T4"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 582,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 212,
@@ -5787,12 +5919,18 @@
         230
       ],
       "tags": [
-        "T3",
-        "暫定配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 15,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     null,
     null,
@@ -6473,12 +6611,18 @@
         259
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 27,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 260,
@@ -6754,12 +6898,18 @@
         270
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 24,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 271,
@@ -7123,12 +7273,18 @@
         288
       ],
       "tags": [
-        "T4",
-        "未配置"
+        "T4"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 286,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 289,
@@ -7173,12 +7329,18 @@
         290
       ],
       "tags": [
-        "T4",
-        "未配置"
+        "T4"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 288,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 291,
@@ -7500,8 +7662,7 @@
         304
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [
         {
@@ -7510,7 +7671,14 @@
         }
       ],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 258,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 305,
@@ -7530,8 +7698,7 @@
         305
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [
         {
@@ -7540,7 +7707,14 @@
         }
       ],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 258,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 306,
@@ -8238,8 +8412,7 @@
         339
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [
         {
@@ -8248,7 +8421,14 @@
         }
       ],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1056,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 340,
@@ -8980,12 +9160,18 @@
         370
       ],
       "tags": [
-        "T3",
-        "未配置"
+        "T3"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 100,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 371,
@@ -9586,12 +9772,18 @@
         395
       ],
       "tags": [
-        "T4",
-        "未配置"
+        "T4"
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 59,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 396,
@@ -16580,9 +16772,7 @@
       ],
       "lower_covers": [],
       "arguments": [],
-      "tags": [
-        "暫定配置"
-      ],
+      "tags": [],
       "contents": [
         {
           "title": "分類 nosnant再分類 (2026-08-29)",
@@ -16590,7 +16780,14 @@
         }
       ],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 714,
@@ -16606,9 +16803,7 @@
       ],
       "lower_covers": [],
       "arguments": [],
-      "tags": [
-        "暫定配置"
-      ],
+      "tags": [],
       "contents": [
         {
           "title": "分類 nosnant再分類 (2026-08-29)",
@@ -16616,7 +16811,14 @@
         }
       ],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 715,
@@ -19795,8 +19997,7 @@
       "arguments": [],
       "tags": [
         "v4新規",
-        "要造語",
-        "暫定配置"
+        "要造語"
       ],
       "contents": [
         {
@@ -19806,7 +20007,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 514,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 879,
@@ -19828,8 +20036,7 @@
       "arguments": [],
       "tags": [
         "v4新規",
-        "要造語",
-        "暫定配置"
+        "要造語"
       ],
       "contents": [
         {
@@ -19839,7 +20046,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1043,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     null,
     null,
@@ -20044,8 +20258,7 @@
         888
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -20055,7 +20268,19 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 637,
+          "state": "暫定配置",
+          "partition": null
+        },
+        {
+          "parent": 878,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 889,
@@ -20549,8 +20774,7 @@
         904
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -20564,7 +20788,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 905,
@@ -20714,8 +20945,7 @@
         909
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -20725,7 +20955,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 879,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 910,
@@ -20866,8 +21103,7 @@
         914
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -20877,7 +21113,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 878,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 915,
@@ -20897,8 +21140,7 @@
         915
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -20912,7 +21154,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 916,
@@ -20962,8 +21211,7 @@
         917
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -20977,7 +21225,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 918,
@@ -21091,8 +21346,7 @@
         921
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -21102,7 +21356,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 878,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 922,
@@ -21122,8 +21383,7 @@
         922
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -21137,7 +21397,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1056,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 923,
@@ -21191,8 +21458,7 @@
         924
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -21206,7 +21472,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 925,
@@ -21286,8 +21559,7 @@
         927
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -21297,7 +21569,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 879,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 928,
@@ -21411,8 +21690,7 @@
         931
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -21426,7 +21704,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 932,
@@ -23094,8 +23379,7 @@
         985
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -23109,7 +23393,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 986,
@@ -23294,8 +23585,7 @@
         991
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -23305,7 +23595,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 878,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 992,
@@ -23389,8 +23686,7 @@
         994
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -23404,7 +23700,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 35,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 995,
@@ -24503,8 +24806,7 @@
         1031
       ],
       "tags": [
-        "v4新規",
-        "暫定配置"
+        "v4新規"
       ],
       "contents": [
         {
@@ -24514,7 +24816,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 878,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 1032,
@@ -24843,8 +25152,7 @@
       ],
       "arguments": [],
       "tags": [
-        "要造語",
-        "暫定配置"
+        "要造語"
       ],
       "contents": [
         {
@@ -24854,7 +25162,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 9,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 1043,
@@ -24875,8 +25190,7 @@
       ],
       "arguments": [],
       "tags": [
-        "要造語",
-        "暫定配置"
+        "要造語"
       ],
       "contents": [
         {
@@ -24886,7 +25200,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 9,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 1044,
@@ -24904,8 +25225,7 @@
       "lower_covers": [],
       "arguments": [],
       "tags": [
-        "要造語",
-        "暫定配置"
+        "要造語"
       ],
       "contents": [
         {
@@ -24915,7 +25235,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 1043,
+          "state": "暫定配置",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 1045,

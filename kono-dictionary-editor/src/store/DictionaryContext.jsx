@@ -4,6 +4,7 @@ import { bundledWords, BUNDLED_FINGERPRINT } from './bundledDictionary.js';
 import { createBlankWord, checkIntegrity, hasNoCycle } from '../utils/utils.js';
 import { deleteWordInPlace } from '../domain/dictionaryCore.js';
 import { applyDerivedSequenceCovers, isSequenceWord } from '../domain/soundSequences.js';
+import { pruneCoverStates } from '../domain/placement.js';
 import { ancestorList, isValidWordTag } from '../utils/utils.js';
 import { CATEGORY } from '../constants/categories.js';
 
@@ -177,6 +178,7 @@ function updateCovers(state, { id, field, tag }) {
 
     if (hasNoCycle({ words: newWords })) {
         checkIntegrity({ words: newWords });
+        pruneCoverStates(newWords);
         return { ...state, words: newWords, editedFields: markEdited(state.editedFields, id, field) };
     } else {
         newWords[numTag][invField] = newWords[numTag][invField].filter(t => t !== id);

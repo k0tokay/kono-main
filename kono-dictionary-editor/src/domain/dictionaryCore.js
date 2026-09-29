@@ -1,3 +1,4 @@
+import { pruneCoverStates, validatePlacement } from './placement.js';
 import { applyDerivedSequenceCovers, isSequenceWord, sequenceCoverMismatches, tokenizePhonemes } from './soundSequences.js';
 
 export const EDITABLE_FIELDS = new Set([
@@ -10,6 +11,8 @@ export const EDITABLE_FIELDS = new Set([
     'variations',
     'relations',
     'is_function',
+    'partitions',
+    'cover_states',
 ]);
 
 export class DictionaryOperationError extends Error {
@@ -284,6 +287,9 @@ export function validateDictionary(data) {
                 }
             }
         }
+        const placement = validatePlacement(words);
+        errors.push(...placement.errors);
+        warnings.push(...placement.warnings);
     }
 
     return { valid: errors.length === 0, errors, warnings };
@@ -382,6 +388,8 @@ function normalizeNewWord(words, operation) {
         variations: operation.word.variations ?? [],
         relations: operation.word.relations ?? [],
         is_function: operation.word.is_function ?? false,
+        ...(operation.word.partitions ? { partitions: structuredClone(operation.word.partitions) } : {}),
+        ...(operation.word.cover_states ? { cover_states: structuredClone(operation.word.cover_states) } : {}),
     };
 }
 
@@ -535,6 +543,7 @@ export function deleteWordInPlace(words, operation) {
         }
     }
     words[operation.id] = null;
+    pruneCoverStates(words);
 
     if (operation.reconnect === 'parents') {
         for (const childId of neighborhood.childIds) {
@@ -623,6 +632,7 @@ export function applyDictionaryPatch(data, patch) {
     }
     const derivedSequenceCovers = applyDerivedSequenceCovers(words);
     const removedRedundantCovers = reduceRedundantCovers(words);
+    const prunedCoverStates = pruneCoverStates(words);
     const validation = validateDictionary(next);
     if (!validation.valid) {
         throw new DictionaryOperationError('INTEGRITY_ERROR', 'パッチ適用後の辞書が整合性条件を満たしません', validation);
@@ -634,6 +644,7 @@ export function applyDictionaryPatch(data, patch) {
         assignedIds,
         removedRedundantCovers,
         derivedSequenceCovers,
+        prunedCoverStates,
         validation,
     };
 }

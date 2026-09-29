@@ -2,6 +2,7 @@
 import { useMemo } from 'react';
 import { useDictState, useDictDispatch } from '../../store/DictionaryContext';
 import { BasicForm, TagForm, LargeListForm, RelationForm, MenuBar, CheckboxForm } from '../CommonForms';
+import { CoverStateForm, PartitionForm } from './PlacementForms';
 import './DetailFrame.scss';
 
 // ──────────────────────────────────────────
@@ -90,6 +91,13 @@ export default function DetailFrame() {
           onChange={handleChange}
           onClick={(id) => dispatch({ type: 'SET_FOCUS', payload: id })}
         />
+        <CoverStateForm
+          word={word}
+          words={words}
+          edited={editedSet.has('cover_states')}
+          onChange={handleChange}
+          onClick={(id) => dispatch({ type: 'SET_FOCUS', payload: id })}
+        />
         <TagForm
           key="lower_covers"
           wordId={focusId}
@@ -100,6 +108,12 @@ export default function DetailFrame() {
           isWord
           onChange={handleChange}
           onClick={(id) => dispatch({ type: 'SET_FOCUS', payload: id })}
+        />
+        <PartitionForm
+          word={word}
+          words={words}
+          edited={editedSet.has('partitions')}
+          onChange={handleChange}
         />
         {word.is_function != null ? <CheckboxForm
           name="is_function"
