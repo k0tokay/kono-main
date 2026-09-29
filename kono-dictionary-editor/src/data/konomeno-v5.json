@@ -26215,6 +26215,26 @@
       "variations": [],
       "relations": [],
       "is_function": false
+    },
+    {
+      "id": 1089,
+      "entry": "見做し",
+      "translations": [],
+      "simple_translations": [],
+      "category": "カテゴリ",
+      "upper_covers": [],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [
+        {
+          "title": "見做しの型",
+          "text": "子は見做しの型．mitoshi_type = {from, to, relation, uniform}．上位分類章「語彙化：見做し」（2026-09-29）"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false
     }
   ]
 }

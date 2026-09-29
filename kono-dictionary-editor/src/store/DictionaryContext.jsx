@@ -5,6 +5,7 @@ import { createBlankWord, checkIntegrity, hasNoCycle } from '../utils/utils.js';
 import { deleteWordInPlace } from '../domain/dictionaryCore.js';
 import { applyDerivedSequenceCovers, isSequenceWord } from '../domain/soundSequences.js';
 import { pruneCoverStates } from '../domain/placement.js';
+import { materializeMitoshiInPlace } from '../domain/mitoshi.js';
 import { ancestorList, isValidWordTag } from '../utils/utils.js';
 import { CATEGORY } from '../constants/categories.js';
 
@@ -38,6 +39,9 @@ function dictionaryReducer(state, action) {
         }
         case 'ADD_WORD': {
             return addWord(state, action.payload);
+        }
+        case 'MATERIALIZE_MITOSHI': {
+            return materializeMitoshi(state, action.payload);
         }
         case 'DELETE_WORD': {
             return deleteWord(state, action.payload);
@@ -204,6 +208,22 @@ function addWord(state, parentId) {
     applyDerivedSequenceCovers(words);
     const ef = markEdited(state.editedFields, newWord.id, '_new');
     return { ...state, words, focusId: newWord.id, editedFields: markEdited(ef, parentId, 'lower_covers') };
+}
+
+// payload: { id, type } 語 id に当たる見做し型 type の仮想語義を実体化する
+function materializeMitoshi(state, { id, type }) {
+    const words = structuredClone(state.words);
+    const categoryOf = targetId => (words[targetId].category === CATEGORY.ROOT ? words[targetId].entry : words[targetId].category);
+    let newId;
+    try {
+        newId = materializeMitoshiInPlace(words, { id, type }, categoryOf);
+    } catch (error) {
+        alert(error.message); // eslint-disable-line no-alert
+        return state;
+    }
+    let ef = markEdited(state.editedFields, newId, '_new');
+    ef = markEdited(ef, id, 'mitoshi_senses');
+    return { ...state, words, editedFields: ef };
 }
 
 function deleteWord(state, { id }) {

@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { useDictState, useDictDispatch } from '../../store/DictionaryContext';
 import { BasicForm, TagForm, LargeListForm, RelationForm, MenuBar, CheckboxForm } from '../CommonForms';
 import { CoverStateForm, PartitionForm } from './PlacementForms';
+import { MitoshiSenseForm, MitoshiTypeForm } from './MitoshiForms';
 import './DetailFrame.scss';
 
 // ──────────────────────────────────────────
@@ -114,6 +115,20 @@ export default function DetailFrame() {
           words={words}
           edited={editedSet.has('partitions')}
           onChange={handleChange}
+        />
+        <MitoshiTypeForm
+          word={word}
+          words={words}
+          edited={editedSet.has('mitoshi_type')}
+          onChange={handleChange}
+        />
+        <MitoshiSenseForm
+          word={word}
+          words={words}
+          edited={editedSet.has('mitoshi_senses')}
+          onChange={handleChange}
+          onMaterialize={(type) => dispatch({ type: 'MATERIALIZE_MITOSHI', payload: { id: focusId, type } })}
+          onClick={(id) => dispatch({ type: 'SET_FOCUS', payload: id })}
         />
         {word.is_function != null ? <CheckboxForm
           name="is_function"

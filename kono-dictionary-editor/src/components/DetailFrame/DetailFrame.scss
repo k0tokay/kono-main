@@ -247,3 +247,19 @@ input:read-only, textarea:read-only {
   }
   .memberCount { opacity: 0.7; margin-left: auto; }
 }
+
+.mitoshiTypeForm, .mitoshiSenseForm {
+  .mitoshiRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0;
+    > span:first-child { min-width: 3em; }
+  }
+  .idInput { display: flex; align-items: center; gap: 6px; input { width: 6em; } }
+  .idLabel, .virtual { opacity: 0.7; }
+  .typeEntry, .target { cursor: pointer; }
+  .typeEntry { font-weight: bold; }
+  .excluded { opacity: 0.6; }
+  .empty { opacity: 0.6; font-size: 0.9em; }
+}
