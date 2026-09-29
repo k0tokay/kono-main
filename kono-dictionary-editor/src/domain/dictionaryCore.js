@@ -1,3 +1,5 @@
+import { applyDerivedSequenceCovers, isSequenceWord, sequenceCoverMismatches, tokenizePhonemes } from './soundSequences.js';
+
 export const EDITABLE_FIELDS = new Set([
     'entry',
     'translations',
@@ -260,6 +262,9 @@ export function validateDictionary(data) {
         }
     }
 
+    const sequenceCheck = sequenceCoverMismatches(words);
+    errors.push(...sequenceCheck.errors, ...sequenceCheck.mismatches);
+
     const cycle = findCoverCycle(words);
     if (cycle) {
         errors.push({ code: 'CYCLE', ids: cycle, words: cycle.map(id => wordLabel(words, id)), message: `被覆関係に循環があります: ${cycle.join(' -> ')}` });
@@ -449,6 +454,9 @@ function applySetUpperCovers(words, operation) {
     }
     requireIdArray(words, operation.from, 'from');
     requireIdArray(words, operation.to, 'to');
+    if (isSequenceWord(words[operation.id])) {
+        throw new DictionaryOperationError('SEQUENCE_COVERS_DERIVED', '音列の被覆は綴りから導出されるので直接変更できません', { id: operation.id });
+    }
     if (!sameSet(words[operation.id].upper_covers, operation.from)) {
         throw new DictionaryOperationError('PRECONDITION_FAILED', '現在の upper_covers が from と一致しません', {
             id: operation.id,
@@ -613,6 +621,7 @@ export function applyDictionaryPatch(data, patch) {
             warnings: [],
         });
     }
+    const derivedSequenceCovers = applyDerivedSequenceCovers(words);
     const removedRedundantCovers = reduceRedundantCovers(words);
     const validation = validateDictionary(next);
     if (!validation.valid) {
@@ -624,6 +633,7 @@ export function applyDictionaryPatch(data, patch) {
         changes: diffDictionaries(before, next),
         assignedIds,
         removedRedundantCovers,
+        derivedSequenceCovers,
         validation,
     };
 }
@@ -795,12 +805,29 @@ function levenshtein(left, right) {
     return previous[right.length];
 }
 
+// 候補の中で音列が現れる位置（文字オフセット）．音素に分けられる候補では音素単位で照合し，
+// tc の中の c のように音素をまたぐ一致を数えない．
+function sequencePositions(candidateTokens, normalized, form) {
+    const formTokens = tokenizePhonemes(form);
+    if (!candidateTokens || !formTokens) {
+        return [...normalized.matchAll(new RegExp(form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'))].map(match => match.index);
+    }
+    const offsets = [];
+    let offset = 0;
+    for (let start = 0; start + formTokens.length <= candidateTokens.length; start++) {
+        if (formTokens.every((token, k) => candidateTokens[start + k] === token)) offsets.push(offset);
+        offset += candidateTokens[start].length;
+    }
+    return offsets;
+}
+
 export function analyzeForm(data, candidate, options = {}) {
     const words = requireDictionary(data);
     if (typeof candidate !== 'string' || candidate.length === 0) {
         throw new DictionaryOperationError('INVALID_FORM', '候補音列は空でない文字列でなければなりません');
     }
     const normalized = candidate.toLocaleLowerCase();
+    const candidateTokens = tokenizePhonemes(normalized);
     const limit = Math.max(1, Math.min(Number(options.limit) || 10, 50));
     const exact = [];
     const containing = [];
@@ -812,11 +839,9 @@ export function analyzeForm(data, candidate, options = {}) {
         const form = word.entry.toLocaleLowerCase();
         if (form === normalized) exact.push(summarizeWord(data, word));
         else if (form.includes(normalized)) containing.push(summarizeWord(data, word));
-        if (word.category === '音列' && normalized.includes(form) && form.length > 0) {
-            registeredSequences.push({
-                ...summarizeWord(data, word),
-                positions: [...normalized.matchAll(new RegExp(form.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'))].map(match => match.index),
-            });
+        if (isSequenceWord(word) && form.length > 0) {
+            const positions = sequencePositions(candidateTokens, normalized, form);
+            if (positions.length > 0) registeredSequences.push({ ...summarizeWord(data, word), positions });
         }
         if (form !== normalized) {
             const distance = levenshtein(normalized, form);

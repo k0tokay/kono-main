@@ -3,6 +3,7 @@ import { createContext, useReducer, useContext } from 'react';
 import { bundledWords, BUNDLED_FINGERPRINT } from './bundledDictionary.js';
 import { createBlankWord, checkIntegrity, hasNoCycle } from '../utils/utils.js';
 import { deleteWordInPlace } from '../domain/dictionaryCore.js';
+import { applyDerivedSequenceCovers, isSequenceWord } from '../domain/soundSequences.js';
 import { ancestorList, isValidWordTag } from '../utils/utils.js';
 import { CATEGORY } from '../constants/categories.js';
 
@@ -119,7 +120,14 @@ function updateField(state, { id, field, value }) {
         [field]: value
     };
 
-    return { ...state, words: newWords, editedFields: markEdited(state.editedFields, id, field) };
+    let editedFields = markEdited(state.editedFields, id, field);
+    if (field === 'entry' && isSequenceWord(word)) {
+        // 音列の綴りが変われば，それを含む音列・含まれる音列の被覆も変わる
+        for (const changedId of applyDerivedSequenceCovers(newWords)) {
+            editedFields = markEdited(editedFields, changedId, 'upper_covers');
+        }
+    }
+    return { ...state, words: newWords, editedFields };
 }
 
 // payload: { id, field, tag }
@@ -129,6 +137,11 @@ function updateCovers(state, { id, field, tag }) {
     if (!word) return state;
 
     const invField = field === 'upper_covers' ? 'lower_covers' : 'upper_covers';
+    const target = isValidWordTag(state.words, tag) ? state.words[Number(tag)] : null;
+    if (isSequenceWord(word) || isSequenceWord(target)) {
+        // 音列の被覆は綴りから導出する．手での編集は受け付けない
+        return state;
+    }
 
     const newWords = structuredClone(state.words);
 
@@ -186,6 +199,7 @@ function addWord(state, parentId) {
     };
 
     checkIntegrity({ words });
+    applyDerivedSequenceCovers(words);
     const ef = markEdited(state.editedFields, newWord.id, '_new');
     return { ...state, words, focusId: newWord.id, editedFields: markEdited(ef, parentId, 'lower_covers') };
 }
@@ -203,6 +217,7 @@ function deleteWord(state, { id }) {
     const newFocus = victim.upper_covers.find(parentId => words[parentId]) ?? getFirstRootId(words);
 
     checkIntegrity({ words });
+    applyDerivedSequenceCovers(words);
 
     let ef = markEdited(state.editedFields, id, '_deleted');
     for (let wordId = 0; wordId < words.length; wordId++) {
