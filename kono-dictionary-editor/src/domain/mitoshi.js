@@ -10,6 +10,8 @@
 //   target が null の語義は仮想（計算で表示するだけ）．独自の子や公理が要るときに実体化する．
 //   exclude は uniform な型をその語にだけ当てないための印．
 
+import { assertedAncestors } from './placement.js';
+
 export const MITOSHI_CATEGORY = '見做し';
 
 const asArray = value => Array.isArray(value) ? value : [];
@@ -23,23 +25,12 @@ export function mitoshiTypes(words) {
     return words.filter(isMitoshiType);
 }
 
-function ancestorsOf(words, id) {
-    const seen = new Set();
-    const stack = [...asArray(words[id]?.upper_covers)];
-    while (stack.length) {
-        const current = stack.pop();
-        if (seen.has(current) || !words[current]) continue;
-        seen.add(current);
-        stack.push(...asArray(words[current].upper_covers));
-    }
-    return seen;
-}
 
 /** 語 id に当たる見做し語義（仮想と実体化済みの両方）． */
 export function sensesOf(words, id) {
     const word = words[id];
     if (!word || word.category === MITOSHI_CATEGORY || word.category === 'カテゴリ') return [];
-    const ancestors = ancestorsOf(words, id);
+    const ancestors = assertedAncestors(words, id);
     const records = new Map(asArray(word.mitoshi_senses).filter(isPlainObject).map(r => [r.type, r]));
     const senses = [];
     for (const type of mitoshiTypes(words)) {
@@ -112,7 +103,7 @@ export function validateMitoshi(words) {
                 continue;
             }
             const to = words[record.type].mitoshi_type.to;
-            if (record.target !== to && !ancestorsOf(words, record.target).has(to)) {
+            if (record.target !== to && !assertedAncestors(words, record.target).has(to)) {
                 errors.push({ code: 'MITOSHI_TARGET_OUTSIDE', id: word.id, type: record.type, target: record.target, message: `実体化先 ${words[record.target].entry}(${record.target}) が見做し先 ${words[to]?.entry}(${to}) の下にありません` });
             }
             if (words[record.target].entry !== word.entry) {

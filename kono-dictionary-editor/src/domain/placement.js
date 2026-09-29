@@ -1,6 +1,7 @@
 // 分割（ファセット）と被覆辺ごとの配置の状態．
-// 上位分類章「配置の状態」：被覆辺の意味はどの状態でも包摂．状態が変えるのは，
-// 上位の節点の分割の公理（排他・網羅）をその辺に適用するかどうかだけである．
+// 上位分類章「配置の状態」：被覆辺は包摂を主張する．ただし上位未決の辺は表示上の置き場で，
+// 包摂を主張しない（理論上は概念の直下と同じ）．状態が変えるのは，上位の節点の分割の公理
+// （排他・網羅）をその辺に適用するかどうかと，上位未決なら包摂そのものを主張するかどうかである．
 //
 // 節点側 partitions: [{ key, axis, kind, disjoint, exhaustive, basis, note }]
 // 子の側 cover_states: [{ parent, state, partition }]
@@ -14,6 +15,24 @@ const STATES_WITH_PARTITION = new Set(['配置', '暫定配置']);
 
 const asArray = value => Array.isArray(value) ? value : [];
 const isPlainObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+
+/** 包摂を主張する上位語（上位未決の辺を除く）． */
+export function assertedParents(word) {
+    return asArray(word?.upper_covers).filter(parentId => coverState(word, parentId).state !== '上位未決');
+}
+
+/** 包摂を主張する辺だけを辿った祖先の集合（自身は含まない）． */
+export function assertedAncestors(words, id) {
+    const seen = new Set();
+    const stack = [...assertedParents(words[id])];
+    while (stack.length) {
+        const current = stack.pop();
+        if (seen.has(current) || !words[current]) continue;
+        seen.add(current);
+        stack.push(...assertedParents(words[current]));
+    }
+    return seen;
+}
 
 /** 子 word から親 parentId への被覆辺の状態． */
 export function coverState(word, parentId) {
@@ -85,7 +104,7 @@ export function findDisjointnessViolations(words) {
             if (!result.has(k)) result.set(k, new Set());
             result.get(k).add(id);
         }
-        for (const parentId of asArray(word?.upper_covers)) {
+        for (const parentId of assertedParents(word)) {
             if (!words[parentId]) continue;
             for (const [k, branches] of branchesOf(parentId, visiting)) {
                 if (!result.has(k)) result.set(k, new Set());
@@ -103,7 +122,7 @@ export function findDisjointnessViolations(words) {
             if (branches.size < 2) continue;
             const [parent, key] = k.split('\0');
             // 違反を最も上で報告する：枝のどれかの祖先側で既に違反していれば，その語だけを報告
-            const parentWords = asArray(word.upper_covers).filter(p => words[p]);
+            const parentWords = assertedParents(word).filter(p => words[p]);
             const inherited = parentWords.some(p => (branchesOf(p).get(k)?.size ?? 0) >= 2);
             if (inherited) continue;
             violations.push({

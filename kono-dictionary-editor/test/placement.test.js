@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { applyDictionaryPatch, validateDictionary } from '../src/domain/dictionaryCore.js';
-import { childStateCounts, coverState, findDisjointnessViolations } from '../src/domain/placement.js';
+import { assertedAncestors, childStateCounts, coverState, findDisjointnessViolations } from '../src/domain/placement.js';
 
 function word(id, entry, upperCovers = [], lowerCovers = [], overrides = {}) {
     return {
@@ -82,4 +82,14 @@ test('child state counts', () => {
     const data = fixture();
     data.words[3].cover_states = [{ parent: 1, state: '上位未決', partition: null }];
     assert.deepEqual(childStateCounts(data.words, 1), { 配置: 1, 暫定配置: 0, 未配置: 0, 上位未決: 1 });
+});
+
+test('upper-undecided edges assert no inclusion and are not traversed', () => {
+    const data = fixture();
+    // bat を bird の下へも置くが，上位未決（表示上の置き場）なので排他に反しない
+    data.words[4].upper_covers = [2, 3];
+    data.words[3].lower_covers = [4];
+    data.words[4].cover_states = [{ parent: 3, state: '上位未決', partition: null }];
+    assert.equal(findDisjointnessViolations(data.words).length, 0);
+    assert.deepEqual([...assertedAncestors(data.words, 4)].sort(), [0, 1, 2]);
 });

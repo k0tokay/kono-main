@@ -7,22 +7,13 @@
 //   式:       { text, refs: [id] }                             … スキーマの外（警告）
 // どの kind も任意の note（本文の参照箇所など）を持てる．
 
+import { assertedAncestors } from './placement.js';
+
 export const AXIOM_KINDS = ['引き下げ', 'スロット', '定義', '式'];
 
 const asArray = value => Array.isArray(value) ? value : [];
 const isPlainObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 
-function ancestorsOf(words, id) {
-    const seen = new Set();
-    const stack = [...asArray(words[id]?.upper_covers)];
-    while (stack.length) {
-        const current = stack.pop();
-        if (seen.has(current) || !words[current]) continue;
-        seen.add(current);
-        stack.push(...asArray(words[current].upper_covers));
-    }
-    return seen;
-}
 
 /** レコードが参照する語ID（検証・削除時の掃除用）． */
 export function axiomRefs(record) {
@@ -73,7 +64,7 @@ export function validateAxioms(words) {
             for (const ref of refs) {
                 if (!live(ref)) errors.push({ code: 'INVALID_AXIOM', ...at, ref, message: `${word.entry}(${id}) の公理が生存しない語 ${ref} を参照しています` });
             }
-            if (record.kind === '定義' && live(record.genus) && !ancestorsOf(words, id).has(record.genus)) {
+            if (record.kind === '定義' && live(record.genus) && !assertedAncestors(words, id).has(record.genus)) {
                 warnings.push({ code: 'DEFINITION_GENUS_NOT_ANCESTOR', ...at, message: `${word.entry}(${id}) の定義の属 ${words[record.genus].entry}(${record.genus}) が上位にありません` });
             }
         });

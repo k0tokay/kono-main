@@ -74,3 +74,10 @@ test('deleting a materialized target returns the sense to virtual', () => {
     });
     assert.deepEqual(second.data.words[2].mitoshi_senses, [{ type: 6, target: null, exclude: false }]);
 });
+
+test('uniform types do not apply through an upper-undecided edge', () => {
+    const data = fixture();
+    data.words[2].cover_states = [{ parent: 1, state: '上位未決', partition: null }];
+    assert.deepEqual(sensesOf(data.words, 2), []); // company の組織への所属は主張されていない
+    assert.deepEqual(sensesOf(data.words, 3).map(s => s.type), [6]);
+});
