@@ -114,7 +114,8 @@
       "lower_covers": [
         787,
         789,
-        790
+        790,
+        1103
       ],
       "upper_covers": [
         0
@@ -11091,7 +11092,12 @@
       "simple_translations": [],
       "arguments": [],
       "tags": [],
-      "contents": [],
+      "contents": [
+        {
+          "title": "形態素",
+          "text": "「構造」の形態素は lek／leka．単語は leka（2026-09-30 作者裁定）．"
+        }
+      ],
       "variations": [],
       "is_function": null
     },
@@ -11107,14 +11113,18 @@
       "translations": [
         "結ぶ",
         "まとめる",
-        "構造",
         "学問",
         "理論"
       ],
       "simple_translations": [],
       "arguments": [],
       "tags": [],
-      "contents": [],
+      "contents": [
+        {
+          "title": "原義",
+          "text": "原義は「結ぶ」．変化形 leme，lemae．「構造」は lek／leka に移した（2026-09-30 作者裁定）．"
+        }
+      ],
       "variations": [],
       "is_function": null
     },
@@ -24462,7 +24472,7 @@
     },
     {
       "id": 1014,
-      "entry": "saljaalem",
+      "entry": "saljaaflemae",
       "translations": [
         "多様体"
       ],
@@ -24484,6 +24494,10 @@
         {
           "title": "分類 v4→v5 (2026-08-18)",
           "text": "v4_id=27／品詞=fN／確信度=3"
+        },
+        {
+          "title": "改名",
+          "text": "旧形 saljaalem（付箋＋結び）から改名（2026-09-30 作者裁定）．"
         }
       ],
       "variations": [],
@@ -26862,7 +26876,7 @@
     },
     {
       "id": 1102,
-      "entry": "〈公理〉",
+      "entry": "klamf",
       "translations": [
         "公理"
       ],
@@ -26878,13 +26892,15 @@
         1013
       ],
       "arguments": [],
-      "tags": [
-        "要造語"
-      ],
+      "tags": [],
       "contents": [
         {
           "title": "定義",
           "text": "理論を文脈とするロール．担い手は論理式で，論理式そのものではない．（2026-09-29）"
+        },
+        {
+          "title": "語形",
+          "text": "klamf（祈る，id 764）と同綴りの別語義．既存の公理名 -klamf（balenklamf ほか）の語根（2026-09-30 作者裁定）．"
         }
       ],
       "variations": [],
@@ -26893,6 +26909,37 @@
       "cover_states": [
         {
           "parent": 514,
+          "state": "未配置",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1103,
+      "entry": "leka",
+      "translations": [
+        "構造"
+      ],
+      "simple_translations": [],
+      "category": "語彙",
+      "upper_covers": [
+        6
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [
+        {
+          "title": "定義",
+          "text": "構造．他の語が分類を作る予定の語であるのに対し，本当に分類不明な語（未配置）の代表例として概念 alkono の直下に置く．構造の形態素は lek／leka（2026-09-30 作者裁定）．綴りは loka（抽象物）と距離1．"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 6,
           "state": "未配置",
           "partition": null
         }
