@@ -23,7 +23,6 @@
 | 精読検証パス 5〜7 | `/review-respond` | スキル |
 | AIの分担と作業の区切り | `investigator`，`verifier` エージェント；`/checkpoint`＋`scripts/formal-check.sh`＋`scripts/precommit-check.py` | エージェント／スキル／フック |
 | 制作→ワークフロー（手順の改良） | `/retro`；`retro/`，`dryrun/`（dryrun は 2026-09-14 の過去記録） | スキル／記録 |
-| 辞書の配置の状態 | `/placement-triage` | スキル |
 | 造語 | `/coinage`（主担当が直接．検査は `kono-phonology/scripts/check_candidates.py`） | スキル |
 | codex 一往復 | `/codex-consult` → `scripts/consult.sh` | スキル／スクリプト |
 
@@ -33,7 +32,6 @@
 - `/read-through <章|all>`：本文だけを読者として通読し，疑問と違和感を散文で書く（番号・状態なし）．精読より上流．
 - `/precision-review <章>`：精読レビューを日付ログに作る．本文は変えない．
 - `/review-respond <対象名>`：作者コメントに応答し，本文と依存先を直し，レビュー状態を更新する．
-- `/placement-triage <対象>`：辞書の被覆辺に配置の状態（配置／暫定配置／未配置／上位未決）を付ける．
 - `/reader-questions <範囲> [--edit]`：読者の疑問をログする．`--edit` で編集まで．
 - `/coinage <概念…>`：造語する（主担当が直接．候補表と検査まで．登録は作者）．
 - `/codex-consult <主題> <問い>`：codex へ一往復投げる．
