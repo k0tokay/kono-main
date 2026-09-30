@@ -977,7 +977,7 @@ export function patchSchema() {
             'delete は子の再接続方針と、arguments/relations 参照の扱いを必ず明示する',
             '明示操作の結果生じた冗長被覆は除去される',
             '音列の被覆は綴りから導出される（音素単位の接頭辞：b の先頭が a なら a が上位）。音列への set_upper_covers は拒否される',
-            'cover_states: [{parent, state: 配置|暫定配置|未配置|上位未決, partition}]。記録のない辺は配置。partitions は親の側に置く',
+            'cover_states: [{parent, state: 配置|上位未決, partition}]。記録のない辺は配置。partitions は親の側に置く（kind: コンストラクタ|素性。コンストラクタは常に排他）',
             'materialize_mitoshi は語 id に当たる見做し型 type の仮想語義を、見做し先の直下に同じ綴りの語として作る',
             'axioms: [{kind: 引き下げ|スロット|定義|式, ...}]。包摂は被覆辺、型付けは arguments が担う。式はスキーマ外として警告される',
         ],

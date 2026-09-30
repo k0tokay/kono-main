@@ -1,10 +1,10 @@
 // src/components/DetailFrame/PlacementForms.jsx
 // 被覆辺ごとの配置の状態と，節点の分割（ファセット）の編集フォーム．
 import {
-    PLACEMENT_STATES, PARTITION_KINDS, PARTITION_BASES, coverState, findPartition,
+    PLACEMENT_STATES, PARTITION_KINDS, coverState, findPartition, isDisjoint,
 } from '../../domain/placement.js';
 
-const STATES_WITH_PARTITION = new Set(['配置', '暫定配置']);
+const STATES_WITH_PARTITION = new Set(['配置']);
 
 /** 上位語ごとに状態と分割を選ぶ． */
 export function CoverStateForm({ word, words, edited, onChange, onClick }) {
@@ -45,7 +45,7 @@ export function CoverStateForm({ word, words, edited, onChange, onClick }) {
                                 onChange={e => update(parentId, { partition: e.target.value || null })}
                             >
                                 <option value="">（分割なし）</option>
-                                {partitions.map(p => <option key={p.key} value={p.key}>{p.key}{p.axis ? `：${p.axis}` : ''}</option>)}
+                                {partitions.map(p => <option key={p.key} value={p.key}>{p.key}</option>)}
                             </select>
                             {partition && !findPartition(parent, partition) && <span className="warn">分割が見つかりません</span>}
                         </div>
@@ -56,7 +56,7 @@ export function CoverStateForm({ word, words, edited, onChange, onClick }) {
     );
 }
 
-const blankPartition = () => ({ key: '', axis: '', kind: '骨格', disjoint: true, exhaustive: false, basis: [], note: '' });
+const blankPartition = () => ({ key: '', kind: 'コンストラクタ', disjoint: true, exhaustive: false, note: '' });
 
 /** この節点が持つ分割の一覧． */
 export function PartitionForm({ word, words, edited, onChange }) {
@@ -79,27 +79,14 @@ export function PartitionForm({ word, words, edited, onChange }) {
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
                             <button className="deleteItemBtn" onClick={() => set(partitions.filter((_, j) => j !== i))}>削除</button>
-                            <input className="textForm" placeholder="key" value={p.key} onChange={e => updateAt(i, { key: e.target.value })} />
-                            <input className="textForm" placeholder="軸" value={p.axis ?? ''} onChange={e => updateAt(i, { axis: e.target.value })} />
-                            <select value={p.kind ?? '骨格'} onChange={e => updateAt(i, { kind: e.target.value })}>
+                            <input className="textForm" placeholder="名前" value={p.key} onChange={e => updateAt(i, { key: e.target.value })} />
+                            <select value={p.kind ?? 'コンストラクタ'} onChange={e => updateAt(i, { kind: e.target.value })}>
                                 {PARTITION_KINDS.map(k => <option key={k} value={k}>{k}</option>)}
                             </select>
                         </div>
                         <div className="partitionFlags">
-                            <label><input type="checkbox" checked={Boolean(p.disjoint)} onChange={e => updateAt(i, { disjoint: e.target.checked })} />排他</label>
+                            <label><input type="checkbox" checked={isDisjoint(p)} disabled={p.kind === 'コンストラクタ'} onChange={e => updateAt(i, { disjoint: e.target.checked })} />排他</label>
                             <label><input type="checkbox" checked={Boolean(p.exhaustive)} onChange={e => updateAt(i, { exhaustive: e.target.checked })} />網羅</label>
-                            <span className="basisLabel">根拠：</span>
-                            {PARTITION_BASES.map(b => (
-                                <label key={b}>
-                                    <input
-                                        type="checkbox"
-                                        checked={(p.basis || []).includes(b)}
-                                        onChange={e => updateAt(i, {
-                                            basis: e.target.checked ? [...(p.basis || []), b] : (p.basis || []).filter(x => x !== b),
-                                        })}
-                                    />{b}
-                                </label>
-                            ))}
                             <span className="memberCount">枝 {members(p.key).length}</span>
                         </div>
                         <textarea className="textForm" rows="2" placeholder="注（本文の参照箇所など）" value={p.note ?? ''} onChange={e => updateAt(i, { note: e.target.value })} />

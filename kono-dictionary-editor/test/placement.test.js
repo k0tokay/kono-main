@@ -14,13 +14,13 @@ function word(id, entry, upperCovers = [], lowerCovers = [], overrides = {}) {
     };
 }
 
-// 0 語彙 ─ 1 animal（分割 kind: 排他）─ 2 mammal, 3 bird ─ 4 bat（mammal の下）
+// 0 語彙 ─ 1 animal（コンストラクタ分割 class）─ 2 mammal, 3 bird ─ 4 bat（mammal の下）
 function fixture() {
     return {
         words: [
             word(0, '語彙', [], [1]),
             word(1, 'animal', [0], [2, 3], {
-                partitions: [{ key: 'class', axis: '綱', kind: '骨格', disjoint: true, exhaustive: false, basis: ['推論'] }],
+                partitions: [{ key: 'class', kind: 'コンストラクタ', exhaustive: false }],
             }),
             word(2, 'mammal', [1], [4], { cover_states: [{ parent: 1, state: '配置', partition: 'class' }] }),
             word(3, 'bird', [1], [], { cover_states: [{ parent: 1, state: '配置', partition: 'class' }] }),
@@ -53,18 +53,18 @@ test('disjointness violation is detected and reported once at the lowest word', 
     assert.deepEqual(violations[0].branches, [2, 3]);
 });
 
-test('unplaced edges do not take part in disjointness', () => {
+test('placed edges outside any partition do not take part in disjointness', () => {
     const data = fixture();
     data.words[4].upper_covers = [2, 3];
     data.words[3].lower_covers = [4];
-    data.words[3].cover_states = [{ parent: 1, state: '未配置', partition: null }];
+    data.words[3].cover_states = [];
     assert.equal(findDisjointnessViolations(data.words).length, 0);
     assert.equal(validateDictionary(data).valid, true);
 });
 
-test('partition on an unplaced edge and unknown partitions are errors', () => {
+test('partition on an upper-undecided edge and unknown partitions are errors', () => {
     const data = fixture();
-    data.words[3].cover_states = [{ parent: 1, state: '未配置', partition: 'class' }];
+    data.words[3].cover_states = [{ parent: 1, state: '上位未決', partition: 'class' }];
     assert.ok(validateDictionary(data).errors.some(e => e.code === 'PARTITION_ON_UNPLACED'));
     data.words[3].cover_states = [{ parent: 1, state: '配置', partition: 'nope' }];
     assert.ok(validateDictionary(data).errors.some(e => e.code === 'UNKNOWN_PARTITION'));
@@ -81,7 +81,19 @@ test('moving a word drops the state recorded for the old parent', () => {
 test('child state counts', () => {
     const data = fixture();
     data.words[3].cover_states = [{ parent: 1, state: '上位未決', partition: null }];
-    assert.deepEqual(childStateCounts(data.words, 1), { 配置: 1, 暫定配置: 0, 未配置: 0, 上位未決: 1 });
+    assert.deepEqual(childStateCounts(data.words, 1), { 配置: 1, 上位未決: 1 });
+});
+
+test('constructor partitions are always disjoint; feature partitions only when declared', () => {
+    const data = fixture();
+    data.words[4].upper_covers = [2, 3];
+    data.words[3].lower_covers = [4];
+    data.words[1].partitions = [{ key: 'class', kind: 'コンストラクタ', disjoint: false }];
+    assert.equal(findDisjointnessViolations(data.words).length, 1);
+    data.words[1].partitions = [{ key: 'class', kind: '素性', disjoint: false }];
+    assert.equal(findDisjointnessViolations(data.words).length, 0);
+    data.words[1].partitions = [{ key: 'class', kind: '素性', disjoint: true }];
+    assert.equal(findDisjointnessViolations(data.words).length, 1);
 });
 
 test('upper-undecided edges assert no inclusion and are not traversed', () => {

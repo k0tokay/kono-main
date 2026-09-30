@@ -112,9 +112,8 @@ li {
 }
 
 .wordItemMain {
-  &.unplaced, &.undecided { opacity: 0.6; }
-  &.unplaced .entry, &.undecided .entry { font-style: italic; }
-  &.provisional .entry { text-decoration: underline dotted; }
+  &.undecided { opacity: 0.6; }
+  &.undecided .entry { font-style: italic; }
   .stateMark { font-weight: bold; padding: 0; }
   .offTreeCount { font-size: 0.8em; opacity: 0.6; }
 }

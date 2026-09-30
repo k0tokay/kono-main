@@ -114,8 +114,7 @@
       "lower_covers": [
         787,
         789,
-        790,
-        1103
+        790
       ],
       "upper_covers": [
         0
@@ -689,13 +688,7 @@
         }
       ],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 18,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 26,
@@ -1017,13 +1010,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 34,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 38,
@@ -1575,7 +1562,8 @@
       "category": "語彙",
       "lower_covers": [
         395,
-        1091
+        1091,
+        66
       ],
       "upper_covers": [
         789
@@ -1613,9 +1601,8 @@
         63,
         64,
         65,
-        66,
-        67,
-        68
+        68,
+        1113
       ],
       "upper_covers": [
         789
@@ -1645,13 +1632,9 @@
       "partitions": [
         {
           "key": "数の体系",
-          "axis": "数の体系",
           "kind": "素性",
           "disjoint": true,
           "exhaustive": false,
-          "basis": [
-            "推論"
-          ],
           "note": "自然数・整数・有理数・実数・複素数は兄弟とし，埋め込み N↪Z↪Q↪R↪C で結ぶ（skon にしない）．上位分類章「下位分類，埋め込み，一般化」"
         }
       ]
@@ -1681,7 +1664,8 @@
         319,
         320,
         321,
-        936
+        936,
+        1112
       ],
       "upper_covers": [
         60
@@ -1707,7 +1691,8 @@
           "state": "配置",
           "partition": "数の体系"
         }
-      ]
+      ],
+      "partitions": []
     },
     {
       "id": 62,
@@ -1838,9 +1823,11 @@
       "id": 66,
       "entry": "listakk",
       "category": "語彙",
-      "lower_covers": [],
+      "lower_covers": [
+        67
+      ],
       "upper_covers": [
-        60
+        59
       ],
       "translations": [
         "順序数"
@@ -1857,13 +1844,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 60,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 67,
@@ -1871,7 +1852,7 @@
       "category": "語彙",
       "lower_covers": [],
       "upper_covers": [
-        60
+        66
       ],
       "translations": [
         "基数"
@@ -1888,13 +1869,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 60,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 68,
@@ -1919,13 +1894,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 60,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 69,
@@ -2368,13 +2337,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 75,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 84,
@@ -2399,13 +2362,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 75,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 85,
@@ -2450,13 +2407,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 82,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 87,
@@ -2511,13 +2462,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 18,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 89,
@@ -2780,13 +2725,7 @@
       ],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 281,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 102,
@@ -3578,13 +3517,9 @@
       "partitions": [
         {
           "key": "構成",
-          "axis": "記号的な形態の構成",
-          "kind": "骨格",
+          "kind": "コンストラクタ",
           "disjoint": true,
           "exhaustive": false,
-          "basis": [
-            "推論"
-          ],
           "note": "記号（原子）／記号列（連接）／構文木（構成規則）．同一性の基準が違う．旋律・線画など記号的でない形態はこの分割の外．上位分類章「形式的対象の分類」"
         }
       ],
@@ -4115,13 +4050,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 230,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 159,
@@ -4146,13 +4075,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 78,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 160,
@@ -4178,13 +4101,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 78,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 161,
@@ -4349,13 +4266,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 165,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 167,
@@ -4428,13 +4339,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 582,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 170,
@@ -4641,13 +4546,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 70,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 178,
@@ -4931,13 +4830,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 627,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 189,
@@ -5035,13 +4928,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 156,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 193,
@@ -5369,13 +5256,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 205,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 207,
@@ -5497,13 +5378,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 582,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 212,
@@ -6045,13 +5920,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 15,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     null,
     null,
@@ -7024,13 +6893,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 24,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 271,
@@ -7456,13 +7319,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 288,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 291,
@@ -7794,13 +7651,7 @@
       ],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 258,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 305,
@@ -7830,13 +7681,7 @@
       ],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 258,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 306,
@@ -8064,7 +7909,7 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": true
     },
     {
       "id": 316,
@@ -8086,7 +7931,7 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": true
     },
     {
       "id": 317,
@@ -8110,7 +7955,7 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": true
     },
     {
       "id": 318,
@@ -8132,7 +7977,7 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": true
     },
     {
       "id": 319,
@@ -8156,7 +8001,7 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": true
     },
     {
       "id": 320,
@@ -8178,7 +8023,7 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": true
     },
     {
       "id": 321,
@@ -8200,7 +8045,7 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": true
     },
     {
       "id": 322,
@@ -8543,13 +8388,7 @@
       ],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1056,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 340,
@@ -9905,13 +9744,7 @@
       "contents": [],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 59,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 396,
@@ -16784,13 +16617,7 @@
       ],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 714,
@@ -16815,13 +16642,7 @@
       ],
       "variations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 715,
@@ -18242,7 +18063,8 @@
         136,
         1099,
         1101,
-        1111
+        1111,
+        1103
       ],
       "arguments": [],
       "tags": [],
@@ -18262,13 +18084,9 @@
       "partitions": [
         {
           "key": "種類",
-          "axis": "形式的対象の種類（同一性の基準）",
-          "kind": "骨格",
+          "kind": "コンストラクタ",
           "disjoint": true,
           "exhaustive": false,
-          "basis": [
-            "推論"
-          ],
           "note": "同一性の基準が違う種類の外延的な列挙（場合がすべて原子の構成）．数の成員は個々の数で構造 Z とは別．上位分類章「形式的対象の分類」（2026-09-30）"
         }
       ]
@@ -19995,13 +19813,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 514,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 879,
@@ -20034,13 +19846,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1043,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     null,
     null,
@@ -20077,13 +19883,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1102,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 883,
@@ -20267,18 +20067,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 637,
-          "state": "暫定配置",
-          "partition": null
-        },
-        {
-          "parent": 878,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 889,
@@ -20343,13 +20132,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1102,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 891,
@@ -20805,13 +20588,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 905,
@@ -20972,13 +20749,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 879,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 910,
@@ -21130,13 +20901,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 878,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 915,
@@ -21171,13 +20936,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 916,
@@ -21242,13 +21001,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 918,
@@ -21373,13 +21126,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 878,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 922,
@@ -21414,13 +21161,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1056,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 923,
@@ -21489,13 +21230,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 925,
@@ -21586,13 +21321,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 879,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 928,
@@ -21728,13 +21457,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 932,
@@ -21864,13 +21587,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1092,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 936,
@@ -21900,7 +21617,14 @@
       ],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 61,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
     },
     {
       "id": 937,
@@ -22030,13 +21754,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1102,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 941,
@@ -23442,13 +23160,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 986,
@@ -23644,13 +23356,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 878,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 992,
@@ -23749,13 +23455,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 35,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 995,
@@ -24315,13 +24015,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1102,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1014,
@@ -24356,13 +24050,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1096,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1015,
@@ -24891,13 +24579,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 878,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1032,
@@ -24992,13 +24674,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 514,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1035,
@@ -25248,13 +24924,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 9,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1043,
@@ -25286,13 +24956,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 9,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1044,
@@ -25321,13 +24985,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1043,
-          "state": "暫定配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1045,
@@ -26380,13 +26038,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 59,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1092,
@@ -26450,13 +26102,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1092,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1094,
@@ -26483,13 +26129,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1092,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1095,
@@ -26554,13 +26194,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1095,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1097,
@@ -26587,13 +26221,7 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 1095,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1098,
@@ -26759,24 +26387,18 @@
       "variations": [],
       "relations": [],
       "is_function": false,
-      "cover_states": [
-        {
-          "parent": 514,
-          "state": "未配置",
-          "partition": null
-        }
-      ]
+      "cover_states": []
     },
     {
       "id": 1103,
       "entry": "leka",
       "translations": [
-        "構造"
+        "構造（日常語）"
       ],
       "simple_translations": [],
       "category": "語彙",
       "upper_covers": [
-        6
+        789
       ],
       "lower_covers": [],
       "arguments": [],
@@ -26792,8 +26414,8 @@
       "is_function": false,
       "cover_states": [
         {
-          "parent": 6,
-          "state": "未配置",
+          "parent": 789,
+          "state": "上位未決",
           "partition": null
         }
       ]
@@ -26965,13 +26587,9 @@
       "partitions": [
         {
           "key": "シグネチャ",
-          "axis": "シグネチャの種類",
           "kind": "素性",
           "disjoint": false,
           "exhaustive": false,
-          "basis": [
-            "推論"
-          ],
           "note": "演算・位相／測度・順序．位相群のように複数に入る．"
         }
       ],
@@ -26982,6 +26600,50 @@
           "partition": "種類"
         }
       ]
+    },
+    {
+      "id": 1112,
+      "entry": "〈合成数〉",
+      "translations": [
+        "合成数"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        61
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 61,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
+    },
+    {
+      "id": 1113,
+      "entry": "〈ガウス整数〉",
+      "translations": [
+        "ガウス整数"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        60
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": []
     }
   ]
 }

@@ -1,17 +1,16 @@
-// 分割（ファセット）と被覆辺ごとの配置の状態．
-// 上位分類章「配置の状態」：被覆辺は包摂を主張する．ただし上位未決の辺は表示上の置き場で，
-// 包摂を主張しない（理論上は概念の直下と同じ）．状態が変えるのは，上位の節点の分割の公理
-// （排他・網羅）をその辺に適用するかどうかと，上位未決なら包摂そのものを主張するかどうかである．
+// 分割と被覆辺ごとの配置の状態．
+// 上位分類章「配置の状態」：辺は配置か上位未決．配置の辺は包摂を主張し，上位未決の辺は
+// 表示上の置き場で包摂を主張しない．
+// 上位分類章「分割」：コンストラクタ分割は自動的に排他．素性分割は排他を宣言する．網羅は任意の公理．
 //
-// 節点側 partitions: [{ key, axis, kind, disjoint, exhaustive, basis, note }]
+// 節点側 partitions: [{ key, kind, disjoint, exhaustive, note }]
 // 子の側 cover_states: [{ parent, state, partition }]
 // cover_states に記録のない被覆辺は「配置」（分割は未宣言）とみなす．
 
-export const PLACEMENT_STATES = ['配置', '暫定配置', '未配置', '上位未決'];
+export const PLACEMENT_STATES = ['配置', '上位未決'];
 export const DEFAULT_STATE = '配置';
-export const PARTITION_KINDS = ['骨格', '素性'];
-export const PARTITION_BASES = ['推論', '区別', '選び分け'];
-const STATES_WITH_PARTITION = new Set(['配置', '暫定配置']);
+export const PARTITION_KINDS = ['コンストラクタ', '素性'];
+const STATES_WITH_PARTITION = new Set(['配置']);
 
 const asArray = value => Array.isArray(value) ? value : [];
 const isPlainObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -41,6 +40,11 @@ export function coverState(word, parentId) {
         state: record?.state ?? DEFAULT_STATE,
         partition: record?.partition ?? null,
     };
+}
+
+/** コンストラクタ分割は常に排他．素性分割は宣言による． */
+export function isDisjoint(partition) {
+    return partition?.kind === 'コンストラクタ' || Boolean(partition?.disjoint);
 }
 
 export function findPartition(word, key) {
@@ -74,7 +78,7 @@ function disjointEdges(words) {
             if (!STATES_WITH_PARTITION.has(record.state)) continue;
             const parent = words[record.parent];
             const partition = findPartition(parent, record.partition);
-            if (!partition || !partition.disjoint) continue;
+            if (!partition || !isDisjoint(partition)) continue;
             if (!edges.has(word.id)) edges.set(word.id, []);
             edges.get(word.id).push({ parent: record.parent, key: record.partition });
         }
@@ -167,12 +171,6 @@ export function validatePlacement(words) {
                         if (p[flag] !== undefined && typeof p[flag] !== 'boolean') {
                             errors.push({ code: 'INVALID_PARTITION', id, partition: p.key, message: `分割の ${flag} は真偽値です` });
                         }
-                    }
-                    if (p.basis !== undefined && (!Array.isArray(p.basis) || p.basis.some(b => !PARTITION_BASES.includes(b)))) {
-                        errors.push({ code: 'INVALID_PARTITION', id, partition: p.key, message: `分割の basis は ${PARTITION_BASES.join('/')} の配列です` });
-                    }
-                    if (p.kind === '骨格' && !(p.basis?.length > 0)) {
-                        warnings.push({ code: 'PARTITION_WITHOUT_BASIS', id, partition: p.key, message: `骨格の分割 ${p.key} に根拠（推論/区別/選び分け）がありません` });
                     }
                 }
             }

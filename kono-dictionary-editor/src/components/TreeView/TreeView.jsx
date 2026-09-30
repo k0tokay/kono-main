@@ -2,13 +2,13 @@ import React from 'react';
 import { useDictState, useDictDispatch } from '../../store/DictionaryContext';
 import { isValidWordTag, ancestorList, hasNoCycle } from '../../utils/utils.js';
 import { CATEGORY } from '../../constants/categories.js';
-import { childStateCounts, coverState } from '../../domain/placement.js';
+import { childStateCounts, coverState, isDisjoint } from '../../domain/placement.js';
 import './TreeView.scss';
 
 /** 単一ノード */
 /**
  * 子を分割ごとにまとめる（本文の図の「枠のない中間節点」に当たる）．
- * 宣言順に分割の群を並べ，どの分割にも参加しない子（未配置など）を最後に置く．
+ * 宣言順に分割の群を並べ，どの分割にも参加しない子を最後に置く．
  * 子が一つもない分割も見出しだけ出す（宣言したが枝がまだない）．
  */
 function groupChildren(words, word) {
@@ -28,8 +28,8 @@ function groupChildren(words, word) {
   ];
 }
 
-const STATE_MARK = { 暫定配置: '~', 未配置: '·', 上位未決: '?' };
-const STATE_CLASS = { 暫定配置: 'provisional', 未配置: 'unplaced', 上位未決: 'undecided' };
+const STATE_MARK = { 上位未決: '?' };
+const STATE_CLASS = { 上位未決: 'undecided' };
 
 function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
   const { words, openSet, focusId } = useDictState();
@@ -49,7 +49,7 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
 
   const state = parentId === null ? '配置' : coverState(word, parentId).state;
   const counts = hasChildren ? childStateCounts(words, id) : null;
-  const offTree = counts ? counts['未配置'] + counts['上位未決'] : 0;
+  const offTree = counts ? counts['上位未決'] : 0;
 
   const translation = word.translations?.length > 0
     ? word.translations.slice(0, 3).join(', ')
@@ -74,7 +74,7 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
         {STATE_MARK[state] && <span className="stateMark">{STATE_MARK[state]}</span>}
         <span className="entry">{word.entry}</span>
         {translation && <span className="translation">{translation}</span>}
-        {offTree > 0 && <span className="offTreeCount" title="未配置・上位未決の子">+{offTree}</span>}
+        {offTree > 0 && <span className="offTreeCount" title="上位未決の子">+{offTree}</span>}
       </span>
 
       {isOpen && hasChildren && (
@@ -82,9 +82,9 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
           {groupChildren(words, word).map(group => group.partition ? (
             <li key={`p:${group.partition.key}`} className="partitionGroup">
               <span className="partitionLabel" title={group.partition.note || undefined}>
-                {group.partition.axis || group.partition.key}
+                {group.partition.key}
                 <span className="partitionFlags">
-                  {[group.partition.kind, group.partition.disjoint ? '排他' : '非排他', group.partition.exhaustive && '網羅'].filter(Boolean).join('・')}
+                  {[group.partition.kind, isDisjoint(group.partition) ? '排他' : '非排他', group.partition.exhaustive && '網羅'].filter(Boolean).join('・')}
                 </span>
               </span>
               <ul className="partitionChildren">
