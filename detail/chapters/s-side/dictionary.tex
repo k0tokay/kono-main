@@ -40,7 +40,7 @@
 \texttt{tags}，\texttt{is\_function}などのフィールドを持つ．
 分類と公理のために次のフィールドを持つ（2026-09-29）．
 \begin{itemize}
-    \item \texttt{partitions}（節点側）：その節点の分割の宣言．\texttt{key}，軸，骨格か素性か，排他か，網羅か，根拠（推論／区別／選び分け），注．
+    \item \texttt{partitions}（節点側）：その節点の分割の宣言．\texttt{key}，軸，コンストラクタか素性か，排他か，網羅か，根拠（推論／区別／選び分け），注．
     \item \texttt{cover\_states}（子の側）：上位語ごとの配置の状態（配置／暫定配置／未配置／上位未決．上位分類章「配置の状態」）と，配置なら参加する分割の\texttt{key}．記録のない辺は配置．
     \item \texttt{axioms}：公理レコード．種類は引き下げ（(D$\downarrow$)(D$\uparrow$)），スロット（(S1)(S2)），定義（属と種差による定義クラス），式（スキーマの外）．(H)は被覆辺，(T)は\texttt{arguments}が担うのでレコードにしない．
     \item \texttt{mitoshi\_type}（見做しカテゴリの語）：見做しの型\texttt{\{from, to, relation, uniform\}}．一様な型は\texttt{from}の下の全語に\texttt{to}側の語義を仮想的に与える（上位分類章「語彙化：見做し」の規則性の基準）．
