@@ -219,7 +219,8 @@
       "category": "語彙",
       "lower_covers": [
         32,
-        514
+        514,
+        1116
       ],
       "upper_covers": [
         790
@@ -1088,7 +1089,7 @@
         0
       ],
       "translations": [
-        "2項関係および1項関数"
+        "2項関係個体"
       ],
       "simple_translations": [
         "関係"
@@ -3094,7 +3095,7 @@
         0
       ],
       "translations": [
-        "3項関係および2項関数"
+        "3項関係個体"
       ],
       "simple_translations": [],
       "arguments": [
@@ -16257,7 +16258,9 @@
         782,
         783,
         784,
-        786
+        786,
+        1114,
+        1115
       ],
       "upper_covers": [],
       "translations": [],
@@ -17841,8 +17844,10 @@
     },
     {
       "id": 778,
-      "entry": "独り言",
-      "translations": [],
+      "entry": "koyloaki",
+      "translations": [
+        "独り言"
+      ],
       "category": "慣用表現",
       "upper_covers": [
         5
@@ -18231,7 +18236,9 @@
       "entry": "kant",
       "translations": [
         "場所",
-        "いまここ"
+        "ここ",
+        "現れ",
+        "領域の対象"
       ],
       "category": "音列",
       "upper_covers": [
@@ -26535,7 +26542,8 @@
       "contents": [],
       "variations": [],
       "relations": [],
-      "is_function": false
+      "is_function": false,
+      "axioms": []
     },
     {
       "id": 1110,
@@ -26644,6 +26652,73 @@
       "relations": [],
       "is_function": false,
       "cover_states": []
-    }
+    },
+    {
+      "id": 1114,
+      "entry": "zoy … tos",
+      "translations": [
+        "任意の表現を引用する括弧"
+      ],
+      "category": "括弧",
+      "upper_covers": [
+        694
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [
+        {
+          "title": "詳細",
+          "text": "Lojbanのzoiに由来する"
+        }
+      ],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1115,
+      "entry": "min … tos",
+      "translations": [
+        "コノメノで書かれた語彙や意味表現を引用する括弧"
+      ],
+      "category": "括弧",
+      "upper_covers": [
+        694
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1116,
+      "entry": "〈意味表現〉",
+      "translations": [
+        "意味表現"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        11
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 11,
+          "state": "上位未決",
+          "partition": null
+        }
+      ]
+    },
+    null
   ]
 }
