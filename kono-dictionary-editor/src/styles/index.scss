@@ -84,6 +84,52 @@ a {
   border: 1px solid transparent;
 }
 
+// 共通の入力部品：下線だけの入力，プルダウン，チェックボックス．
+.lineInput {
+  background: transparent;
+  color: $fg-main;
+  border: none;
+  border-bottom: 1px solid color.adjust($bg, $lightness: 40%);
+  border-radius: 0;
+  padding: 4px 6px;
+  font: inherit;
+  min-width: 0;
+  &:focus { outline: none; border-bottom-color: $accent-color; }
+  &::placeholder { color: $muted; }
+}
+textarea.lineInput { width: 100%; resize: vertical; }
+
+select {
+  appearance: none;
+  background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23828282' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 6px center;
+  color: $fg-main;
+  border: none;
+  border-bottom: 1px solid color.adjust($bg, $lightness: 40%);
+  border-radius: 0;
+  padding: 4px 22px 4px 6px;
+  font: inherit;
+  cursor: pointer;
+  &:focus { outline: none; border-bottom-color: $accent-color; }
+  &:disabled { opacity: 0.5; cursor: default; }
+  option { background: $bg-dark; color: $fg-main; }
+}
+
+input[type="checkbox"] {
+  accent-color: $accent-color;
+  width: 14px;
+  height: 14px;
+  margin: 0 6px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  &:disabled { cursor: default; }
+}
+label:has(> input[type="checkbox"]) {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+label:has(> input[type="checkbox"]:disabled) { opacity: 0.6; cursor: default; }
+
 .menuBar {
   padding: 6px 12px;
   display: flex;

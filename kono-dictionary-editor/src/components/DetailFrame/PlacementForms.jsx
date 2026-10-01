@@ -78,18 +78,18 @@ export function PartitionForm({ word, words, edited, onChange }) {
                 {partitions.map((p, i) => (
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
-                            <button className="deleteItemBtn" onClick={() => set(partitions.filter((_, j) => j !== i))}>削除</button>
-                            <input className="textForm" placeholder="名前" value={p.key} onChange={e => updateAt(i, { key: e.target.value })} />
+                            <input className="lineInput itemTitle" placeholder="名前" value={p.key} onChange={e => updateAt(i, { key: e.target.value })} />
                             <select value={p.kind ?? 'コンストラクタ'} onChange={e => updateAt(i, { kind: e.target.value })}>
                                 {PARTITION_KINDS.map(k => <option key={k} value={k}>{k}</option>)}
                             </select>
+                            <button className="deleteItemBtn" onClick={() => set(partitions.filter((_, j) => j !== i))}>削除</button>
                         </div>
-                        <div className="partitionFlags">
+                        <div className="largeListItemHeader partitionFlags">
                             <label><input type="checkbox" checked={isDisjoint(p)} disabled={p.kind === 'コンストラクタ'} onChange={e => updateAt(i, { disjoint: e.target.checked })} />排他</label>
                             <label><input type="checkbox" checked={Boolean(p.exhaustive)} onChange={e => updateAt(i, { exhaustive: e.target.checked })} />網羅</label>
                             <span className="memberCount">枝 {members(p.key).length}</span>
                         </div>
-                        <textarea className="textForm" rows="2" placeholder="注（本文の参照箇所など）" value={p.note ?? ''} onChange={e => updateAt(i, { note: e.target.value })} />
+                        <textarea className="lineInput" rows="3" placeholder="注（本文の参照箇所など）" value={p.note ?? ''} onChange={e => updateAt(i, { note: e.target.value })} />
                     </div>
                 ))}
             </div>

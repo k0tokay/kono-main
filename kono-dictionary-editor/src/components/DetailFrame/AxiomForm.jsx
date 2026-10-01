@@ -54,7 +54,7 @@ function AxiomFields({ record, words, update }) {
         }
         case '式':
             return (
-                <textarea className="textForm" rows="2" placeholder="式（スキーマの外）" value={record.text ?? ''} onChange={e => update({ text: e.target.value })} />
+                <textarea className="lineInput" rows="2" placeholder="式（スキーマの外）" value={record.text ?? ''} onChange={e => update({ text: e.target.value })} />
             );
         default:
             return null;
@@ -78,12 +78,12 @@ export function AxiomForm({ word, words, edited, onChange }) {
                 {axioms.map((record, i) => (
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
-                            <button className="deleteItemBtn" onClick={() => set(axioms.filter((_, j) => j !== i))}>削除</button>
                             <span className="axiomKind">{record.kind}</span>
                             <span className="axiomSummary">{formatAxiom(record, label)}</span>
+                            <button className="deleteItemBtn" onClick={() => set(axioms.filter((_, j) => j !== i))}>削除</button>
                         </div>
                         <AxiomFields record={record} words={words} update={patch => set(axioms.map((r, j) => (j === i ? { ...r, ...patch } : r)))} />
-                        <input className="textForm" placeholder="注（本文の参照箇所など）" value={record.note ?? ''}
+                        <input className="lineInput" placeholder="注（本文の参照箇所など）" value={record.note ?? ''}
                             onChange={e => set(axioms.map((r, j) => (j === i ? { ...r, note: e.target.value } : r)))} />
                     </div>
                 ))}

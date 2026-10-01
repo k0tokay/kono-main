@@ -245,22 +245,21 @@ export function LargeListForm({ name, title, title_h, title_c, contents, edited,
                 {contents.map((content, i) => (
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
+                            <input
+                                className="lineInput itemTitle"
+                                type="text"
+                                placeholder={title_h}
+                                value={content.title}
+                                onChange={e => updateItem(i)(name, { ...content, title: e.target.value })}
+                            />
                             <button className="deleteItemBtn" onClick={() => deleteItem(i)}>削除</button>
                         </div>
-                        <BasicForm
-                            name={`${name}_${i}_h`}
-                            title={title_h}
-                            value={content.title}
-                            edited={edited}
-                            onChange={(_f, v) => updateItem(i)(name, { ...content, title: v })}
-                        />
-                        <BasicForm
-                            name={`${name}_${i}_c`}
-                            title={title_c}
+                        <textarea
+                            className="lineInput"
+                            rows="3"
+                            placeholder={title_c}
                             value={content.text}
-                            isMultiline
-                            edited={edited}
-                            onChange={(_f, v) => updateItem(i)(name, { ...content, text: v })}
+                            onChange={e => updateItem(i)(name, { ...content, text: e.target.value })}
                         />
                     </div>
                 ))}
@@ -327,20 +326,17 @@ export function RelationForm({ name, title, relations, edited, onChange, onClick
                 {relations.map((rel, i) => (
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
+                            <input
+                                className="lineInput itemTitle"
+                                type="text"
+                                placeholder="分類"
+                                value={rel.title}
+                                onChange={e => updateTitle(i, e.target.value)}
+                            />
                             <button className="deleteItemBtn" onClick={() => deleteItem(i)}>削除</button>
                         </div>
-                        <BasicForm
-                            name={`${name}_${i}_title`}
-                            title="分類"
-                            value={rel.title}
-                            edited={edited}
-                            onChange={(_f, v) => updateTitle(i, v)}
-                        />
-                        <div className="tagForm">
-                            <div className="formHeader tagHeader">
-                                <p>関連語</p>
-                            </div>
-                            <div className="textForm innerTagForm">
+                        <div className="tagForm relationTarget">
+                            <div className="innerTagForm">
                                 <div style={{ position: 'relative' }}>
                                     {words[rel.entry] && i !== editingIdx && (
                                         <TagWordDetails word={words[rel.entry]} onClick={() => onClick(rel.entry)} />

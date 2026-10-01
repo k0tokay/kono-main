@@ -148,6 +148,7 @@ input:read-only, textarea:read-only {
     }
   }
 }
+// 一覧の欄（内容・関連語・公理・分割など）：暗い箱一つの中に項目を並べ，項目の間を細い線で区切る．
 .largeListForm {
   .listHeader {
     display: flex;
@@ -155,33 +156,41 @@ input:read-only, textarea:read-only {
     justify-content: space-between;
   }
   .innerLargeListForm {
-    margin-top: 5px;
+    margin: 0 $form-margin $form-margin;
+    padding: 2px 8px;
     min-height: 40px;
-    .largeListItem {
-      position: relative;
-      border-bottom: 1px solid rgba(#fff, 0.05);
-      padding-bottom: 4px;
-      margin-bottom: 4px;
-      .largeListItemHeader {
-        display: flex;
-        justify-content: flex-end;
-        padding: 2px 4px;
-      }
-      .deleteItemBtn {
-        font-size: 0.8em;
-        padding: 2px 8px;
-        color: $notvalid;
-        background: transparent;
-        border: 1px solid rgba($notvalid, 0.3);
-        &:hover {
-          background: rgba($notvalid, 0.15);
-        }
-      }
-    }
-    .basicForm {
-      padding-right: 0px;
-      padding-left: 0px;
-    }
+    background: $black;
+  }
+  .largeListItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 0;
+    & + .largeListItem { border-top: 1px solid rgba(#fff, 0.08); }
+  }
+  .largeListItemHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    > .lineInput { flex: 1; }
+  }
+  .itemTitle { font-weight: 600; }
+  .relationTarget {
+    padding: 0;
+    background: transparent;
+    border: none;
+    .innerTagForm { min-height: 0; margin: 0; padding: 0; }
+  }
+  .deleteItemBtn {
+    margin-left: auto;
+    flex: none;
+    font-size: 0.85em;
+    font-weight: 500;
+    padding: 3px 10px;
+    color: $notvalid;
+    background: transparent;
+    border: 1px solid rgba($notvalid, 0.35);
+    &:hover { background: rgba($notvalid, 0.15); }
   }
 }
 .argUsageForm {
@@ -215,37 +224,32 @@ input:read-only, textarea:read-only {
     }
   }
 }
+.coverStateForm, .partitionForm {
+  .innerLargeListForm { font-size: 0.9em; }
+  .warn { color: $notvalid; font-size: 0.9em; }
+}
+
 .coverStateForm {
   .coverStateRow {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(8em, 1fr) auto auto;
     align-items: center;
     gap: 8px;
-    padding: 2px 0;
+    padding: 4px 0;
   }
   .parentLabel {
     cursor: pointer;
-    min-width: 10em;
-    .id { font-weight: bold; opacity: 0.7; }
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    .id { color: $muted; font-weight: bold; margin-right: 6px; }
+    &:hover { color: $edited; }
   }
-  .warn { color: #c0392b; font-size: 0.9em; }
 }
 
 .partitionForm {
-  .largeListItemHeader {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    input.textForm { flex: 1; min-width: 4em; }
-  }
-  .partitionFlags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    padding: 4px 0;
-    font-size: 0.9em;
-  }
-  .memberCount { opacity: 0.7; margin-left: auto; }
+  .partitionFlags { gap: 14px; }
+  .memberCount { color: $muted; margin-left: auto; }
 }
 
 .mitoshiTypeForm, .mitoshiSenseForm {

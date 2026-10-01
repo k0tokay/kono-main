@@ -4,7 +4,7 @@ export function IdInput({ value, onChange, words, placeholder = '' }) {
     return (
         <span className="idInput">
             <input
-                className="textForm"
+                className="lineInput"
                 type="number"
                 placeholder={placeholder}
                 value={value ?? ''}
