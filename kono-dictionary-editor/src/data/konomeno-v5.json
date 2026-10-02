@@ -2,15 +2,21 @@
   "words": [
     {
       "id": 0,
-      "entry": "語彙",
+      "entry": "alkono",
       "category": "カテゴリ",
       "lower_covers": [
-        6,
         40,
-        120
+        120,
+        1118,
+        1121,
+        1125,
+        1126
       ],
       "upper_covers": [],
-      "translations": [],
+      "translations": [
+        "概念",
+        "語彙"
+      ],
       "simple_translations": [],
       "arguments": [],
       "tags": [
@@ -18,31 +24,40 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": null
+      "is_function": null,
+      "partitions": [
+        {
+          "key": "tArity",
+          "kind": "素性",
+          "disjoint": true,
+          "exhaustive": false,
+          "note": ""
+        },
+        {
+          "key": "isFunc",
+          "kind": "素性",
+          "disjoint": true,
+          "exhaustive": false,
+          "note": ""
+        }
+      ]
     },
     null,
     null,
     {
       "id": 3,
-      "entry": "冠詞",
+      "entry": "plomac",
       "category": "カテゴリ",
       "lower_covers": [
-        7,
-        28,
-        121,
-        329,
-        330,
-        331,
-        332,
-        333,
-        334,
-        335,
-        336,
-        122,
-        657
+        1130,
+        1131,
+        1132,
+        1133
       ],
       "upper_covers": [],
-      "translations": [],
+      "translations": [
+        "冠詞"
+      ],
       "simple_translations": [],
       "arguments": [],
       "tags": [
@@ -50,11 +65,20 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": null
+      "is_function": null,
+      "partitions": [
+        {
+          "key": "冠詞シグネチャ",
+          "kind": "素性",
+          "disjoint": true,
+          "exhaustive": false,
+          "note": ""
+        }
+      ]
     },
     {
       "id": 4,
-      "entry": "音列",
+      "entry": "lokoflos",
       "category": "カテゴリ",
       "lower_covers": [
         482,
@@ -76,7 +100,9 @@
         868
       ],
       "upper_covers": [],
-      "translations": [],
+      "translations": [
+        "音列"
+      ],
       "simple_translations": [],
       "arguments": [],
       "tags": [
@@ -88,7 +114,7 @@
     },
     {
       "id": 5,
-      "entry": "慣用表現",
+      "entry": "〈慣用表現〉",
       "category": "カテゴリ",
       "lower_covers": [
         773,
@@ -97,7 +123,9 @@
         39
       ],
       "upper_covers": [],
-      "translations": [],
+      "translations": [
+        "慣用表現"
+      ],
       "simple_translations": [],
       "arguments": [],
       "tags": [
@@ -109,18 +137,20 @@
     },
     {
       "id": 6,
-      "entry": "alkono",
+      "entry": "konomili",
       "category": "語彙",
       "lower_covers": [
-        787,
-        789,
-        790
+        1127,
+        1128,
+        1129
       ],
       "upper_covers": [
-        0
+        1121,
+        1126
       ],
       "translations": [
-        "概念"
+        "個体",
+        "実例"
       ],
       "simple_translations": [],
       "arguments": [],
@@ -129,7 +159,16 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "partitions": [
+        {
+          "key": "タプルの項数",
+          "kind": "コンストラクタ",
+          "disjoint": true,
+          "exhaustive": false,
+          "note": ""
+        }
+      ]
     },
     {
       "id": 7,
@@ -137,7 +176,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1130
       ],
       "translations": [
         "全ての"
@@ -747,7 +786,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1130
       ],
       "translations": [
         "ある何かの"
@@ -1089,7 +1128,7 @@
         0
       ],
       "translations": [
-        "2項関係個体"
+        "2項関係（1項関数を含む）"
       ],
       "simple_translations": [
         "関係"
@@ -1103,7 +1142,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 0,
+          "state": "配置",
+          "partition": "tArity"
+        }
+      ]
     },
     null,
     {
@@ -3095,7 +3141,7 @@
         0
       ],
       "translations": [
-        "3項関係個体"
+        "3項関係（2項関数を含む）"
       ],
       "simple_translations": [],
       "arguments": [
@@ -3108,7 +3154,14 @@
       ],
       "contents": [],
       "variations": [],
-      "is_function": false
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 0,
+          "state": "配置",
+          "partition": "tArity"
+        }
+      ]
     },
     {
       "id": 121,
@@ -3116,7 +3169,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1130
       ],
       "translations": [
         "ほとんど"
@@ -3138,7 +3191,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1130
       ],
       "translations": [
         "ある程度多くの",
@@ -7123,7 +7176,8 @@
         135,
         306,
         137,
-        101
+        101,
+        1134
       ],
       "upper_covers": [
         790
@@ -8176,7 +8230,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1130
       ],
       "translations": [
         "不特定の"
@@ -8196,7 +8250,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1133
       ],
       "translations": [
         "ラムダ抽象"
@@ -8216,10 +8270,10 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1131
       ],
       "translations": [
-        "集合化"
+        "内包化"
       ],
       "simple_translations": [],
       "arguments": [],
@@ -8236,10 +8290,11 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1131
       ],
       "translations": [
-        "文脈による集合化"
+        "文脈による内包化",
+        "動的存在量化"
       ],
       "simple_translations": [],
       "arguments": [],
@@ -8256,7 +8311,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1133
       ],
       "translations": [
         "値が最も小さいもの",
@@ -8277,7 +8332,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1133
       ],
       "translations": [
         "値が最も大きいもの",
@@ -8300,7 +8355,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1133
       ],
       "translations": [
         "最も小さな値",
@@ -8321,7 +8376,7 @@
       "category": "冠詞",
       "lower_covers": [],
       "upper_covers": [
-        3
+        1133
       ],
       "translations": [
         "最も大きな値",
@@ -15549,7 +15604,7 @@
       "simple_translations": [],
       "category": "冠詞",
       "upper_covers": [
-        3
+        1132
       ],
       "lower_covers": [],
       "arguments": [],
@@ -18021,7 +18076,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        6
+        1127
       ],
       "lower_covers": [],
       "arguments": [],
@@ -18057,7 +18112,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        6
+        1127
       ],
       "lower_covers": [
         100,
@@ -18104,7 +18159,7 @@
       ],
       "category": "語彙",
       "upper_covers": [
-        6
+        1127
       ],
       "lower_covers": [
         11,
@@ -25062,11 +25117,14 @@
     },
     {
       "id": 1048,
-      "entry": "2項関係",
-      "translations": [],
+      "entry": "〈2項関係〉",
+      "translations": [
+        "2項関係"
+      ],
       "category": "語彙",
       "upper_covers": [
-        40
+        40,
+        1125
       ],
       "lower_covers": [
         1045
@@ -25080,11 +25138,14 @@
     },
     {
       "id": 1049,
-      "entry": "1項関数",
-      "translations": [],
+      "entry": "〈1項関数〉",
+      "translations": [
+        "1項関数"
+      ],
       "category": "語彙",
       "upper_covers": [
-        40
+        40,
+        1126
       ],
       "lower_covers": [],
       "arguments": [],
@@ -25096,8 +25157,10 @@
     },
     {
       "id": 1050,
-      "entry": "3項関係",
-      "translations": [],
+      "entry": "〈3項関係〉",
+      "translations": [
+        "3項関係"
+      ],
       "category": "語彙",
       "upper_covers": [
         120
@@ -25116,8 +25179,10 @@
     },
     {
       "id": 1051,
-      "entry": "2項関数",
-      "translations": [],
+      "entry": "〈2項関数〉",
+      "translations": [
+        "2項関数"
+      ],
       "category": "語彙",
       "upper_covers": [
         120
@@ -26700,6 +26765,372 @@
         }
       ]
     },
-    null
+    null,
+    {
+      "id": 1118,
+      "entry": "mintmili",
+      "translations": [
+        "命題定数"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        0
+      ],
+      "lower_covers": [
+        1119,
+        1120
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 0,
+          "state": "配置",
+          "partition": "tArity"
+        }
+      ]
+    },
+    {
+      "id": 1119,
+      "entry": "konston",
+      "translations": [
+        "真",
+        "恒真",
+        "トートロジー"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        1118
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": true
+    },
+    {
+      "id": 1120,
+      "entry": "bailek",
+      "translations": [
+        "偽",
+        "恒偽",
+        "矛盾"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        1118
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": true
+    },
+    {
+      "id": 1121,
+      "entry": "〈tArity=1〉",
+      "translations": [],
+      "category": "alkono",
+      "upper_covers": [
+        0
+      ],
+      "lower_covers": [
+        6,
+        1123
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 0,
+          "state": "配置",
+          "partition": "tArity"
+        }
+      ]
+    },
+    null,
+    {
+      "id": 1123,
+      "entry": "konofon",
+      "translations": [
+        "種",
+        "普遍者",
+        "クラス"
+      ],
+      "category": "alkono",
+      "upper_covers": [
+        1121,
+        1125
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    null,
+    {
+      "id": 1125,
+      "entry": "〈関係〉",
+      "translations": [
+        "関係"
+      ],
+      "category": "alkono",
+      "upper_covers": [
+        0
+      ],
+      "lower_covers": [
+        1048,
+        1123
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 0,
+          "state": "配置",
+          "partition": "isFunc"
+        }
+      ]
+    },
+    {
+      "id": 1126,
+      "entry": "〈関数〉",
+      "translations": [
+        "関数"
+      ],
+      "category": "alkono",
+      "upper_covers": [
+        0
+      ],
+      "lower_covers": [
+        1049,
+        6
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 0,
+          "state": "配置",
+          "partition": "isFunc"
+        }
+      ]
+    },
+    {
+      "id": 1127,
+      "entry": "kon-konomili",
+      "translations": [
+        "1項関係個体"
+      ],
+      "category": "alkono",
+      "upper_covers": [
+        6
+      ],
+      "lower_covers": [
+        787,
+        789,
+        790
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1128,
+      "entry": "kan-konomili",
+      "translations": [
+        "2項関係個体"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        6
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1129,
+      "entry": "lui-konomili",
+      "translations": [
+        "3項関係個体"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        6
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1130,
+      "entry": "〈量化子〉",
+      "translations": [
+        "量化子"
+      ],
+      "category": "plomac",
+      "upper_covers": [
+        3
+      ],
+      "lower_covers": [
+        7,
+        28,
+        121,
+        329,
+        122
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 3,
+          "state": "配置",
+          "partition": "冠詞シグネチャ"
+        }
+      ]
+    },
+    {
+      "id": 1131,
+      "entry": "〈内包化演算子〉",
+      "translations": [
+        "内包化演算子"
+      ],
+      "category": "plomac",
+      "upper_covers": [
+        3
+      ],
+      "lower_covers": [
+        331,
+        332
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 3,
+          "state": "配置",
+          "partition": "冠詞シグネチャ"
+        }
+      ]
+    },
+    {
+      "id": 1132,
+      "entry": "〈証拠演算子〉",
+      "translations": [
+        "証拠演算子"
+      ],
+      "category": "plomac",
+      "upper_covers": [
+        3
+      ],
+      "lower_covers": [
+        657
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 3,
+          "state": "配置",
+          "partition": "冠詞シグネチャ"
+        }
+      ]
+    },
+    {
+      "id": 1133,
+      "entry": "〈族版演算子〉",
+      "translations": [
+        "族版演算子"
+      ],
+      "category": "plomac",
+      "upper_covers": [
+        3
+      ],
+      "lower_covers": [
+        330,
+        333,
+        334,
+        335,
+        336
+      ],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false,
+      "cover_states": [
+        {
+          "parent": 3,
+          "state": "配置",
+          "partition": "冠詞シグネチャ"
+        }
+      ]
+    },
+    {
+      "id": 1134,
+      "entry": "〈コノメノ表現〉",
+      "translations": [
+        "コノメノ表現"
+      ],
+      "category": "語彙",
+      "upper_covers": [
+        281
+      ],
+      "lower_covers": [],
+      "arguments": [],
+      "tags": [],
+      "contents": [],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    }
   ]
 }
