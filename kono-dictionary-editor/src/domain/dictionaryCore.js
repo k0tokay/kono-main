@@ -1,6 +1,6 @@
 import { pruneCoverStates, validatePlacement } from './placement.js';
 import { axiomRefs, formatAxiom, pruneAxioms, validateAxioms } from './axioms.js';
-import { materializeMitoshiInPlace, pruneMitoshi, sensesOf, validateMitoshi } from './mitoshi.js';
+import { formatMetaProps, pruneMetaProps, validateMetaProps } from './metaProps.js';
 import { applyDerivedSequenceCovers, isSequenceWord, sequenceCoverMismatches, tokenizePhonemes } from './soundSequences.js';
 
 export const EDITABLE_FIELDS = new Set([
@@ -15,8 +15,7 @@ export const EDITABLE_FIELDS = new Set([
     'is_function',
     'partitions',
     'cover_states',
-    'mitoshi_type',
-    'mitoshi_senses',
+    'meta_props',
     'axioms',
 ]);
 
@@ -295,9 +294,9 @@ export function validateDictionary(data) {
         const placement = validatePlacement(words);
         errors.push(...placement.errors);
         warnings.push(...placement.warnings);
-        const mitoshi = validateMitoshi(words);
-        errors.push(...mitoshi.errors);
-        warnings.push(...mitoshi.warnings);
+        const metaProps = validateMetaProps(words);
+        errors.push(...metaProps.errors);
+        warnings.push(...metaProps.warnings);
         const axioms = validateAxioms(words);
         errors.push(...axioms.errors);
         warnings.push(...axioms.warnings);
@@ -401,8 +400,7 @@ function normalizeNewWord(words, operation) {
         is_function: operation.word.is_function ?? false,
         ...(operation.word.partitions ? { partitions: structuredClone(operation.word.partitions) } : {}),
         ...(operation.word.cover_states ? { cover_states: structuredClone(operation.word.cover_states) } : {}),
-        ...(operation.word.mitoshi_type ? { mitoshi_type: structuredClone(operation.word.mitoshi_type) } : {}),
-        ...(operation.word.mitoshi_senses ? { mitoshi_senses: structuredClone(operation.word.mitoshi_senses) } : {}),
+        ...(operation.word.meta_props ? { meta_props: structuredClone(operation.word.meta_props) } : {}),
         ...(operation.word.axioms ? { axioms: structuredClone(operation.word.axioms) } : {}),
     };
 }
@@ -524,6 +522,9 @@ function collectDeletionNeighborhood(words, id) {
         if (asArray(word.axioms).some(record => axiomRefs(record).includes(id))) {
             semanticReferences.push({ id: word.id, entry: word.entry, field: 'axioms' });
         }
+        if (asArray(word.meta_props?.total_on).some(t => t?.node === id)) {
+            semanticReferences.push({ id: word.id, entry: word.entry, field: 'meta_props' });
+        }
     }
 
     return { parentIds: [...parentIds], childIds: [...childIds], semanticReferences };
@@ -561,7 +562,7 @@ export function deleteWordInPlace(words, operation) {
     }
     words[operation.id] = null;
     pruneCoverStates(words);
-    pruneMitoshi(words);
+    pruneMetaProps(words);
     if (operation.reference_policy === 'remove') pruneAxioms(words);
 
     if (operation.reconnect === 'parents') {
@@ -578,18 +579,6 @@ export function deleteWordInPlace(words, operation) {
     }
 
     return neighborhood;
-}
-
-function applyMaterializeMitoshi(words, operation, assignedIds) {
-    requireLiveId(words, operation.id);
-    requireLiveId(words, operation.type, 'type');
-    try {
-        const newId = materializeMitoshiInPlace(words, operation, id => inferCategory(words, [id]));
-        if (operation.key !== undefined) assignedIds[String(operation.key)] = newId;
-    } catch (error) {
-        if (error instanceof DictionaryOperationError) throw error;
-        throw new DictionaryOperationError(error.code || 'INVALID_OPERATION', error.message, { id: operation.id, type: operation.type });
-    }
 }
 
 function diffDictionaries(before, after) {
@@ -642,7 +631,6 @@ export function applyDictionaryPatch(data, patch) {
             else if (operation.op === 'set_fields') applySetFields(words, operation);
             else if (operation.op === 'set_upper_covers') applySetUpperCovers(words, operation);
             else if (operation.op === 'delete') deleteWordInPlace(words, operation);
-            else if (operation.op === 'materialize_mitoshi') applyMaterializeMitoshi(words, operation, assignedIds);
             else throw new DictionaryOperationError('UNKNOWN_OPERATION', `未知の操作です: ${operation.op}`);
         } catch (error) {
             if (error instanceof DictionaryOperationError) error.details = { operationIndex: index, ...error.details };
@@ -715,11 +703,7 @@ export function summarizeWord(data, word, { full = false } = {}) {
             argument_words: asArray(word.arguments).map(id => wordLabel(words, id)),
             relation_words: asArray(word.relations).map(relation => ({ ...relation, word: wordLabel(words, relation.entry) })),
             axioms_view: asArray(word.axioms).map(record => formatAxiom(record, id => (words[id] ? `${words[id].entry}(${id})` : `?(${id})`))),
-            mitoshi_view: sensesOf(words, word.id).map(sense => ({
-                ...sense,
-                to_word: wordLabel(words, sense.to),
-                target_word: sense.target === null ? null : wordLabel(words, sense.target),
-            })),
+            meta_props_view: formatMetaProps(word.meta_props, id => (words[id] ? `${words[id].entry}(${id})` : `?(${id})`)),
         };
     }
     return {
@@ -962,12 +946,6 @@ export function patchSchema() {
                 reconnect: 'parents',
                 reference_policy: 'reject',
             },
-            {
-                op: 'materialize_mitoshi',
-                key: '任意の呼び名。assigned_ids に新IDが返る',
-                id: 123,
-                type: 456,
-            },
         ],
         editable_fields: [...EDITABLE_FIELDS],
         notes: [
@@ -978,8 +956,8 @@ export function patchSchema() {
             '明示操作の結果生じた冗長被覆は除去される',
             '音列の被覆は綴りから導出される（音素単位の接頭辞：b の先頭が a なら a が上位）。音列への set_upper_covers は拒否される',
             'cover_states: [{parent, state: 配置|上位未決, partition}]。記録のない辺は配置。partitions は親の側に置く（kind: コンストラクタ|素性。コンストラクタは常に排他）',
-            'materialize_mitoshi は語 id に当たる見做し型 type の仮想語義を、見做し先の直下に同じ綴りの語として作る',
-            'axioms: [{kind: 引き下げ|スロット|定義|式, ...}]。包摂は被覆辺、型付けは arguments が担う。式はスキーマ外として警告される',
+            'meta_props（2項関係の語だけ）: {functional: [arg], total_on: [{node, arg}], symmetric, transitive, elidable: [arg]}。arg は起点の項。elidable は見做し（その向きの関係を文中で省略してよい）',
+            'axioms: [{kind: 引き下げ|定義|式, ...}]。包摂は被覆辺、型付けは arguments、関数性・全域性は meta_props が担う。式はスキーマ外として警告される',
         ],
     };
 }

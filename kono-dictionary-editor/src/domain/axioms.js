@@ -1,15 +1,14 @@
 // 公理レコード（辞書章「公理スキーマと整合性」）．
-// 包摂 (H) は被覆辺，型付け (T) は arguments が担うので，ここには置かない．
+// 包摂 (H) は被覆辺，型付け (T) は arguments，関数性・全域性 (S1)(S2) は関係語の meta_props（metaProps.js）が担うので，ここには置かない．
 // 語の axioms: [record]．record.kind ごとの形：
 //   引き下げ: { relation, hub, projections: [k, l] }         … (D↓)(D↑)
-//   スロット: { role, functional, total }                      … (S1)(S2)
 //   定義:     { genus, differentia: [{ relation, value }] }   … この語 ≡ genus ⊓ ∃relation.value ⊓ …
 //   式:       { text, refs: [id] }                             … スキーマの外（警告）
 // どの kind も任意の note（本文の参照箇所など）を持てる．
 
 import { assertedAncestors } from './placement.js';
 
-export const AXIOM_KINDS = ['引き下げ', 'スロット', '定義', '式'];
+export const AXIOM_KINDS = ['引き下げ', '定義', '式'];
 
 const asArray = value => Array.isArray(value) ? value : [];
 const isPlainObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -20,7 +19,6 @@ export function axiomRefs(record) {
     if (!isPlainObject(record)) return [];
     switch (record.kind) {
         case '引き下げ': return [record.relation, record.hub, ...asArray(record.projections)];
-        case 'スロット': return [record.role];
         case '定義': return [record.genus, ...asArray(record.differentia).flatMap(d => [d?.relation, d?.value])];
         case '式': return asArray(record.refs);
         default: return [];
@@ -48,11 +46,6 @@ export function validateAxioms(words) {
             const refs = axiomRefs(record);
             if (record.kind === '引き下げ' && asArray(record.projections).length !== 2) {
                 errors.push({ code: 'INVALID_AXIOM', ...at, message: '引き下げには射影が二つ要ります' });
-            }
-            if (record.kind === 'スロット') {
-                for (const flag of ['functional', 'total']) {
-                    if (typeof record[flag] !== 'boolean') errors.push({ code: 'INVALID_AXIOM', ...at, message: `スロットの ${flag} は真偽値です` });
-                }
             }
             if (record.kind === '定義' && asArray(record.differentia).length === 0) {
                 warnings.push({ code: 'DEFINITION_WITHOUT_DIFFERENTIA', ...at, message: `${word.entry}(${id}) の定義に種差がありません（属と同値になる）` });
@@ -90,7 +83,6 @@ export function pruneAxioms(words) {
 export function formatAxiom(record, label) {
     switch (record?.kind) {
         case '引き下げ': return `${label(record.relation)} を ${label(record.hub)} へ引き下げ（射影 ${asArray(record.projections).map(label).join(', ')}）`;
-        case 'スロット': return `${label(record.role)} は${record.functional ? '関数的' : '非関数的'}・${record.total ? '全域的' : '部分的'}`;
         case '定義': return `≡ ${label(record.genus)}${asArray(record.differentia).map(d => ` ⊓ ∃${label(d.relation)}.${label(d.value)}`).join('')}`;
         case '式': return record.text ?? '';
         default: return '（不明な公理）';

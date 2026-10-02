@@ -252,20 +252,12 @@ input:read-only, textarea:read-only {
   .memberCount { color: $muted; margin-left: auto; }
 }
 
-.mitoshiTypeForm, .mitoshiSenseForm {
-  .mitoshiRow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 2px 0;
-    > span:first-child { min-width: 3em; }
-  }
+.metaPropsForm {
+  .innerLargeListForm { font-size: 0.9em; }
+  .metaFlags { flex-wrap: wrap; gap: 14px; padding: 3px 0; }
+  .rowLabel { min-width: 4em; color: $muted; }
   .idInput { display: flex; align-items: center; gap: 6px; input { width: 6em; } }
-  .idLabel, .virtual { opacity: 0.7; }
-  .typeEntry, .target { cursor: pointer; }
-  .typeEntry { font-weight: bold; }
-  .excluded { opacity: 0.6; }
-  .empty { opacity: 0.6; font-size: 0.9em; }
+  .idLabel { color: $muted; }
 }
 
 .axiomForm {

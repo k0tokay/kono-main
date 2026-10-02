@@ -65,13 +65,15 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
           focusId === id && 'focus',
           isEdited && 'edited',
           !isEdited && isAncestorOfEdited && 'editedAncestor',
-          STATE_CLASS[state]
+          STATE_CLASS[state],
+          word.is_function && 'isFunction'
         ].filter(Boolean).join(' ')}
         title={state !== '配置' ? state : undefined}
         onClick={handleClick}
       >
         <span className="id">{id}</span>
         {STATE_MARK[state] && <span className="stateMark">{STATE_MARK[state]}</span>}
+        {word.is_function && <span className="funcMark" title="関数">ƒ</span>}
         <span className="entry">{word.entry}</span>
         {translation && <span className="translation">{translation}</span>}
         {offTree > 0 && <span className="offTreeCount" title="上位未決の子">+{offTree}</span>}

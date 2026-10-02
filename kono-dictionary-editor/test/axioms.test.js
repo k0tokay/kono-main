@@ -33,7 +33,6 @@ test('schema axioms validate and render', () => {
     const data = fixture([
         { kind: '定義', genus: 1, differentia: [{ relation: 3, value: 7 }] },
         { kind: '引き下げ', relation: 3, hub: 4, projections: [5, 6] },
-        { kind: 'スロット', role: 5, functional: true, total: true },
     ]);
     const result = validateDictionary(data);
     assert.equal(result.valid, true, JSON.stringify(result.errors));
@@ -55,7 +54,7 @@ test('malformed axioms and genus outside the ancestors are reported', () => {
 });
 
 test('deleting a referenced word is rejected or prunes the axiom', () => {
-    const data = fixture([{ kind: 'スロット', role: 5, functional: true, total: false }]);
+    const data = fixture([{ kind: '引き下げ', relation: 3, hub: 4, projections: [5, 6] }]);
     assert.throws(
         () => applyDictionaryPatch(data, { operations: [{ op: 'delete', id: 5, expect: { entry: 'agent' }, reconnect: 'none', reference_policy: 'reject' }] }),
         error => error.code === 'WORD_IS_REFERENCED',

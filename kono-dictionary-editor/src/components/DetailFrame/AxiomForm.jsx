@@ -1,11 +1,10 @@
 // src/components/DetailFrame/AxiomForm.jsx
-// 公理レコードの編集（辞書章「公理スキーマと整合性」）．包摂は上位語，型付けは引数が担う．
+// 公理レコードの編集（辞書章「公理スキーマと整合性」）．包摂は上位語，型付けは引数，関数性・全域性はメタ性質が担う．
 import { AXIOM_KINDS, formatAxiom } from '../../domain/axioms.js';
 import { IdInput } from './IdInput';
 
 const blank = kind => ({
     引き下げ: { kind, relation: null, hub: null, projections: [null, null], note: '' },
-    スロット: { kind, role: null, functional: true, total: false, note: '' },
     定義: { kind, genus: null, differentia: [{ relation: null, value: null }], note: '' },
     式: { kind, text: '', refs: [], note: '' },
 }[kind]);
@@ -23,16 +22,6 @@ function AxiomFields({ record, words, update }) {
                                 onChange={v => update({ projections: [0, 1].map(j => (j === i ? v : record.projections?.[j] ?? null)) })} />
                         </div>
                     ))}
-                </>
-            );
-        case 'スロット':
-            return (
-                <>
-                    <div className="axiomRow"><span>役割</span><IdInput value={record.role} words={words} onChange={v => update({ role: v })} /></div>
-                    <div className="axiomRow">
-                        <label><input type="checkbox" checked={Boolean(record.functional)} onChange={e => update({ functional: e.target.checked })} />関数的 (S1)</label>
-                        <label><input type="checkbox" checked={Boolean(record.total)} onChange={e => update({ total: e.target.checked })} />全域的 (S2)</label>
-                    </div>
                 </>
             );
         case '定義': {

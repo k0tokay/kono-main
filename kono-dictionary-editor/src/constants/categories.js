@@ -3,5 +3,4 @@
 export const CATEGORY = {
   ROOT: 'カテゴリ',       // ツリーのルートノードを表す特殊カテゴリ
   PHONEME_SEQ: '音列',    // 音列カテゴリ
-  MITOSHI: '見做し',      // 見做しの型
 };

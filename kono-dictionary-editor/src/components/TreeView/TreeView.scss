@@ -132,3 +132,10 @@ li {
     border-left: 2px dashed rgba($fg-main, 0.15);
   }
 }
+
+// 関数（is_function）の語：ƒ の印と，綴りを斜体・色違いにする
+.wordItemMain {
+  .funcMark { padding: 0; color: $accent-color; font-style: italic; font-weight: bold; }
+  &.isFunction .entry { font-style: italic; color: color.adjust($accent-color, $lightness: 25%); }
+  &.isFunction.focus .entry { color: #fff; }
+}
