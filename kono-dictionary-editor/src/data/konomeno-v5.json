@@ -7,11 +7,8 @@
       "lower_covers": [
         40,
         120,
-        787,
-        789,
-        790,
-        1119,
-        1120
+        1136,
+        368
       ],
       "upper_covers": [],
       "translations": [
@@ -9090,10 +9087,12 @@
       "entry": "mintos",
       "category": "alkono",
       "lower_covers": [
-        944
+        944,
+        1119,
+        1120
       ],
       "upper_covers": [
-        789
+        0
       ],
       "translations": [
         "命題",
@@ -9113,7 +9112,7 @@
       "is_function": false,
       "cover_states": [
         {
-          "parent": 789,
+          "parent": 0,
           "state": "上位未決",
           "partition": null
         }
@@ -18218,7 +18217,7 @@
       ],
       "category": "alkono",
       "upper_covers": [
-        0
+        1136
       ],
       "lower_covers": [],
       "arguments": [
@@ -18258,12 +18257,11 @@
       ],
       "category": "alkono",
       "upper_covers": [
-        0
+        1136
       ],
       "lower_covers": [
         100,
         60,
-        368,
         59,
         934,
         136,
@@ -18307,7 +18305,7 @@
       ],
       "category": "alkono",
       "upper_covers": [
-        0
+        1136
       ],
       "lower_covers": [
         11,
@@ -27111,7 +27109,7 @@
     null,
     {
       "id": 1118,
-      "entry": "mintmili",
+      "entry": "minskelt",
       "translations": [
         "命題定数（0項述語）の語義の引用"
       ],
@@ -27144,7 +27142,7 @@
       ],
       "category": "alkono",
       "upper_covers": [
-        0
+        368
       ],
       "lower_covers": [],
       "arguments": [],
@@ -27164,7 +27162,7 @@
       ],
       "category": "alkono",
       "upper_covers": [
-        0
+        368
       ],
       "lower_covers": [],
       "arguments": [],
@@ -27231,7 +27229,7 @@
     null,
     {
       "id": 1125,
-      "entry": "〈関係〉",
+      "entry": "skelt",
       "translations": [
         "述語の語義の引用"
       ],
@@ -27449,6 +27447,30 @@
           "text": "語彙目録の各語義の引用（概念個体）の全体．kika に属する．原生概念は仮定しない（2026-10-03）．"
         }
       ],
+      "variations": [],
+      "relations": [],
+      "is_function": false
+    },
+    {
+      "id": 1136,
+      "entry": "kontos",
+      "translations": [
+        "1項個体"
+      ],
+      "category": "alkono",
+      "upper_covers": [
+        0
+      ],
+      "lower_covers": [
+        787,
+        789,
+        790
+      ],
+      "arguments": [
+        1136
+      ],
+      "tags": [],
+      "contents": [],
       "variations": [],
       "relations": [],
       "is_function": false
