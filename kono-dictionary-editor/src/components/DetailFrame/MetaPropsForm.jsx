@@ -5,9 +5,9 @@ import { IdInput } from './IdInput';
 
 const ARGS = [1, 2];
 
-function ArgSelect({ value, onChange }) {
+function ArgSelect({ value, onChange, label }) {
     return (
-        <select value={value ?? 1} onChange={e => onChange(Number(e.target.value))}>
+        <select aria-label={label} value={value ?? 1} onChange={e => onChange(Number(e.target.value))}>
             <option value={1}>x1 から</option>
             <option value={2}>x2 から</option>
         </select>
@@ -53,8 +53,8 @@ export function MetaPropsForm({ word, words, edited, onChange }) {
                 {totalOn.map((t, i) => (
                     <div key={i} className="largeListItemHeader">
                         <span className="rowLabel">全域的</span>
-                        <IdInput value={t.node} words={words} onChange={v => setTotalAt(i, { node: v })} />
-                        <ArgSelect value={t.arg} onChange={v => setTotalAt(i, { arg: v })} />
+                        <IdInput label={`全域性 ${i + 1} の節点`} value={t.node} words={words} onChange={v => setTotalAt(i, { node: v })} />
+                        <ArgSelect label={`全域性 ${i + 1} の起点`} value={t.arg} onChange={v => setTotalAt(i, { arg: v })} />
                         <button className="deleteItemBtn" onClick={() => set({ total_on: totalOn.filter((_, j) => j !== i) })}>削除</button>
                     </div>
                 ))}

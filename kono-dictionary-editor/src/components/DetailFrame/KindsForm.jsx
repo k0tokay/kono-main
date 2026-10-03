@@ -2,6 +2,7 @@
 // 種：語が属する種（シグネチャから生成されるもの＋dent で登録したもの），種の語の生成規則（generator）．
 import { kindsOf, membersOf, signatureOf } from '../../domain/kinds.js';
 import { IdInput } from './IdInput';
+import { ancestorList } from '../../utils/utils.js';
 
 const label = (words, id) => (id != null && words[id] ? `${id} ${words[id].entry}` : '—');
 const SOURCE_LABEL = { signature: 'シグネチャから', fact: '登録' };
@@ -16,7 +17,7 @@ export function KindsForm({ word, words, edited, onChange, onClick }) {
         <div className="largeListForm kindsForm">
             <div className="formHeader listHeader">
                 <label className={edited ? 'edited' : ''}>所属（∈）</label>
-                <button onClick={() => set([...dent, null])}>追加</button>
+                <button aria-label="所属を追加" onClick={() => set([...dent, null])}>追加</button>
             </div>
             <div className="innerLargeListForm">
                 <div className="largeListItemHeader kindNote">
@@ -33,7 +34,7 @@ export function KindsForm({ word, words, edited, onChange, onClick }) {
                 ))}
                 {dent.map((k, i) => (
                     <div key={`f${i}`} className="largeListItemHeader">
-                        <IdInput value={k} words={words} placeholder="種" onChange={v => set(dent.map((x, j) => (j === i ? v : x)))} />
+                        <IdInput label={`所属 ${i + 1} の種`} value={k} words={words} placeholder="種" onChange={v => set(dent.map((x, j) => (j === i ? v : x)))} />
                         <button className="deleteItemBtn" onClick={() => set(dent.filter((_, j) => j !== i))}>削除</button>
                     </div>
                 ))}
@@ -42,9 +43,14 @@ export function KindsForm({ word, words, edited, onChange, onClick }) {
     );
 }
 
-/** 種の語：シグネチャによる成員の生成． */
+/**
+ * 種の語：シグネチャによる成員の生成．
+ * 語の引用の種（tokon の下）か，既に生成規則を持つ語にだけ出す．
+ */
 export function GeneratorForm({ word, words, edited, onChange }) {
     const g = word.generator;
+    const underTokon = ancestorList(words, word.id).some(id => words[id]?.entry === 'tokon');
+    if (!g && !underTokon) return null;
     const set = next => onChange('generator', next ?? undefined);
     const count = membersOf(words, word.id).length;
     return (
@@ -59,7 +65,7 @@ export function GeneratorForm({ word, words, edited, onChange }) {
                     {g && (
                         <>
                             <span className="muted">tArity</span>
-                            <input className="lineInput tArityInput" type="number" min="0" value={g.tArity} onChange={e => set({ ...g, tArity: Math.max(0, Number(e.target.value) || 0) })} />
+                            <input aria-label="tArity" className="lineInput tArityInput" type="number" min="0" value={g.tArity} onChange={e => set({ ...g, tArity: Math.max(0, Number(e.target.value) || 0) })} />
                             <label><input type="checkbox" checked={g.isFunc} onChange={e => set({ ...g, isFunc: e.target.checked })} />関数</label>
                         </>
                     )}

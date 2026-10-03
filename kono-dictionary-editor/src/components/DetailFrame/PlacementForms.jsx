@@ -36,10 +36,11 @@ export function CoverStateForm({ word, words, edited, onChange, onClick }) {
                             <span className="parentLabel" onClick={() => onClick(parentId)}>
                                 <span className="id">{parentId}</span> {parent.entry}
                             </span>
-                            <select value={state} onChange={e => update(parentId, { state: e.target.value })}>
+                            <select aria-label={`${parent.entry} への辺の状態`} value={state} onChange={e => update(parentId, { state: e.target.value })}>
                                 {PLACEMENT_STATES.map(s => <option key={s} value={s}>{s}</option>)}
                             </select>
                             <select
+                                aria-label={`${parent.entry} への辺の分割`}
                                 value={partition ?? ''}
                                 disabled={!STATES_WITH_PARTITION.has(state) || partitions.length === 0}
                                 onChange={e => update(parentId, { partition: e.target.value || null })}
@@ -78,8 +79,8 @@ export function PartitionForm({ word, words, edited, onChange }) {
                 {partitions.map((p, i) => (
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
-                            <input className="lineInput itemTitle" placeholder="名前" value={p.key} onChange={e => updateAt(i, { key: e.target.value })} />
-                            <select value={p.kind ?? 'コンストラクタ'} onChange={e => updateAt(i, { kind: e.target.value })}>
+                            <input aria-label={`分割 ${i + 1} の名前`} className="lineInput itemTitle" placeholder="名前" value={p.key} onChange={e => updateAt(i, { key: e.target.value })} />
+                            <select aria-label={`分割 ${i + 1} の種類`} value={p.kind ?? 'コンストラクタ'} onChange={e => updateAt(i, { kind: e.target.value })}>
                                 {PARTITION_KINDS.map(k => <option key={k} value={k}>{k}</option>)}
                             </select>
                             <button className="deleteItemBtn" onClick={() => set(partitions.filter((_, j) => j !== i))}>削除</button>
@@ -89,7 +90,7 @@ export function PartitionForm({ word, words, edited, onChange }) {
                             <label><input type="checkbox" checked={Boolean(p.exhaustive)} onChange={e => updateAt(i, { exhaustive: e.target.checked })} />網羅</label>
                             <span className="memberCount">枝 {members(p.key).length}</span>
                         </div>
-                        <textarea className="lineInput" rows="3" placeholder="注（本文の参照箇所など）" value={p.note ?? ''} onChange={e => updateAt(i, { note: e.target.value })} />
+                        <textarea aria-label={`分割 ${i + 1} の注`} className="lineInput" rows="3" placeholder="注（本文の参照箇所など）" value={p.note ?? ''} onChange={e => updateAt(i, { note: e.target.value })} />
                     </div>
                 ))}
             </div>

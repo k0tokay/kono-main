@@ -25,6 +25,7 @@ export function BasicForm({ name, title, value, edited, onChange,
             </div>
             {isMultiline ? (
                 <textarea
+                    aria-label={title}
                     className="textForm"
                     rows="3"
                     value={value}
@@ -33,6 +34,7 @@ export function BasicForm({ name, title, value, edited, onChange,
                 />
             ) : (
                 <input
+                    aria-label={title}
                     className="textForm"
                     type="text"
                     value={value}
@@ -170,7 +172,7 @@ export function TagForm({ name, title, tags, wordId, onChange, onClick, edited,
         <div className="tagForm">
             <div className="formHeader tagHeader">
                 <p className={edited ? "edited" : ""}>{title}</p>
-                {!isReadOnly && <button onClick={addTag}>追加</button>}
+                {!isReadOnly && <button aria-label={`${title}を追加`} onClick={addTag}>追加</button>}
             </div>
             <div className="textForm innerTagForm">
                 {tagList.map((tag, i) => (
@@ -180,6 +182,7 @@ export function TagForm({ name, title, tags, wordId, onChange, onClick, edited,
                         )}
                         <input
                             type="text"
+                            aria-label={`${title} ${i + 1}`}
                             className={`tagInput ${isWord && i !== editingIndex && !isValidWordTag(words, tag) ? "notValid" : ""}`}
                             value={displayTag(tag, i)}
                             readOnly={isReadOnly}
@@ -239,22 +242,24 @@ export function LargeListForm({ name, title, title_h, title_c, contents, edited,
         <div className="largeListForm">
             <div className="formHeader listHeader">
                 <p className={edited ? "edited" : ""}>{title}</p>
-                <button onClick={addItem}>追加</button>
+                <button aria-label={`${title}を追加`} onClick={addItem}>追加</button>
             </div>
             <div className="innerLargeListForm">
                 {contents.map((content, i) => (
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
                             <input
+                                aria-label={`${title} ${i + 1} ${title_h}`}
                                 className="lineInput itemTitle"
                                 type="text"
                                 placeholder={title_h}
                                 value={content.title}
                                 onChange={e => updateItem(i)(name, { ...content, title: e.target.value })}
                             />
-                            <button className="deleteItemBtn" onClick={() => deleteItem(i)}>削除</button>
+                            <button className="deleteItemBtn" aria-label={`${title} ${i + 1} を削除`} onClick={() => deleteItem(i)}>削除</button>
                         </div>
                         <textarea
+                            aria-label={`${title} ${i + 1} ${title_c}`}
                             className="lineInput"
                             rows="3"
                             placeholder={title_c}
@@ -320,20 +325,21 @@ export function RelationForm({ name, title, relations, edited, onChange, onClick
         <div className="largeListForm">
             <div className="formHeader listHeader">
                 <p className={edited ? "edited" : ""}>{title}</p>
-                <button onClick={addItem}>追加</button>
+                <button aria-label={`${title}を追加`} onClick={addItem}>追加</button>
             </div>
             <div className="innerLargeListForm">
                 {relations.map((rel, i) => (
                     <div key={i} className="largeListItem">
                         <div className="largeListItemHeader">
                             <input
+                                aria-label={`${title} ${i + 1} 分類`}
                                 className="lineInput itemTitle"
                                 type="text"
                                 placeholder="分類"
                                 value={rel.title}
                                 onChange={e => updateTitle(i, e.target.value)}
                             />
-                            <button className="deleteItemBtn" onClick={() => deleteItem(i)}>削除</button>
+                            <button className="deleteItemBtn" aria-label={`${title} ${i + 1} を削除`} onClick={() => deleteItem(i)}>削除</button>
                         </div>
                         <div className="tagForm relationTarget">
                             <div className="innerTagForm">
@@ -343,6 +349,7 @@ export function RelationForm({ name, title, relations, edited, onChange, onClick
                                     )}
                                     <input
                                         type="text"
+                                        aria-label={`${title} ${i + 1} 関連語`}
                                         className={`tagInput ${i !== editingIdx && !isValidWordTag(words, rel.entry) && rel.entry !== "" ? "notValid" : ""}`}
                                         value={displayEntry(rel, i)}
                                         onFocus={() => {

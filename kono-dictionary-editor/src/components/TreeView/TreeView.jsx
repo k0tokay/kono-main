@@ -109,6 +109,9 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
           word.is_function && 'isFunction'
         ].filter(Boolean).join(' ')}
         title={state !== '配置' ? state : undefined}
+        role="treeitem"
+        aria-label={`${id} ${word.entry}`}
+        aria-expanded={hasChildren ? isOpen : undefined}
         onClick={handleClick}
       >
         <span className="id">{id}</span>

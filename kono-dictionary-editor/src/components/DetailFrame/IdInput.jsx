@@ -1,9 +1,10 @@
 // src/components/DetailFrame/IdInput.jsx
 // 語IDを数値で入力し，隣に綴りを表示する小さな入力欄．
-export function IdInput({ value, onChange, words, placeholder = '' }) {
+export function IdInput({ value, onChange, words, placeholder = '', label }) {
     return (
         <span className="idInput">
             <input
+                aria-label={label ?? (placeholder || '語ID')}
                 className="lineInput"
                 type="number"
                 placeholder={placeholder}
