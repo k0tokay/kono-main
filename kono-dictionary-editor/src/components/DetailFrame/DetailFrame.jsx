@@ -4,6 +4,7 @@ import { useDictState, useDictDispatch } from '../../store/DictionaryContext';
 import { BasicForm, TagForm, LargeListForm, RelationForm, MenuBar, CheckboxForm } from '../CommonForms';
 import { CoverStateForm, PartitionForm } from './PlacementForms';
 import { MetaPropsForm } from './MetaPropsForm';
+import { GeneratorForm, KindsForm } from './KindsForm';
 import { AxiomForm } from './AxiomForm';
 import './DetailFrame.scss';
 
@@ -128,6 +129,25 @@ export default function DetailFrame() {
           words={words}
           edited={editedSet.has('meta_props')}
           onChange={handleChange}
+        />
+        <KindsForm
+          word={word}
+          words={words}
+          edited={editedSet.has('dent')}
+          onChange={handleChange}
+          onClick={(id) => dispatch({ type: 'SET_FOCUS', payload: id })}
+        />
+        <GeneratorForm
+          word={word}
+          words={words}
+          edited={editedSet.has('generator')}
+          onChange={handleChange}
+        />
+        <CheckboxForm
+          name="display_root"
+          title="表示の起点"
+          checked={Boolean(word.display_root)}
+          onChange={(field, value) => handleChange(field, value || undefined)}
         />
         {word.is_function != null ? <CheckboxForm
           name="is_function"

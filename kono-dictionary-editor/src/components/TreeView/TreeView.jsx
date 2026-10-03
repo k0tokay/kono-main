@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDictState, useDictDispatch } from '../../store/DictionaryContext';
 import { isValidWordTag, ancestorList, hasNoCycle } from '../../utils/utils.js';
 import { CATEGORY } from '../../constants/categories.js';
 import { childStateCounts, coverState, isDisjoint } from '../../domain/placement.js';
+import { membersOf } from '../../domain/kinds.js';
 import './TreeView.scss';
 
 /** 単一ノード */
@@ -28,6 +29,44 @@ function groupChildren(words, word) {
   ];
 }
 
+/**
+ * 種の節点の下に所属する成員をまとめて出す（被覆辺＝包摂とは分けて表示する）．
+ * 成員は保存されていない：シグネチャと dent から計算．引用 ⌜a⌝ は仮想の節点．
+ */
+function MemberGroup({ members }) {
+  const { words, focusId } = useDictState();
+  const dispatch = useDictDispatch();
+  const [open, setOpen] = useState(false);
+  return (
+    <li className="memberGroup">
+      <span className={['wordItemMain', 'hasChildren', open && 'open'].filter(Boolean).join(' ')} onClick={() => setOpen(o => !o)}>
+        <span className="memberLabel">∋ 成員</span>
+        <span className="offTreeCount">{members.length}</span>
+      </span>
+      {open && (
+        <ul className="memberChildren">
+          {members.map(m => (
+            <li key={`${m.show}:${m.id}`}>
+              <span
+                className={['wordItemMain', m.show === 'quote' ? 'quoteItem' : 'memberItem', focusId === m.id && 'focus'].filter(Boolean).join(' ')}
+                title={m.source === 'signature' ? 'シグネチャから' : 'dent で登録'}
+                onClick={() => dispatch({ type: 'SET_FOCUS', payload: m.id })}
+              >
+                <span className="id">{m.id}</span>
+                <span className="entry">{m.show === 'quote' ? `⌜${words[m.id].entry}⌝` : words[m.id].entry}</span>
+                {m.source === 'fact' && <span className="sourceMark">登録</span>}
+                {m.show === 'quote' && (
+                  <button className="materializeBtn" onClick={e => { e.stopPropagation(); dispatch({ type: 'MATERIALIZE_QUOTE', payload: { id: m.id } }); }}>実体化</button>
+                )}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
 const STATE_MARK = { 上位未決: '?' };
 const STATE_CLASS = { 上位未決: 'undecided' };
 
@@ -37,7 +76,8 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
   const word = words[id];
   const children = word.lower_covers || [];
   const isOpen = openSet.has(id);
-  const hasChildren = children.length > 0;
+  const members = membersOf(words, id);
+  const hasChildren = children.length > 0 || members.length > 0;
 
   const isEdited = editedIds.has(id);
   const isAncestorOfEdited = ancestorHighlights.has(id);
@@ -48,7 +88,7 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
   };
 
   const state = parentId === null ? '配置' : coverState(word, parentId).state;
-  const counts = hasChildren ? childStateCounts(words, id) : null;
+  const counts = children.length > 0 ? childStateCounts(words, id) : null;
   const offTree = counts ? counts['上位未決'] : 0;
 
   const translation = word.translations?.length > 0
@@ -98,6 +138,7 @@ function WordItem({ id, parentId = null, editedIds, ancestorHighlights }) {
           ) : group.children.map(childId => (
             <WordItem key={childId} id={childId} parentId={id} editedIds={editedIds} ancestorHighlights={ancestorHighlights} />
           )))}
+          {members.length > 0 && <MemberGroup members={members} />}
         </ul>
       )}
     </li>
@@ -119,9 +160,11 @@ export function WordTree() {
     }
   });
 
-  const roots = words
-    .map((w, i) => (w && w.category === CATEGORY.ROOT ? i : -1))
-    .filter(i => i !== -1);
+  // 表示の起点：display_root の語（無ければ従来どおりカテゴリの語）
+  const flagged = words.filter(w => w && w.display_root === true).map(w => w.id);
+  const roots = flagged.length > 0
+    ? flagged
+    : words.filter(w => w && w.category === CATEGORY.ROOT).map(w => w.id);
 
   return (
     <div className="wordTree">

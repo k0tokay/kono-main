@@ -260,6 +260,16 @@ input:read-only, textarea:read-only {
   .idLabel { color: $muted; }
 }
 
+.kindsForm, .generatorForm {
+  .innerLargeListForm { font-size: 0.9em; }
+  .muted { color: $muted; }
+  .link { cursor: pointer; &:hover { color: $edited; } }
+  .kindNote { gap: 14px; }
+  .idInput { display: flex; align-items: center; gap: 6px; input { width: 6em; } }
+  .idLabel { color: $muted; }
+  .tArityInput { width: 4em; }
+}
+
 .axiomForm {
   .axiomRow {
     display: flex;

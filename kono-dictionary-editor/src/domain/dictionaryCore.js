@@ -1,10 +1,13 @@
 import { pruneCoverStates, validatePlacement } from './placement.js';
 import { axiomRefs, formatAxiom, pruneAxioms, validateAxioms } from './axioms.js';
 import { formatMetaProps, pruneMetaProps, validateMetaProps } from './metaProps.js';
+import { kindsOf, materializeQuoteInPlace, membersOf, pruneKinds, validateKinds } from './kinds.js';
 import { applyDerivedSequenceCovers, isSequenceWord, sequenceCoverMismatches, tokenizePhonemes } from './soundSequences.js';
 
 export const EDITABLE_FIELDS = new Set([
     'entry',
+    'category',
+    'display_root',
     'translations',
     'simple_translations',
     'arguments',
@@ -16,6 +19,9 @@ export const EDITABLE_FIELDS = new Set([
     'partitions',
     'cover_states',
     'meta_props',
+    'generator',
+    'dent',
+    'quote_of',
     'axioms',
 ]);
 
@@ -169,6 +175,7 @@ export function validateDictionary(data) {
         if (word.id !== index) errors.push({ code: 'ID_INDEX_MISMATCH', id: word.id, index, message: `id ${word.id} が配列位置 ${index} と一致しません` });
         if (typeof word.entry !== 'string') errors.push({ code: 'INVALID_FIELD_TYPE', id: index, field: 'entry', message: 'entry は文字列でなければなりません' });
         if (typeof word.category !== 'string') errors.push({ code: 'INVALID_FIELD_TYPE', id: index, field: 'category', message: 'category は文字列でなければなりません' });
+        if (word.display_root !== undefined && typeof word.display_root !== 'boolean') errors.push({ code: 'INVALID_FIELD_TYPE', id: index, field: 'display_root', message: 'display_root は真偽値でなければなりません' });
 
         validateTextList(word.translations, 'translations', index, errors);
         validateTextList(word.simple_translations, 'simple_translations', index, errors, { nullable: true });
@@ -294,9 +301,10 @@ export function validateDictionary(data) {
         const placement = validatePlacement(words);
         errors.push(...placement.errors);
         warnings.push(...placement.warnings);
-        const metaProps = validateMetaProps(words);
-        errors.push(...metaProps.errors);
-        warnings.push(...metaProps.warnings);
+        for (const result of [validateMetaProps(words), validateKinds(words)]) {
+            errors.push(...result.errors);
+            warnings.push(...result.warnings);
+        }
         const axioms = validateAxioms(words);
         errors.push(...axioms.errors);
         warnings.push(...axioms.warnings);
@@ -401,6 +409,10 @@ function normalizeNewWord(words, operation) {
         ...(operation.word.partitions ? { partitions: structuredClone(operation.word.partitions) } : {}),
         ...(operation.word.cover_states ? { cover_states: structuredClone(operation.word.cover_states) } : {}),
         ...(operation.word.meta_props ? { meta_props: structuredClone(operation.word.meta_props) } : {}),
+        ...(operation.word.generator ? { generator: structuredClone(operation.word.generator) } : {}),
+        ...(operation.word.dent ? { dent: [...operation.word.dent] } : {}),
+        ...(operation.word.quote_of != null ? { quote_of: operation.word.quote_of } : {}),
+        ...(operation.word.display_root ? { display_root: true } : {}),
         ...(operation.word.axioms ? { axioms: structuredClone(operation.word.axioms) } : {}),
     };
 }
@@ -525,6 +537,12 @@ function collectDeletionNeighborhood(words, id) {
         if (asArray(word.meta_props?.total_on).some(t => t?.node === id)) {
             semanticReferences.push({ id: word.id, entry: word.entry, field: 'meta_props' });
         }
+        if (asArray(word.dent).includes(id)) {
+            semanticReferences.push({ id: word.id, entry: word.entry, field: 'dent' });
+        }
+        if (word.quote_of === id) {
+            semanticReferences.push({ id: word.id, entry: word.entry, field: 'quote_of' });
+        }
     }
 
     return { parentIds: [...parentIds], childIds: [...childIds], semanticReferences };
@@ -563,6 +581,7 @@ export function deleteWordInPlace(words, operation) {
     words[operation.id] = null;
     pruneCoverStates(words);
     pruneMetaProps(words);
+    pruneKinds(words);
     if (operation.reference_policy === 'remove') pruneAxioms(words);
 
     if (operation.reconnect === 'parents') {
@@ -579,6 +598,17 @@ export function deleteWordInPlace(words, operation) {
     }
 
     return neighborhood;
+}
+
+function applyMaterializeQuote(words, operation, assignedIds) {
+    requireLiveId(words, operation.id);
+    try {
+        const newId = materializeQuoteInPlace(words, { id: operation.id });
+        if (operation.key !== undefined) assignedIds[String(operation.key)] = newId;
+    } catch (error) {
+        if (error instanceof DictionaryOperationError) throw error;
+        throw new DictionaryOperationError(error.code || 'INVALID_OPERATION', error.message, { id: operation.id });
+    }
 }
 
 function diffDictionaries(before, after) {
@@ -631,6 +661,7 @@ export function applyDictionaryPatch(data, patch) {
             else if (operation.op === 'set_fields') applySetFields(words, operation);
             else if (operation.op === 'set_upper_covers') applySetUpperCovers(words, operation);
             else if (operation.op === 'delete') deleteWordInPlace(words, operation);
+            else if (operation.op === 'materialize_quote') applyMaterializeQuote(words, operation, assignedIds);
             else throw new DictionaryOperationError('UNKNOWN_OPERATION', `未知の操作です: ${operation.op}`);
         } catch (error) {
             if (error instanceof DictionaryOperationError) error.details = { operationIndex: index, ...error.details };
@@ -704,6 +735,8 @@ export function summarizeWord(data, word, { full = false } = {}) {
             relation_words: asArray(word.relations).map(relation => ({ ...relation, word: wordLabel(words, relation.entry) })),
             axioms_view: asArray(word.axioms).map(record => formatAxiom(record, id => (words[id] ? `${words[id].entry}(${id})` : `?(${id})`))),
             meta_props_view: formatMetaProps(word.meta_props, id => (words[id] ? `${words[id].entry}(${id})` : `?(${id})`)),
+            kinds_view: kindsOf(words, word.id).map(k => ({ ...k, kind_word: wordLabel(words, k.kind) })),
+            members_count: membersOf(words, word.id).length,
         };
     }
     return {
@@ -957,6 +990,8 @@ export function patchSchema() {
             '音列の被覆は綴りから導出される（音素単位の接頭辞：b の先頭が a なら a が上位）。音列への set_upper_covers は拒否される',
             'cover_states: [{parent, state: 配置|上位未決, partition}]。記録のない辺は配置。partitions は親の側に置く（kind: コンストラクタ|素性。コンストラクタは常に排他）',
             'meta_props（2項関係の語だけ）: {functional: [arg], total_on: [{node, arg}], symmetric, transitive, elidable: [arg]}。arg は起点の項。elidable は見做し（その向きの関係を文中で省略してよい）',
+            '種：generator {tArity, isFunc}（種の語．そのシグネチャの語の ⌜a⌝ を成員として生成），dent [種ID]（属性のない種への所属．定数の語なら値が，それ以外は引用 ⌜a⌝ が属する），quote_of（実体化した ⌜a⌝ の元の語）。materialize_quote {id} は ⌜id⌝ を値とする定数の語を作り（被覆辺なし），id の dent を移す。所属は被覆辺と分けて表示する',
+            'display_root: true の語を木の表示の起点にする（無ければ category がカテゴリの語）。category は表示用のラベルで set_fields で変更できる',
             'axioms: [{kind: 引き下げ|定義|式, ...}]。包摂は被覆辺、型付けは arguments、関数性・全域性は meta_props が担う。式はスキーマ外として警告される',
         ],
     };

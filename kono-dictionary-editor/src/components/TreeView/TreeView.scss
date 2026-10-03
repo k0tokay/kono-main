@@ -139,3 +139,16 @@ li {
   &.isFunction .entry { font-style: italic; color: color.adjust($accent-color, $lightness: 25%); }
   &.isFunction.focus .entry { color: #fff; }
 }
+
+// 種の節点の下の成員（所属．被覆辺とは別に表示する）
+.memberGroup {
+  > .wordItemMain .memberLabel { font-style: italic; color: $muted; }
+  > .memberChildren {
+    margin-left: 1rem;
+    border-left: 2px dotted rgba($fg-main, 0.2);
+  }
+  .quoteItem .entry { font-weight: 500; color: color.adjust($fg-main, $lightness: -15%); }
+  .sourceMark { font-size: 0.75em; color: $muted; }
+  .materializeBtn { margin-left: auto; padding: 0 8px; font-size: 0.75em; font-weight: 500; visibility: hidden; }
+  .quoteItem:hover .materializeBtn { visibility: visible; }
+}

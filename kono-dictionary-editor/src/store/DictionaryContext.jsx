@@ -5,6 +5,7 @@ import { createBlankWord, checkIntegrity, hasNoCycle } from '../utils/utils.js';
 import { deleteWordInPlace } from '../domain/dictionaryCore.js';
 import { applyDerivedSequenceCovers, isSequenceWord } from '../domain/soundSequences.js';
 import { pruneCoverStates } from '../domain/placement.js';
+import { materializeQuoteInPlace } from '../domain/kinds.js';
 import { ancestorList, isValidWordTag } from '../utils/utils.js';
 import { CATEGORY } from '../constants/categories.js';
 
@@ -38,6 +39,9 @@ function dictionaryReducer(state, action) {
         }
         case 'ADD_WORD': {
             return addWord(state, action.payload);
+        }
+        case 'MATERIALIZE_QUOTE': {
+            return materializeQuote(state, action.payload);
         }
         case 'DELETE_WORD': {
             return deleteWord(state, action.payload);
@@ -204,6 +208,21 @@ function addWord(state, parentId) {
     applyDerivedSequenceCovers(words);
     const ef = markEdited(state.editedFields, newWord.id, '_new');
     return { ...state, words, focusId: newWord.id, editedFields: markEdited(ef, parentId, 'lower_covers') };
+}
+
+// payload: { id } 引用 ⌜id⌝ を値とする定数の語を作る（所属は id の dent から移す）
+function materializeQuote(state, { id }) {
+    const words = structuredClone(state.words);
+    let newId;
+    try {
+        newId = materializeQuoteInPlace(words, { id });
+    } catch (error) {
+        alert(error.message); // eslint-disable-line no-alert
+        return state;
+    }
+    let ef = markEdited(state.editedFields, newId, '_new');
+    ef = markEdited(ef, id, 'dent');
+    return { ...state, words, editedFields: ef };
 }
 
 function deleteWord(state, { id }) {
