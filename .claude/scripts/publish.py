@@ -9,18 +9,20 @@ push はしない（作者が `git push origin public:main` を別に実行す�
 
 除外処理（.tex）：
   - `%` 以降のコメント．行頭のコメント行は行ごと消す．行末コメントは `%` だけ残す（改行の吸収を保つ）．
-  - \\iffalse…\\fi と \\if0…\\fi の内側（active-lines.py と同じ判定）．内側に \\else があれば中止する．
+  - \\iffalse…\\fi と \\if0…\\fi の内側（入れ子対応．\\newif で作った名前を含む任意の \\ifXXX を数える）．内側に \\else があれば中止する．
   - verbatim 系の環境と \\verb の中の `%` は触らない．
 新しい除外処理は sanitize_tex の後ろに足す．公開してよいかの判断（何を落とすか）は作者が決める．
 """
-import os, re, shutil, subprocess, sys, tempfile
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(subprocess.check_output(["git", "rev-parse", "--show-toplevel"], text=True).strip())
-sys.path.insert(0, str(ROOT / ".claude/scripts"))
-import importlib.util
-_spec = importlib.util.spec_from_file_location("active_lines", ROOT / ".claude/scripts/active-lines.py")
-active_lines = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(active_lines)
 
 LEAK = re.compile(r"chatgpt\.com/(c|g)/|chat\.openai\.com/c/|claude\.ai/chat/|gemini\.google\.com/app/")
 VERB_ENVS = ("verbatim", "lstlisting", "minted", "Verbatim")
@@ -54,16 +56,50 @@ def strip_comment(line, in_verb_env):
     return line
 
 
+# 値で分岐するだけで \fi を持たない etoolbox 系などの名前（無効領域の中で入れ子として数えない）
+NOT_CONDITIONAL = {"iff", "ifthenelse", "ifdef", "ifundef", "ifcsdef", "ifcsundef", "ifdefempty", "ifcsempty",
+                   "ifdefvoid", "ifcsvoid", "ifdefequal", "ifcsequal", "ifdefstring", "ifcsstring", "ifdefstrequal",
+                   "ifstrequal", "ifstrempty", "ifblank", "ifnumcomp", "ifnumequal", "ifnumgreater", "ifnumless",
+                   "ifdimcomp", "ifdimequal", "ifdimgreater", "ifdimless", "ifbool", "iftoggle", "ifboolexpr",
+                   "ifltxcounter", "ifinlist"}
+TOKEN = re.compile(r"\\(newif\s*\\if[A-Za-z@]+|if[A-Za-z@]*|else|fi)(?![A-Za-z@])")
+
+
+def dead_lines(text, name):
+    """\\iffalse／\\if0 から対応する \\fi までの行番号の集合（入れ子対応，任意の \\ifXXX を数える）．"""
+    dead, depth, start = set(), 0, 0
+    for no, line in enumerate(text.splitlines(), 1):
+        body = re.sub(r"(?<!\\)%.*", "", line)
+        for m in TOKEN.finditer(body):
+            t = m.group(1)
+            if t.startswith("newif"):
+                continue
+            if depth == 0:
+                if t in ("iffalse", "if0"):
+                    if body[:m.start()].strip():
+                        raise SystemExit(f"中止：{name}:{no} \\{t} の前に同じ行の内容がある．")
+                    depth, start = 1, no
+                continue
+            if t == "else" and depth == 1:
+                raise SystemExit(f"中止：{name}:{no} 無効領域（{start} 行〜）の内側に \\else がある（else 側は有効かもしれない）．")
+            if t.startswith("if") and t not in NOT_CONDITIONAL:
+                depth += 1
+            elif t == "fi":
+                depth -= 1
+                if depth == 0:
+                    if body[m.end():].strip():
+                        raise SystemExit(f"中止：{name}:{no} 閉じの \\fi の後ろに同じ行の内容がある．")
+                    dead.update(range(start, no + 1))
+        if depth > 0:
+            dead.add(no)
+    if depth != 0:
+        raise SystemExit(f"中止：{name} の \\iffalse／\\if0 が閉じていない（{start} 行〜）．")
+    return dead
+
+
 def sanitize_tex(path):
     text = path.read_text(encoding="utf-8")
-    _, inact, _ = active_lines.ranges(str(path))
-    dead = set()
-    lines = text.splitlines()
-    for a, b in inact:
-        dead.update(range(a, b + 1))
-        # active-lines.py は閉じの \fi の行を有効側に数えるので，ここで足す
-        if b < len(lines) and re.match(r"\s*\\fi\b", re.sub(r"(?<!\\)%.*", "", lines[b])):
-            dead.add(b + 1)
+    dead = dead_lines(text, str(path.name))
     out, verb = [], None
     for no, line in enumerate(text.splitlines(keepends=True), 1):
         if no in dead:
@@ -94,7 +130,7 @@ def build_pdf_text(tree):
             raise SystemExit(f"中止：{tree} のビルドに失敗．\n" + r.stdout[-1500:])
     txt = subprocess.check_output(["pdftotext", str(d / "main-detail.pdf"), "-"], text=True)
     # 欄外のソース行番号・ファイル名:行番号の注記はコメント除去で変わる．改行位置も変わりうるので空白を除いて比べる
-    txt = "\n".join(l for l in txt.splitlines() if not re.fullmatch(r"\d+", l.strip()))
+    txt = "\n".join(ln for ln in txt.splitlines() if not re.fullmatch(r"\d+", ln.strip()))
     txt = re.sub(r"[A-Za-z][\w-]*:\d+", "", txt)
     # pdftotext は数式の上付き・下付きの出力順が揺れるので，文字の多重集合で比べる
     return "".join(sorted(re.sub(r"\s+", "", txt)))
@@ -117,15 +153,16 @@ def main():
     for p in pub.rglob("*.tex"):
         if p.is_symlink():
             continue
-        sanitize_tex(p); n += 1
+        sanitize_tex(p)
+        n += 1
     print(f"[publish] {n} 個の .tex を整形した（基準 {head}）．")
 
     leaks = []
     for p in pub.rglob("*"):
         if p.is_file() and not p.is_symlink():
             try:
-                for no, l in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
-                    if LEAK.search(l):
+                for no, ln in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
+                    if LEAK.search(ln):
                         leaks.append(f"{p.relative_to(pub)}:{no}")
             except UnicodeDecodeError:
                 pass
@@ -135,8 +172,6 @@ def main():
     if verify:
         a, b = build_pdf_text(dev), build_pdf_text(pub)
         if a != b:
-            (work / "dev.txt").write_text(a); (work / "pub.txt").write_text(b)
-            from collections import Counter
             ca, cb = Counter(a), Counter(b)
             raise SystemExit(f"中止：開発版と公開版で文字の出現数が違う．\n開発版にだけ: {dict(ca - cb)}\n公開版にだけ: {dict(cb - ca)}")
         print("[publish] 照合：開発版と公開版で文字の出現数が一致（行番号の注記は除く）．")
