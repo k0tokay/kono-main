@@ -36,6 +36,7 @@
 - `/coinage <概念…>`：造語する（主担当が直接．候補表と検査まで．登録は作者）．
 - `/codex-consult <主題> <問い>`：codex へ一往復投げる．
 - `/checkpoint [要旨]`：差分確認→形式検査→コミット．
+- `/publish [--dry-run]`：公開版（.tex のコメントと無効領域を除去）を public ブランチに積む．push は作者．`scripts/publish.py`．
 - `/retro <スキル> <主題>`：Keep/Problem/Try を `retro/` に残し，Try をスキル差分案にして作者の了承後に当てる．
 
 ## サブエージェント（`agents/`）

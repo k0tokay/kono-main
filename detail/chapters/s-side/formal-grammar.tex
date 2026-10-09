@@ -11,10 +11,8 @@
 \textbf{完成度（5段階，5が最高）}：誤りの少なさ 4，文章の簡潔さ 3，話題の網羅性 2．
 目的と構成は明確だが，集合論と型理論の比較が未完である．
 \end{leftwavybox}
-% この章では\textbf{文語コノメノ}(胡：keltokono)を扱う．文語については，以下の点が主なテーマになる．
 述語論理等で定式化される既存（あるいは独自）の意味論および形式存在論の枠組みをコノメノで厳密に議論するために，形式文法を導入する．具体的には以下が論点になる：
 \begin{enumerate}
-    % \item （形式文法に限らない）コノメノの基本的な文法観と特徴を整理する．
     \item さまざまな意味論が同じ文法のインターフェイスの下で衝突を起こさずに統一的に扱えるのかを，実際に体系を定義して検証する．
     \item 口語において話者の直感や良心に任されていた曖昧な文法規則を，形式言語としてどのように違和感なく定式化できるかを探る．（現版では，線形文モジュールが主な対象である．）
 \end{enumerate}
@@ -39,31 +37,6 @@
 \paragraph{束縛変数の埋め込み} 自然言語では，量化子がその束縛変数の動く範囲を修飾するように文中に埋め込まれている．例えば，「机の上の\emph{全ての}紙に\emph{何らかの}名前が書かれている」という文を考える．これを述語論理的に書けば，「$\forall x \in \text{机の上の紙}.\; \exists y \in \text{名前}.\; y\ \text{は}\ x\ \text{に書かれている}$」となる．このように，述語論理では明示的に変数記号を導入し，量化子と束縛変数の動く範囲をもとの文の外側まで動かすのだが，自然言語ではもとの文に埋め込んで表現する．コノメノでは，後者の束縛変数の埋め込みを採用し，束縛変数の動かす範囲を「第1スコープ」，もとの文を「第2スコープ」と呼ぶ．
 
 コノメノでは，束縛変数を取る語彙を総称して\textbf{冠詞}と呼ぶ\suppl{機能に即した「パラメタ演算子」のような名も考えられるが，見た目と親しみやすさから冠詞と呼ぶ}．冠詞は$\forall$や$\exists$といった典型的な量化子以外に，「ほとんどの$A$」「少なくとも3つの$A$」といった一般化量化子，内包的な集合構成（関係節の文脈で登場する），疑問符や引用符など，さまざまな役割を統合する枠組みである．
-
-\iffalse
-\paragraph{集合論 vs 型理論} 数学を形式化する基礎論には集合論と型理論がある．前者は，数学の標準的な世界観であり，1階述語論理(FOL)の上に公理系を設定することで構築され，後者は，証明支援系の世界観であり，Martin-Löf型理論やCalculus of Inductive Constructions (CIC)のような強力な依存型の体系が用いられる．
-
-% そして，...%\cite{hol-web, hol-book}などの単純型で型付けされた高階論理(HOL)は，集合$X$から始めて任意有限回の冪で到達できる集合$R_\omega(X)$と大まかに対応する．形式意味論の標準的な枠組みは HOL と相性が良いが，やはりそれだけでは可能な操作が少なく，型を潰す操作を入れて部分的に型無しにしてしまう（集合論寄り）か，型を強化して表現力を上げる（型理論寄り）かという選択が生まれる．コノメノは前者を採用している．
-
-\todo{
-% 型理論寄りの意味論（Heim--Kratzer）や property theory，圏論的意味論を採らない理由（数の扱いなど）をここで議論する．
-\begin{enumerate}
-    \item Heim \& Kratzer 等の教科書的な意味論は，単純型付きラムダ計算を基礎にしている $\to$ 数やその演算は書ける？「ここに3人いる，あそこに2人いる．$\to$こことあそこに5人以下いる(注：共通領域があるかもしれないので$\leq 5$)」
-    \item Leanでも数や部分集合の扱い方がめんどくさかった気がする．
-    \item 集合論が一番使い勝手がいい．できるだけ1階で済ませるようにする．
-\end{enumerate}
-ここから埋め込みの話(意味論章寄り)
-\begin{enumerate}
-    \item 表現の埋め込みと集合の埋め込みがある．前者は冠詞，後者は名詞化子(専用の機構)で扱う．意味論章のTarski, Russellに対応．
-    \item 自己言及をしっかり扱うなら，終余代数的なやり方がいい．$\to$ 今後の展望として圏論的意味論に移る
-    \item property theory (特にFrege structure？)もここら辺の話？
-\end{enumerate}
-表現の埋め込み$\to$超内包性．疑問などを含む．
-\todo{オントロジー側の機構である種概念が高階の問題にも超内包性の問題にも対応する万能な考え方かもしれない．}
-}
-\fi
-
-
 
 \section{辞書}
 \begin{leftwavybox}
@@ -242,8 +215,6 @@
     }
     \]
     ここで，添字$i_1, \cdots, i_n$は，$u$の中に実際に現れる接辞付き項$t^{d_{i_k}}$（各$k$）との対応関係を示すラベルである．すなわち，$\{u\; d_{i_1,\cdots,i_n}\}$は，$u$内でラベル$i_1,\ldots,i_n$のいずれかを持つ接辞付き項を$d$によって束縛することを意味する（詳細は量化の対応関係の探索を参照）．
-    % 結論の型は冠詞署名から$\mathrm{Result}$で決まる：$\mathrm{keep}\,d=1$なら$\Omega^{\mathrm{out}\,d}$（例：$\forall$なら$\Omega$，$C$なら$\Omega^V$），$\mathrm{keep}\,d=V$なら割り当て$V^I$から$\Omega^{\mathrm{out}\,d}$への関数型（例：$L$なら$V^I\to\Omega$，$M$なら$V^I\to\Omega^V$）．$I=\emptyset$なら後者も$\Omega^{\mathrm{out}\,d}$とみなす．
-    % 割り当てを保持する冠詞の結果は全割り当て上の関数として表し，第1スコープ$S$の外では結果型の底値（$\Omega$なら偽，$\Omega^V$なら空クラス）を返す．% ←どゆこと
     部分演算の項は次の規則で形成する．
     \[
     \infer[\text{(Nom)}]{\setop P:V}{P:V\to\Omega}
@@ -299,7 +270,6 @@
     \item $D(V) = \mathcal{M}$．
     \item $D(\Omega) = 2 = \{0, 1\}$．
     \item $D(\alpha \to \beta) = \mb{D(\alpha), D(\beta)}$．
-    %ここで，$[X, Y]$は，$X$から$Y$への関数全体の集合を表す．
     \item $D(\alpha \times \beta) = D(\alpha) \times D(\beta)$．
     \item $D(\alpha\rightharpoonup\beta)$は$D(\alpha)$から$D(\beta)$への部分関数全体．
 \end{itemize}
@@ -314,12 +284,6 @@
 \begin{remark}
     有限変数割り当ての全体について$\mathrm{Fin}(X, \mathcal{M}) \subseteq \mathcal{M}$が成り立つ（変数名を$\mathcal M$内へ符号化しておけば，有限なグラフも遺伝的に小さい）．したがって第1スコープ$S \subseteq \mathrm{Fin}(X,\mathcal{M})$の\emph{要素}は常に個体であり，$S$\emph{自身}は$|S| < \kappa$のときに限り個体である．$S$は量化のドメインとしてメタレベルで使われるだけなので，$S$自身が個体である必要はない．ただしこの保証は「第1スコープに現れる項の解釈が$M$の部分クラスであること」に依存しており，これを体系の不変条件とする．
 \end{remark}
-\iffalse
-\begin{remark}
-    後述する具体的な演算子を考えると，$\mathcal{M}$は統語的な表現を記号として埋め込む関数$\iota : \bigcup_{\alpha} \mathrm{Rep}(\alpha) \to \mathcal{M}$を少なくとも1つ（始域は構文表現のみ．意味値やクラス全体の個体化は要求しない）\footnote{表現$\phi$に対して，「文字列$\phi$」「命題$\phi$」...など複数の埋め込みがあり得る．}持っている必要があるだろう．
-\end{remark}
-% ↑冠詞Mの変種 + the で対応できる
-\fi
 \begin{definition}[変数割り当て関数]
     (全域/部分/有限)変数割り当て関数$\sigma$はそれぞれ，$X$から$\mathcal{M}$への(写像/部分写像/有限部分写像)である．
 \end{definition}
@@ -379,12 +343,10 @@ $I$はラベルの列とする．$\{\phi d_I\}$という形式の文について
         \item $\lbb t \circ s \rbb = \lbb t \rbb \circ \lbb s \rbb$．
         \item $\lbb \{\phi d_I\} \rbb_{\rho,\sigma} = \rho_{I,\sigma}(d)(S, \phi)$．
         \item $\lbb x \rbb = \sigma(x)\;\; x:\text{変数}$．項で書くと$\lbb t^{d_i} \rbb = \sigma([t^{d_i}])$．
-        %$t^{d_i}$が何らかの冠詞によって束縛されている場合，$t^{d_i}$は変数で置き換えられるため，単体で解釈されることはない．そのような束縛がないとき（通常は，$d$が$F$であるとき）は，$\sigma$(変数割り当て)によって解釈を付与する．
         \item $\lbb t_1\; r_1\; \cdots\; r_{n-1}\; t_n \rbb = 1 \iff \forall i\in \{1,\ldots,n-1\},\; \langle \lbb t_i\rbb, \lbb t_{i+1}\rbb\rangle \in \lbb r_i \rbb$．
         \item $\lbb \lnot \phi \rbb = \lnot \lbb \phi \rbb$．
         \item $\lbb \phi \mathbin{@} \psi \rbb = \lbb \phi \rbb \mathbin{@} \lbb \psi \rbb$．
     \end{itemize}
-    % なお，変数割り当て関数は，$t^{d_i}$という形の項（形が同じでも位置によって区別する）に対して$M$の要素を割り当てる部分関数である．
 \end{definition}
 \begin{definition}[未定義の伝播]\label{def:undefined-propagation}
     $\lbb t\rbb\uparrow$は項$t$の値が定義されないことを表す．$\uparrow$を個体や対象言語の定数として追加しない．式の形成可能性と，その値の定義可能性を区別する．
@@ -411,7 +373,7 @@ $I$はラベルの列とする．$\{\phi d_I\}$という形式の文について
 \noindent
 具体的に，$d\in Q$のいくつかの例をみていこう．それ以外にも，実際に運用するにはいくつか特殊な定数が必要である．
 \begin{definition}
-    $\forall, \exists$は，文字通り全称量化子と存在量化子であり，$L$は内包的に集合を作る演算子である．%，$E$はinquisitive semanticsの構成によって疑問文を作る演算子である．
+    $\forall, \exists$は，文字通り全称量化子と存在量化子であり，$L$は内包的に集合を作る演算子である．%
 
     文$\phi$と変数割り当て$\sigma$に対して，$\phi(\sigma)$は$\phi$にある$\dom \sigma$の項を$\sigma$によって置き換えたものとする．また，$\sigma, \sigma'$が変数割り当てのとき，$\sigma\vll\sigma'$は，$\sigma$を$\sigma'$に更新した変数割り当てである．つまり，
     \begin{align*}
@@ -423,7 +385,6 @@ $I$はラベルの列とする．$\{\phi d_I\}$という形式の文について
         \item $\forall \in Q^\Omega_{1,1}$．$\rho(\forall)(S, \phi) = (\forall \sigma' \in S.\; \lbb \phi\rbb_{\rho, \sigma\vll\sigma'} = 1)$．
         \item $\exists \in Q^\Omega_{1,1}$．$\rho(\exists)(S, \phi) = (\exists \sigma' \in S.\; \lbb \phi\rbb_{\rho, \sigma\vll\sigma'} = 1)$．
         \item $L \in Q^\Omega_{V,1}$．$\rho(L)(S, \phi) = \{\sigma' \in S \mid \lbb \phi\rbb_{\rho, \sigma\vll\sigma'} = 1\}$（充足する割り当てのクラス．$V^I\to\Omega$の特性関数として読み，$S$の外では偽）．
-        % \item $E \in Q_{\Omega \to (V \to \Omega)}$．$\rho(E)(S, \phi) = \bigcup_{\sigma' \in S} \wp(\{\rho' \mid \lbb \phi\rbb_{\rho',\sigma\vll\sigma'} = 1\})$．
         \item $\mathrm{Lf} \in Q^{V}_{V,V}$（第2スコープは項$t$）．$a\in\mathcal M^I$に対して
         \[
         \rho(\mathrm{Lf})(S,t)(a)=
@@ -476,7 +437,6 @@ $I$はラベルの列とする．$\{\phi d_I\}$という形式の文について
     $\mathrm{sg}$は原始語彙ではなく，$\setop{\{y \mid y\; =\; t\}}$，すなわち$L$と$\mathrm{kast}$と名詞化子の合成の略記である（名詞化子は\ref{subsec:nominalizer}節）．$M = H_\kappa(U)$は個体の単元集合を常に含むので，名詞化子の部分性はこの合成では発火せず，$\mathrm{sg}$は$M$上の全域関数になる．口語形\ko{+ykof}を立てるのは，$x$と$\{x\}$を同一視しない現行の規約のもとで，$\cup$や$\in$の項を作る操作が毎回$L$の括弧を要求するのを避けるためである．
 \end{remark}
 
-% あと対象言語型があるのか
 \paragraph{$F$の解釈} $\forall$や$L$などの通常の冠詞は，(Plm-pt)と(Plm-at)がペアで現れることを期待する((Plm-at)のみの文も構文の規則では禁止されていないが)のに対して，$F$は(Plm-at)のみで現れることが多い．例えば，$[t^{F_1}\; r\; t^{F_2}]$だけで文になる．$\{\phi\; F_I\}$は$\{\phi\; L_I\}$と同じ解釈を与える：
 \[\rho(F)(S, \phi) = \{\sigma' \in S\mid \lbb \phi \rbb_{\rho, \sigma\vll\sigma'} = 1\}\]
 また，$F$は通常省略される．裸の概念語の各出現には，同じラベルが明示されない限り互いに異なる$F_i$を補う（この規約は角括弧のApp略記とは独立である）．例えば，$[t\; r\; t]$は$[t^{F_1}\; r\; t^{F_2}]$の略記である．これによって，以下のような略記を導入することができる．
@@ -495,7 +455,6 @@ $I$はラベルの列とする．$\{\phi d_I\}$という形式の文について
 また，$F$は慣例的に$*$と書かれることがある．この記法は，CGIF (Conceptual Graph Interchange Format) で，束縛変数の初出を$*x$と書くことに由来する．
 
 \subsection{フレーム}\label{subsec:frame}
-% フレームの定義は本章に残す（$K$系だけ意味論章へ移した．2026-09-07）
 \begin{definition}[フレーム]
     構造は，従来のデータ$\langle \mathcal{M}, \rho\rangle$に加えて\textbf{フレーム}$\langle W, (\rho_w)_{w\in W}\rangle$を持つ．
     \begin{itemize}
@@ -506,7 +465,6 @@ $I$はラベルの列とする．$\{\phi d_I\}$という形式の文について
 \end{definition}
 \begin{remark}
     世界を「割り当ての対」として\emph{定義}するとランク超過と循環が生じるが，世界を抽象的な点とし割り当てを付随データにすれば問題は起きない．$\wp(W)$の要素を個体化したければ$|\mathcal{M}| \ge 2^{|W|}$となるよう$\kappa$を取ればよい．また，虚構や信念などの具体的な様相語彙は，$W$の部分集合（あるいはアクセス可能性関係$R \subseteq M \times W$）への相対化として導入する．
-    % 形式意味論章のcfg・様相論理の節とここで合流する．
 \end{remark}
 
 フレーム上の命題化演算子$K$系の定義は，状況フレームによる精密化と一緒に扱う方が見通しが良いため，形式意味論章（\ref{def:K-article}）に置く．
@@ -538,8 +496,6 @@ $\mathrm{out}\,q=V$の冠詞はクラス値，$\mathrm{keep}\,q=V$の冠詞は�
 \end{remark}
 \begin{remark}[Russellクラス]
     $R = $「自分自身に属さない個体」のクラスに対して$\setop{R}$は未定義である（定義されると通常の矛盾が生じるため，任意のモデルで未定義になる）．free logicの規約により，$\setop{R}$を含む原子文は単に偽であり，この名詞化からRussellの矛盾は導かれない．これは名詞化子の公理についての主張であり，他の語彙公理の整合性は別に検証する．
-    % property theoryとの関係：Chierchia--Turner 1988, Aczel (Frege structures)．
-    % 階層化（形式意味論章のE^n(L)）による代替もあるが，まず部分性で運用する．
 \end{remark}
 \begin{remark}[暗黙の名詞化]
     表記上は，クラス型の表現が個体位置に置かれた場合，$\setop{(\bullet)}$の適用が省略されているものと解釈する．例えば$[t\;\text{litoi}\;\{\phi\,L_1\}]$は$[t\;\text{litoi}\;\setop{\{\phi\,L_1\}}]$の略記である．
@@ -606,8 +562,7 @@ $\mathrm{out}\,q=V$の冠詞はクラス値，$\mathrm{keep}\,q=V$の冠詞は�
     \end{xlist}
 \end{exe}
 \subsection{ZFCの公理}
-集合全体のクラスを$\mathsf S \in R_1$（個体型$V$とは区別する）とし，集合の所属関係を${\in} \in R_2$とする．このとき，ZFCの公理は以下のように翻訳される．%$\in$を用いた書き方と，$\clsop{(\bullet)}$を通して集合を述語とみなした書き方を両方提示する．
-%基本的には，$A \in B$を述語化して$A\; \clsop{B}$と書いた書き方を提示する．
+集合全体のクラスを$\mathsf S \in R_1$（個体型$V$とは区別する）とし，集合の所属関係を${\in} \in R_2$とする．このとき，ZFCの公理は以下のように翻訳される．%
 公理系は\cite{kunen}に倣う(ただし，選択公理は\cite{kunen}では整列定理の形で述べられるため，ここでは選択関数による定式化を用いる)．
 
 \begin{remark}
@@ -617,13 +572,11 @@ $\mathrm{out}\,q=V$の冠詞はクラス値，$\mathrm{keep}\,q=V$の冠詞は�
     \ex 外延性
     \begin{xlist}
         \ex $\forall x \forall y(\forall z (z \in x \leftrightarrow z \in y) \to x = y)$
-        % \ex $\{\{\mathsf S^{\forall_1} \in \mathsf S \leftrightarrow \mathsf S^{\forall_1} \in \mathsf S\;\forall_1\}F\}^\forall =$ 
         \ex $\{\{\mathsf S^{\forall_1} \clsop{\mathsf S} \leftrightarrow \mathsf S^{\forall_1} \clsop{\mathsf S}\;\forall_1\}F\}^\forall =$ 
     \end{xlist}
     \ex 基礎
     \begin{xlist}
         \ex $\forall x[\exists y(y \in x) \to \exists y(y\in x \land \lnot \exists z(z \in x \land z \in y))]$
-        % \ex $\{\lnot\{\{\mathsf S\clsop{\{\mathsf S\clsop{\{\mathsf S^\exists \clsop{\mathsf S} \exists\}^{F\forall_1}}\}^{F\exists_1}}\}^{F\exists_2}\clsop{\mathsf S^{\forall_1}}\exists_2\}\exists_1\}$
         \ex $\{\lnot\{\clsop{\clsop{\{\mathsf S^\exists \clsop{\mathsf S} \exists\}^{F\forall_1}}^{\exists_1}}^{\exists_2}\clsop{\mathsf S^{\forall_1}}\exists_2\}\exists_1\}$
     \end{xlist}
     \ex 内包性
@@ -734,7 +687,6 @@ $\mathrm{out}\,q=V$の冠詞はクラス値，$\mathrm{keep}\,q=V$の冠詞は�
     \\&= \exists y_1 \forall x_1\in x_2 \exists y_2 \in y_1 \phi(x_1, y_2)
 \end{align*}
 以上より確かめられた．
-
 
 \section{グラフ表示}\label{sec:graph-notation}
 \begin{leftwavybox}
@@ -938,7 +890,6 @@ $F\exists$枠は補助頂点の自由な$F$接辞を存在束縛し，外側の$
 \paragraph{交互型線形文の由来}
 交互型$tRtRt\cdots Rt$は多項関係を1原子として書いたものではなく，関係原子の連言において隣接する原子の共有項を重ねた表記である．例えば$a<b\land b\leq c$を$a<b\leq c$と書くのと同じく，$t_1R_1t_2R_2t_3$は$t_1R_1t_2\mathbin{,}\_R_2t_3$を滑らかに繋いだ形である．この「一筆書き」の形を，線形文モジュールは$t(Rt)^n$として明示的に整形式な構文へ取り込んでいる．背後の1次的なグラフ表示は\S\ref{sec:graph-notation}で，カンマを含む一般の線形化は線形化の節で定義する．
 
-
 \subsection{統語ソート}
 \begin{definition}[統語ソート]
     項$t$の\textbf{統語ソート}$\mathrm{sort}(t) \in A$を，構文から帰納的に定める（意味的な評価は行わない）．
@@ -946,7 +897,6 @@ $F\exists$枠は補助頂点の自由な$F$接辞を存在束縛し，外側の$
         \item 定数$a \in F_0$：$\mathrm{sort}(a) = \dom_1 a$（値域ソート）．
         \item 概念$a \in R_1$の項位置での使用：$\mathrm{sort}(a) = a$．
         \item 関数適用$f(t_1,\ldots,t_n)$：$\mathrm{sort} = \dom_{n+1} f$（値域ソート）．引数のソートは検査対象になるが，値には影響しない．
-        % \item 名詞化$\cap\{\phi\; L_1\}$：第1スコープの主要部概念．例えば$\cap\{[B^{L_1}], P\text{関連の条件}\; L_1\}$なら$B$．内包条件$P$は参照しない．
         \item 冠詞の結果や部分演算の結果：辞書に結果ソートが指定されていればそれを使い，なければ$\top$とする．
         \item 上記で決まらない項（未知語など）：$\mathrm{sort}(t) = \top$（alkono）．
     \end{enumerate}
@@ -1036,7 +986,6 @@ $p$のブランクを除いた列を$\hat{p}$とする．例えば，$p = tR\_Rt
 \begin{remark}
     共項排除は自然言語の束縛条件B（``John$_i$ hit him$_i$''の禁止）に対応する統語的制約である．ブランクにのみ課されることに注意：再帰的な読みが欲しければ$A^{F_1}RA^{F_1}$と同じラベルを明示すればよく，再帰代名詞に相当する装置は不要である．両引数がブランクの場合は，両者が同一の先行詞に解決されないことを意味する．
 \end{remark}
-% 2026-09-05裁定：ソート整合の「共通下位概念の存在」への緩和は採らない（分類文は指示詞で先行詞を明示する．実践編「文型と線形文」）．
 
 \begin{definition}[ランキング]
     ハードフィルタを通った解析$\alpha$に対して，違反ベクトル
@@ -1061,12 +1010,6 @@ $p$のブランクを除いた列を$\hat{p}$とする．例えば，$p = tR\_Rt
 \begin{remark}[連言肢ごとの冗長性]
     各連言肢が他の連言肢から従うかを独立に数える方式もある．この方式では同じ原子を2回書くと両方が該当し，罰点は2になる．上の削除数による定義では1個を残すため，罰点は1である．
 \end{remark}
-\iffalse
-\begin{remark}[強さのタイブレーク]
-    上のランキングで同順位が残った場合に限り，辞書の公理のもとでの含意$\lbb\alpha\rbb \vdash \lbb\alpha'\rbb$による半順序で\emph{極小}（最強）の読みを選好する（SMH）．ただしこの順序で比較可能になるケースは少なく，実質的な仕事の大半は(1)--(4)で終わる．含意判定は$\preceq$由来の含意に制限すれば決定可能である．
-\end{remark}
-% (1)-(4)だけだと転置の"配置"は特定できないのでSMHにfall backする．aRbRcを考えてみると良い．
-\fi
 
 \begin{proposition}[計算可能性]
     有限の辞書データと先行詞リストを用い，対象のアリティに対するソート検査・H1・H2が定まっているとする．入力ごとの$\mathcal P(e)$，転置の選択，先行詞の選択はいずれも有限であり，冗長性は有限個の連言肢の部分集合を調べて計算できる．これらの検査が計算可能なら，善意的解釈も計算可能である．候補が空のとき，その線形文は非文である（誤りが検出できることは，すべてを救済する真理ベースの善意に対する利点である）．最小元が複数あるとき，その文は多義である．
@@ -1108,79 +1051,6 @@ $p$のブランクを除いた列を$\hat{p}$とする．例えば，$p = tR\_Rt
 \begin{remark}[非単調性と保存規約]
     マッチング候補$m(e_i)$はトークンの辞書登載の有無に依存するため，辞書が成長すると過去のテキストの善意的解釈が変わりうる（未知語として$[t, R]$だったものが登載により固定され，勝つパターンが変わる）．長期運用のため，保存を目的とするテキストでは接尾辞$\mathbf{I}/\mathbf{R}$を必須とするか，テキストに辞書のバージョンを紐付けることを規約とする．
 \end{remark}
-% \cite{smh} Dalrymple et al. 1998, Reciprocal expressions and the concept of reciprocity.
-% \cite{blutner} Blutner 2000, Some aspects of optimality in natural language interpretation.
-\iffalse
-\subsection{パターンマッチングの例}
-\noindent
-以降，$a_i\in A$，$b_i\in B$，$A \cap B = \emptyset$，$R_i \subseteq A \times B$，$S_i \subseteq A \times A$とする．$(\bullet)^c$は補集合（関係の否定）を表す．
-\begin{remark}
-    同じ文中で導入した個体も$\Delta$に追加されるようにすべきではないだろうか．
-\end{remark}
-\begin{table}[H]
-\centering
-\begin{tabular}{ccccc}
-    \toprule
-    先行詞 & 構文 & パターン & 代入後 & 備考\\
-    \midrule
-    $\Delta = \emptyset$ & $aRb$ & $tRt$ & $aRb$ \\
-    $\Delta = \emptyset$ & $bRa$ & $tRt$ & $aR^\trans b$ & ソート整合性\\
-    $\Delta = \emptyset$ & $aS$ & $tR\_$ & $aSa$ & \\
-    $\Delta = \emptyset$ & $Sa$ & $\times$ & $\times$ & 代入候補なし\\
-    $\Delta = [a_1]$ & $Sa_2$ & $\_Rt$ & $a_1Sa_2$ & \\
-    $\Delta = [a_1]$ & $a_2S$ & $tR\_$ & $a_2Sa_2$ & 親近性\\
-    $\Delta = \emptyset$ & $a_1Sa_2Sa_1$ & $tRtRt$ & $a_1Sa_2 \land a_2Sa_1$ & \\
-    $\Delta = [a_1]$ & $a_2SSa_2$ & $tR\_Rt$ & $a_2Sa_1 \land a_1Sa_2$ & $a_2$の代入は冗長\\
-    $\Delta = [a_1]$ & $a_2SS^ca_2$ & $tR\_Rt$ & $a_2Sa_1 \land a_1S^ca_2$ & $a_2$の代入は矛盾\\
-    $\Delta = [a_1]$ & $a_2SS$ & $tR\_R\_$ & $a_2Sa_2 \land a_2Sa_1$？$a_2Sa_1 \land a_1Sa_2$？ &\\
-    \bottomrule
-\end{tabular}
-\end{table}
-\fi
-\iffalse
-\subsection{線形化と一筆書き}
-グラフから線形文への射影を定義する．交互型線形文はグラフ上の歩道の読み上げであり，歩道内部の共有項は項の重なりとして，歩道間の共有項は同じラベルまたはブランク照応として現れる．
-
-\begin{definition}[なぞり語列]
-    $G$の無向化上の歩道
-    \[
-        W=v_0e_1v_1\cdots e_nv_n
-    \]
-    に対し，\textbf{なぞり語列}$\operatorname{tr}(W)$は，頂点ラベルと辺ラベルを歩道順に交互に並べたものとする．
-    辺$e_i$を$s(e_i)$から$t(e_i)$へたどるときは$\ell_E(e_i)$を，逆向きにたどるときは$\mathsf{me}\,\ell_E(e_i)$を置く．
-    後者の$\mathsf{me}$は，H1が向きを一意に定める会話形では省略できるが，保存形では明示する．
-\end{definition}
-
-\begin{definition}[線形分解]
-    $G$の辺集合を，辺を反復しない歩道$W_1,\dots,W_k$の辺集合へ直和分割したものを\textbf{線形分解}という．
-    対応する線形表示を
-    \[
-        \operatorname{lin}_{\mathcal W}(G)
-        :=\operatorname{tr}(W_1)\mathbin{,}\cdots\mathbin{,}\operatorname{tr}(W_k)
-    \]
-    とする．ここでカンマは各断片が表す原子列の連言であり，談話モジュールの意味で複数の文・発話へ分ける標識ではない．線形分解に先立ち各頂点$v$に一意なラベル$i_v$を割り当て，$\operatorname{tr}(W_j)$に現れる同一頂点の全出現へ同じ$F_{i_v}$を付ける（同じ裸語の別出現は別個体になるため）．ブランクを用いる場合は，その解決先が$i_v$の頂点であることも線形分解のデータに含める．
-\end{definition}
-
-\begin{proposition}[線形化の保存性]
-    $G$がソート整合的で，逆向きにたどる辺が正しく転置されているなら，任意の線形分解$\mathcal W$について
-    \[
-        \lbb\operatorname{lin}_{\mathcal W}(G)\rbb=\lbb\Phi_G\rbb
-    \]
-    である．
-\end{proposition}
-\begin{proof}
-    各辺はただ一つの歩道に一度だけ現れるため，線形表示が作る原子の多重集合は$\Phi_G$の連言肢と一致する．共有頂点は，歩道内部では項の重なりとして，異なる歩道間では同じラベルまたはブランク照応として保存される．あとは連言の結合・交換法則による．
-\end{proof}
-
-すべての辺を一つの歩道で覆う線形分解を\textbf{一筆線形化}という．一筆線形化が存在してもそれを選ぶ義務はなく，グラフのまま書くことも，説明上分かりやすい複数断片に分けることもできる．ただし，発話・筆記では共有項を反復せず視点を滑らかに移せるため，一筆線形化が推奨される．
-
-\begin{proposition}[一筆書き判定]
-    辺を一つ以上持つ連結な関係グラフ$G$が一筆線形化を持つのは，矢印を無視した多重グラフにおいて奇数次数の頂点が$0$個または$2$個のとき，かつそのときに限る．
-\end{proposition}
-
-非連結な図は連結成分ごとに少なくとも一断片を要する．一つの連結成分に奇数次数頂点が$o$個あるとき，全辺を反復なしに覆うために必要な歩道の最小数は$\max(1,o/2)$である．
-したがって一筆書きできないグラフも常に複数断片へ線形化でき，断片をカンマで繋げばよい．辺を重ねて無理に一筆書きにすると同一原子の反復を生じ，$v_{\mathrm{red}}$により非標準となる．
-\fi
 
 \section{指示詞モジュール}\label{subsec:demonstrative}
 \begin{leftwavybox}
@@ -1222,7 +1092,6 @@ $p$のブランクを除いた列を$\hat{p}$とする．例えば，$p = tR\_Rt
 5-2の\ko{lon}/\ko{lota}系列は，後続の導入を予告する前方照応である．まだ導入されていない指示先を直ちに評価すると原子文が偽になるため，通常の\ko{sen}系列と同じ即時評価には載せられない．
 
 現行方針は，談話モジュール側に未確定の指示を保持し，後続の導入で一意化する方式である（2026-09-07暫定）．2パスで文全体を再解釈する案は採らない．ただし，この方針だけでは増分走査への接続は完成しない．
-% @issue KONO-0032
 \todo{未確定指示子の導入・評価保留・確定規則を談話モジュールに書く．保留した指示と後続導入の対応，ソート制約の保持，確定時の保留原子の評価，未解決のまま談話を閉じた場合を定める．未定義項を含む原子文を偽にする既存規約との適用範囲も分ける．}
 
 \section{談話モジュール}\label{subsec:systemD}

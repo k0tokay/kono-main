@@ -1,7 +1,6 @@
 \documentclass[../../main-detail.tex]{subfiles}
 \begin{document}
-% \chapter{個別従属物の分類 -- aicis以降}
-\chapter{量・性質モジュール} % あと多分chapterにならない．
+\chapter{量・性質モジュール}%
 \subsection{一次分類}
 本章では，量や性質の記述に関するモジュールをまとめる．DOLCEのqualityとqauleの区別\citep{borgo2022dolce}，および，YAMATOの量と性質の区別\citep{mizoguchi2012}に従い次のように分類する．
 \todo{DOLCE，YAMATO（およびBFO）との対応表を書く．\ko{latent}がBFOのgenerically dependent continuantに当たるかどうかもそこで確認する．}
@@ -27,8 +26,6 @@
             [$\cdots$]
         ]
     ]
-    % いま見るとこれ射影と逆向きだ 引き下げの定義どっちになってるんだっけ
-    % あとでグラフ表記の図を書くからこれいらないかも
     \draw[<-, >=Stealth, dashed] (canon) to[out=0,in=0]node[fill=white]{{\small nila}} (latent);
     \draw[<-, >=Stealth, dashed] (canon) to[out=150,in=60]node[fill=white]{{\small noccea}} (toika);
     \draw[->, >=Stealth, dashed] (nosnant) to[out=0,in=0]node[fill=white]{{\small lofna}} (canon);
@@ -73,15 +70,12 @@
     \node (canon) at ( 0, 0.4)   {\ko{canon}};
     \node (toika) at (-3.2,-1.1) {\ko{toika}};
     \node (latent) at ( 3.2,-1.1) {\ko{latent}};
-    % canonを介する二項関係
     \draw (nos)   -- node[rel, fill=white](lofna){\ko{lofna}}  (canon);
     \draw (toika) -- node[rel, fill=white](noccea){\ko{noccea}} (canon);
     \draw (latent) -- node[rel, fill=white](nila){\ko{nila}}   (canon);
-    % 引き下げ対応で誘導される二項関係
     \draw (toika) -- node[ind, above left=1pt](locka){\ko{locka}} (nos);
     \draw (nos)   -- node[ind, above right=1pt](locto){\ko{locto}} (latent);
     \draw (toika) -- node[ind, below=2pt](ansa){\ko{ansa}}  (latent);
-    % 引き下げ対応
     \draw[dc] ($(toika)!0.5!(nos)$)   -- (canon);
     \draw[dc] ($(nos)!0.5!(latent)$)   -- (canon);
     \draw[dc] ($(toika)!0.5!(latent)$) -- (canon);
@@ -129,9 +123,9 @@
         dir tree
         [\tn{nosnant}{形容量}
           [汎用程度量 [mofloa・niina]]
-          [一次元査定量 % フィールド：次元評価（lekostent類を1つ参照）
+          [一次元査定量%
           [stoona・kadoa・温度4語・kakta $\cdots$]]
-          [多次元査定量 % フィールド：集約規則（全称・存在・加重——Sassoon）
+          [多次元査定量%
           [klazna・mumina・walsa・haluna $\cdots$]]
         ]
     \end{forest}
@@ -176,24 +170,6 @@
 移したため，場所や環境を表す語を\ko{haikant}へ一律に入れない．空，地面，天井，夜景などの
 現行配置は，担い手と同一性基準を個別に再検討する．
 
-\iffalse
-案：
-
-haikant 空間的従属物（改）
-├─ 〈形状特徴〉         宿主の形に内属．宿主が変形すれば従動する
-│   ├─ 〈正特徴〉       膨らみ danto，角 dadais，稜線 klomilis，
-│   │                   ドレープ kokoloft，歪み khentole，ミルククラウン postoliita
-│   ├─ 〈負特徴〉       穴 ekno，凹み sebin，空洞 halekno，分断 selekno，ヒビ pilin
-│   │                   ※ Casati–Varzi の hole 理論がそのまま使える（宿主の補空間に住む依存者）
-│   └─ 〈表面パタン〉   模様 lolokac（インスタンス側．タイプ側は kika へ）
-├─ 〈境界面ロール〉     参照構造の鉛直に相対的な面ロール：天井 stanok，床/地面 saida，（壁）
-├─ 〈相対領域〉         宿主に相対的な fiat 領域：内側 mija，外側 sawa（litam 系の対応物）
-├─ 〈投影特徴〉         視点・光源に依存：輪郭，影 khinolis，ハイライト lapkoin，
-│                       逆光 altalis，反射光 lawain，スポットライト lehaap
-└─ 〈景観・見え〉       視点からの領域の見え：夜景 honokwi，星空 selenem，晴天 aswam
-
-\fi
-
 個別のロールも\ko{aicis}に属する．ロールタイプは\ko{loka}下の\ko{liflom}，特定の担い手が
 ある文脈で担うロールは個別従属物である．担い手との対応は一般担い手関係$\mathrm{bear}$（前節）で与える．ロールを成立させる文脈の型は未造語である．
 
@@ -209,31 +185,5 @@ haikant 空間的従属物（改）
 辞書で行き先の類が未造語のため\ko{nosnant}直下に暫定配置のまま残る語：\ko{luzantoja}・\ko{hvlumja}（\ko{ansa}の存在言明で書けるか要検証），\ko{johena}・\ko{klafena}（傾向），\ko{kena}・\ko{khina}（参照時への前後関係），\ko{kliina}・\ko{nosta}・\ko{najamoi}（高階記述）．
 また\ko{setayno}（力／耐性／効果）と\ko{kiswa}（個数）は次元類が未造語である．
 \end{devbox}
-
-\iffalse
-メモ
-
-気になったこと
-
-順序対による個体化は引き下げの特殊例だと思っている．
-V \subseteq {<a,b,c>| a\in A, b\in B, c\in C}
-π1(v) = a を K1(v,a)と書く．2,3も同様．
-とすると，二項関係R(a,b)が∃v\in V, K1(v,a) ∧ K2(v,b)で誘導される．R'(b,c)やR''(a,c)も同様に誘導される．
-...まあこれを見るとcanonが一次なのは確かにそうだね．
-
-C3
-・mofloa書き換え式の型破綻とは？今の文法で書くと，a\in nosnantで，stoona, mofloa \subseteq nosnant, stoit \in lekostentで，
-    (1) [a stoona] \Leftrightarrow [a mofloa], {a lofna canon^∃ nila lekostent^L ∃L}^∀ stoit
-        訳：aが"長い" \Leftrightarrow aが"程度超過"かつ「量x(18cmなど)はaである」というxは全て長さ次元にある
-・高階無限増殖はむしろ仕様なのでは？(「とても」が「とても」を修飾して良い)
-・>_rとθ_rを使った書き方はmofloaの定義に使えるかも？
-
-C4
-時制が必要なときだけ(汎用的な？)引き下げを使うのが言語全体でのやり方．常に時制をとるような関係は最初から引き下げを使う．
-18cm nila q はある時点で18cmだったことを言っていて，時刻をつけるなら，18cm coi nila+nov cal q aki t
-
-C10
-「vは**機会として**良い」みたいなことはどっちが書きやすい？あるいはどっちもダメ？
-\fi
 
 \end{document}

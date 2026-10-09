@@ -8,10 +8,6 @@
 
 \section{符号化と自己言及}
 
-% story/metafiction/より移植．
-
-% テクスト内の命題を実装するために，「形式化された論理式$\qquote{\phi}$を何かしらの``構造''$m$で``充足する''」$m \uvDash \qquote{\phi}$ という関係が必要である．$m$が何であるかは後ほど精密に分析するが，エージェント，テキスト，(述語論理の意味での)構造，物理世界などの様々なものを表すことができる．形式化された論理式は，厳密には次のように定義される．
-
 形式化された論理式$\qquote{\phi}$と，形式化された構造$m$による充足 $m \uvDash \qquote{\phi}$を考える．
 コノメノの形式文法に合わせる前に，述語論理で，形式化された論理式を追加した言語と理論を定義する．
 \begin{definition}
@@ -76,7 +72,6 @@
     \item ギャップは「偽側に倒す」（closing off）ことで，外側の論理は2値のまま保てる．これはnegative free logicの「未定義を含む原子文は偽」の規約と同じ精神である．倒した後の様子：$\lambda = \qquote{\lambda \uvdash \bot}$についてどの$m'$も$m' \uvDash \lambda$でないから，外側では$\lambda \uvdash \bot$は空虚に真．T図式は$\lambda$でだけ破れており，それが\emph{許可された}破れである．強化された嘘つき（revenge）はメタ側に押し出されるが，$\uvDash$は外側の真理を反映すると主張していないので無害である．
 \end{itemize}
 また，「宇宙全体（現実世界そのもの）」を1つの構造$m_0$として立てて全面的な剥がし$m_0 \uvDash \qquote{\phi} \leftrightarrow \phi$を置くと，Tarskiの真理定義不可能性に抵触する．Tarski型の自己言及を防ぐ防火壁は，引用剥がしを接地した表現または下位層へ制限することである．名詞化子$\setop{(\bullet)}$の部分性は巨大クラスの対象化を防ぐ（Russellクラス，形式文法章・名詞化子の節）が，同一言語の文のコードに対する真理述語だけで対角化は可能なので，真理述語の対角化を単独では防がない．剥がし図式は\emph{集合サイズ}の構造に対してのみ置く（そこでは充足関係が定義可能なので安全）．
-% @issue KONO-0045
 \memo{調べること：Kripke (1975)の真理理論（Strcong Kleene最小不動点，closing off）；FefermanのKF（Kripke構成の古典論理による公理化）；AczelのAFA（非整礎集合）とBarwise--Moss \emph{Vicious Circles}（終余代数，guarded方程式の一意可解性）；Barwise--Etchemendy \emph{The Liar}（AFA＋状況意味論．Austinianの「全体状況は対象化できない」は$\setop{(\bullet)}$の部分性防火壁と同型で，冠詞$E$とも道具が揃う）；Leitgebのgroundedness；Halbachの公理的真理理論（サーベイ）．文献を参考文献に追加して本文を引用化する．}
 
 \section{引き下げ対応と超内包性}
@@ -226,7 +221,6 @@ $X$が融合で閉じていなければ両者は異なる．これは原子述�
     \]
     を要求する．世界を扱う場合は，この$H$による制限を含めて関係を復元する．この正のデータが$\rho_e^+$を定め，負のデータ$\rho_e^-$は別に与える．
 \end{definition}
-% @issue KONO-0025
 \memo{正負の原子データを世界での二値評価と整合させる供給方法，特に負側の構成は未定．正の引き下げだけから否定文の検証者は決まらない．}
 
 \subsection{正確検証と冠詞$C$}
@@ -253,19 +247,11 @@ $X$が融合で閉じていなければ両者は異なる．これは原子述�
                 &\iff \exists\sigma'\in S,\;e\ff_{\sigma\vll\sigma'}\phi.
         \end{align*}
     \end{itemize}
-    % @issue KONO-0026
     \memo{ここではFineの固定領域上の単純節を採った（存在文は1つのinstanceによって検証され，全称文は1つのinstanceによって反証される）．Fineは複数のinstanceの検証者・反証者の融合も認めるinclusive節を併記しており，どちらを採るかは論理だけからは決まらず，文の正確な内容をどの粒度で数えるかという設計上の選択である．inclusive節，totality state，inexact verification（$e' \sqsupseteq e \vf \phi$なる$e'$も検証者とみなす）を基本体系に採用するかは別に決める必要がある．}
 \end{definition}
 \begin{remark}[全称と存在の非対称]
     例えば束縛される項の動く範囲が$\{a,b,c\}$で，$\phi(a),\phi(b),\phi(c)$の正確検証者がそれぞれ$s_a,s_b,s_c$だけなら，$\{\phi\;\forall\}$の正確検証者は$s_a\fuse s_b\fuse s_c$であるのに対し，$\{\phi\;\exists\}$の正確検証者は$s_a,s_b,s_c$の3つである．全称はすべてのinstanceの成立の仕方を融合し，存在はどのinstanceで成立したかを選択肢として残す．反証側ではこの関係が逆転する．
 \end{remark}
-\iffalse
-\begin{remark}[$\Sit$と$\wp(\Sit)$の非対称な役割]
-    $\Sit$上の融合$\fuse$は状況そのものを合成し，$\wp(\Sit)$上の$\cup$は成立の仕方を選択肢として並べる．正の側では，連言・全称に$\Sit$由来の演算（を冪集合へ点ごとに持ち上げたもの）を，選言・存在に$\wp(\Sit)$固有の演算を使う（負の側では逆になる）．これは\texttt{ref/牛丼}で，食べ物の束$L$上の「イクラ$\sqcup$米」と，食べ物の候補集合$\wp(L)$上の合併とを使い分けた構成と同じ型である．
-\end{remark}
-\todo{"牛丼"と書かれても分からないので内容を検討してmain-detailに移す}
-↑"牛丼"読み返したら思ったより内容つまらなかった．特に書くことない．
-\fi
 \begin{remark}[全称量化とtotality state]
     束縛される項の動く範囲があらかじめ固定されているなら，上の$\forall$節で「すべて」を尽くせる．しかし，領域が世界ごとに変わる場合や，``all $A$s are $B$s''のような制限つき量化では，列挙したinstance以外に対象がないことも内容に含めたい．このためFineは，「存在する個体はちょうど$C$である」という\textbf{totality state} $\tau_C$（制限つき量化には「$A$である個体はちょうど$C$である」という相対化された$\tau_{A,C}$）を加える案を提示する．このとき``all $A$s are $B$s''の正確検証者は，概略
     \[
@@ -393,7 +379,6 @@ $E$を積む形にしたことで談話モジュールに入ったのは，(a) �
 \end{remark}
 \begin{remark}[用途]
     「選択肢と冠詞$E$」の節で疑問の内容を作るときの，解答ごとの$C$クラスの族は$\mathrm{Cf}$そのものである．
-    % @issue KONO-0046
     \memo{$\mathrm{Kf}, \mathrm{Cf}$の実際の使い所（know wh，de dicto，$\mathrm{Alt}$との接続）はまだ確定していない．必要性が確認できた箇所から本文に繋ぐ．}
 \end{remark}
 
@@ -479,7 +464,6 @@ knowを例に，態度動詞の目的語の書き分けを整理する．前小�
 「りんごが食べたい」「ユニコーンを探す」の目的語は，現実の特定個体を指さない（非存在含意の不在・不特定性）．旧稿はこれを，存在量化子に似た専用の量化子$N$で処理してきた（$\exists x{:}A,\,\phi$に対する$Nx{:}A,\,\phi$という構文上の対立）．本節では，制作議論（\texttt{detail/2026-08-04/}，\texttt{detail/2026-08-05/}）の結論に従い，$N$を内包動詞の語彙意味論へ還元する\textbf{内容対象方式}を採る．
 
 \subsection{$N=\exists$の撤回とde dicto量化}
-% まず，「独自装置に見えた$N$の実体は（$\Sit$ないし個体領域上の）普通の存在量化である」というかつての整理は撤回する．$N$を現在世界での$\exists$として評価すると，前節(b)と同じ理由で選言に分配してしまい（集合上の存在量化は和を保存する），未解決の選言的態度が表せない．
 $N$の意図は\textbf{de dicto量化}，すなわち一般化量化子を内包的関係の内側へ持ち上げる演算である．態度・探索などの内包的な語彙$r$は，主体$a$と評価世界$w$に相対的な\textbf{代替世界}の集合$\mathrm{Alt}_r(a,w) \subseteq W$を定める（信念ならdoxastic代替$\mathrm{Dox}_a(w)$，探索なら探索が成功する目標世界．フレームのremarkで予告した「具体的な様相語彙は$W$の部分集合への相対化として導入する」の実例である）．このとき
 \begin{align*}
     \text{de re} &: \exists x\;\forall v\in\mathrm{Alt}_r(a,w)\;\cdots x\cdots
@@ -529,7 +513,6 @@ de dicto量化を体系へ入れる方法として，$N$を冠詞として新設
 \end{remark}
 \begin{remark}[第1スコープの内包化は保留]
     冠詞インターフェイス自体を内包化する（第1スコープも表現のまま渡し，「値が$S$のみに依存する冠詞」を外延的と宣言して分類する）案も可能だが，保留する．内容対象方式で書きにくいのは\emph{非存在型}のde dicto（「ほとんどの$A$を探す」のde dicto読み）だが，自然言語の不透明動詞はほぼ存在型読みしか取らないという観察があり\cite{zimmermann-opacity}，必要性が確認されてから再検討する．なお固定領域$M$では無制限量化についてBarcan式・逆Barcan式がともに成立するため，de re/de dictoの対立が生じるのは制限つき量化（制限部の外延が世界依存）に限られる．
-    % @issue KONO-0036
     \memo{非存在型de dictoの実例が見つかったら第1スコープの内包化を再検討する（タスクツリー「理論/内容対象方式の定式化」参照）．}
 \end{remark}
 \begin{remark}[Montague流との関係]
@@ -550,7 +533,6 @@ de dicto量化を体系へ入れる方法として，$N$を冠詞として新設
 \end{tabular}
 \end{center}
 第3のcontent読みは，$C[\phi]$の\emph{要素}を選ぶのではなく，$C[\phi]$\emph{全体}を主体の総信念内容$D_a$（truthmaker命題）とconjunctive parthoodで比較する\cite{jago-belief}．この読みは連言で分配する一方，選言の導入（$\phi$から$\phi\lor\psi$）を許さず，無関係な主題を信念内容へ勝手に足すRoss型の推論を防ぐ．第1の読みは古典的に同値な文を区別しない（System Kとして振る舞うことの代価）．したがってこの3段は，前節の粒度スペクトラム（$K$粗視化／$C$クラス）の態度動詞版である．
-    % @issue KONO-0037
 \todo{de re状況読みの$\mathrm{know}(a,e)$（instance版）に課す閉包条件（融合閉包・部分への遺伝・正負の整合性）と，入れ子の態度（$\mathrm{know}(a,e)$という態度事実自体の検証者）は未定式化．}
 
 \subsection{know系の書き分け}\label{subsec:know-forms}
@@ -578,7 +560,6 @@ know that $\phi$／know if $\phi$／know whether $\phi$ or not／know wh（「�
     \item \textbf{know wh}は，mention-some読みですら真の解答$d$を全認識代替世界で固定する必要がある（$\exists d\,(\phi_w(d) \land \forall v\in\mathrm{Dox}_a(w),\, v \models \phi(d))$．witnessを世界ごとに変えてよいde dicto層と，固定すべき解答ラベルの層が別物であることに注意）．exhaustive読みには完全解答，すなわち正のinstanceの列挙に加えて「ほかにはいない」というtotality state（remark［全称量化とtotality state］）が要る．
     \item factivity条項を外せばbelieve，「解決していないが問いを内容対象に持つ」とすればwonderになる．動詞ごとの違いは$\langle\mathrm{Alt},\mathrm{Sat}\rangle$とfactive条項の有無に局所化される．
 \end{itemize}
-    % @issue KONO-0038
 \memo{この一様意味論は方針候補であり未採択．「解決する」関係の定式化，選択肢の族という内容対象の型（冠詞$E$の出力）のオントロジー上の位置，totality stateの採否（KONO-0026），負側の供給（KONO-0025）が前提．検証は\texttt{corpus/}で4形の書き分け例文を作って行う（達成基準：4形が書き分けられること）．}
 
 \end{document}

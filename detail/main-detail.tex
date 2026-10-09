@@ -1,10 +1,8 @@
 \documentclass[b5paper, 10pt]{ltjsbook}
 \usepackage{custom4-default}
-% 開発版のみ: ソース .tex の行番号を左余白に表示（\MemoOff で消える）
 \ifmemonotes\usepackage{srcline}\fi
 \usepackage{proof}
 \usepackage{gb4e}\noautomath
-%\makeatletter\let\@ifnextchar\kernel@ifnextchar\makeatother
 \newcommand{\lbb}{\llbracket}
 \newcommand{\rbb}{\rrbracket}
 \usepackage{stmaryrd}
@@ -25,22 +23,11 @@
 \renewcommand{\trans}{\mathsf{T}}
 \newcommand{\mb}[1]{[#1]}
 \renewcommand{\dom}{\mathop{\mathrm{dom}}\nolimits}
-% \newcommand{\clsop}[1]{{}^\cup #1}
-% \newcommand{\clsop}[1]{{{#1}^\cup}}
-% 引数と自身の高さをVに固定し，入れ子や後続の上付き（量化冠詞）を同じ高さに置く．
 \newcommand{\clsop}[1]{{\vphantom{V}\smash{{\vphantom{V}\smash{#1}}^{\cup}}}}
-% \newcommand{\setop}[1]{{}^\cap #1}
 \newcommand{\setop}[1]{{{#1}^\cap}}
 \usepackage{underscore}
 
 \usetikzlibrary{arrows.meta,calc}
-% --- 骨格木（forest, dir tree）の上に関係の矢印を重ねる ---
-% 節点に name= を付け，木の直後（\end{forest} の前）で使う．木の辺と重ならないよう外側を直角に回る．
-%   \treerel{from}{to}{label}            from.north から上へ出て右を回り to.east へ（親→子・子→子）
-%   \treerel[via=right]{from}{to}{label} from.east から右へ出て縦に走り to.east へ（右列の節点どうし）
-%   \treerel[via=direct,from=north,to=south]{a}{b}{label} 隣接する節点を直線で結ぶ（木の辺と交わらない隙間があるとき）
-%   \treeloop{node}{label}               node.east の右に自己関係の小さなループ
-%   キー: up=<木の上端からの余白>, right=<木の右端からの余白>（既定 0.35, 0.5 cm），via=top|right．経路は木の外接矩形の外を回る．
 \colorlet{relarrow}{blue!55!black}
 \tikzset{
   rel arrow/.style={->, >={Stealth[length=4pt,width=3pt]}, draw=relarrow, densely dashed,
@@ -50,6 +37,12 @@
 \pgfkeys{/treerel/.cd, up/.store in=\treerelup, right/.store in=\treerelright, via/.store in=\treerelvia,
   from/.store in=\treerelfrom, to/.store in=\treerelto,
   up=0.35, right=0.5, via=top, from=north, to=south}
+\def\treerelviaRight{right}
+\def\treerelviaLeft{left}
+\def\treerelviaUp{up}
+\def\treerelviaDown{down}
+\def\treerelviaRU{rightup}
+\def\treerelviaDirect{direct}
 \NewDocumentCommand{\treerel}{O{} m m m}{%
   \begingroup\pgfkeys{/treerel/.cd,#1}%
   \ifx\treerelvia\treerelviaDirect
@@ -59,37 +52,54 @@
     \draw[rel arrow] let \p1=(#2.east), \p2=(#3.east), \p3=(current bounding box.north east) in
       (\p1) -- (\x3+\treerelright cm, \y1) -- (\x3+\treerelright cm, \y2) -- (\p2)
       node[rel label] at (\x3+\treerelright cm, {(\y1+\y2)/2}) {#4};
+  \else\ifx\treerelvia\treerelviaLeft
+    \draw[rel arrow] let \p1=(#2.west), \p2=(#3.west), \p3=(current bounding box.south west) in
+      (\p1) -- (\x3-\treerelright cm, \y1) -- (\x3-\treerelright cm, \y2) -- (\p2)
+      node[rel label] at (\x3-\treerelright cm, {(\y1+\y2)/2}) {#4};
+  \else\ifx\treerelvia\treerelviaUp
+    \draw[rel arrow] let \p1=(#2.north), \p2=(#3.north), \p3=(current bounding box.north east) in
+      (\p1) -- (\x1, \y3+\treerelup cm) -- (\x2, \y3+\treerelup cm) -- (\p2)
+      node[rel label] at ({(\x1+\x2)/2}, \y3+\treerelup cm) {#4};
+  \else\ifx\treerelvia\treerelviaDown
+    \draw[rel arrow] let \p1=(#2.south), \p2=(#3.south), \p3=(current bounding box.south west) in
+      (\p1) -- (\x1, \y3-\treerelup cm) -- (\x2, \y3-\treerelup cm) -- (\p2)
+      node[rel label] at ({(\x1+\x2)/2}, \y3-\treerelup cm) {#4};
+  \else\ifx\treerelvia\treerelviaRU
+    \draw[rel arrow] let \p1=(#2.east), \p2=(#3.north), \p3=(current bounding box.north east) in
+      (\p1) -- (\x3+\treerelright cm, \y1) -- (\x3+\treerelright cm, \y3+\treerelup cm)
+      -- (\x2, \y3+\treerelup cm) -- (\p2)
+      node[rel label] at ({(\x3+\treerelright cm+\x2)/2}, \y3+\treerelup cm) {#4};
   \else
     \draw[rel arrow] let \p1=(#2.north), \p2=(#3.east), \p3=(current bounding box.north east) in
       (\p1) -- (\x1, \y3+\treerelup cm) -- (\x3+\treerelright cm, \y3+\treerelup cm)
       -- (\x3+\treerelright cm, \y2) -- (\p2)
       node[rel label] at (\x3+\treerelright cm, {(\y3+\treerelup cm+\y2)/2}) {#4};
-  \fi\fi
+  \fi\fi\fi\fi\fi\fi
   \endgroup}
-\def\treerelviaRight{right}
-\def\treerelviaDirect{direct}
 \NewDocumentCommand{\treeloop}{O{} m m}{%
   \begingroup\pgfkeys{/treerel/.cd,#1}%
   \draw[rel arrow] (#2.east) ++(0,0.9ex) -- ++(0.45cm,0) -- ++(0,-1.8ex) -- ++(-0.45cm,0)
     node[rel label, anchor=west, inner sep=1pt] at ($(#2.east)+(0.5cm,0)$) {#3};
   \endgroup}
 
+\forestset{
+  axis/.style={draw=none, edge={dashed}},
+  omit/.style={draw=none, content=$\cdots$},
+  dup/.style={dashed},
+}
+\NewDocumentCommand{\treejoin}{m m}{%
+  \draw let \p1=(#1.east), \p2=(#2.west) in
+    (\p1) -- ({\x2-0.12cm}, \y1) -- ({\x2-0.12cm}, \y2) -- (\p2);}
 
-% \newcommand{\ko}[1]{\textsf{#1}}
-% \newcommand{\kotr}[2]{\textsf{#1}{(#2)}}
-% araidashiは未完成マーカー系（\memo/\todo/\fixmeと同格の，未決論点の列挙）．
-% \MemoOff時は本文から消える．issues.pyは中身を追跡しない．
 \newenvironment{araidashi}
 {\par\medskip\noindent\rule{\linewidth}{0.4pt}\par\noindent\textbf{洗い出し}
 \begin{itemize}\setlength{\itemsep}{0pt}}
 {\end{itemize}\noindent\rule{\linewidth}{0.4pt}\par\medskip}
 \ifmemonotes\else
-% 中身を捨てるボックスに組んで破棄する（commentパッケージはenumitemと衝突する）
 \renewenvironment{araidashi}
 {\par\setbox0\vbox\bgroup\begin{itemize}}
 {\end{itemize}\egroup}
 \fi
-
 
 \usepackage{longtable}
 
@@ -102,11 +112,8 @@
 \newcommand{\ko}[1]{\textsf{#1}}
 \newcommand{\kotr}[2]{\textsf{#1}（#2）}
 \newcommand{\sentence}[1]{$\langle$#1$\rangle$}
-\newcommand{\kox}[1]{\textsf{[#1]}}  % 未造語：コノメノ語の代わりに日本語を置く
+\newcommand{\kox}[1]{$\langle\text{#1}\rangle$}%
 
-
-
-% 採らない設計案を現在形で残す環境（完成版に載る）．AI改稿時に削除・改変しない．
 \newtheorem*{whynot}{採らない案}
 
 \newtheorem{alk}[theorem]{概念}
@@ -119,11 +126,6 @@
     $\text{#1} \subseteq \text{#2}$\hspace{1cm}#3
 \end{alk}
 }
-% \newcommand{\rele}[4]{
-% \begin{rel}
-%     $\text{#1} \subseteq \text{#2}\times \text{#3}$\hspace{1cm}#4
-% \end{rel}
-% }
 \newcommand{\rele}[4]{
 \begin{rel}
     $\text{#1} : \text{#2}\relto \text{#3}$\hspace{1cm}#4
@@ -140,7 +142,6 @@
 \end{word}
 }
 
-% leftlineboxと同じだが，開発者用のメモを残すときに使う
 \newtcolorbox{devbox}{
   breakable,
   enhanced,
@@ -157,10 +158,6 @@
 
 \newcommand{\relpath}[1]{\texttt{\~/Documents/kono-main/#1}}
 
-
-
-
-% --- Commands extracted from chapter bodies ---
 \newcommand{\lt}[1]{$\langle$\text{#1}$\rangle$}
 \newcommand{\arity}{\mathop{\mathrm{arity}}}
 \newcommand{\tArity}{\mathop{\mathrm{tArity}}}
@@ -180,7 +177,6 @@
 
 \tableofcontents
 
-
 \subfile{chapters/overview}
 
 \part{理論：P-side}
@@ -191,7 +187,6 @@
 \part{理論：S-side}
 \subfile{chapters/s-side/formal-grammar}
 \subfile{chapters/s-side/formal-semantics}
-% \subfile{chapters/s-side/colloquial-basics}  % 全体が\if0で無効化中
 \subfile{chapters/s-side/dictionary}
 \subfile{chapters/s-side/upper-classification}
 \subfile{chapters/s-side/representations}
@@ -200,7 +195,6 @@
 \subfile{chapters/s-side/perdurants}
 
 \part{実践：文法}
-% 実践編は四章に分割．旧版5-2は定義と例の移植元，理論の権威は本書本文．
 
 \subfile{chapters/practice/practice-foundations}
 \subfile{chapters/practice/practice-sentences}
@@ -211,11 +205,7 @@
 \part{付録}
 \subfile{chapters/appendix/ontology-trees}
 
-% \part{演習}
-% \subfile{chapters/s-side/formal-exercises}
-
 \nocite{wiki-personal, inquisitive, arai, dolce, bfo, yamato, ryan, kurada1, kurada2, hamano}
-% 生起物の分類の再検討で参照予定（2026-07-29 追加、本文未引用）
 \nocite{dowty1979, bach1986, krifka1998, rodrigues-abel2019}
 \bibliographystyle{plainnat}
 \bibliography{../bib/references}

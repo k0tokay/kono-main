@@ -7,18 +7,6 @@
 \section{現行の音韻・語形体系}
 音素目録，配列と発音，アクセント，活用，複合時の音形を扱う．未確定の一般化はその箇所に記し，後半の制作案とは区別する．
 \paragraph{凡例}（ラテン文字で書いた）綴り字を$\langle \bullet\rangle$，音声を$[\bullet]$と書く．音素の表記$/\!\bullet\!/$は使用しない($\langle \bullet\rangle$と同じ)ことにする．
-% LLM向けメモ：textipaとunicodeの対応
-% W → ɯ
-% C → ɕ
-% \c{c} → ç
-% 2 → ʌ
-% 9 → ɘ
-% O → ɔ
-% \t{tC} → t͡ɕ
-% \t{d\textctz} → d͡ʑ
-% R → ɾ
-% X → χ
-% P → ʔ
 \subsection{音素目録}
 音素目録は以下の表の通り．セル内の文字は綴り字であり（$\langle\bullet\rangle$は省略する），1つのセルは2つに分かれている．子音の場合は無声・有声，母音の場合は非円唇・円唇をそれぞれ表している．\_ は同じセル内のもう片方が空白であることを表している．
 \begin{table}[H]
@@ -96,8 +84,6 @@
 \begin{enumerate}[label=(\arabic*)]
     \item 子音の集合を$C$，母音の集合を$V$と表す．
     \item 調音法ごとの子音の集合をそれぞれ，摩擦音$S$，破擦音$Q$，破裂音$T$，鼻音$N$，流音$L$，接近音$J$と表す．$C = S\cup Q\cup T\cup N\cup L\cup J$である．
-    % \item 音素は小文字のラテン文字を用いて$x,c,v$のように表す．
-    % \item 音素列は太字で$\bm{x},\bm{c},\bm{v}$のように表す．
 \end{enumerate}
 
 音節$\sigma$は次の3つの部分からなる．
@@ -107,7 +93,6 @@
     \item \textbf{コーダ}(coda) $\kappa\;\; (0\leq |\kappa| \leq 2)$：音節末の子音列．
 \end{itemize}
 すなわち，音節$\sigma = \omega\nu\kappa$である．
-
 
 \subsection{音韻制約}
 \subsubsection{二重子音・母音の制約}\label{vpsi}
@@ -166,7 +151,6 @@ $|\kappa|=2$のとき，$\kappa$は以下の表にある組み合わせのみ許
     \bottomrule
   \end{tabular}
 \end{table}
-% @issue KONO-0010
 \todo{
     実際の使用頻度を載せるといいのでは？
 }
@@ -181,7 +165,6 @@ $|\kappa|=2$のとき，$\kappa$は以下の表にある組み合わせのみ許
   \item 語末に音素列$\bm{x}\in (S\cup J)V$があれば，$x_2\in\{\text{a},\text{e}\}$
 \end{itemize}
 \subsection{音節化}
-% @issue KONO-0011
 \todo{意味的・形態的境界が最大オンセット原則に優先する条件を検討する}
 多音節語において音素列を音節に分割する際，原則として\textbf{最大オンセット原則}(Maximal Onset Principle, MOP)を採用する．
 これは，音韻制約を満たす範囲で，できるだけ多くの子音をオンセットに割り当てるという原則である．
@@ -281,7 +264,6 @@ H$\to$L型の既定形は，語頭Hとそれ以降のLからなるHL$\cdots$Lと
 \textbf{[検討中]} 次末音節を延長するとき，軽い語末の前では重子音化を，重い語末の前では母音長音化を選ぶ，という一般化を立てる．例えば\textit{kee.la.sa}は\textit{kee.las.sa}となる一方，\textit{fa.ca.glot}は\textit{fa.caa.glot}（HLL）となる．ただし，これは延長の生じた26箇所での方法の分岐であり，延長自体の生起条件ではない．同じ対象条件を満たす104箇所では延長がない．
 
 この次末音節の一般化で，非Fの母音長音化を尽くすことはできない．\textit{tom.maa.fa.ca}（FLLL）ではF直後，\textit{naa.blan.na}（LFL）ではF直前の非次末音節が伸びる．\textit{la.saaf.nom}（HLL）のように，すでにコーダを持つ音節の母音も伸びる．また，\textit{na.ma.kee}（LHH）のような語末長音化もある．語末の伸びを発話末の効果とする分析は，句中形との比較まで保留する．
-% @issue KONO-0009
 \todo{延長するか否かの条件を決める．次末音節における母音長音化と重子音化の選択，次末以外の延長，語末の伸びを，句中形と単独読みで比較する．}
 
 \paragraph{適用範囲と残る反例}
@@ -295,7 +277,6 @@ H$\to$L型の既定形は，語頭Hとそれ以降のLからなるHL$\cdots$Lと
 複合語のアクセント合成は別に定める必要がある．\textit{oibandali}（HLLR）では前方の下降が残る一方，\textit{meliikansav}（HLLF）では後方にも下降が現れる．F型の位置規則を複合語全体へ自動適用しない．
 
 \subsection{活用}
-% @issue KONO-0041
 \todo{これは5-2から移植したもの．改訂されるまではこれで行く．}
 \begin{definition}関数$f:A\rightarrow B$，$g:C\rightarrow D$に対して，$f\vlr g:A\cup C \rightarrow B\cup D$を$f\vlr g = f\cup g|_{C\backslash A}$と定義する．つまり$(f\vlr g)(x) = \text{if }x\in \text{dom}f \text{ then }f(x) \text{ else }g(x)$である．
 \end{definition}
@@ -327,7 +308,7 @@ x + \bm{y} = x\text{j}y_1\\
 \subsubsection{子音結合}
 あまり使われないが，母音結合に似た操作として子音結合も定義できる．(音節を跨ぐときの子音の配列に関する制約は厳しくないため，大きな変形は必要にならない．)
 \begin{definition}
-  $(x,y)\in C^2$が\ref{vpsi}，\ref{vpsi2}節で定義された制約を満たすとき，$\Psi_1(x,y)=xy$，$\Psi_2(x,y)=xy$とし，$\Psi = \Psi_1\vlr \Psi_2 = \Psi_2\vlr \Psi_1$とおく．%すると，$\text{dom}(\Psi\vlr \Psi^\trans) = C^2\backslash (C\times Q \cup Q \times C)$となる．
+  $(x,y)\in C^2$が\ref{vpsi}，\ref{vpsi2}節で定義された制約を満たすとき，$\Psi_1(x,y)=xy$，$\Psi_2(x,y)=xy$とし，$\Psi = \Psi_1\vlr \Psi_2 = \Psi_2\vlr \Psi_1$とおく．%
   また，$x\in Q$に対して，$\nu(x)=\text{if }x=\text{ts}\text{ then }\text{s}\text{ else }\text{c}$とする．
 \end{definition}
 \begin{definition}

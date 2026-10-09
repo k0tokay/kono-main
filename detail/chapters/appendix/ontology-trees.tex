@@ -4,8 +4,8 @@
 ここでは，BFO，DOLCE系のDOLCE+DnS Ultralite (DUL)，GFO，YAMATOの
 名前付きクラス間の上位分類を比較できる形で示す．木は主として
 \relpath{archive/archive002/upper-ontology/data/}以下のOWLファイルに明記された
-\texttt{rdfs:subClassOf}から構成した．OWLの制約式，定義クラス，および多重継承の
-交差辺は，最上位分類を読み取るために必要な場合を除いて省略している．
+\texttt{rdfs:subClassOf}から構成した．OWLの制約式と定義クラスは，最上位分類を読み取るために必要な場合を除いて省略している．
+多重継承のクラスは，二つ目以降の出現を破線の枠で示す（凡例は概要章）．
 
 \section{BFO}
 出典データは\relpath{archive/archive002/upper-ontology/data/bfo.owl}である．
@@ -92,7 +92,6 @@
 出典データは\relpath{archive/archive002/upper-ontology/data/dolce-lite.owl}である．ファイル名は
 \texttt{dolce-lite.owl}だが，内容はDOLCE+DnS Ultralite 4.2であり，古典的な
 DOLCEそのものの分類木ではない．
-% https://akswnc7.informatik.uni-leipzig.de/dstreitmatter/archivo/ontologydesignpatterns.org/ont--dul--DUL--owl/2021.04.08-030256/ont--dul--DUL--owl_type%3DgeneratedDocu.html#d4e3480
 \begin{figure}[H]
   \centering
   \begin{forest}
@@ -152,12 +151,12 @@ DOLCEそのものの分類木ではない．
     [Object
       [Agent
         [Person
-          [Natural person, name=dul-natural-person]
-          [Social person, name=dul-social-person]
+          [Natural person]
+          [Social person]
         ]
-        [Physical agent, name=dul-physical-agent
-          [, name=dul-natural-person-2, dashed]
-          [Organism, name=dul-organism]
+        [Physical agent
+          [Natural person, dup]
+          [Organism]
         ]
         [Social agent, name=dul-social-agent
           [Collective agent
@@ -166,24 +165,24 @@ DOLCEそのものの分類木ではない．
           ]
           [Organization]
           [Personification]
-          [, name=dul-social-person-2, dashed]
+          [Social person, dup]
         ]
       ]
       [Physical object
-        [, name=dul-physical-agent-2, dashed]
+        [Physical agent, dup]
         [Physical artifact
           [Designed artifact
-            [Designed substance, name=dul-designed-substance]
+            [Designed substance]
           ]
         ]
         [Physical body
           [Biological object
-            [, name=dul-organism-2, dashed]
+            [Organism, dup]
           ]
           [Chemical object]
           [Substance
             [Functional substance
-              [, name=dul-designed-substance-2, dashed]
+              [Designed substance, dup]
             ]
           ]
         ]
@@ -191,11 +190,6 @@ DOLCEそのものの分類木ではない．
       ]
       [Social object, name=dul-social-object]
     ]
-    \draw[dashed] (dul-natural-person-2.east) to[out=0, in=0] (dul-natural-person.east);
-    \draw[dashed] (dul-social-person-2.east) to[out=0, in=0] (dul-social-person.east);
-    \draw[dashed] (dul-physical-agent-2.north) to[out=90, in=-90] (dul-physical-agent.south);
-    \draw[dashed] (dul-organism-2.east) to[out=0, in=0] (dul-organism.east);
-    \draw[dashed] (dul-designed-substance-2.east) to[out=0, in=0] (dul-designed-substance.east);
   \end{forest}
   \caption{DULのObject以下の分類（AgentとPhysical object）}
 \end{figure}
